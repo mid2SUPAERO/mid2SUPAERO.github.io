@@ -1,0 +1,57 @@
+---
+---
+
+@import "minima";
+
+// --- Palette: aerospace-adjacent, quiet and readable -----------------------
+$accent: #1d4e5f;      // deep aerospace teal
+$accent-soft: #e8f0ee;
+$ink: #1b1f22;
+
+body {
+  color: $ink;
+}
+
+.site-title,
+.site-title:visited {
+  font-weight: 700;
+  color: $accent !important;
+}
+
+.site-nav .page-link {
+  color: $ink;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.01em;
+}
+
+// Nav-style link row at top of the homepage, e.g. "📄 About  📄 Research ..."
+.page-content h2 {
+  border-bottom: 2px solid $accent-soft;
+  padding-bottom: 0.3rem;
+  margin-top: 2.2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+table th {
+  background: $accent-soft;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+}
+
+table td {
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+
+footer.site-footer {
+  border-top: 1px solid #eee;
+  color: #777;
+}
