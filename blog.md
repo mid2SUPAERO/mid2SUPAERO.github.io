@@ -1,3 +1,9 @@
+---
+layout: page
+title: Publications
+permalink: /blog.html
+---
+
 # Blog Feed & Reading List
 
 Welcome to the blog section. Below is a curated list of articles, tutorials, and deep-dives on surrogate modeling, machine learning physics, and engineering design optimization.
