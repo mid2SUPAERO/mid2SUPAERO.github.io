@@ -25,7 +25,7 @@ multidisciplinary design optimization, and AI/machine learning for engineers.
 
 [Gradient Based Optimization](https://github.com/jomorlier/OptimizationCourse)
 
-[an introduction to scientific computing](https://github.com/jomorlier/ScientificComputing)
+[An introduction to Scientific Computing](https://github.com/jomorlier/ScientificComputing)
 
 # YOUTUBE videos
 TU Delft MUMAC2022 part1
