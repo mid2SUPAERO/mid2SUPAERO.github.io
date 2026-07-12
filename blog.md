@@ -6,7 +6,7 @@ permalink: /blog.html
 
 # Blog Feed & Reading List
 
-Welcome to the blog section. Below is a curated list of articles, tutorials, and deep-dives on surrogate modeling, machine learning physics, and engineering design optimization.
+Welcome to the blog section. Below is a curated list of articles, tutorials, and deep-dives on the things I would have been very happy to write. A must read !!!
 
 ---
 
