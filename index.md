@@ -5,7 +5,7 @@ title: Home
 
 ## [Joseph Morlier](https://josephmorlier.github.io/)
 
-Enseignant-chercheur in Structural Optimization, Multidisciplinary Design Optimization,
+Professor in Structural Optimization, Multidisciplinary Design Optimization,
 Ecodesign & AI for Engineers — ISAE-SUPAERO, DMSM Department
 📥 joseph.morlier at isae-supaero.fr
 
