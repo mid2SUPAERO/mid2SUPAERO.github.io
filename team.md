@@ -10,13 +10,13 @@ permalink: /team.html
 
 | Name | Funding / Partner | Doctoral School / Co-supervision |
 |---|---|---|
-| Giovani Catalani | AIRBUS | ED MEGEP, with ISAE-SUPAERO DAEP |
-| Ousmane Sy | EU HERA | ED MEGEP, with ISAE-SUPAERO DCAS |
-| Shubham Deshmukh | AIRBUS | ED MEGEP, with IRT Saint Exupéry |
-| Gustavo Asai | TU Delft | With Kunal Masania and Frédéric Lachaud |
-| Shantanu Sapre | AIRBUS | ED MEGEP |
-| Gaston Plat | FONISEN | ED MITT, with ONERA |
-| Rémi Ducottet | AIRBUS | ED MEGEP |
+| Giovani Catalani | AIRBUS | ED MEGEP, with Prof. Bauerheim |
+| Ousmane Sy | EU HERA | ED MEGEP, with Prof. Benard |
+| Shubham Deshmukh | AIRBUS | ED MEGEP, with F. Gallard and Prof. Brugnoli |
+| Gustavo Asai | TU Delft | With Prof. Masania and Prof. Lachaud |
+| Shantanu Sapre | AIRBUS | ED MEGEP - ICA | With Prof. Gogu
+| Gaston Plat | FONISEN | ED MITT - ONERA - UT Capitole | With Prof. Bartoli and T. Lefevbre, and P. Saves
+| Rémi Ducottet | AIRBUS | ED MEGEP, with Prof. Bauerheim |
 
 ## Visiting Researchers
 
@@ -26,6 +26,7 @@ permalink: /team.html
 - PhD candidate Heine Rostrum — NTNU, October 2024, January 2025
 - PhD Nathan Nathan — ITB, November 2024
 - Assistant Professor Rajnish Mallick — IIITDM Kancheepuram, October 2025
+- PhD Carlos Sosa Henriquez — KTY, September 2026
 
 ## Alumni
 
