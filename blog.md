@@ -35,6 +35,16 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 **Summary:** A hands-on, deeply technical tutorial on topology and structural optimization. The post breaks down the mathematics behind minimizing elastic potential energy (compliance) across a 2D grid of springs. It covers crucial implementation steps, including computing sensitivities, solving large-scale sparse matrices using SciPy's SuperLU, and defining custom Autograd gradients to bridge physics simulations with automatic differentiation.
 
 ---
+### [A Structural Optimization Tutorial](https://meyer-nils.github.io/structural_optimization/)
+* **Author:** Niels Meyer
+* **Published:** April 2026 
+* **Link:** [Fem Optimization]([https://meyer-nils.github.io/structural_optimization/](https://meyer-nils.github.io/structural_optimization/fem_optimization.html))
+
+**Summary:** 
+This is accompanying code for Niels Meyer's Structural Optimization lecture MRM-0156. A must read !
+
+---
+
 
 ### [PLAID — Physics Learning AI Data Model](https://plaid-lib.github.io)
 * **Author:** Fabien Cazenave 
