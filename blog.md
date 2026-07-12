@@ -35,3 +35,17 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 **Summary:** A hands-on, deeply technical tutorial on topology and structural optimization. The post breaks down the mathematics behind minimizing elastic potential energy (compliance) across a 2D grid of springs. It covers crucial implementation steps, including computing sensitivities, solving large-scale sparse matrices using SciPy's SuperLU, and defining custom Autograd gradients to bridge physics simulations with automatic differentiation.
 
 ---
+
+### [PLAID — Physics Learning AI Data Model](https://plaid-lib.github.io))
+* **Author:** Fabien Cazenave 
+* **Published:** August 5, 2025 
+* **Link:** [Benchmark]([https://greydanus.github.io/2022/05/08/structural-optimization/](https://plaid-lib.github.io/benchmarks/#interactive-benchmark-applications))
+
+**Summary:** The missing data layer between physics simulations and scientific ML.
+PLAID is an open framework for representing, sharing, and learning from datasets of complex physics simulations. It defines a common standard for simulation data and ships a Python library to create, explore, store, and stream them.
+
+Why another data model?
+
+Mainstream ML stacks (Hugging Face, PyTorch, TensorFlow) assume data is regular, homogeneous, and columnar. Real simulation data is not: it is hierarchical and multi-zone, with heterogeneous fields, shapes, and metadata, often governed by implicit, solver-specific conventions. Flattening or padding it into tabular form is error-prone, memory-hungry, and erases the physical structure the model should learn from.
+
+---
