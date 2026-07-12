@@ -27,7 +27,7 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 
 ---
 
-### [A Structural Optimization Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
+### [A Topology Optimization Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
 * **Author:** Sam Greydanus  
 * **Published:** May 8, 2022  
 * **Link:** [Read Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
