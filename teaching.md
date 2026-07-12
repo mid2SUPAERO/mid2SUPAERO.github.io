@@ -26,4 +26,4 @@ multidisciplinary design optimization, and AI/machine learning for engineers.
 [an introduction to scientific computing](https://github.com/jomorlier/ScientificComputing)
 
 
-[![Watch the video](https://img.youtu.be/vrHZJNlqnZA/default.jpg)](https://youtu.be/vrHZJNlqnZA)
+[![MUMAC 1](https://img.youtu.be/vrHZJNlqnZA/default.jpg)](https://youtu.be/vrHZJNlqnZA)
