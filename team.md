@@ -26,7 +26,7 @@ permalink: /team.html
 - PhD candidate Heine Rostrum — NTNU, October 2024, January 2025
 - PhD Nathan Nathan — ITB, November 2024
 - Assistant Professor Rajnish Mallick — IIITDM Kancheepuram, October 2025
-- PhD Carlos Sosa Henriquez — KTY, September 2026
+- PhD Carlos Sosa Henriquez — KTU, September 2026
 
 ## Alumni
 
