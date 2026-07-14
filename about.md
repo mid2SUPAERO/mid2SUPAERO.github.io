@@ -9,8 +9,7 @@ permalink: /about.html
 I am an full professor in Aerospace Engineering (AE) at **ISAE-SUPAERO**, attached to the Aerospace Design group at **TSAAElab**.
 
 I lead the **MID2** group — *Multidisciplinary optimization for aerospace Innovation:
-eco Design and Data* — which develops methods for design optimization and data-driven/AI-assisted decision-making, with applications in aerospace engineering and complex dynamical systems.
-
+eco Design and Data* — which develops methods for design optimization and data-driven/AI-assisted decision-making, with applications in aerospace engineering.
 
 
 ## Affiliation
