@@ -9,7 +9,7 @@ Professor in Structural Optimization, Multidisciplinary Design Optimization,
 Ecodesign & AI for Engineers — ISAE-SUPAERO, DMSM Department
 📥 joseph.morlier at isae-supaero.fr
 
-[📄 About](/about.html) [📄 Research](/research.html) [📄 Team](/team.html) [📄 Teaching](/teaching.html) [📄 Publications](/publications.html) [📄 Contact](/contact.html) [📄 Blog](/blog.html)
+
 
 ## 🏠 Welcome!
 
