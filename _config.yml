@@ -1,11 +1,8 @@
 title: Joseph Morlier
 description: >-
-  Personal research page — Structural Optimization, Ecodesign, AI for Engineers,
-  Multidisciplinary Design Optimization & Structural Health Monitoring.
   Home of the MID2 research group at ISAE-SUPAERO.
 email: joseph.morlier@isae-supaero.fr
-url: "https://josephmorlier.github.io"   # CHANGE to your actual github.io URL
-baseurl: ""
+
 
 # --- Theme -------------------------------------------------------------
 # Uses the GitHub-Pages-supported "minima" theme as a base, then overrides
@@ -32,15 +29,7 @@ header_pages:
 # --- Author / social -----------------------------------------------------
 author:
   name: Joseph Morlier
-  affiliation: ISAE-SUPAERO, DMSM Department, Toulouse, France
-
-social:
-  scholar: "https://scholar.google.fr/citations?user=wi1HSroAAAAJ&hl=fr"
-  orcid: "https://orcid.org/0000-0002-1511-2086"
-  linkedin: "https://www.linkedin.com/in/joseph-morlier-890176168/"
-  publons: "https://publons.com/researcher/3109719/joseph-morlier/"
-  isae: "https://personnel.isae-supaero.fr/joseph-morlier/?lang=fr"
-  github_outputs: "https://github.com/mid2SUPAERO/Outputs"
+  affiliation: ISAE-SUPAERO, Toulouse, France
 
 markdown: kramdown
 permalink: /:categories/:year/:month/:day/:title.html
