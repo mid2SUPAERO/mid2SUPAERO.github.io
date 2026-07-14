@@ -18,7 +18,7 @@ permalink: /team.html
 | Gaston Plat | FONISEN | ED MITT - ONERA - UT Capitole,  With Prof. Bartoli and T. Lefevbre, and P. Saves |
 | Rémi Ducottet | AIRBUS | ED MEGEP, with Prof. Bauerheim |
 
-## Associated Phd abroad
+## Associated PhD abroad
 
 | Name | Funding / Partner | Doctoral School / Co-supervision |
 |---|---|---|
