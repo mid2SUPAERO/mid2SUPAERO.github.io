@@ -11,7 +11,7 @@ Topology and shape optimization, multiscale methods, geometric projection,
 architectured materials.
 
 ### Ecodesign
-Digital materials, Life Cycle Assessment (LCA), eco-informed material selection.
+Digital materials, Computational Life Cycle Assessment, eco-informed material selection.
 
 ### Artificial Intelligence for Engineers
 Surrogate modeling, Gaussian Processes, multifidelity approaches, mixed-variable
@@ -21,7 +21,7 @@ optimization.
 Computational aeroelasticity, accelerated design of aircraft, UAV and launchers.
 
 ### Structural Health Monitoring
-Modal identification, signal processing, neural networks.
+Modal identification, signal processing, neural networks for pattern recognition
 
 ---
 
