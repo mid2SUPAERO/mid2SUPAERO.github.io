@@ -19,6 +19,9 @@ permalink: /team.html
 | Rémi Ducottet | AIRBUS | ED MEGEP, with Prof. Bauerheim |
 
 ## Associated Phd abroad
+
+| Name | Funding / Partner | Doctoral School / Co-supervision |
+|---|---|---|
 | Kemas Zakaria | ITB | Indonesian funding, With Prof. Palar and Prof. Zuhal|
 | Gustavo Asai | TU Delft | Nederland funding, With Prof. Masania and Prof. Lachaud |
 
