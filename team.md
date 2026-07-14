@@ -6,7 +6,7 @@ permalink: /team.html
 
 # Team
 
-## PhD Students, Research Associates & Postdocs
+## PhD Students
 
 | Name | Funding / Partner | Doctoral School / Co-supervision |
 |---|---|---|
@@ -17,6 +17,10 @@ permalink: /team.html
 | Shantanu Sapre | AIRBUS | ED MEGEP,  With Prof. Gogu |
 | Gaston Plat | FONISEN | ED MITT - ONERA - UT Capitole,  With Prof. Bartoli and T. Lefevbre, and P. Saves |
 | Rémi Ducottet | AIRBUS | ED MEGEP, with Prof. Bauerheim |
+
+## Associated Phd abroad
+| Kemas Zakaria | ITB | Indonesian funding, With Prof. Palar and Prof. Zuhal|
+| Gustavo Asai | TU Delft | Nederland funding, With Prof. Masania and Prof. Lachaud |
 
 ## Visiting Researchers
 
