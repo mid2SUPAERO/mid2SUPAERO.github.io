@@ -20,7 +20,7 @@ optimization.
 ### Multidisciplinary Design Optimization (MDO)
 Computational aeroelasticity, accelerated design of aircraft, UAV and launchers.
 
-### Structural Health Monitoring
+### Structural Health Monitoring and vibration (my old life)
 Modal identification, signal processing, neural networks for pattern recognition
 
 ---
