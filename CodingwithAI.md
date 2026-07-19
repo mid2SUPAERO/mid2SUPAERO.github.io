@@ -11,6 +11,8 @@ Vibe coding is a software development approach where you build applications enti
 
 https://en.wikipedia.org/wiki/Vibe_coding
 
+# Recreation with my friend Claude (Anthropic)
+
 ---
 
 ### [REMAL](https://arxiv.org/html/2606.13245v1)
@@ -22,14 +24,6 @@ https://en.wikipedia.org/wiki/Vibe_coding
 
 * **Link:** [Play with the vibecode](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/REMAL_CasADi.ipynb)
 
-
----
-
----
-
-### Recreation with my friend Claude (Anthropic)
-* **Authors:** J.Morlier and students
- 
 
 ---
 
