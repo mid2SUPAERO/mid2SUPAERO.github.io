@@ -10,6 +10,14 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 
 ---
 
+### Recreation with my friend NotebookLM (Google)
+* **Authors:** J.Morlier and students
+ 
+
+---
+
+---
+
 ### [The Economics of AI Surrogates](https://jajimer.github.io/2026/06/12/economics-of-ai-surrogates/)
 * **Author:** J. Ajimer  
 * **Published:** June 12, 2026  
