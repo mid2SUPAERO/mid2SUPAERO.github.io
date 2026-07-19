@@ -5,12 +5,6 @@ permalink: /CodingwithAI.html
 ---
 
 
-# Definition
-
-Vibe coding is a software development approach where you build applications entirely by conversing with an AI in natural language. Instead of writing code line-by-line, you describe your vision or "vibe," and AI models handle the generation, testing, and deployment, allowing you to focus purely on the creative outcome. 
-
-[Vibe coding](https://en.wikipedia.org/wiki/Vibe_coding)
-
 # My Starting point
 
 I've started coding in C during my final research project at University. Au menu: FFT2D, Hough Transform with Dennis Ritchie's book.
@@ -35,7 +29,13 @@ Example for fft function in matlab:
 
 And that changes everything for me.
 
-Then came stable Python 2.4 (last year of my PhD), and then Github... then Colab... then ChatGPT/Claude/Gemini
+Then came stable Python 2.4 (last year of my PhD), and then Github... then Colab... then ChatGPT/Claude/Gemini ...AntiGravity etc.
+
+# Definition of Vibe Coding
+
+Vibe coding is a software development approach where you build applications entirely by conversing with an AI in natural language. Instead of writing code line-by-line, you describe your vision or "vibe," and AI models handle the generation, testing, and deployment, allowing you to focus purely on the creative outcome. 
+
+[Vibe coding](https://en.wikipedia.org/wiki/Vibe_coding)
 
 
 # Recreation with my friend Claude (Anthropic)
