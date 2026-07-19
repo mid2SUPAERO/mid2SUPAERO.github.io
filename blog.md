@@ -46,7 +46,7 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 ### [A Structural Optimization Tutorial](https://meyer-nils.github.io/structural_optimization/)
 * **Author:** Niels Meyer
 * **Published:** April 2026 
-* **Link:** [Read Tutorial]([https://meyer-nils.github.io/structural_optimization/](https://meyer-nils.github.io/structural_optimization/fem_optimization.html))
+* **Link:** [Read Tutorial](https://meyer-nils.github.io/structural_optimization/fem_optimization.html)
 
 **Summary:** 
 This is accompanying code for Niels Meyer's Structural Optimization lecture MRM-0156. A must read !
