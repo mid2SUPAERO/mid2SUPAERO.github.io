@@ -4,9 +4,12 @@ title: Blog
 permalink: /blog.html
 ---
 
-# Blog Feed & Reading List
+# Blog  & Reading List
 
-Welcome to the blog section. Below is a curated list of articles, tutorials, and deep-dives on the things I would have been very happy to write. A must read !!!
+📖 “The Things I Would Really Have Loved to Have Published”
+Not every interesting idea ends up as a journal paper. Sometimes the timing isn’t right, sometimes the project takes another direction, and sometimes the story simply remains in a notebook.
+This blog is dedicated to those ideas: the tutorials, perspectives, engineering insights, and research notes that I wish had found their way into the literature.
+
 
 ---
 
