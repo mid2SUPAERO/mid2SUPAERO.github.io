@@ -5,41 +5,81 @@ permalink: /CodingwithAI.html
 ---
 
 
-# My Starting point
+# My Starting Point (polished with ChatGPT)
 
-In high school in france we were few students (geek ?) with a HP 48G calculator. I discovered the Reverse Polish Notation (RPN) and the RPL programming language and more important the assembly language. 
+Back in high school in France, a small group of us—the geeks, perhaps—owned an HP 48G calculator. Looking back, that little machine probably changed the course of my career.
 
-[More on HP48](https://en.wikipedia.org/wiki/HP_48_series)
+It introduced me to **Reverse Polish Notation (RPN)**, then to the **RPL programming language**, and eventually to something even more fascinating: **assembly language**. It was the first time I experienced what programming really meant—understanding how a machine thinks.
 
-[More on Assembly language](https://en.wikipedia.org/wiki/Assembly_language)
+- [More on the HP 48](https://en.wikipedia.org/wiki/HP_48_series)
+- [More on Assembly language](https://en.wikipedia.org/wiki/Assembly_language)
 
-I've started coding in C during my final research project at University of Bordeaux (ENSEIRB). Au menu: FFT2D, Hough Transform with Dennis Ritchie's book. I also remember during my MsC in mechatronics that I coded the Simplex algorithm on my HP48G and some basic MLP using Matlab in a course called Artificial Neural Networks (the story is not ended).
-[More on Dennis](https://en.wikipedia.org/wiki/Dennis_Ritchie)
-[More on Simplex](https://en.wikipedia.org/wiki/Simplex_algorithm)
+University was my next turning point. During my final research project at **ENSEIRB (University of Bordeaux)**, I started programming in **C**, learning from Dennis Ritchie's legendary book while implementing algorithms such as **2D FFTs** and the **Hough Transform**.
 
-Then ... I used Matlab as a numerical framework for wavelets analysis and vibration processing (modal analysis) during my PhD. I remember the transition from "matrix" movie nightmare in C to a very flexible and easy to run Matlab's framework. I was using Cleve Moler's book Finally, several years later I met Cleve Moler one of the founder of Matlab. It was really fun. At this time Stephane Mallat's book on wavelets was my bedside book as well as a Pete Avitabile Modal space short (educational) papers. Oh BTW, it is important for my story to say that I also create a database and coded a MLP in matlab for some pattern recognition purposes using this book: Apprentissage statistique : réseaux de neurones, cartes topologiques, machines à vecteurs supports, Eyrolles, 2008. from Gérard Dreyfus, Jean-Marc Martinez, Manuel Samuelides, Mirta Gordon, Fouad Badran et Sylvie Thiria.
+Around the same period, during my MSc in Mechatronics, I remember implementing the **Simplex algorithm** directly on my HP 48G. Yes, on a calculator. I also built some of my first **multilayer perceptrons (MLPs)** in MATLAB as part of an *Artificial Neural Networks* course.
 
-[More on Cleve](https://en.wikipedia.org/wiki/Cleve_Moler)
-[More on Stephane](https://www.college-de-france.fr/en/person/stephane-mallat)
-[More on Pete](https://www.uml.edu/research/sdasl/education/modal-space.aspx)
-[More on Manuel](https://www.researchgate.net/profile/Manuel-Samuelides/4)
+Looking back, I realize that machine learning had already entered the story—long before it became fashionable.
 
+- [More on Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie)
+- [More on the Simplex algorithm](https://en.wikipedia.org/wiki/Simplex_algorithm)
 
-And then in 2006, I become Manuel's colleague and started to work with him on structural optimization few years later.
+Then came my PhD.
 
-And do you know why I'm still teaching with Matlab ? (but I also add Python/Julia Scripts)
+MATLAB became my everyday scientific companion for **wavelet analysis**, **modal analysis**, and **vibration processing**. After years of wrestling with multidimensional arrays in C, MATLAB felt almost magical: concise, expressive, and designed for scientific computing.
 
-Mainly for the fact that each function as a full documentation citing the reference paper for the implementation.
+Cleve Moler's books were constant companions. Years later, I had the pleasure of meeting **Cleve Moler**, one of MATLAB's founders—a memorable moment for someone who had learned so much from his work.
 
-Example for fft function in matlab:
+At the same time, Stéphane Mallat's *Wavelet Tour* rarely left my desk, while Pete Avitabile's *Modal Space* papers became an invaluable source of practical engineering insight.
 
-[1] FFTW (https://www.fftw.org)
+My PhD also marked my first real experience with machine learning applied to engineering. I built databases, developed MATLAB implementations of MLPs for pattern recognition, and learned from Gérard Dreyfus and colleagues' excellent book *Apprentissage statistique : réseaux de neurones, cartes topologiques, machines à vecteurs supports* (Eyrolles, 2008).
 
-[2] Frigo, M., and S. G. Johnson. “FFTW: An Adaptive Software Architecture for the FFT.” Proceedings of the International Conference on Acoustics, Speech, and Signal Processing. Vol. 3, 1998, pp. 1381-1384.
+- [More on Cleve Moler](https://en.wikipedia.org/wiki/Cleve_Moler)
+- [More on Stéphane Mallat](https://www.college-de-france.fr/en/person/stephane-mallat)
+- [More on Pete Avitabile](https://www.uml.edu/research/sdasl/education/modal-space.aspx)
+- [More on Manuel Samuelides](https://www.researchgate.net/profile/Manuel-Samuelides/4)
 
-And that changes everything for me (like High Quality figures in a good paper [MIT LAE Seminar](https://github.com/SichengHe/MIT_LAE_seminar))
+Then, in 2006, another unexpected chapter began.
 
-Then came stable Python 2.4 (last year of my PhD), and then Github... then Colab... then ChatGPT/Claude/Gemini ...AntiGravity etc.
+I became **Manuel Samuelides' colleague**, and a few years later we started collaborating on structural optimization. It's funny how books that shape your education sometimes lead you to work alongside their authors.
+
+## Why I Still Teach with MATLAB
+
+People often ask me why I still teach with MATLAB, even though I also use and teach **Python** and **Julia**.
+
+The answer has very little to do with syntax.
+
+One of MATLAB's greatest strengths, in my opinion, is the quality of its documentation. Every important numerical function is carefully documented, and the implementation is almost always linked to the original scientific literature.
+
+Take `fft`, for example. Its documentation doesn't just explain how to call the function—it points you directly to the algorithms behind it:
+
+1. FFTW — https://www.fftw.org
+2. Frigo, M., & Johnson, S. G. *FFTW: An Adaptive Software Architecture for the FFT*. *Proceedings of the International Conference on Acoustics, Speech, and Signal Processing (ICASSP)*, 1998.
+
+For students, this changes everything.
+
+Software stops being a black box and becomes a gateway to the scientific literature. A single function call can lead to the original paper, then to the underlying mathematics, and eventually to a deeper understanding of the field.
+
+I feel the same way about beautifully crafted scientific figures. A good figure can explain an idea faster than pages of equations. The [MIT LAE Seminar](https://github.com/SichengHe/MIT_LAE_seminar) is a wonderful example of this philosophy.
+
+## And Then...
+
+Then came **Python 2.4**, during the final year of my PhD.
+
+Then **GitHub** changed how we collaborate.
+
+Then **Google Colab** made reproducible computing accessible to everyone.
+
+Then **ChatGPT**, **Claude**, **Gemini**, **AntiGravity**, and the entire new generation of AI assistants fundamentally changed how we write code, explore ideas, and learn.
+
+And the story is still being written.
+
+---
+
+I think the common thread isn't MATLAB, C, Python, or AI.
+
+It's curiosity.
+
+From an HP 48G calculator to today's AI copilots, every new tool has been another opportunity to learn, understand a little more deeply, and pass that knowledge on to the next generation.
 
 # Definition of Vibe Coding
 
