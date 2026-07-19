@@ -17,15 +17,19 @@ I lead the **MID2** research group ("Multidisciplinary optimization for aerospac
 eco Design and Data") at ISAE-SUPAERO. On this site you'll find posts about my group's
 research and scientific activities, along with links to research and teaching material.
 
+**Vulgarisation:**
+
+[Is it possible to build an aircraft wing in LEGO®?](https://www.linkedin.com/pulse/possible-build-aircraft-wing-lego-joseph-morlier/) 
+
+[MDO: optimization for connecting people?](https://www.linkedin.com/pulse/optimization-mdo-connecting-people-joseph-morlier/)
+
 ## 🔬 Research Topics
 
-| Structural Optimization | Ecodesign | AI for Engineers | Multidisciplinary Design Optimization | Structural Health Monitoring |
-|---|---|---|---|---|
-| *Topology & shape optimization, multiscale, geometric projection, architectured materials* | *Digital materials, LCA, eco-informed material selection* | *Surrogate modeling, Gaussian processes, multifidelity approaches, mixed variables* | *Computational aeroelasticity, accelerated design of aircraft, UAV and launchers* | *Modal identification, signal processing, neural networks* |
+| Structural Optimization | Ecodesign | AI for Engineers | Multidisciplinary Design Optimization | 
+|---|---|---|---|
+| *Topology & shape optimization, multiscale, geometric projection, architectured materials* | *Digital materials, LCA, eco-informed material selection* | *Surrogate modeling, Gaussian processes, multifidelity approaches, mixed variables* | *Computational aeroelasticity, accelerated design of aircraft, UAV and launchers* | 
 
-**Vulgarisation:**
-[Is it possible to build an aircraft wing in LEGO®?](https://www.linkedin.com/pulse/possible-build-aircraft-wing-lego-joseph-morlier/) (topology optimization) ·
-[MDO: optimization for connecting people?](https://www.linkedin.com/pulse/optimization-mdo-connecting-people-joseph-morlier/)
+
 
 ## 📚 Scientific Publications
 
