@@ -46,7 +46,7 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 ### [A Structural Optimization Tutorial](https://meyer-nils.github.io/structural_optimization/)
 * **Author:** Niels Meyer
 * **Published:** April 2026 
-* **Link:** [Fem Optimization]([https://meyer-nils.github.io/structural_optimization/](https://meyer-nils.github.io/structural_optimization/fem_optimization.html))
+* **Link:** [Read Tutorial]([https://meyer-nils.github.io/structural_optimization/](https://meyer-nils.github.io/structural_optimization/fem_optimization.html))
 
 **Summary:** 
 This is accompanying code for Niels Meyer's Structural Optimization lecture MRM-0156. A must read !
@@ -57,7 +57,7 @@ This is accompanying code for Niels Meyer's Structural Optimization lecture MRM-
 ### [PLAID — Physics Learning AI Data Model](https://plaid-lib.github.io)
 * **Author:** Fabien Cazenave 
 * **Published:** August 5, 2025 
-* **Link:** [Benchmark](https://plaid-lib.github.io/benchmarks/#interactive-benchmark-applications)
+* **Link:** [Read Benchmark](https://plaid-lib.github.io/benchmarks/#interactive-benchmark-applications)
 
 **Summary:** The missing data layer between physics simulations and scientific ML.
 PLAID is an open framework for representing, sharing, and learning from datasets of complex physics simulations. It defines a common standard for simulation data and ships a Python library to create, explore, store, and stream them. Why another data model?
