@@ -9,7 +9,34 @@ permalink: /CodingwithAI.html
 
 Vibe coding is a software development approach where you build applications entirely by conversing with an AI in natural language. Instead of writing code line-by-line, you describe your vision or "vibe," and AI models handle the generation, testing, and deployment, allowing you to focus purely on the creative outcome. 
 
-https://en.wikipedia.org/wiki/Vibe_coding
+[Vibe coding](https://en.wikipedia.org/wiki/Vibe_coding)
+
+# My Starting point
+
+I've started coding in C during my final research project at University. Au menu: FFT2D, Hough Transform with Dennis Ritchie's book.
+[More on Dennis](https://en.wikipedia.org/wiki/Dennis_Ritchie)
+
+Then ... I used Matlab as a numerical framework for wavelets analysis and vibration processing (modal analysis) during my PhD. I remember the transition from "matrix" movie nightmare in C to a very flexible and easy to run Matlab's framework. I was using Cleve Moler's book Finally, several years later I met Cleve Moler one of the founder of Matlab. It was really fun. At this time Stephane Mallat's book on wavelets was my bedside book as well as a Pete Avitabile Modal space short (educational) papers.
+
+[More on Cleve](https://en.wikipedia.org/wiki/Cleve_Moler)
+[More on Stephane](https://www.college-de-france.fr/en/person/stephane-mallat)
+[More on Pete](https://www.uml.edu/research/sdasl/education/modal-space.aspx)
+
+And do you know why I'm still teaching with Matlab ? (but I also add Python/Julia Scripts)
+
+Mainly for the fact that each function as a full documentation citing the reference paper for the implementation.
+
+Example for fft function in matlab:
+
+[1] FFTW (https://www.fftw.org)
+
+[2] Frigo, M., and S. G. Johnson. “FFTW: An Adaptive Software Architecture for the FFT.” Proceedings of the International Conference on Acoustics, Speech, and Signal Processing. Vol. 3, 1998, pp. 1381-1384.
+
+
+And that changes everything for me.
+
+Then came stable Python 2.4 (last year of my PhD), and then Github... then Colab... then ChatGPT/Claude/Gemini
+
 
 # Recreation with my friend Claude (Anthropic)
 
