@@ -21,7 +21,7 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 
 ### [A Practical Guide to Gaussian Processes](https://infallible-thompson-49de36.netlify.app/)
 * **Authors:** Marc Peter Deisenroth, Yicheng Luo, Mark van der Wilk
-* **Published:** One of the first distill
+* **Published:** june 2020
 * **Link:** [Launch Demo](https://infallible-thompson-49de36.netlify.app/)
 
 **Summary:** A lightweight interactive playground for experimenting with Gaussian Process regression. By manipulating training points and observing the posterior prediction update in real time, the demo provides an intuitive understanding of interpolation, uncertainty quantification, and the influence of kernel hyperparameters. It is an excellent companion to the Distill article for building hands-on intuition before implementing Gaussian Processes in practice.
