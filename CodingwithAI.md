@@ -13,7 +13,7 @@ In high school in france we were few students (geek ?) with a HP 48G calculator.
 
 [More on Assembly language](https://en.wikipedia.org/wiki/Assembly_language)
 
-I've started coding in C during my final research project at University. Au menu: FFT2D, Hough Transform with Dennis Ritchie's book. I also remember during my MsC that I coded the Simplex algorithm on my HP48G and some basic MLP using Matlab in a course called Artificial Neural Networks (the story is not ended).
+I've started coding in C during my final research project at University of Bordeaux (ENSEIRB). Au menu: FFT2D, Hough Transform with Dennis Ritchie's book. I also remember during my MsC in mechatronics that I coded the Simplex algorithm on my HP48G and some basic MLP using Matlab in a course called Artificial Neural Networks (the story is not ended).
 [More on Dennis](https://en.wikipedia.org/wiki/Dennis_Ritchie)
 [More on Simplex](https://en.wikipedia.org/wiki/Simplex_algorithm)
 
@@ -37,8 +37,7 @@ Example for fft function in matlab:
 
 [2] Frigo, M., and S. G. Johnson. “FFTW: An Adaptive Software Architecture for the FFT.” Proceedings of the International Conference on Acoustics, Speech, and Signal Processing. Vol. 3, 1998, pp. 1381-1384.
 
-
-And that changes everything for me.
+And that changes everything for me (like High Quality figures in a good paper [Sicheng He](https://github.com/SichengHe/MIT_LAE_seminar))
 
 Then came stable Python 2.4 (last year of my PhD), and then Github... then Colab... then ChatGPT/Claude/Gemini ...AntiGravity etc.
 
