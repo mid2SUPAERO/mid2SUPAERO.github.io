@@ -19,8 +19,8 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 
 ---
 
-### [Interactive Gaussian Process Regression Demo](https://infallible-thompson-49de36.netlify.app/)
-* **Author:** C. Rasmussen ?
+### [A Practical Guide to Gaussian Processes](https://infallible-thompson-49de36.netlify.app/)
+* **Authors:** Marc Peter Deisenroth, Yicheng Luo, Mark van der Wilk
 * **Published:** One of the first distill
 * **Link:** [Launch Demo](https://infallible-thompson-49de36.netlify.app/)
 
