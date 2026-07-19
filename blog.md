@@ -10,12 +10,32 @@ Welcome to the blog section. Below is a curated list of articles, tutorials, and
 
 ---
 
-### Recreation with my friend NotebookLM (Google)
-* **Authors:** J.Morlier and students
- 
+### [A Visual Exploration of Gaussian Processes](https://distill.pub/2019/visual-exploration-gaussian-processes/)
+* **Authors:** Jochen Görtler, Rebecca Kehlbeck, Oliver Deussen
+* **Published:** April 2019
+* **Link:** [Read Article](https://distill.pub/2019/visual-exploration-gaussian-processes/)
+
+**Summary:** One of the best interactive introductions to Gaussian Processes ever written. Through rich visualizations and intuitive explanations, the authors demystify Gaussian Process regression by showing how prior beliefs, covariance kernels, observations, and uncertainty combine to produce predictive models. Whether you are new to surrogate modeling or need a deeper intuition for kernels and confidence intervals, this article is an outstanding starting point.  [Launch demo](https://distill.pub/2019/visual-exploration-gaussian-processes/?utm_source=chatgpt.com)
 
 ---
 
+### [Interactive Gaussian Process Regression Demo](https://infallible-thompson-49de36.netlify.app/)
+* **Author:** C. Rasmussen ?
+* **Published:** One of the first distill
+* **Link:** [Launch Demo](https://infallible-thompson-49de36.netlify.app/)
+
+**Summary:** A lightweight interactive playground for experimenting with Gaussian Process regression. By manipulating training points and observing the posterior prediction update in real time, the demo provides an intuitive understanding of interpolation, uncertainty quantification, and the influence of kernel hyperparameters. It is an excellent companion to the Distill article for building hands-on intuition before implementing Gaussian Processes in practice.
+
+---
+
+### [Exploring Bayesian Optimization](https://distill.pub/2020/bayesian-optimization/)
+* **Authors:** Apoorv Agnihotri, Nipun Batra
+* **Published:** May 5, 2020
+* **Link:** [Launch demo](https://distill.pub/2020/bayesian-optimization/)
+
+**Summary:** A beautifully illustrated introduction to Bayesian Optimization, the sequential optimization framework that leverages Gaussian Process surrogate models to efficiently optimize expensive black-box functions. The article explains the exploration–exploitation trade-off, acquisition functions such as Expected Improvement and Upper Confidence Bound, and demonstrates why Bayesian Optimization has become a standard tool for hyperparameter tuning, engineering design, and simulation-based optimization. Like the earlier Distill article, it combines rigorous mathematics with exceptional interactive visualizations, making a challenging topic remarkably accessible.  
+
+---
 ---
 
 ### [The Economics of AI Surrogates](https://jajimer.github.io/2026/06/12/economics-of-ai-surrogates/)
