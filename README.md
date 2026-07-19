@@ -17,7 +17,6 @@ research.md          research topics + vulgarisation links
 team.md              PhD students, postdocs, visiting researchers, alumni link
 teaching.md          courses / teaching material
 publications.md      publication links (wire up jekyll-scholar for a real list)
-contact.md           address / contact details
 blog.md              full post listing
 CodingwithAI.md      Rewrite old code, start coding using papers and Claude
 _posts/               blog posts (one .md file per post)
