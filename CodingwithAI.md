@@ -7,14 +7,25 @@ permalink: /CodingwithAI.html
 
 # My Starting point
 
-I've started coding in C during my final research project at University. Au menu: FFT2D, Hough Transform with Dennis Ritchie's book.
-[More on Dennis](https://en.wikipedia.org/wiki/Dennis_Ritchie)
+In high school, let's code with a HP 48G. I discovered the Reverse Polish Notation (RPN) and the RPL programming language and more important the assembly language. 
 
-Then ... I used Matlab as a numerical framework for wavelets analysis and vibration processing (modal analysis) during my PhD. I remember the transition from "matrix" movie nightmare in C to a very flexible and easy to run Matlab's framework. I was using Cleve Moler's book Finally, several years later I met Cleve Moler one of the founder of Matlab. It was really fun. At this time Stephane Mallat's book on wavelets was my bedside book as well as a Pete Avitabile Modal space short (educational) papers.
+[More on HP48](https://en.wikipedia.org/wiki/HP_48_series)
+
+[More on Assembly language](https://en.wikipedia.org/wiki/Assembly_language)
+
+I've started coding in C during my final research project at University. Au menu: FFT2D, Hough Transform with Dennis Ritchie's book. I also remember during my MsC that I coded the Simplex algorithm on my HP48G and some basic MLP using Matlab in a course called Artificial Neural Networks (the story is not ended).
+[More on Dennis](https://en.wikipedia.org/wiki/Dennis_Ritchie)
+[More on Simplex](https://en.wikipedia.org/wiki/Simplex_algorithm)
+
+Then ... I used Matlab as a numerical framework for wavelets analysis and vibration processing (modal analysis) during my PhD. I remember the transition from "matrix" movie nightmare in C to a very flexible and easy to run Matlab's framework. I was using Cleve Moler's book Finally, several years later I met Cleve Moler one of the founder of Matlab. It was really fun. At this time Stephane Mallat's book on wavelets was my bedside book as well as a Pete Avitabile Modal space short (educational) papers. Oh BTW, it is important for my story to say that I also create a database and coded a MLP in matlab for some pattern recognition purposes using this book: Apprentissage statistique : réseaux de neurones, cartes topologiques, machines à vecteurs supports, Eyrolles, 2008. from Gérard Dreyfus, Jean-Marc Martinez, Manuel Samuelides, Mirta Gordon, Fouad Badran et Sylvie Thiria.
 
 [More on Cleve](https://en.wikipedia.org/wiki/Cleve_Moler)
 [More on Stephane](https://www.college-de-france.fr/en/person/stephane-mallat)
 [More on Pete](https://www.uml.edu/research/sdasl/education/modal-space.aspx)
+[More on Manuel](https://www.researchgate.net/profile/Manuel-Samuelides/4)
+
+
+And then in 2006, I become Manuel's colleague and started to work with him on structural optimization few years later.
 
 And do you know why I'm still teaching with Matlab ? (but I also add Python/Julia Scripts)
 
