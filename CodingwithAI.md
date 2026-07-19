@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Team
+title: Vibe coding
 permalink: /CodingwithAI.html
 ---
 
