@@ -12,3 +12,11 @@ https://en.wikipedia.org/wiki/Vibe_coding
 # Old project recreated with my friend Claude (Anthropic)
 
 # Start your research example with HelloProf on patreon or buy me a coffee
+
+My first example: 
+
+REMAL: Residual Equilibrium Manifold Active Learning for Surrogate-Based Multidisciplinary Design Analysis
+
+Paper: https://arxiv.org/abs/2606.13245
+
+code: 
