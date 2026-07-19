@@ -28,7 +28,11 @@ research and scientific activities, along with links to research and teaching ma
 |---|---|---|---|
 | *Topology & shape optimization, multiscale, geometric projection, architectured materials* | *Digital materials, LCA, eco-informed material selection* | *Surrogate modeling, Gaussian processes, multifidelity approaches, mixed variables* | *Computational aeroelasticity, accelerated design of aircraft, UAV and launchers* | 
 
+Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
 
+[SMT Github](https://github.com/SMTorg/SMT)
+
+[SMT Documentation](https://smt.readthedocs.io/en/latest/)
 
 ## 📚 Scientific Publications
 
