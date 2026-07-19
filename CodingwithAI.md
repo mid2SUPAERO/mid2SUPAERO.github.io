@@ -56,7 +56,7 @@ Vibe coding is a software development approach where you build applications enti
 
 ---
 
-### Start your research example with HelloProf on patreon or buy me a coffee
+### Do you want to do the same ? follow HelloProf on patreon or buy me a coffee
 * **Author:** J.Morlier 
  
 
