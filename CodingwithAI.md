@@ -7,7 +7,7 @@ permalink: /CodingwithAI.html
 
 # My Starting point
 
-In high school, let's code with a HP 48G. I discovered the Reverse Polish Notation (RPN) and the RPL programming language and more important the assembly language. 
+In high school in france we were few students (geek ?) with a HP 48G calculator. I discovered the Reverse Polish Notation (RPN) and the RPL programming language and more important the assembly language. 
 
 [More on HP48](https://en.wikipedia.org/wiki/HP_48_series)
 
