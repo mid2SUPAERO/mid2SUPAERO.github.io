@@ -63,6 +63,26 @@ Vibe coding is a software development approach where you build applications enti
 
 
 ---
+---
+
+### [ClarkeLib](https://github.com/nomad-vagabond/ClarkeLib/tree/master)
+* **Author:** Vadym Pasko.
+* **Published:** Mai, 2026  
+* **Link:** [Read Article](https://www.researchgate.net/publication/324589938_Open_library_for_space_elevator_design_and_engineering_Analyses_of_tether_tapering_functions)
+
+**Summary:** Tapering of a space elevator’s tether from the planet surface to the altitude of the synchronous orbit
+and further to the counterweight altitude can reduce the mass of the whole system, as well as provide more
+or less even distribution of stress along the tether rather than in the case of using uniform tether. This
+document presents the analyses of some tether tapering functions and shows that exponentially tapered
+tether is not an optimal solution for the space elevator with climbers or other point loads like transitional
+stations. To handle these analyses ClarkeLib – an open library for calculation of basic space elevator
+parameters and loads has been developed. Estimation of Earth Elevator and Mars Elevator parameters has
+been made using this library, and results are represented in this paper.
+
+* **Link:** [Play with the vibecode, it works on colab](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/REMAL_CasADi.ipynb)
+
+
+---
 
 ---
 
