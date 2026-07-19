@@ -13,7 +13,6 @@ permalink: /team.html
 | Giovani Catalani | AIRBUS | ED MEGEP, with Prof. Bauerheim |
 | Ousmane Sy | EU HERA | ED MEGEP, with Prof. Benard |
 | Shubham Deshmukh | AIRBUS | ED MEGEP, with F. Gallard and Prof. Brugnoli |
-| Gustavo Asai | TU Delft | TUD, With Prof. Masania and Prof. Lachaud |
 | Shantanu Sapre | AIRBUS | ED MEGEP,  With Prof. Gogu |
 | Gaston Plat | FONISEN | ED MITT - ONERA - UT Capitole,  With Prof. Bartoli and T. Lefevbre, and P. Saves |
 | Rémi Ducottet | AIRBUS | ED MEGEP, with Prof. Bauerheim |
