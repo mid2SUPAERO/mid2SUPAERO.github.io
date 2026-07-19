@@ -126,6 +126,14 @@ been made using this library, and results are represented in this paper.
 
 ---
 
+### Recreation with my friend NotebookLM (Google)
+* **Authors:** J.Morlier and students
+
+Soon available
+
+---
+---
+
 ### Do you want to do the same ? follow HelloProf on patreon or buy me a coffee
 * **Author:** J.Morlier 
  
