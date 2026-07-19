@@ -6,10 +6,16 @@ permalink: /about.html
 
 # About
 
-I am an full professor in Aerospace Engineering (AE) at **ISAE-SUPAERO**, attached to the Aerospace Design group at **TSAAElab**.
+I am an full professor in Aerospace Engineering (AE) at **ISAE-SUPAERO**, attached to the Aerospace Design group at **TSAAElab** (before I was researcher at ICA CNRS).
 
 I lead the **MID2** group — *Multidisciplinary optimization for aerospace Innovation:
 eco Design and Data* — which develops methods for design optimization and data-driven/AI-assisted decision-making, with applications in aerospace engineering.
+
+Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
+
+[SMT Github](https://github.com/SMTorg/SMT)
+
+[SMT Documentation](https://smt.readthedocs.io/en/latest/)
 
 
 ## Affiliation
