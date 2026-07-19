@@ -37,7 +37,7 @@ Example for fft function in matlab:
 
 [2] Frigo, M., and S. G. Johnson. “FFTW: An Adaptive Software Architecture for the FFT.” Proceedings of the International Conference on Acoustics, Speech, and Signal Processing. Vol. 3, 1998, pp. 1381-1384.
 
-And that changes everything for me (like High Quality figures in a good paper [Sicheng He](https://github.com/SichengHe/MIT_LAE_seminar))
+And that changes everything for me (like High Quality figures in a good paper [MIT LAE Seminar](https://github.com/SichengHe/MIT_LAE_seminar))
 
 Then came stable Python 2.4 (last year of my PhD), and then Github... then Colab... then ChatGPT/Claude/Gemini ...AntiGravity etc.
 
