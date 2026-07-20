@@ -3,7 +3,7 @@ layout: home
 title: Home
 ---
 
-## [Joseph Morlier](https://josephmorlier.github.io/)
+## [Joseph Morlier](https://mid2supaero.github.io)
 
 Professor in Aerospace Engineering.
 📥 joseph.morlier at isae-supaero.fr
