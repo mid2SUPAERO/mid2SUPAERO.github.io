@@ -54,6 +54,12 @@ AIAA · ISSMO · SIAM · A3F · AFM · GDR MASCOT-NUM · GDR IAMAT
 
 ## 📰 Latest posts
 
+Number of posts: {{ site.posts.size }}
+
+{% for post in site.posts %}
+- {{ post.title }}
+{% endfor %}
+
 <ul>
   {% for post in site.posts limit:5 %}
     <li>
