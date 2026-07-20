@@ -52,19 +52,4 @@ AIAA · ISSMO · SIAM · A3F · AFM · GDR MASCOT-NUM · GDR IAMAT
 - [LinkedIn](https://www.linkedin.com/in/joseph-morlier-890176168/)
 - [Team & alumni](/team.html)
 
-## 📰 Latest posts
-<ul>
-Number of posts: {{ site.posts.size }}
 
-{% for post in site.posts %}
-- {{ post.title }}
-{% endfor %}
-</ul>
-
-<ul>
-  {% for post in site.posts limit:5 %}
-    <li>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a> - {{ post.date | date: "%Y-%m-%d" }}
-    </li>
-  {% endfor %}
-</ul>
