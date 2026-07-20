@@ -31,6 +31,13 @@ Looking back, I realize that machine learning had already entered the story—lo
 
 Around that time, I also discovered **structural dynamics** and, with it, a whole new way of thinking about engineering problems. The **Rayleigh–Ritz method**, finite element formulations, modal analysis, and numerical approximations fascinated me because they beautifully connected mathematics, physics, and computation. My bookshelf quickly filled with classics such as *Vibrations des structures* by **Georges Venizelos**, *Analyse des structures par la méthode des éléments finis* by **Jean-François Imbert**, *The Finite Element Method* by **O. C. Zienkiewicz**, and *Méthode des éléments finis : Approche pratique en mécanique des structures* by **Michel Cazenave**. Looking back, I realize how fortunate we were as students: we had the time to read these books from cover to cover, work through the derivations, and truly understand the ideas rather than simply applying the methods. Those books didn't just teach algorithms—they shaped the way I still approach engineering today.
 
+- [*Vibrations des structures* — Georges Venizelos](https://www.decitre.fr/livres/vibrations-des-structures-9782710805956.html)
+- [*Analyse des structures par la méthode des éléments finis* — Jean-François Imbert](https://www.eyrolles.com/Sciences/Livre/analyse-des-structures-par-la-methode-des-elements-finis-9782866016923/)
+- [*The Finite Element Method, Fifth Edition, Volume 1: The Basis* — O. C. Zienkiewicz & R. L. Taylor](https://shop.elsevier.com/books/the-finite-element-method-volume-1/zienkiewicz/978-0-7506-6320-7)
+- [*Méthode des éléments finis : Approche pratique en mécanique des structures* — Michel Cazenave](https://www.editions-ellipses.fr/accueil/4402-methode-des-elements-finis-approche-pratique-en-mecanique-des-structures-9782729833155.html)
+
+There was no Stack Overflow, no GitHub, and certainly no AI assistant. When you wanted to understand an algorithm, you opened a book, took a pencil, and worked through the derivation until it made sense.
+
 Then came my PhD.
 
 MATLAB became my everyday scientific companion for **wavelet analysis**, **modal analysis**, and **vibration processing**. After years of wrestling with multidimensional arrays in C, MATLAB felt almost magical: concise, expressive, and designed for scientific computing.
