@@ -7,126 +7,187 @@ categories: general
 
 # Compliance Minimization in Topology Optimization
 
-Given the element densities
+The design variables are the element densities:
 
-$begin:math:display$
-\\boldsymbol\{\\rho\} \= \(\\rho\_1\,\\ldots\,\\rho\_n\)\^T\,
-$end:math:display$
+```
+ρ = (ρ₁, ρ₂, ..., ρₙ)ᵀ
+```
 
-the topology optimization problem is
+The topology optimization problem is:
 
-$begin:math:display$
-\\begin\{aligned\}
-\\min\_\{\\boldsymbol\{\\rho\}\} \\quad \& C\(\\boldsymbol\{\\rho\}\)
-    \= \\mathbf\{f\}\^T\\mathbf\{u\}
-    \= \\mathbf\{u\}\^T\\mathbf\{K\}\(\\boldsymbol\{\\rho\}\)\\mathbf\{u\} \\\\
-\\text\{s\.t\.\} \\quad
-\& \\mathbf\{K\}\(\\boldsymbol\{\\rho\}\)\\mathbf\{u\} \= \\mathbf\{f\}\, \\\\
-\& \\sum\_\{e\=1\}\^\{n\} \\rho\_e v\_e \\leq V\^\\star\, \\\\
-\& 0 \< \\rho\_\{\\min\} \\leq \\rho\_e \\leq 1\,
-\\qquad e\=1\,\\ldots\,n\.
-\\end\{aligned\}
-$end:math:display$
+```
+minimize      C(ρ) = fᵀu = uᵀK(ρ)u
 
-where
+subject to    K(ρ)u = f
 
-- $begin:math:text$\\mathbf\{K\}\(\\boldsymbol\{\\rho\}\)$end:math:text$ is the global stiffness matrix,
-- $begin:math:text$\\mathbf\{u\}$end:math:text$ is the displacement vector,
-- $begin:math:text$\\mathbf\{f\}$end:math:text$ is the external load vector,
-- $begin:math:text$v\_e$end:math:text$ is the volume of element $begin:math:text$e$end:math:text$,
-- $begin:math:text$V\^\\star$end:math:text$ is the prescribed material volume.
+              Σₑ₌₁ⁿ ρₑ vₑ ≤ V*
+
+              ρₘᵢₙ ≤ ρₑ ≤ 1
+              e = 1,...,n
+```
+
+where:
+
+- K(ρ) = global stiffness matrix
+- u = displacement vector
+- f = external load vector
+- ρₑ = density of element e
+- vₑ = volume of element e
+- V* = prescribed volume constraint
 
 ---
 
-## Quadratic Form
+# Quadratic Form
 
-The compliance is commonly written as
+The compliance objective is the quadratic form:
 
-$begin:math:display$
-C \= \\mathbf\{u\}\^T\\mathbf\{K\}\\mathbf\{u\}\.
-$end:math:display$
+```
+C = uᵀ K u
+```
 
-### MATLAB
+or equivalently:
+
+```
+C = fᵀ u
+```
+
+because:
+
+```
+K u = f
+```
+
+---
+
+# Quadratic Form in Different Languages
+
+## MATLAB
+
+Column vectors:
 
 ```matlab
 C = u' * K * u;
 ```
 
-or equivalently
+Equivalent scalar product:
 
 ```matlab
 C = dot(u, K*u);
 ```
 
+For sparse FEM matrices:
+
+```matlab
+C = u' * (K*u);
+```
+
 ---
 
-### Julia
+## Julia
+
+Using matrix multiplication:
 
 ```julia
 C = u' * K * u
 ```
 
-Since `u' * K * u` returns a `1×1` object for matrices, many users write
+Recommended scalar form:
 
 ```julia
 C = dot(u, K*u)
 ```
 
-which directly returns a scalar and is generally preferred.
+For sparse FEM:
+
+```julia
+C = dot(u, K*u)
+```
+
+with
+
+```julia
+K = sparse(K)
+```
 
 ---
 
-### Python (NumPy)
+## Python (NumPy)
+
+Using matrix multiplication:
 
 ```python
 C = u.T @ K @ u
 ```
 
-or
+Equivalent:
 
 ```python
 C = np.dot(u, K @ u)
 ```
 
-Both return the scalar quadratic form when `u` is a one-dimensional NumPy array.
+For sparse FEM matrices:
+
+```python
+C = u @ (K @ u)
+```
+
+with:
+
+```python
+from scipy.sparse import csr_matrix
+
+K = csr_matrix(K)
+```
 
 ---
 
-## Element-wise Compliance
+# Element-wise Compliance
 
-The objective is often assembled from elemental contributions,
+The global compliance can be decomposed into element contributions:
 
-$begin:math:display$
-C
-\=
-\\sum\_\{e\=1\}\^\{n\}
-\\mathbf\{u\}\_e\^T
-\\mathbf\{K\}\_e
-\\mathbf\{u\}\_e\,
-$end:math:display$
+```
+C = Σₑ₌₁ⁿ uₑᵀ Kₑ uₑ
+```
 
-where
+where:
 
-- $begin:math:text$\\mathbf\{u\}\_e$end:math:text$ are the element degrees of freedom,
-- $begin:math:text$\\mathbf\{K\}\_e$end:math:text$ is the element stiffness matrix.
+```
+uₑ = element displacement vector
 
-With SIMP interpolation,
+Kₑ = element stiffness matrix
+```
 
-$begin:math:display$
-\\mathbf\{K\}\_e\(\\rho\_e\)
-\=
-\\rho\_e\^p
-\\mathbf\{K\}\_e\^0\,
-$end:math:display$
+---
 
-so that
+# SIMP Material Interpolation
 
-$begin:math:display$
-C
-\=
-\\sum\_\{e\=1\}\^\{n\}
-\\rho\_e\^p
-\\mathbf\{u\}\_e\^T
-\\mathbf\{K\}\_e\^0
-\\mathbf\{u\}\_e\.
-$end:math:display$
+The element stiffness is interpolated as:
+
+```
+Kₑ(ρₑ) = ρₑᵖ Kₑ⁰
+```
+
+where:
+
+```
+p = penalization exponent
+Kₑ⁰ = stiffness of solid material
+```
+
+Therefore:
+
+```
+C = Σₑ₌₁ⁿ ρₑᵖ uₑᵀ Kₑ⁰ uₑ
+```
+
+---
+
+# Compliance Sensitivity
+
+The SIMP derivative is:
+
+```
+∂C/∂ρₑ = -p ρₑᵖ⁻¹ uₑᵀ Kₑ⁰ uₑ
+```
+
+which is the quantity used by OC (Optimality Criteria) and MMA update schemes.
