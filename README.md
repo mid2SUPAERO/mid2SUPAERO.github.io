@@ -19,7 +19,8 @@ teaching.md          courses / teaching material
 publications.md      publication links (wire up jekyll-scholar for a real list)
 blog.md              full post listing
 CodingwithAI.md      Rewrite old code, start coding using papers and Claude
-_posts/               blog posts (one .md file per post)
+_posts/              posts (one .md file per post)
+_notebooks/          Associated with CodingwithAI (one .md file per post)
 assets/css/style.scss theme override (built on the built-in "minima" theme)
 ```
 
