@@ -11,6 +11,10 @@ Can we faithfully recreate scientific software directly from published papers?
 
 In this series, I’ll rebuild open-source implementations of classical and modern scientific methods—from optimization and surrogate modeling to computational mechanics and machine learning—using AI-assisted development. The goal isn’t merely to generate code, but to understand the underlying algorithms, assess reproducibility, and make research software more accessible to students and researchers.
 
+<details>
+
+<summary>My story</summary>
+
 # My Starting Point (polished with ChatGPT)
 
 Back in high school in France, a small group of us—the geeks, perhaps—owned an HP 48G calculator. Looking back, that little machine probably changed the course of my career.
@@ -97,6 +101,10 @@ It's curiosity.
 From an HP 48G calculator to today's AI copilots, every new tool has been another opportunity to learn, understand a little more deeply, and pass that knowledge on to the next generation.
 
 PS: SMT has been efficiently refactored by Claude and Remi Lafage (ONERA).
+
+</details>
+
+
 
 # Definition of Vibe Coding
 
