@@ -6,10 +6,7 @@ permalink: /publications.html
 
 # Publications
 
-The most up to date and complete list is on Google Scholar. This page can be
-populated with a curated/annotated subset (journal papers, conference papers,
-patents, book chapters) — for example generated automatically from a `.bib`
-file with a Jekyll Scholar plugin, or maintained by hand as below.
+The most up to date and complete list is on Google Scholar. 
 
 - [Google Scholar profile](https://scholar.google.fr/citations?user=wi1HSroAAAAJ&hl=fr)
 - [Open Science ISAE-SUPAERO publication feed](https://pagespro.isae-supaero.fr/joseph-morlier/joseph-morlier/flux-publications-open-science-isae-supaero.html)
@@ -20,10 +17,9 @@ file with a Jekyll Scholar plugin, or maintained by hand as below.
 
 - Topology and shape optimization for aerospace structures
 - Multiscale and geometric-projection methods for architectured materials
+- Aeroelasticity and flexible wing / AC
 - Surrogate-assisted / Gaussian-process-based multidisciplinary design optimization
 - Eco-design and life-cycle assessment of aerospace materials
 - Structural health monitoring via modal identification and neural networks
 
-*(Replace this list with your actual paper entries, or wire up
-[jekyll-scholar](https://github.com/inukshuk/jekyll-scholar) to render a `.bib`
-file automatically.)*
+
