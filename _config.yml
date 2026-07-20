@@ -32,7 +32,7 @@ author:
   affiliation: ISAE-SUPAERO, Toulouse, France
 
 markdown: kramdown
-permalink: /:categories/:year/:month/:day/:title.html
+
 
 exclude:
   - README.md
