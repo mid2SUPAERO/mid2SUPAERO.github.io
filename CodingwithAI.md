@@ -29,6 +29,8 @@ Looking back, I realize that machine learning had already entered the story—lo
 - [More on Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie)
 - [More on the Simplex algorithm](https://en.wikipedia.org/wiki/Simplex_algorithm)
 
+Around that time, I also discovered **structural dynamics** and, with it, a whole new way of thinking about engineering problems. The **Rayleigh–Ritz method**, finite element formulations, modal analysis, and numerical approximations fascinated me because they beautifully connected mathematics, physics, and computation. My bookshelf quickly filled with classics such as *Vibrations des structures* by **Georges Venizelos**, *Analyse des structures par la méthode des éléments finis* by **Jean-François Imbert**, *The Finite Element Method* by **O. C. Zienkiewicz**, and *Méthode des éléments finis : Approche pratique en mécanique des structures* by **Michel Cazenave**. Looking back, I realize how fortunate we were as students: we had the time to read these books from cover to cover, work through the derivations, and truly understand the ideas rather than simply applying the methods. Those books didn't just teach algorithms—they shaped the way I still approach engineering today.
+
 Then came my PhD.
 
 MATLAB became my everyday scientific companion for **wavelet analysis**, **modal analysis**, and **vibration processing**. After years of wrestling with multidimensional arrays in C, MATLAB felt almost magical: concise, expressive, and designed for scientific computing.
