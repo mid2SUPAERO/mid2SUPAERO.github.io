@@ -195,3 +195,135 @@ The SIMP derivative is:
 ```
 
 which is the quantity used by OC (Optimality Criteria) and MMA update schemes.
+
+In practice we are using SIMP formulation
+
+# SIMP Material Interpolation
+
+The Solid Isotropic Material with Penalization (SIMP) method introduces a
+
+relationship between the design variable and the Young modulus of each
+
+element.
+
+The interpolation is:
+
+```
+
+Eₑ(xₑ) = Eₘᵢₙ + xₑᵖ (E₀ − Eₘᵢₙ)
+
+```
+
+where:
+
+```
+
+Eₑ(xₑ) = Young modulus of element e
+
+E₀     = Young modulus of solid material
+
+Eₘᵢₙ  = small stiffness assigned to void regions
+
+xₑ     = density variable of element e
+
+p      = penalization exponent (usually p ≈ 3)
+
+```
+
+The purpose of the penalization term:
+
+```
+
+xₑᵖ
+
+```
+
+is to discourage intermediate densities:
+
+```
+
+0 < xₑ < 1
+
+```
+
+and drive the solution toward a black-and-white topology:
+
+```
+
+solid  → xₑ = 1
+
+void   → xₑ ≈ 0
+
+```
+
+---
+
+# Element-wise Compliance with SIMP
+
+The global compliance can be decomposed into element contributions:
+
+```
+
+C(x) = Σₑ Eₑ(xₑ) uₑᵀ k₀ uₑ
+
+```
+
+where:
+
+```
+
+uₑ = displacement vector of element e
+
+k₀ = reference element stiffness matrix
+
+Eₑ(xₑ) = SIMP interpolated Young modulus
+
+```
+
+Using the SIMP interpolation:
+
+```
+
+C(x)
+
+=
+
+Σₑ [Eₘᵢₙ + xₑᵖ(E₀ − Eₘᵢₙ)]
+
+      uₑᵀ k₀ uₑ
+
+```
+
+The sum notation means:
+
+```
+
+Σₑ = sum over all finite elements
+
+e = 1, ..., N
+
+```
+
+---
+
+# Compliance Sensitivity
+
+The derivative used by optimization algorithms
+
+(Optimality Criteria, MMA, etc.) is:
+
+```
+
+∂C/∂xₑ
+
+=
+
+-p xₑᵖ⁻¹ (E₀ − Eₘᵢₙ)
+
+uₑᵀ k₀ uₑ
+
+```
+
+This sensitivity tells how the compliance changes when the material
+
+density of element `e` is modified.
