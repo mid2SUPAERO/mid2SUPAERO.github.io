@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Welcome to the new MID2 / Joseph Morlier website"
+date: 2026-20-07
+categories: general
+---
+
 # Compliance Minimization in Topology Optimization
 
 Given the element densities
