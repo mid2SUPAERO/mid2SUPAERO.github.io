@@ -46,7 +46,7 @@ Cleve Moler's books were constant companions. Years later, I had the pleasure of
 
 At the same time, Stéphane Mallat's *Wavelet Tour* rarely left my desk, while Pete Avitabile's *Modal Space* papers became an invaluable source of practical engineering insight.
 
-My PhD also marked my first real experience with machine learning applied to engineering. I built databases, developed MATLAB implementations of MLPs for pattern recognition, and learned from Gérard Dreyfus and colleagues' excellent book *Apprentissage statistique : réseaux de neurones, cartes topologiques, machines à vecteurs supports* (Eyrolles, 2008).
+My PhD also marked my first real experience with machine learning applied to engineering. I built the database of damaged / undamaged structures with FEA, developed MATLAB implementations of MLPs for pattern recognition, and learned from Gérard Dreyfus et al (including Manuel Samuelides) excellent book *Apprentissage statistique : réseaux de neurones, cartes topologiques, machines à vecteurs supports* (Eyrolles, 2008).
 
 - [More on Cleve Moler](https://en.wikipedia.org/wiki/Cleve_Moler)
 - [More on Stéphane Mallat](https://www.college-de-france.fr/en/person/stephane-mallat)
@@ -55,7 +55,7 @@ My PhD also marked my first real experience with machine learning applied to eng
 
 Then, in 2006, another unexpected chapter began.
 
-I became **Manuel Samuelides' colleague**, and a few years later we started collaborating on structural optimization. It's funny how books that shape your education sometimes lead you to work alongside their authors.
+I became **Manuel Samuelides' colleague**, and a few years later we started collaborating on structural optimization (with Airbus/Onera on Mixture of Experts (already GP aka Kriging). It's funny how books that shape your education sometimes lead you to work alongside their authors. Oh Finally,  Manuel also introduced me to Nathalie Bartoli at ONERA. She will become on of my strongest partner in research (on the SMT project started with Prof. Martins).
 
 ## Why I Still Teach with MATLAB
 
@@ -95,6 +95,8 @@ I think the common thread isn't MATLAB, C, Python, or AI.
 It's curiosity.
 
 From an HP 48G calculator to today's AI copilots, every new tool has been another opportunity to learn, understand a little more deeply, and pass that knowledge on to the next generation.
+
+PS: SMT has been efficiently refactored by Claude and Remi Lafage (ONERA).
 
 # Definition of Vibe Coding
 
