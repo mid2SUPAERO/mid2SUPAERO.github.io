@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The academic Deluge is out of control"
-date: 2026-01-07
+date: 2026-07-02
 categories: general
 ---
 
