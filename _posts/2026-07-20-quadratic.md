@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why am I always discussing about quadratic form?"
-date: 2026-19-07
+date: 2026-07-19
 categories: general
 ---
 
