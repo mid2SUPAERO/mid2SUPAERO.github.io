@@ -19,7 +19,13 @@ when A is symmetric.
 
 The Hessian is ∇²f = 2A.
 
+<details>
+
+<summary>May I ask details? </summary>
+
 [Recap](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/QuadraticForm.pdf)
+
+</details>
 
 Immediately,
 
@@ -98,8 +104,9 @@ K u = f
 ```
 
 ---
+<details>
 
-# Quadratic Form in Different Languages
+<summary>Quadratic Form in Different Languages</summary>
 
 ## MATLAB
 
@@ -178,6 +185,8 @@ from scipy.sparse import csr_matrix
 
 K = csr_matrix(K)
 ```
+</details>
+
 
 ---
 
@@ -202,7 +211,7 @@ Kₑ = element stiffness matrix
 
 ---
 
-# SIMP Material Interpolation
+# Material Interpolation
 
 The element stiffness is interpolated as:
 
@@ -237,6 +246,9 @@ The SIMP derivative is:
 which is the quantity used by OC (Optimality Criteria) and MMA update schemes.
 
 In practice we are using SIMP formulation
+<details>
+
+<summary>SIMP explanation</summary>
 
 # SIMP Material Interpolation
 
@@ -369,6 +381,9 @@ This sensitivity tells how the compliance changes when the material
 density of element `e` is modified.
 
 ---
+
+</details>
+
 
 ### [A Topology Optimization Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
 * **Author:** Sam Greydanus  
