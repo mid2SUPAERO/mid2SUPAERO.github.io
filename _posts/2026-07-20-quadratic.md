@@ -5,7 +5,16 @@ date: 2026-07-19
 categories: general
 ---
 
+
+In this short note, you can find a recap about Quadratic Form.
+
+[Recap](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/QuadraticForm.pdf)
+
+In a specific design optimization field called Topology Optimization a quadratic form has to be minimized.
+
+
 # Compliance Minimization in Topology Optimization
+
 
 The design variables are the element densities:
 
