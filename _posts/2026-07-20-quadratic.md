@@ -5,12 +5,43 @@ date: 2026-07-19
 categories: general
 ---
 
+Why am I always discussing about quadratic form?
 
-In this short note, you can find a recap about Quadratic Form.
+Why optimization people love quadratic forms ?
+
+Gradient-based optimization repeatedly encounters objectives like f(x) = xᵀAx
+
+because they have beautiful properties.
+
+The gradient is ∇f = 2Ax
+
+when A is symmetric.
+
+The Hessian is ∇²f = 2A.
 
 [Recap](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/QuadraticForm.pdf)
 
+Immediately,
+
+* gradients are easy,
+* Hessians are constant,
+* convexity depends on whether A is positive definite.
+
+Exactly the same ideas appear in mechanics:
+
+* A → K
+* K symmetric
+* K positive definite
+* elastic energy is convex
+* equilibrium is the minimum of the energy.
+
 In a specific design optimization field called Topology Optimization a quadratic form has to be minimized.
+
+Changing the density of an element changes how much strain energy that element can carry.
+
+The optimizer therefore decides:
+
+Where should material be placed so that the total strain energy—and therefore the compliance—is minimized?
 
 
 # Compliance Minimization in Topology Optimization
@@ -336,3 +367,15 @@ uₑᵀ k₀ uₑ
 This sensitivity tells how the compliance changes when the material
 
 density of element `e` is modified.
+
+---
+
+### [A Topology Optimization Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
+* **Author:** Sam Greydanus  
+* **Published:** May 8, 2022  
+* **Link:** [Read Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
+* **Link:** [Read Short course NotebookLM](https://greydanus.github.io/2022/05/08/structural-optimization/)
+
+**Summary:** A hands-on, deeply technical tutorial on topology and structural optimization. The post breaks down the mathematics behind minimizing elastic potential energy (compliance) across a 2D grid of springs. It covers crucial implementation steps, including computing sensitivities, solving large-scale sparse matrices using SciPy's SuperLU, and defining custom Autograd gradients to bridge physics simulations with automatic differentiation.
+
+
