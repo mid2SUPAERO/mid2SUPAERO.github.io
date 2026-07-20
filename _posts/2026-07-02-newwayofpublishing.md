@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Welcome to the new MID2 / Joseph Morlier website"
+title: "The academic Deluge is out of control"
 date: 2026-01-07
 categories: general
 ---
