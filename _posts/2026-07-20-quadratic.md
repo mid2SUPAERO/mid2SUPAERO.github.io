@@ -20,7 +20,7 @@ minimize      C(ρ) = fᵀu = uᵀK(ρ)u
 
 subject to    K(ρ)u = f
 
-              Σₑ₌₁ⁿ ρₑ vₑ ≤ V*
+              Σₑ ρₑ vₑ ≤ V*
 
               ρₘᵢₙ ≤ ρₑ ≤ 1
               e = 1,...,n
@@ -146,13 +146,16 @@ K = csr_matrix(K)
 The global compliance can be decomposed into element contributions:
 
 ```
-C = Σₑ₌₁ⁿ uₑᵀ Kₑ uₑ
+C = Σₑ uₑᵀ Kₑ uₑ
 ```
 
-where:
+where e runs over all elements: e = 1, ..., n
+
+with
 
 ```
 uₑ = element displacement vector
+
 
 Kₑ = element stiffness matrix
 ```
@@ -165,6 +168,7 @@ The element stiffness is interpolated as:
 
 ```
 Kₑ(ρₑ) = ρₑᵖ Kₑ⁰
+
 ```
 
 where:
@@ -177,7 +181,7 @@ Kₑ⁰ = stiffness of solid material
 Therefore:
 
 ```
-C = Σₑ₌₁ⁿ ρₑᵖ uₑᵀ Kₑ⁰ uₑ
+C = Σₑ ρₑᵖ uₑᵀ Kₑ⁰ uₑ
 ```
 
 ---
