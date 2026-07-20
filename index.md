@@ -53,12 +53,13 @@ AIAA · ISSMO · SIAM · A3F · AFM · GDR MASCOT-NUM · GDR IAMAT
 - [Team & alumni](/team.html)
 
 ## 📰 Latest posts
-
+<ul>
 Number of posts: {{ site.posts.size }}
 
 {% for post in site.posts %}
 - {{ post.title }}
 {% endfor %}
+</ul>
 
 <ul>
   {% for post in site.posts limit:5 %}
