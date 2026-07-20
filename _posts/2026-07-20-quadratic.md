@@ -374,7 +374,7 @@ density of element `e` is modified.
 * **Author:** Sam Greydanus  
 * **Published:** May 8, 2022  
 * **Link:** [Read Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
-* **Link:** [Read Short course NotebookLM](https://greydanus.github.io/2022/05/08/structural-optimization/)
+* **Link:** [Read Short course NotebookLM](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/The_180_Line.pdf)
 
 **Summary:** A hands-on, deeply technical tutorial on topology and structural optimization. The post breaks down the mathematics behind minimizing elastic potential energy (compliance) across a 2D grid of springs. It covers crucial implementation steps, including computing sensitivities, solving large-scale sparse matrices using SciPy's SuperLU, and defining custom Autograd gradients to bridge physics simulations with automatic differentiation.
 
