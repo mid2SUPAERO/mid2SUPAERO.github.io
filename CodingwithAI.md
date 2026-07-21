@@ -11,7 +11,7 @@ Can we faithfully recreate scientific software directly from published papers?
 
 In this series, I’ll rebuild open-source implementations of classical and modern scientific methods—from optimization and surrogate modeling to computational mechanics and machine learning—using AI-assisted development. The goal isn’t merely to generate code, but to understand the underlying algorithms, assess reproducibility, and make research software more accessible to students and researchers.
 
-<details>
+<details markdown="1">
 
 <summary>My story</summary>
 
