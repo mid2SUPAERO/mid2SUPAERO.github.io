@@ -19,7 +19,7 @@ when A is symmetric.
 
 The Hessian is ∇²f = 2A.
 
-<details>
+<details markdown="1">
 
 <summary>May I ask details? </summary>
 
@@ -104,7 +104,7 @@ K u = f
 ```
 
 ---
-<details>
+<details markdown="1">
 
 <summary>Quadratic Form in Different Languages</summary>
 
@@ -246,7 +246,8 @@ The SIMP derivative is:
 which is the quantity used by OC (Optimality Criteria) and MMA update schemes.
 
 In practice we are using SIMP formulation
-<details>
+
+<details markdown="1">
 
 <summary>SIMP explanation</summary>
 
