@@ -13,7 +13,7 @@ In this series, I’ll rebuild open-source implementations of classical and mode
 
 <details markdown="1">
 
-<summary>My story</summary>
+<summary>The story of my life [TO READ]</summary>
 
 # My Starting Point (polished with ChatGPT)
 
