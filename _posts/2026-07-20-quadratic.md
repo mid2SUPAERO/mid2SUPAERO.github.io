@@ -22,8 +22,10 @@ The Hessian is ∇²f = 2A.
 <details markdown="1">
 
 <summary>May I ask details? </summary>
+Here is a Recap with Python code inside pdf
 
 [Recap](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/QuadraticForm.pdf)
+Thanks Prof !
 
 </details>
 
