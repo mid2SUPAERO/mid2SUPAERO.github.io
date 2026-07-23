@@ -20,7 +20,15 @@ We need to move beyond rigid and overly text-heavy formats. Mainstream media out
 Data & Software Articles: Treating code and open data sets with equal prestige.
 Re-Science Articles: Normalizing and rewarding replication studies. 
 
-👉 See the model used by the Journal of Open Aviation Studies: https://lnkd.in/eD9fHC9i
+👉 See the model used by the Journal of Open Aviation Studies:[JOAS](https://lnkd.in/eD9fHC9i)
+
+👉  Distill is going on hiatus
+"We think that Distill is a really beautiful artifact which illustrates a vision of scientific publishing. But it is not sustainable for us to continue running the journal in its current form. We think preserving it in its present state is more valuable than diluting it with lower quality editing. We also think that it’s a lot healthier for us and frees up our energy to do new projects that provide value to the community...
+Although Distill is going on hiatus, the Distill template is [open source](https://github.com/distillpub/template), and we’d love to see others run with it!"
+
+👉  Don't we have enough journals already? The Journal of Open Source Software [JOSS](https://joss.theoj.org/about) is a developer friendly, open access journal for research software packages.
+"We built this journal because we believe that after you've done the hard work of writing great software, it shouldn't take weeks and months to write a paper about your work."
+
 
 🎵 2. The Music Industry Shift
 Think about the media evolution: Vinyl ➡️ Napster ➡️ Spotify. Academia went from Paper ➡️ Sci-Hub. Now, we need the final leap: Unified Scientific Streaming Platforms that sustainably support Diamond Open Access (free to read, free to publish) through institutional funding rather than predatory APCs. 
