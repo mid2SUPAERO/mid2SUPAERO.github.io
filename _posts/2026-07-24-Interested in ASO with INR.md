@@ -1,399 +1,54 @@
 ---
 layout: post
-title: "Why am I always discussing about quadratic form?"
-date: 2026-07-19
+title: "Interested in ASO and Implicit Neural Fields?"
+date: 2026-07-24
 categories: general
 ---
 
-Why am I always discussing about quadratic form?
+## Publications
+### Geometry aware inference of steady state PDEs using Equivariant Neural Fields representations (2025)
+*Neurips 2025, AI for Science Workshop*
 
-Why optimization people love quadratic forms ?
+![enf2enf paper cover](/assets/img/enf2enf_cover-1.png){: width="700px" }
 
-Gradient-based optimization repeatedly encounters objectives like f(x) = xᵀAx
 
-because they have beautiful properties.
+**Abstract:** Recent advances in Neural Fields have enabled powerful, discretization-invariant methods for learning neural operators that approximate solutions of Partial Differential Equations (PDEs) on general geometries. Building on these developments, we introduce enf2enf, an encoder--decoder methodology for predicting steady-state Partial Differential Equations with non-parameterized geometric variability, based on recently proposed Equivariant Neural Field architectures. In enf2enf, input geometries are encoded into latent point cloud embeddings that inherently preserve geometric grounding and capture local phenomena....... [shortened for brevity]
 
-The gradient is ∇f = 2Ax
+[Paper PDF](https://arxiv.org/abs/2504.18591) | [Code JAX](https://github.com/giovannicatalani/enf2enf) | [Code Torch](https://github.com/giovannicatalani/enf2enf_pytorch)
 
-when A is symmetric.
+### Towards scalable surrogate models based on Neural Fields for large scale aerodynamic simulations (2025)
+*Arxiv Preprint, Under Review*
 
-The Hessian is ∇²f = 2A.
+![MARIO paper cover](/assets/img/new_overview_final.png){: width="700px" }
 
-<details markdown="1">
 
-<summary>May I ask details? </summary>
-Here is a Recap with Python code inside pdf
+**Abstract:** This paper introduces a novel surrogate modeling framework for aerodynamic applications based on Neural Fields. The proposed approach, MARIO (Modulated Aerodynamic Resolution Invariant Operator), addresses non parametric geometric variability through an efficient shape encoding mechanism and exploits the discretization-invariant nature of Neural Fields. It enables training on significantly downsampled meshes, while maintaining consistent accuracy during full-resolution inference. These properties allow for efficient modeling of diverse flow conditions, while reducing computational cost and memory requirements compared to traditional CFD solvers and existing surrogate methods. The framework is validated on two complementary datasets that reflect industrial constraints. First, the AirfRANS dataset consists in a two-dimensional airfoil benchmark with non-parametric shape variations. Performance evaluation of MARIO on this case demonstrates an order of magnitude improvement in prediction accuracy over existing methods across velocity, pressure, and turbulent viscosity fields, while accurately capturing boundary layer phenomena and aerodynamic coefficients. Second, the NASA Common Research Model features three-dimensional pressure distributions on a full aircraft surface mesh, with parametric control surface deflections.
 
-[Recap](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/QuadraticForm.pdf)
-Thanks Prof !
+[Paper PDF](https://arxiv.org/abs/2505.14704) | [Code Torch](https://github.com/giovannicatalani/MARIO)
 
-</details>
+### Neural Fields for Rapid Aircraft Aerodynamics Simulations (2024)
+*Scientific Reports, Vol. 14(1), pp. 25496*
 
-Immediately,
+![aeronefpaper cover](/assets/img/aero_nef_cover.png){: width="700px" }
 
-* gradients are easy,
-* Hessians are constant,
-* convexity depends on whether A is positive definite.
 
-Exactly the same ideas appear in mechanics:
+**Abstract:** This paper presents a methodology to learn surrogate models of steady state fluid dynamics simulations on meshed domains, based on Implicit Neural Representations (INRs). The proposed models can be applied directly to unstructured domains for different flow conditions, handle non-parametric 3D geometric variations, and generalize to unseen shapes at test time... [shortened for brevity]
 
-* A → K
-* K symmetric
-* K positive definite
-* elastic energy is convex
-* equilibrium is the minimum of the energy.
+[Paper PDF](https://www.nature.com/articles/s41598-024-76983-w) | [Code](https://gitlab.isae-supaero.fr/gi.catalani/aero-nepf) | [Data](https://gitlab.isae-supaero.fr/gi.catalani/aero-nepf)
 
-In a specific design optimization field called Topology Optimization a quadratic form has to be minimized.
+### A Comparative Study of Learning Techniques for the Compressible Aerodynamics over a Transonic RAE2822 Airfoil (2023)
+*Computers & Fluids*
 
-Changing the density of an element changes how much strain energy that element can carry.
+![pgnet paper cover](/assets/img/pgnet_cover.png){: width="700px" }
 
-The optimizer therefore decides:
 
-Where should material be placed so that the total strain energy—and therefore the compliance—is minimized?
+**Abstract:** In this study, the modeling of the compressible pressure field on the RAE 2822 airfoil using deep learning (DL) is investigated. The objective is to generate, at low cost, the complete Mach envelope from a given aerodynamic database... [shortened for brevity]
 
+[Paper PDF](https://scholar.google.com/citations?view_op=view_citation&hl=fr&user=ZO1hXHEAAAAJ&citation_for_view=ZO1hXHEAAAAJ:u-x6o8ySG0sC) | [Code](link) | [Data](https://zenodo.org/records/12700680?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjQyNzI4M2NmLWIwYjktNDc1Ny1hYjA5LTliYjU4YjY4MjFmNCIsImRhdGEiOnt9LCJyYW5kb20iOiI5ZjY5MWIzNWQ5MTRmNGE4ZDdjNmY4ZjI4MTY1NDAyMiJ9._BqW0JKCMiI89PjbTmNOtbvYO6iCBx-hjP4WRPGepV2ufmAlqk_SEmAgbPfqkW9YvjOsh67lHn2jGQ7cg_n1nw)
 
-# Compliance Minimization in Topology Optimization
+### Machine Learning Based Local Reduced Order Modeling for the Prediction of Unsteady Aerodynamic Loads (2022)
+*Master Thesis, TU Delft*
 
+**Abstract:** Advancements in aircraft performance require increasingly complex design processes and tools. Simulating the unsteady non-linear aerodynamic interaction between a maneuvering aircraft and the surrounding flowfield poses serious challenges... [shortened for brevity]
 
-The design variables are the element densities:
-
-```
-ρ = (ρ₁, ρ₂, ..., ρₙ)ᵀ
-```
-
-The topology optimization problem is:
-
-```
-minimize      C(ρ) = fᵀu = uᵀK(ρ)u
-
-subject to    K(ρ)u = f
-
-              Σₑ ρₑ vₑ ≤ V*
-
-              ρₘᵢₙ ≤ ρₑ ≤ 1
-              e = 1,...,n
-```
-
-where:
-
-- K(ρ) = global stiffness matrix
-- u = displacement vector
-- f = external load vector
-- ρₑ = density of element e
-- vₑ = volume of element e
-- V* = prescribed volume constraint
-
----
-
-# Quadratic Form
-
-The compliance objective is the quadratic form:
-
-```
-C = uᵀ K u
-```
-
-or equivalently:
-
-```
-C = fᵀ u
-```
-
-because:
-
-```
-K u = f
-```
-
----
-<details markdown="1">
-
-<summary>Quadratic Form in Different Languages</summary>
-
-## MATLAB
-
-Column vectors:
-
-```matlab
-C = u' * K * u;
-```
-
-Equivalent scalar product:
-
-```matlab
-C = dot(u, K*u);
-```
-
-For sparse FEM matrices:
-
-```matlab
-C = u' * (K*u);
-```
-
----
-
-## Julia
-
-Using matrix multiplication:
-
-```julia
-C = u' * K * u
-```
-
-Recommended scalar form:
-
-```julia
-C = dot(u, K*u)
-```
-
-For sparse FEM:
-
-```julia
-C = dot(u, K*u)
-```
-
-with
-
-```julia
-K = sparse(K)
-```
-
----
-
-## Python (NumPy)
-
-Using matrix multiplication:
-
-```python
-C = u.T @ K @ u
-```
-
-Equivalent:
-
-```python
-C = np.dot(u, K @ u)
-```
-
-For sparse FEM matrices:
-
-```python
-C = u @ (K @ u)
-```
-
-with:
-
-```python
-from scipy.sparse import csr_matrix
-
-K = csr_matrix(K)
-```
-</details>
-
-
----
-
-# Element-wise Compliance
-
-The global compliance can be decomposed into element contributions:
-
-```
-C = Σₑ uₑᵀ Kₑ uₑ
-```
-
-where e runs over all elements: e = 1, ..., n
-
-with
-
-```
-uₑ = element displacement vector
-
-
-Kₑ = element stiffness matrix
-```
-
----
-
-# Material Interpolation
-
-The element stiffness is interpolated as:
-
-```
-Kₑ(ρₑ) = ρₑᵖ Kₑ⁰
-
-```
-
-where:
-
-```
-p = penalization exponent
-Kₑ⁰ = stiffness of solid material
-```
-
-Therefore:
-
-```
-C = Σₑ ρₑᵖ uₑᵀ Kₑ⁰ uₑ
-```
-
----
-
-# Compliance Sensitivity
-
-The SIMP derivative is:
-
-```
-∂C/∂ρₑ = -p ρₑᵖ⁻¹ uₑᵀ Kₑ⁰ uₑ
-```
-
-which is the quantity used by OC (Optimality Criteria) and MMA update schemes.
-
-In practice we are using SIMP formulation
-
-<details markdown="1">
-
-<summary>SIMP explanation</summary>
-
-# SIMP Material Interpolation
-
-The Solid Isotropic Material with Penalization (SIMP) method introduces a
-
-relationship between the design variable and the Young modulus of each
-
-element.
-
-The interpolation is:
-
-```
-
-Eₑ(xₑ) = Eₘᵢₙ + xₑᵖ (E₀ − Eₘᵢₙ)
-
-```
-
-where:
-
-```
-
-Eₑ(xₑ) = Young modulus of element e
-
-E₀     = Young modulus of solid material
-
-Eₘᵢₙ  = small stiffness assigned to void regions
-
-xₑ     = density variable of element e
-
-p      = penalization exponent (usually p ≈ 3)
-
-```
-
-The purpose of the penalization term:
-
-```
-
-xₑᵖ
-
-```
-
-is to discourage intermediate densities:
-
-```
-
-0 < xₑ < 1
-
-```
-
-and drive the solution toward a black-and-white topology:
-
-```
-
-solid  → xₑ = 1
-
-void   → xₑ ≈ 0
-
-```
-
----
-
-# Element-wise Compliance with SIMP
-
-The global compliance can be decomposed into element contributions:
-
-```
-
-C(x) = Σₑ Eₑ(xₑ) uₑᵀ k₀ uₑ
-
-```
-
-where:
-
-```
-
-uₑ = displacement vector of element e
-
-k₀ = reference element stiffness matrix
-
-Eₑ(xₑ) = SIMP interpolated Young modulus
-
-```
-
-Using the SIMP interpolation:
-
-```
-
-C(x)
-
-=
-
-Σₑ [Eₘᵢₙ + xₑᵖ(E₀ − Eₘᵢₙ)]
-
-      uₑᵀ k₀ uₑ
-
-```
-
-The sum notation means:
-
-```
-
-Σₑ = sum over all finite elements
-
-e = 1, ..., N
-
-```
-
----
-
-# Compliance Sensitivity
-
-The derivative used by optimization algorithms
-
-(Optimality Criteria, MMA, etc.) is:
-
-```
-
-∂C/∂xₑ
-
-=
-
--p xₑᵖ⁻¹ (E₀ − Eₘᵢₙ)
-
-uₑᵀ k₀ uₑ
-
-```
-
-This sensitivity tells how the compliance changes when the material
-
-density of element `e` is modified.
-
----
-
-</details>
-
-
-### [A Topology Optimization Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
-* **Author:** Sam Greydanus  
-* **Published:** May 8, 2022  
-* **Link:** [Read Tutorial](https://greydanus.github.io/2022/05/08/structural-optimization/)
-* **Link:** [Read Short course NotebookLM](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/The_180_Line.pdf)
-
-**Summary:** A hands-on, deeply technical tutorial on topology and structural optimization. The post breaks down the mathematics behind minimizing elastic potential energy (compliance) across a 2D grid of springs. It covers crucial implementation steps, including computing sensitivities, solving large-scale sparse matrices using SciPy's SuperLU, and defining custom Autograd gradients to bridge physics simulations with automatic differentiation.
-
-
+[Thesis PDF](https://resolver.tudelft.nl/uuid:cd5bf762-ab2a-4c9e-8b51-58a173440830) | [Code](https://github.com/giovannicatalani/CAE_ROM)
