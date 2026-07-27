@@ -11,7 +11,9 @@ I am an full professor in Aerospace Engineering (AE) at **ISAE-SUPAERO**, attach
 I lead the **MID2** group — *Multidisciplinary optimization for aerospace Innovation:
 eco Design and Data* — which develops methods for design optimization and data-driven/AI-assisted decision-making, with applications in aerospace engineering.
 
-![MID2](https://raw.githubusercontent.com/mid2SUPAERO.github.io/blob/main/MID2.png)
+<img src="MID2.png" width="100"/>
+
+
 
 
 Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
