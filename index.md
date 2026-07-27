@@ -16,6 +16,10 @@ I lead the **MID2** research group ("Multidisciplinary optimization for aerospac
 eco Design and Data") at ISAE-SUPAERO. On this site you'll find posts about my group's
 research and scientific activities, along with links to research and teaching material.
 
+
+![MID2](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/MID2.png)
+
+
 **Vulgarisation:**
 
 [Is it possible to build an aircraft wing in LEGO®?](https://www.linkedin.com/pulse/possible-build-aircraft-wing-lego-joseph-morlier/) 
