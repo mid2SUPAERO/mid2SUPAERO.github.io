@@ -10,15 +10,11 @@ Professor in Aerospace Engineering.
 
 
 
-## 🏠 Welcome!
+## 🏠 Welcome! <img src="MID2.png" width="100"/>
 
 I lead the **MID2** research group ("Multidisciplinary optimization for aerospace Innovation:
 eco Design and Data") at ISAE-SUPAERO. On this site you'll find posts about my group's
 research and scientific activities, along with links to research and teaching material.
-
-
-![MID2](https://raw.githubusercontent.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/MID2.png)
-
 
 **Vulgarisation:**
 
