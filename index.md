@@ -17,20 +17,20 @@ eco Design and Data") at ISAE-SUPAERO. On this site you'll find posts about my g
 research and scientific activities, along with links to research and teaching material.
 
 
-![MID2](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/MID2.png)
+![MID2](https://raw.githubusercontent.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/MID2.png)
 
 
 **Vulgarisation:**
 
-[Is it possible to build an aircraft wing in LEGO®?](https://www.linkedin.com/pulse/possible-build-aircraft-wing-lego-joseph-morlier/) 
+[Is it possible to build an aircraft wing in LEGO®?](https://www.linkedin.com/pulse/possible-build-aircraft-wing-lego-joseph-morlier/)
 
 [MDO: optimization for connecting people?](https://www.linkedin.com/pulse/optimization-mdo-connecting-people-joseph-morlier/)
 
 ## 🔬 Research Topics
 
-| Structural Optimization | Ecodesign | AI for Engineers | Multidisciplinary Design Optimization | 
+| Structural Optimization | Ecodesign | AI for Engineers | Multidisciplinary Design Optimization |
 |---|---|---|---|
-| *Topology & shape optimization, multiscale, geometric projection, architectured materials* | *Digital materials, LCA, eco-informed material selection* | *Surrogate modeling, Gaussian processes, multifidelity approaches, mixed variables* | *Computational aeroelasticity, accelerated design of aircraft, UAV and launchers* | 
+| *Topology & shape optimization, multiscale, geometric projection, architectured materials* | *Digital materials, LCA, eco-informed material selection* | *Surrogate modeling, Gaussian processes, multifidelity approaches, mixed variables* | *Computational aeroelasticity, accelerated design of aircraft, UAV and launchers* |
 
 Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
 
@@ -55,6 +55,3 @@ AIAA · ISSMO · SIAM · A3F · AFM · GDR MASCOT-NUM · GDR IAMAT
 - [ISAE-SUPAERO profile page](https://personnel.isae-supaero.fr/joseph-morlier/?lang=fr)
 - [LinkedIn](https://www.linkedin.com/in/joseph-morlier-890176168/)
 - [Team & alumni](/team.html)
-
-
-
