@@ -4,8 +4,9 @@ title: "Interested in ASO and Implicit Neural Fields?"
 date: 2026-07-24
 categories: general
 ---
+A review of [SDFs and Fast sweeping in JAX](https://rohangautam.github.io/blog/fast_sweeping/fastsweeping/)
 
-## VISIT GIOVANNI CATALANI's website
+
 [Research of Giovanni](https://giovannicatalani.github.io)
 
 ### Geometry aware inference of steady state PDEs using Equivariant Neural Fields representations (2025)
