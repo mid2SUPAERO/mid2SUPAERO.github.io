@@ -65,7 +65,8 @@ I became **Manuel Samuelides' colleague**, and a few years later we started coll
 
 People often ask me why I still teach with MATLAB, even though I also use and teach **Python** and **Julia**.
 
-The answer has very little to do with syntax.
+The answer has very little to do with syntax... let's check This Post, there is a nice comparison of Matlab (Julia) and Python.  who wins?
+[Quadratic Form](https://mid2supaero.github.io/general/2026/07/19/quadratic.html)
 
 One of MATLAB's greatest strengths, in my opinion, is the quality of its documentation. Every important numerical function is carefully documented, and the implementation is almost always linked to the original scientific literature.
 
@@ -118,7 +119,7 @@ Vibe coding is a software development approach where you build applications enti
 ---
 
 ### [REMAL](https://arxiv.org/html/2606.13245v1)
-* **Authors:** Kail Yuan, Ashwin Renganathan 
+* **Authors:** Kail Yuan, Ashwin Renganathan
 * **Published:** June 11, 2026  
 * **Link:** [Read Article](https://arxiv.org/abs/2606.13245)
 
@@ -160,11 +161,7 @@ Soon available
 ---
 
 ### Do you want to do the same ? follow HelloProf on patreon or buy me a coffee
-* **Author:** J.Morlier 
- 
+* **Author:** J.Morlier
+
 
 ---
-
-
-
-
