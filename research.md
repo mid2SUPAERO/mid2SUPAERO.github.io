@@ -6,6 +6,13 @@ permalink: /research.html
 
 # Research Topics
 
+### Multidisciplinary Design Optimization (MDO)
+Computational aeroelasticity, accelerated design of aircraft, UAV and launchers.
+
+### Artificial Intelligence for Sciences
+Surrogate modeling, Gaussian Processes, multifidelity approaches, mixed-variable
+optimization.
+
 ### Structural Optimization
 Topology and shape optimization, multiscale methods, geometric projection,
 architectured materials.
@@ -13,17 +20,23 @@ architectured materials.
 ### Ecodesign
 Digital materials, Computational Life Cycle Assessment, eco-informed material selection.
 
-### Artificial Intelligence for Engineers
-Surrogate modeling, Gaussian Processes, multifidelity approaches, mixed-variable
-optimization.
-
-### Multidisciplinary Design Optimization (MDO)
-Computational aeroelasticity, accelerated design of aircraft, UAV and launchers.
-
 ### Structural Health Monitoring and vibration (my old life)
-Modal identification, signal processing, neural networks for pattern recognition
+Modal identification, signal processing, neural networks for pattern recognition, composites structures
 
 ---
+
+## conferences organisation
+
+[EASN2026](https://easnconference.eu/2026/programme/sessions)
+
+[MDO2025](https://www.isae-supaero.fr/en/isae-supaero/our-newsroom/news/from-modeling-to-decarbonation-mdo-as-a-driver-of-transformation-at-the-4th-european-workshop/)
+
+MDO Phd Day 2019 and 2023 (ISAE+ONERA)
+
+[Surday2021](https://sites.google.com/view/surday2021/)
+
+[openmdao2017](https://www.onera.fr/fr/agenda/euro-openmdao-2017)
+
 
 ## Vulgarisation
 
@@ -32,7 +45,6 @@ Modal identification, signal processing, neural networks for pattern recognition
 
 ## Latest outputs & presentations
 
-The MID2 group keeps its latest slides, posters, and code releases in a dedicated
-GitHub repository:
+The MID2 group keeps Prof. Morlier latest slides, posters, and code releases in a dedicated GitHub repository:
 
 - [github.com/mid2SUPAERO/Outputs](https://github.com/mid2SUPAERO/Outputs)
