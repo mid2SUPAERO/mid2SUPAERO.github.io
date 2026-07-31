@@ -25,7 +25,7 @@ permalink: /team.html
 | Gustavo Asai | TU Delft | Nederland funding, With Prof. Masania and Prof. Lachaud |
 
 ## Visiting Researchers
-
+- Prof. Joaquim Martins [EU project 658570 - NextGen Airliners](https://websites.isae-supaero.fr/nextgen-airliners/marie-sklodowska-curie-european/marie-sklodowska-curie-european)
 - Assistant Professor Pramudita Palar — ITB, June 2023
 - Mingzhi Shihua — UST Hong Kong, March–May 2024
 - Associate Professor Frederico Afonso — Técnico Lisboa, September–December 2024
