@@ -5,12 +5,6 @@ permalink: /CodingwithAI.html
 ---
 
 
-💻 “Vibe Coding”
-As AI assistants are transforming the way we write software, I want to explore a simple question:
-Can we faithfully recreate scientific software directly from published papers?
-
-In this series, I’ll rebuild open-source implementations of classical and modern scientific methods—from optimization and surrogate modeling to computational mechanics and machine learning—using AI-assisted development. The goal isn’t merely to generate code, but to understand the underlying algorithms, assess reproducibility, and make research software more accessible to students and researchers.
-
 <details markdown="1">
 
 <summary>The story of my life [TO READ]</summary>
@@ -105,7 +99,11 @@ PS: SMT has been efficiently refactored by Claude and Remi Lafage (ONERA).
 
 </details>
 
+💻 “Vibe Coding”
+As AI assistants are transforming the way we write software, I want to explore a simple question:
+Can we faithfully recreate scientific software directly from published papers?
 
+In this series, I’ll rebuild open-source implementations of classical and modern scientific methods—from optimization and surrogate modeling to computational mechanics and machine learning—using AI-assisted development. The goal isn’t merely to generate code, but to understand the underlying algorithms, assess reproducibility, and make research software more accessible to students and researchers.
 
 # Definition of Vibe Coding
 
@@ -123,10 +121,9 @@ Vibe coding is a software development approach where you build applications enti
 * **Published:** June 11, 2026  
 * **Link:** [Read Article](https://arxiv.org/abs/2606.13245)
 
-**Summary:** Multidisciplinary design analysis of coupled engineering systems requires the computation of equilibrium states in which all disciplinary coupling variables are mutually consistent. Conventional fixed-point iteration resolves this consistency problem separately at each design point, which can become expensive when disciplinary evaluations are costly and many analyses are required in outer-loop tasks such as multidisciplinary design optimization, uncertainty quantification, or digital twin updating. This paper introduces REMAL, a residual manifold surrogate modeling framework for coupled systems. Instead of approximating each discipline independently or directly learning converged coupling variables, the proposed method learns a surrogate model of the joint residual manifold via multitask Gaussian process models. An entropy-based active learning strategy selects additional residual evaluations near uncertain zero-contour regions, and equilibrium states for new design inputs are recovered by solving a nonlinear least squares optimization problem using only the trained surrogate. The method is evaluated on four engineering coupled system benchmarks: a satellite model, an aerostructural model, a finite-element gas-turbine heat-transfer and economics model, and a modified turbine model with added feedback coupling. Across these cases, REMAL consistently demonstrates the cost effectiveness when repeated evaluations of the fixed point across the design space are necessary. Theoretically, we show that, under mild assumptions, REMAL's predictive fixed point error is bounded.
+**Summary:** Multidisciplinary design analysis of coupled engineering systems requires the computation of equilibrium states in which all disciplinary coupling variables are mutually consistent. Conventional fixed-point iteration resolves this consistency problem separately at each design point, which can become expensive when disciplinary evaluations are costly and many analyses are required in outer-loop tasks such as multidisciplinary design optimization, uncertainty quantification, or digital twin updating. This paper introduces REMAL, a residual manifold surrogate modeling framework for coupled systems.
 
 * **Link:** [Play with the vibecode, it works on colab](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/REMAL_CasADi.ipynb)
-
 
 ---
 ---
@@ -142,8 +139,7 @@ or less even distribution of stress along the tether rather than in the case of 
 document presents the analyses of some tether tapering functions and shows that exponentially tapered
 tether is not an optimal solution for the space elevator with climbers or other point loads like transitional
 stations. To handle these analyses ClarkeLib – an open library for calculation of basic space elevator
-parameters and loads has been developed. Estimation of Earth Elevator and Mars Elevator parameters has
-been made using this library, and results are represented in this paper.
+parameters and loads has been developed.
 
 * **Link:** [Play with the vibecode, it works on colab](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/REMAL_CasADi.ipynb)
 
@@ -154,10 +150,17 @@ been made using this library, and results are represented in this paper.
 
 ### Recreation with my friend NotebookLM (Google)
 * **Authors:** J.Morlier and students
+<details markdown="1">
 
-Soon available
+<summary>The 180 line [TO READ]</summary>
+[Structural Optimization in 180 Lines](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/The_180_Line.pdf)
+
+more in the post [QuadraticForm](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_posts/2026-07-20-quadratic.md)
+
+</details>
 
 ---
+
 ---
 
 ### Do you want to do the same ? follow HelloProf on patreon or buy me a coffee
