@@ -153,9 +153,12 @@ parameters and loads has been developed.
 <details markdown="1">
 
 <summary>The 180 line [TO READ]</summary>
+
+Look How Gemini ingests a full paper and is able to create an organized presentation.
+
 [Structural Optimization in 180 Lines](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/The_180_Line.pdf)
 
-more in the post [QuadraticForm](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_posts/2026-07-20-quadratic.md)
+more mathematical details in this post [QuadraticForm](https://mid2supaero.github.io/general/2026/07/19/quadratic.html)
 
 </details>
 
