@@ -20,8 +20,18 @@ Vibe coding is a software development approach where you build applications enti
 [Vibe coding](https://en.wikipedia.org/wiki/Vibe_coding)
 
 
-# Recreation with my friend Claude (Anthropic)
+---
 
+### HelloProf on buy me a coffee
+
+Contact me if you need help
+[coffee](https://buymeacoffee.com/helloprof)
+* **Author:** J.Morlier
+---
+
+# Recreation with Claude (Anthropic)
+
+Here are two examples available for free
 ---
 
 ### [REMAL](https://arxiv.org/html/2606.13245v1)
@@ -69,15 +79,5 @@ Look How Gemini ingests a full paper and is able to create an organized presenta
 more mathematical details in this post [QuadraticForm](https://mid2supaero.github.io/general/2026/07/19/quadratic.html)
 
 </details>
-
----
-
----
-
-### Do you want to do the same ? follow HelloProf on buy me a coffee
-
-[coffee](buymeacoffee.com/helloprof)
-* **Author:** J.Morlier
-
 
 ---
