@@ -3,7 +3,7 @@ layout: home
 title: Home
 ---
 
-## [Joseph Morlier](https://mid2supaero.github.io)
+## [Joseph F.A. Morlier](https://mid2supaero.github.io)
 
 Professor in Aerospace Engineering.
 📥 joseph.morlier at isae-supaero.fr
@@ -38,7 +38,7 @@ Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
 
 - [Publication list](/publications.html)
 - [Google Scholar Profile](https://scholar.google.fr/citations?user=wi1HSroAAAAJ&hl=fr)
-- [Publons](https://publons.com/researcher/3109719/joseph-morlier/)
+- [Webofsciences](https://www.webofscience.com/wos/author/rid/Y-1209-2019)
 - [ORCID](https://orcid.org/0000-0002-1511-2086)
 
 ## 🤝 Networks & Societies
