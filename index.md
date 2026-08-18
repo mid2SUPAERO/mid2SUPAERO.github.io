@@ -38,6 +38,7 @@ Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
 
 - [Publication list](/publications.html)
 - [Google Scholar Profile](https://scholar.google.fr/citations?user=wi1HSroAAAAJ&hl=fr)
+- [Openalex](https://openalex.org/authors/A5005187572)
 - [Webofsciences](https://www.webofscience.com/wos/author/rid/Y-1209-2019)
 - [ORCID](https://orcid.org/0000-0002-1511-2086)
 

@@ -138,5 +138,6 @@ Tel: +33 (0)5 61 33 81 31
 - [ISAE-SUPAERO personnel page](https://personnel.isae-supaero.fr/joseph-morlier/?lang=fr)
 - [LinkedIn](https://www.linkedin.com/in/joseph-morlier-890176168/)
 - [Google Scholar](https://scholar.google.fr/citations?user=wi1HSroAAAAJ&hl=fr)
-- [Publons](https://publons.com/researcher/3109719/joseph-morlier/)
+- [Webofsciences](https://www.webofscience.com/wos/author/rid/Y-1209-2019)
+- [Openalex](https://openalex.org/authors/A5005187572)
 - [ORCID](https://orcid.org/0000-0002-1511-2086)
