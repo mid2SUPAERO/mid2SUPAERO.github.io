@@ -11,12 +11,12 @@ permalink: /Distill.html
 
 ---
 
-### [A numerical tour of GP/ BO](_distill/gp-bo)
+### [A numerical tour of GP/ BO](/gp-bo/)
 * **Authors:** Joseph Morlier
 * **Published:** August 2026
 
-
 **Summary:** interactive demo
+
 
 ---
 
