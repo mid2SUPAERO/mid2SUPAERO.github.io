@@ -1,0 +1,267 @@
+/* Custom styles for "Gaussian Processes & Bayesian Optimization: An Interactive
+   Tour". Distill's own web components (template.v2.js) supply the base page
+   grid and typography; this file only styles the parts unique to this
+   article: the interactive widgets and a few callout boxes. Colors follow a
+   validated categorical palette (blue/orange/aqua/yellow), chosen so series
+   stay distinguishable under common color-vision deficiencies. */
+
+:root {
+  --gpw-blue: #2a78d6;
+  --gpw-orange: #eb6834;
+  --gpw-aqua: #1baf7a;
+  --gpw-yellow: #eda100;
+  --gpw-ink: #0b0b0b;
+  --gpw-secondary: #52514e;
+  --gpw-muted: #898781;
+  --gpw-grid: #e1e0d9;
+  --gpw-baseline: #c3c2b7;
+  --gpw-surface: #fcfcfb;
+  --gpw-band: rgba(42, 120, 214, 0.16);
+}
+
+.gp-widget {
+  border: 1px solid var(--gpw-baseline);
+  border-radius: 8px;
+  padding: 16px 18px 10px;
+  background: var(--gpw-surface);
+  margin: 1.6em 0;
+}
+
+.gpw-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--gpw-secondary);
+  margin-bottom: 6px;
+}
+
+.gpw-controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.gpw-controls input[type="range"] {
+  width: 100px;
+}
+
+.gpw-controls select {
+  font-size: 0.82rem;
+  padding: 2px 4px;
+}
+
+.gpw-controls button {
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border: 1px solid var(--gpw-baseline);
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--gpw-ink);
+}
+.gpw-controls button:hover {
+  background: #f0efec;
+}
+
+.gpw-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  touch-action: none;
+}
+
+.gpw-axis path,
+.gpw-axis line {
+  stroke: var(--gpw-baseline);
+}
+.gpw-axis text {
+  fill: var(--gpw-muted);
+  font-size: 10px;
+}
+.gpw-axislabel {
+  fill: var(--gpw-secondary);
+  font-size: 11px;
+}
+
+.gpw-band {
+  fill: var(--gpw-band);
+  stroke: none;
+  pointer-events: none;
+}
+.gpw-mean {
+  stroke: var(--gpw-blue);
+  stroke-width: 2.4px;
+  pointer-events: none;
+}
+.gpw-points circle,
+.boe-svg .gpw-points circle {
+  fill: var(--gpw-ink);
+  stroke: var(--gpw-surface);
+  stroke-width: 1.5px;
+  cursor: grab;
+}
+.gpw-samples path {
+  stroke: var(--gpw-orange);
+  stroke-width: 1px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.gpw-caption {
+  font-size: 0.78rem;
+  color: var(--gpw-muted);
+  margin: 4px 0 6px;
+}
+.gpw-caption span {
+  color: var(--gpw-ink);
+  font-weight: 600;
+}
+
+/* BO explorer specifics */
+.boe-truth {
+  stroke: var(--gpw-baseline);
+  stroke-width: 1.6px;
+  stroke-dasharray: 3 3;
+}
+.boe-next {
+  stroke: var(--gpw-orange);
+  stroke-width: 1.4px;
+  stroke-dasharray: 4 3;
+}
+.boe-acq-path {
+  stroke: var(--gpw-aqua);
+  stroke-width: 2px;
+}
+.boe-acq-fill {
+  fill: rgba(27, 175, 122, 0.14);
+  stroke: none;
+}
+
+/* Callout / summary boxes reused across sections */
+.callout {
+  background: hsla(206, 90%, 20%, 0.035);
+  border-left: 3px solid var(--gpw-blue);
+  padding: 0.9em 1.4em;
+  margin: 1.4em 0;
+  font-size: 0.95em;
+}
+.callout.warn {
+  border-left-color: var(--gpw-orange);
+  background: hsla(20, 90%, 45%, 0.035);
+}
+
+.kernel-legend {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--gpw-secondary);
+  margin: 0.4em 0 1.2em;
+}
+.swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 5px;
+  vertical-align: -1px;
+}
+
+/* GP Playground: covariance-matrix heatmaps */
+.gpw-heatmaps {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+  margin: 6px 0 4px;
+}
+.gpw-heatmap-block {
+  flex: 1 1 200px;
+  max-width: 220px;
+}
+.gpw-heatmap-label {
+  font-size: 0.76rem;
+  color: var(--gpw-secondary);
+  margin: 0 0 4px;
+}
+.gpw-heatmap-label code {
+  font-size: 0.72rem;
+}
+.gpw-heat-k,
+.gpw-heat-kn {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--gpw-baseline);
+  border-radius: 4px;
+}
+
+/* Kernel Comparison Explorer */
+.kc-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+}
+.kc-xstar-line {
+  stroke: var(--gpw-orange);
+  stroke-width: 1.6px;
+  stroke-dasharray: 4 3;
+}
+.kc-xstar-handle {
+  fill: var(--gpw-orange);
+  stroke: var(--gpw-surface);
+  stroke-width: 1.5px;
+  cursor: ew-resize;
+}
+.kc-table-wrap {
+  overflow-x: auto;
+}
+.kc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 6px 0 10px;
+}
+.kc-table th,
+.kc-table td {
+  text-align: left;
+  padding: 4px 10px 4px 0;
+  border-bottom: 1px solid var(--gpw-grid);
+  color: var(--gpw-secondary);
+  white-space: nowrap;
+}
+.kc-table th {
+  color: var(--gpw-muted);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Spatial Kriging Explorer */
+.sk-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  touch-action: none;
+  border-radius: 6px;
+}
+.sk-station {
+  fill: var(--gpw-ink);
+  stroke: white;
+  stroke-width: 1.6px;
+  cursor: grab;
+}
+.sk-label {
+  font-size: 9.5px;
+  fill: var(--gpw-ink);
+  paint-order: stroke;
+  stroke: white;
+  stroke-width: 3px;
+  pointer-events: none;
+}
+.sk-mode-toggle {
+  gap: 4px !important;
+}
