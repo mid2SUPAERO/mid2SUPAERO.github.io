@@ -11,7 +11,7 @@ permalink: /Distill.html
 
 ---
 
-### [A numerical tour of GP/ BO](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_distill/gp-bo/index.html)
+### [A numerical tour of GP/ BO](_distill/gp-bo)
 * **Authors:** Joseph Morlier
 * **Published:** August 2026
 
