@@ -11,7 +11,7 @@ permalink: /Distill.html
 
 ---
 
-### [A numerical tour of GP/ BO](https://distill.pub/2019/visual-exploration-gaussian-processes/)
+### [A numerical tour of GP/ BO](/_distill/gp-bo/index.html)
 * **Authors:** Joseph Morlier
 * **Published:** August 2026
 
