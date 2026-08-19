@@ -8,10 +8,12 @@ permalink: /Distill.html
 
 📖 Distill is back ;)
 
+The Distill journal was founded as an adapter between traditional and online scientific publishing. We believed that many valuable scientific contributions — such as explanations, interactive articles, and visualizations — were held back by not being seen as “real scientific publications.” Our theory was that if a journal were to publish such artifacts, it would allow authors to benefit from the traditional academic incentive system and enable more of this kind of work.
+
 
 ---
 
-### [A numerical tour of GP/ BO](/gp-bo/)
+### [Gaussian Processes and Bayesian Optimization: An Interactive Tour](/gp-bo/)
 * **Authors:** Joseph Morlier
 * **Published:** August 2026
 
