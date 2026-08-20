@@ -13,7 +13,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [Gaussian Processes and Bayesian Optimization: An Interactive Tour](/gp-bo/)
+### [A numerical tour of GP and BO](/gp-bo/)
 * **Authors:** Joseph Morlier
 * **Published:** August 2026
 
