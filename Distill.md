@@ -13,7 +13,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [A numerical tour of GP and BO](/gp-bo/)
+### [A numerical tour of GP and BO (DRAFT UNCORRECTED)](/gp-bo/)
 * **Authors:** Joseph Morlier
 * **Published:** August 2026
 
