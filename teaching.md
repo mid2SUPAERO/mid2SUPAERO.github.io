@@ -6,8 +6,7 @@ permalink: /teaching.html
 
 # Teaching
 
-Courses and teaching material at ISAE-SUPAERO covering structural optimization,
-multidisciplinary design optimization, and AI/machine learning for engineers.
+Courses and teaching material at ISAE-SUPAERO covering aerospace structures/materials, optimization, ecodesign, multidisciplinary design optimization, and AI/machine learning for engineers.
 
 # GITHUB courses
 
