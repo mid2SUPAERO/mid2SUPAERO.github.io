@@ -26,10 +26,11 @@ Courses and teaching material at ISAE-SUPAERO covering aerospace structures/mate
 
 [An introduction to Scientific Computing](https://github.com/jomorlier/ScientificComputing)
 
-# YOUTUBE videos
+# Topology optimization & eco-efficient design
 
 [![Topology optimization & eco-efficient design part1](http://i.ytimg.com/vi/vrHZJNlqnZA/hqdefault.jpg)](https://www.youtube.com/watch?v=vrHZJNlqnZA)
 
 [![Topology optimization & eco-efficient design part2](http://i.ytimg.com/vi/Np1j__iSIlc/hqdefault.jpg)](https://www.youtube.com/watch?v=Np1j__iSIlc)
 
+# LCA, Ecodesign and sustainable aviation 
 [![LCA, Ecodesign and sustainable aviation](http://i.ytimg.com/vi/UgRsHQ0H6kA/hqdefault.jpg)](https://www.youtube.com/watch?v=UgRsHQ0H6kA)
