@@ -28,16 +28,9 @@ multidisciplinary design optimization, and AI/machine learning for engineers.
 [An introduction to Scientific Computing](https://github.com/jomorlier/ScientificComputing)
 
 # YOUTUBE videos
-TU Delft MUMAC2022 part1
 
-[![MUMAC1](http://i.ytimg.com/vi/vrHZJNlqnZA/hqdefault.jpg)](https://www.youtube.com/watch?v=vrHZJNlqnZA)
+[![Topology optimization & eco-efficient design part1](http://i.ytimg.com/vi/vrHZJNlqnZA/hqdefault.jpg)](https://www.youtube.com/watch?v=vrHZJNlqnZA)
 
-TU Delft MUMAC2022 part2
+[![Topology optimization & eco-efficient design part2](http://i.ytimg.com/vi/Np1j__iSIlc/hqdefault.jpg)](https://www.youtube.com/watch?v=Np1j__iSIlc)
 
-[![MUMAC2](http://i.ytimg.com/vi/Np1j__iSIlc/hqdefault.jpg)](https://www.youtube.com/watch?v=Np1j__iSIlc)
-
-IFAMO 2026
-
-[![IFAMO](http://i.ytimg.com/vi/UgRsHQ0H6kA/hqdefault.jpg)](https://www.youtube.com/watch?v=UgRsHQ0H6kA)
-
-
+[![LCA, Ecodesign and sustainable aviation](http://i.ytimg.com/vi/UgRsHQ0H6kA/hqdefault.jpg)](https://www.youtube.com/watch?v=UgRsHQ0H6kA)
