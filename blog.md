@@ -39,6 +39,14 @@ This blog is dedicated to those ideas: the tutorials, perspectives, engineering 
 **Summary:** A beautifully illustrated introduction to Bayesian Optimization, the sequential optimization framework that leverages Gaussian Process surrogate models to efficiently optimize expensive black-box functions. The article explains the exploration–exploitation trade-off, acquisition functions such as Expected Improvement and Upper Confidence Bound, and demonstrates why Bayesian Optimization has become a standard tool for hyperparameter tuning, engineering design, and simulation-based optimization. Like the earlier Distill article, it combines rigorous mathematics with exceptional interactive visualizations, making a challenging topic remarkably accessible.  
 
 ---
+
+### [Awesome-bo](https://richardcsuwandi.github.io/awesome-bo/)
+* **Authors:**  Richard Cornelius Suwandi
+* **Published:** 2026
+* **Link:** [Launch demo](https://distill.pub/2020/bayesian-optimization/)
+
+**Summary:** A curated list of Bayesian optimization books, papers, software, and learning resources.
+
 ---
 
 ### [The Economics of AI Surrogates](https://jajimer.github.io/2026/06/12/economics-of-ai-surrogates/)
@@ -68,18 +76,18 @@ This blog is dedicated to those ideas: the tutorials, perspectives, engineering 
 ---
 ### [A Structural Optimization Tutorial](https://meyer-nils.github.io/structural_optimization/)
 * **Author:** Niels Meyer
-* **Published:** April 2026 
+* **Published:** April 2026
 * **Link:** [Read Tutorial](https://meyer-nils.github.io/structural_optimization/fem_optimization.html)
 
-**Summary:** 
+**Summary:**
 This is accompanying code for Niels Meyer's Structural Optimization lecture MRM-0156. A must read !
 
 ---
 
 
 ### [PLAID — Physics Learning AI Data Model](https://plaid-lib.github.io)
-* **Author:** Fabien Cazenave 
-* **Published:** August 5, 2025 
+* **Author:** Fabien Cazenave
+* **Published:** August 5, 2025
 * **Link:** [Read Benchmark](https://plaid-lib.github.io/benchmarks/#interactive-benchmark-applications)
 
 **Summary:** The missing data layer between physics simulations and scientific ML.
