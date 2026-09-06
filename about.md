@@ -116,11 +116,12 @@ Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
 [SMT Documentation](https://smt.readthedocs.io/en/latest/)
 
 
-## Affiliation
+## Affiliations
 
-Institut Supérieur de l'Aéronautique et de l'Espace (ISAE-SUPAERO)
-10, avenue Marc Pellegrin, BP 54032 — 31055 Toulouse CEDEX 4, France
+Université de Toulouse, ISAE-SUPAERO Toulouse, 10 avenue Marc Pellegrin, 31400, Toulouse , France/
 
+
+Fédération ENAC ISAE-SUPAERO ONERA, Université de Toulouse, Toulouse, 31400, France.
 
 # Contact
 

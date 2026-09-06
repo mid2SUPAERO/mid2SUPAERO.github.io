@@ -16,6 +16,13 @@ I lead the **MID2** research group ("Multidisciplinary optimization for aerospac
 eco Design and Data") at ISAE-SUPAERO. On this site you'll find posts about my group's
 research and scientific activities, along with links to research and teaching material.
 
+**signatures**
+
+Université de Toulouse, ISAE-SUPAERO Toulouse, 10 avenue Marc Pellegrin, 31400, Toulouse , France/
+
+
+Fédération ENAC ISAE-SUPAERO ONERA, Université de Toulouse, Toulouse, 31400, France.
+
 **Vulgarisation:**
 
 [Is it possible to build an aircraft wing in LEGO®?](https://www.linkedin.com/pulse/possible-build-aircraft-wing-lego-joseph-morlier/)
