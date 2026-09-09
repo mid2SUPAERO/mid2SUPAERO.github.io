@@ -99,16 +99,23 @@
       </tbody>
     </table>
     <p>These are exactly the three guideline families printed on Ashby's own stiffness&ndash;density chart, and
-      they are what the interactive figure below draws directly &mdash; the same construction used, non-interactively,
-      by teaching tools such as the Cambridge Engineering Department's material-selection
-      charts<d-cite key="cambridge2024charts"></d-cite>.</p>
+      the algebra generalises without change to any pair of properties: replace <d-math>E</d-math> and
+      <d-math>\rho</d-math> with any two log-scaled axes and the same construction &mdash; a straight
+      guideline whose slope is fixed by the case, whose position encodes <d-math>\log M</d-math> &mdash; still
+      applies. This is the same construction used, non-interactively, by teaching tools such as the Cambridge
+      Engineering Department's material-selection charts<d-cite key="cambridge2024charts"></d-cite>, whose full
+      &ldquo;Select chart&rdquo; list the figure below reproduces: eleven property pairs, all drawn from the
+      same 22-material set used throughout this article.</p>
 
     <div class="callout">
-      <strong>Try it.</strong> Pick a loading case, or drag the dashed guideline yourself. The line always keeps
-      the slope shown by the active case; dragging it up or down changes only <d-math>\log M</d-math>, exactly as
-      the algebra above says it should. Materials below the line are eliminated at that value of <d-math>M</d-math>;
-      the one that survives longest, pushed as far up-left as the data allow, is the optimal material for that
-      index &mdash; marked with a star.
+      <strong>Try it.</strong> Pick a chart from the dropdown below. Stiffness&ndash;density and
+      strength&ndash;density carry the named engineering cases derived above and in &sect;2.2 (their guideline
+      slopes are checked directly against this article's own results table); every other pair still gets the
+      same draggable log&ndash;log guideline &mdash; just without an invented textbook name, since
+      <d-math>M=Y^a/X</d-math> is a valid index for <em>any</em> two properties, named case or not. Materials
+      below the line dim out of contention as you drag; the survivor, pushed as far up-left as the data allow,
+      is starred. Recycle&nbsp;fraction&ndash;cost is the one exception &mdash; a bounded 0&ndash;1 fraction
+      isn't a power law, so it's a plain scatter instead.
     </div>
     <figure class="l-page widget-frame">
       <div class="widget" data-widget="ashby-explorer"></div>
