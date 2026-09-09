@@ -1,0 +1,183 @@
+:root {
+  --ae-ink: #14181f;
+  --ae-secondary: #52514e;
+  --ae-muted: #8a8a86;
+  --ae-grid: #e4e2da;
+  --ae-panel: #fbfbf9;
+  --ae-border: #d9d7cd;
+  --ae-accent: #9a3a2f;
+  --ae-accent-soft: rgba(154, 58, 47, 0.10);
+  --ae-line: #c1392b;
+  --ae-c-composites: #2a6fb0;
+  --ae-c-elastomers: #e2924a;
+  --ae-c-foams: #c0392b;
+  --ae-c-metals: #8c6248;
+  --ae-c-natural: #c97a97;
+  --ae-c-polymers: #97a02a;
+  --ae-c-ceramics: #2fa3ad;
+}
+
+.callout {
+  background: var(--ae-accent-soft);
+  border-left: 3px solid var(--ae-accent);
+  padding: 0.9rem 1.1rem;
+  margin: 1.4rem 0;
+  font-size: 0.95rem;
+  color: var(--ae-secondary);
+  border-radius: 0 3px 3px 0;
+}
+.callout strong { color: var(--ae-ink); }
+
+.widget-frame {
+  border: 1px solid var(--ae-border);
+  border-radius: 6px;
+  background: var(--ae-panel);
+  padding: 18px 18px 8px;
+  margin: 1.6rem 0;
+}
+
+.ashby-explorer .ae-select-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ae-border);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: var(--ae-secondary);
+}
+.ashby-explorer .ae-select-row label { font-weight: 600; color: var(--ae-ink); }
+.ashby-explorer .ae-select-row select {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--ae-border);
+  background: #fff;
+  color: var(--ae-ink);
+  max-width: 100%;
+}
+.ashby-explorer .ae-formula { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.92em; }
+
+.ashby-explorer .ae-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-bottom: 10px;
+  min-height: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.ashby-explorer .ae-presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.ashby-explorer button.ae-preset {
+  font-size: 12.5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ae-border);
+  background: #fff;
+  color: var(--ae-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.ashby-explorer button.ae-preset:hover {
+  border-color: var(--ae-accent);
+}
+.ashby-explorer button.ae-preset.active {
+  background: var(--ae-accent);
+  border-color: var(--ae-accent);
+  color: #fff;
+}
+.ashby-explorer .ae-slope-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--ae-secondary);
+}
+.ashby-explorer input[type="range"] {
+  width: 140px;
+}
+.ashby-explorer .ae-readout {
+  font-size: 12.5px;
+  color: var(--ae-secondary);
+  margin-left: auto;
+  text-align: right;
+  line-height: 1.5;
+}
+.ashby-explorer .ae-readout b { color: var(--ae-ink); }
+.ashby-explorer .ae-readout .ae-optimal {
+  color: var(--ae-accent);
+  font-weight: 600;
+}
+.ashby-explorer svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  touch-action: none;
+}
+.ashby-explorer .ae-axis-label {
+  font-size: 12px;
+  fill: var(--ae-secondary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.ashby-explorer .ae-tick {
+  font-size: 10px;
+  fill: var(--ae-muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.ashby-explorer .ae-gridline { stroke: var(--ae-grid); stroke-width: 1; }
+.ashby-explorer .ae-frame { fill: none; stroke: var(--ae-border); stroke-width: 1; }
+.ashby-explorer .ae-guideline {
+  stroke: var(--ae-line);
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.ashby-explorer .ae-guideline-hit {
+  stroke: transparent;
+  stroke-width: 18;
+  cursor: ns-resize;
+}
+.ashby-explorer .ae-point {
+  stroke: rgba(0,0,0,0.35);
+  stroke-width: 0.6;
+  cursor: default;
+}
+.ashby-explorer .ae-point.dim { opacity: 0.28; }
+.ashby-explorer .ae-point.optimal {
+  stroke: var(--ae-ink);
+  stroke-width: 2;
+}
+.ashby-explorer .ae-label {
+  font-size: 10.5px;
+  fill: var(--ae-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  pointer-events: none;
+}
+.ashby-explorer .ae-legend {
+  font-size: 10.5px;
+  fill: var(--ae-secondary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.ashby-explorer .ae-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 2px 0 10px;
+  font-size: 11.5px;
+  color: var(--ae-secondary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.ashby-explorer .ae-legend-item { display: inline-flex; align-items: center; gap: 5px; }
+.ashby-explorer .ae-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+
+.ashby-explorer figcaption {
+  color: rgba(0,0,0,0.6);
+  font-size: 12px;
+  margin: 8px 2px 12px;
+}

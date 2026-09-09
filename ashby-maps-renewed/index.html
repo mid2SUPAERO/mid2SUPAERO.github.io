@@ -3,7 +3,6 @@
 <head>
   <script src="js/template.v2.js"></script>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script defer src="js/ashby-explorer.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf8">
   <title>Ashby's Maps, Renewed</title>
@@ -13,12 +12,20 @@
   <d-front-matter>
     <script id='distill-front-matter' type="text/json">{
     "title": "Ashby's Maps, Renewed",
-    "description": "From multi-objective value functions and eco-cost charts to a generative, VAE-based material space — and what stays constant across all four generations of Ashby's method.",
+    "description": "Part 2 of 2. A variational autoencoder turns the discrete Ashby chart into a continuous, differentiable material space, searched by gradient ascent instead of read off a log–log slope — validated case by case against the classical answer.",
     "published": "Sep 9, 2026",
     "authors": [
       {
         "author": "Joseph Morlier",
         "authorURL": "https://scholar.google.com/citations?user=Morlier",
+        "affiliations": [{"name": "ISAE-SUPAERO", "url": "https://www.isae-supaero.fr"}]
+      },
+      {
+        "author": "Almudena Cobo-Urios",
+        "affiliations": [{"name": "ISAE-SUPAERO", "url": "https://www.isae-supaero.fr"}]
+      },
+      {
+        "author": "Álvaro Silva-Vilela-Caridade",
         "affiliations": [{"name": "ISAE-SUPAERO", "url": "https://www.isae-supaero.fr"}]
       }
     ],
@@ -34,14 +41,15 @@
     <figure style="grid-column: page; margin: 1rem 0;">
       <img src="images/p2_spring_ashby.png" style="width:100%; border: 1px solid rgba(0, 0, 0, 0.2);" />
     </figure>
-    <p>Michael Ashby's material-selection charts turned an abstract optimisation &mdash; choosing the best
-      material for a function &mdash; into something an engineer could <em>see</em>: two properties on
-      log&ndash;log axes, a guideline of the right slope, and the winning family lights up. This note follows
-      that idea through three more generations: a multi-objective <em>value function</em> for when one chart
-      is not enough, an <em>eco-cost</em> axis that turns the same method toward sustainability, and finally a
-      variational autoencoder whose latent space answers any material index by gradient ascent rather than a
-      slope read by eye &mdash; validated case by case, on thirteen structural and thermal design problems,
-      against the classical answer.</p>
+    <p>Part&nbsp;1, <a href="../ashby-maps/index.html">&ldquo;Ashby's Maps,&rdquo;</a> followed Ashby's method
+      through a single log&ndash;log guideline, a multi-objective value function, and an eco-cost axis &mdash;
+      three generations that all still ask a human to pick the axes, and all still top out at two or three
+      properties before the picture stops helping. This second part removes that ceiling by training a
+      <strong>variational autoencoder</strong> on the same material database and replacing &ldquo;read a slope
+      off a chart&rdquo; with &ldquo;follow a gradient through a learned, continuous space.&rdquo; The same
+      trained network, unchanged, then answers any material index by gradient ascent &mdash; validated case by
+      case against the classical answer, on the two baseline structural cases worked by hand in Part&nbsp;1 and
+      on thirteen further cases beyond them.</p>
   </d-title>
 
   <d-byline></d-byline>
@@ -49,277 +57,14 @@
   <d-article>
 
     <a class="marker" href="#section-1" id="section-1"><span>1</span></a>
-    <h2>Ashby's method, renewed as code</h2>
-    <p>Long before eco-costs or learned latent spaces existed, Ashby developed a simple, powerful method for
-      selecting materials in engineering design<d-cite key="ashby2016materials"></d-cite>. Plot two material
-      properties against each other on log&ndash;log axes &mdash; Young's modulus <d-math>E</d-math> against
-      density <d-math>\rho</d-math>, say &mdash; one bubble per material, grouped by family. For a given design
-      goal, mechanics gives a <strong>material index</strong>: a combination of properties to maximise or
-      minimise, derived by writing the objective, writing the constraint, and eliminating the free geometric
-      variable that connects them.</p>
-
-    <a class="marker" href="#section-1.1" id="section-1.1"><span>1.1</span></a>
-    <h3>Why one index is rarely enough</h3>
-    <p>Consider a panel of length <d-math>\ell</d-math>, width <d-math>b</d-math> and free thickness
-      <d-math>t</d-math>, loaded in bending, with the objective of minimising mass
-      <d-math>m=\ell b t \rho</d-math> subject to a stiffness constraint
-      <d-math>S = C_1 E I/\ell^3 \ge S^\ast</d-math> with <d-math>I=bt^3/12</d-math>. Eliminating the free
-      variable <d-math>t</d-math> between these two equations gives:</p>
-    <d-math block>
-      m \;\propto\; \underbrace{\left(\frac{12\,S^\ast b^2}{C_1}\right)^{1/3}\ell^2}_{\text{fixed by the design}}
-      \;\times\; \underbrace{\frac{\rho}{E^{1/3}}}_{\text{material index}}
-    </d-math>
-    <p>Everything in the first bracket is fixed by the design; only <d-math>\rho/E^{1/3}</d-math> depends on the
-      material choice. That is the material index: to minimise mass at a given stiffness, pick the material
-      with the smallest <d-math>\rho/E^{1/3}</d-math>. On log&ndash;log axes, lines of constant index are
-      straight, so sliding a guideline across the chart instantly reveals the winning family &mdash; one of the
-      most quietly effective ideas in engineering design.</p>
-    <p>That last sentence is worth deriving properly, because it is the whole reason the Ashby chart works at
-      all. Any index of the form <d-math>M = E^a/\rho</d-math> &mdash; density always to the first power, the
-      stiffness exponent <d-math>a</d-math> set by the geometry of the loading case &mdash; traces a straight
-      line on log&ndash;log axes. Taking logs of <d-math>E^a=M\rho</d-math>:</p>
-    <d-math block>
-      E^a = M\rho \quad\Longrightarrow\quad a\log E = \log M + \log\rho
-      \quad\Longrightarrow\quad \log E = \underbrace{\frac{1}{a}}_{\text{slope}}\log\rho \;+\; \frac{1}{a}\log M
-    </d-math>
-    <p>So on a chart of <d-math>\log E</d-math> against <d-math>\log\rho</d-math>, every value of <d-math>M</d-math>
-      draws a line of the <em>same</em> slope <d-math>1/a</d-math>; changing <d-math>M</d-math> only slides that
-      line up or down, parallel to itself. Since the goal is to maximise <d-math>M</d-math>, the favourable
-      direction is always up and to the left &mdash; and the last material the line touches before leaving the
-      data cloud is the answer. Three cases recur often enough to have their own guideline slope on the classic
-      stiffness&ndash;density chart:</p>
-    <table>
-      <thead>
-        <tr><th>Loading case</th><th>Exponent <d-math>a</d-math></th><th>Index <d-math>M</d-math></th><th>Guideline slope <d-math>1/a</d-math></th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Tie, axial, stiffness-limited</td><td>1</td><td><d-math>E/\rho</d-math></td><td>1</td></tr>
-        <tr><td>Beam or shaft, bending/torsion, stiffness-limited</td><td>1/2</td><td><d-math>\sqrt{E}/\rho</d-math></td><td>2</td></tr>
-        <tr><td>Panel, bending, stiffness-limited</td><td>1/3</td><td><d-math>E^{1/3}/\rho</d-math></td><td>3</td></tr>
-      </tbody>
-    </table>
-    <p>These are exactly the three guideline families printed on Ashby's own stiffness&ndash;density chart, and
-      the algebra generalises without change to any pair of properties: replace <d-math>E</d-math> and
-      <d-math>\rho</d-math> with any two log-scaled axes and the same construction &mdash; a straight
-      guideline whose slope is fixed by the case, whose position encodes <d-math>\log M</d-math> &mdash; still
-      applies. This is the same construction used, non-interactively, by teaching tools such as the Cambridge
-      Engineering Department's material-selection charts<d-cite key="cambridge2024charts"></d-cite>, whose full
-      &ldquo;Select chart&rdquo; list the figure below reproduces: eleven property pairs, all drawn from the
-      same 22-material set used throughout this article.</p>
-
-    <div class="callout">
-      <strong>Try it.</strong> Pick a chart from the dropdown below. Stiffness&ndash;density and
-      strength&ndash;density carry the named engineering cases derived above and in &sect;2.2 (their guideline
-      slopes are checked directly against this article's own results table); every other pair still gets the
-      same draggable log&ndash;log guideline &mdash; just without an invented textbook name, since
-      <d-math>M=Y^a/X</d-math> is a valid index for <em>any</em> two properties, named case or not. Materials
-      below the line dim out of contention as you drag; the survivor, pushed as far up-left as the data allow,
-      is starred. Recycle&nbsp;fraction&ndash;cost is the one exception &mdash; a bounded 0&ndash;1 fraction
-      isn't a power law, so it's a plain scatter instead.
-    </div>
-    <figure class="l-page widget-frame">
-      <div class="widget" data-widget="ashby-explorer"></div>
-    </figure>
-
-    <p>But real components rarely answer to one objective. A tie that must also be cheap, a spring that must
-      also be light, a heat exchanger that must resist both thermal shock and corrosion &mdash; the moment a
-      second performance metric <d-math>P_2</d-math> matters as much as the first, <d-math>P_1</d-math>, a
-      single index and a single chart no longer say which material is best<d-cite key="ashby2000multiobjective"></d-cite>.</p>
-
-    <a class="marker" href="#section-1.2" id="section-1.2"><span>1.2</span></a>
-    <h3>Trade-off surfaces and the Pareto set</h3>
-    <p>With two performance metrics <d-math>P_1,P_2</d-math> &mdash; different units, in conflict &mdash; plot
-      every candidate on a <d-math>P_1</d-math>&ndash;<d-math>P_2</d-math> chart. A solution is
-      <strong>dominated</strong> if another beats it on both metrics at once; the <strong>non-dominated</strong>
-      solutions trace the <strong>trade-off</strong> (or Pareto) <strong>surface</strong> &mdash; the only
-      candidates worth considering further.</p>
-
-    <figure class="l-body">
-      <img src="images/p1_pareto.png" style="width:100%;">
-      <figcaption>Dominance, made visible: of ten illustrative candidates, only the six on the trade-off
-        surface are ever worth choosing &mdash; every dominated point is beaten on <em>both</em> axes by some
-        other candidate.</figcaption>
-    </figure>
-
-    <p>Applied to a genuine materials question &mdash; choosing a material that is both stiff
-      (<d-math>P_1=\rho/E</d-math>, to minimise) and well damped (<d-math>P_2=1/\zeta</d-math>, to minimise)
-      &mdash; the same dominance rule turns a table of alloys into a legible trade-off between aluminium at one
-      end and lead at the other<d-cite key="ashby2000multiobjective"></d-cite>:</p>
-
-    <figure class="l-body">
-      <img src="images/p1_damping.png" style="width:100%;">
-      <figcaption>Stiffness vs. damping: aluminium alloys anchor the stiff, poorly-damped end and lead alloys
-        the compliant, well-damped end, with cast irons and magnesium occupying the middle of the front.</figcaption>
-    </figure>
-
-    <p>A trade-off surface narrows the field to good compromises but does not by itself choose one. Three
-      strategies do: judgement (inspect and pick intuitively), constrain all-but-one objective and optimise the
-      remaining one, or combine every objective into a single composite score &mdash; a <strong>value
-      function</strong>.</p>
-
-    <a class="marker" href="#section-1.3" id="section-1.3"><span>1.3</span></a>
-    <h3>Value functions and exchange constants</h3>
-    <d-math block>
-      V = a_1 P_1 + a_2 P_2 + \cdots + a_i P_i + \cdots
-    </d-math>
-    <p>The coefficients <d-math>a_i</d-math> are <strong>exchange constants</strong>:
-      <d-math>a_i = \partial V/\partial P_i</d-math> at fixed <d-math>P_{j\ne i}</d-math> &mdash; how much one
-      unit of <d-math>P_i</d-math> is worth. The best material minimises <d-math>V</d-math>. With two
-      objectives, lines of constant <d-math>V</d-math> are parallel straight lines of slope
-      <d-math>-a_1/a_2</d-math>, and the optimum sits where such a line is <strong>tangent</strong> to the
-      trade-off surface. When cost itself is one of the objectives (<d-math>P_1=C</d-math>,
-      <d-math>a_1=1</d-math>), substituting a new material for an incumbent is worthwhile exactly when</p>
-    <d-math block>
-      \frac{\Delta P}{\Delta C} \le -\frac{1}{a}.
-    </d-math>
-    <p>Exchange constants come from technical/economic modelling, historical price data, or elicitation.
-      Published values for weight-saving in transport span four orders of magnitude<d-cite key="ashby2000multiobjective"></d-cite>: about &pound;1/kg in a family car (fuel saving), &pound;100&ndash;500/kg in
-      a civil aircraft (payload), and &pound;3,000&ndash;10,000/kg in a space vehicle. <strong>The exchange
-      constant, not the material property alone, determines what &ldquo;the best material&rdquo; means for a
-      given application.</strong></p>
-
-    <a class="marker" href="#section-1.4" id="section-1.4"><span>1.4</span></a>
-    <h3>Worked application: co-minimising mass and cost</h3>
-    <p>Return to the panel and add cost as a second objective. From the mass performance equation, define
-      <d-math>P_1=\rho/E^{1/3}</d-math> (mass index) and <d-math>P_2=C_m\rho/E^{1/3}=C_m P_1</d-math> (cost
-      index, where <d-math>C_m</d-math> is cost per kilogram):</p>
-    <d-math block>
-      P_1 = \frac{\rho}{E^{1/3}}, \qquad P_2 = C_m\frac{\rho}{E^{1/3}} = C_m\,P_1
-    </d-math>
-    <p>Since cost is one of the objectives, <d-math>a_2=1</d-math>, so <d-math>V=a_1P_1+P_2</d-math>.
-      Recomputing this directly from six real material datasheets, at the two exchange constants used in
-      Ashby's paper &mdash; <d-math>a_1=</d-math>&pound;0.5/kg (family-car-like) and <d-math>a_1=</d-math>&pound;500/kg
-      (aerospace-like) &mdash; reproduces the paper's own tables to within rounding:</p>
-
-    <table>
-      <caption>Stiffness-constrained panel &mdash; recomputed from raw data (cf. Ashby's Table 4).</caption>
-      <thead>
-        <tr><th>Material</th><th>&rho; (Mg/m&sup3;)</th><th>E (GPa)</th><th>C<sub>m</sub> (&pound;/kg)</th><th>V, a<sub>1</sub>=0.5</th><th>V, a<sub>1</sub>=500</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Cast iron, nodular</td><td>7.30</td><td>175</td><td>0.25</td><td><strong>0.98</strong></td><td>652.9</td></tr>
-        <tr><td>Low-alloy steel (4340)</td><td>7.85</td><td>210</td><td>0.45</td><td>1.25</td><td>660.9</td></tr>
-        <tr><td>Al 6061-T6</td><td>2.85</td><td>70</td><td>0.95</td><td>1.00</td><td>346.4</td></tr>
-        <tr><td>Al-6061-20%SiC, PM</td><td>2.77</td><td>102</td><td>25.0</td><td>15.12</td><td>311.2</td></tr>
-        <tr><td>Ti-6-4, B265 grade 5</td><td>4.43</td><td>115</td><td>20.0</td><td>18.68</td><td>473.7</td></tr>
-        <tr><td>Beryllium, SR-200</td><td>1.84</td><td>305</td><td>250.0</td><td>68.47</td><td><strong>205.0</strong></td></tr>
-      </tbody>
-    </table>
-
-    <figure class="l-body">
-      <img src="images/p1_value_scatter.png" style="width:100%;">
-      <figcaption>Mass index <d-math>P_1</d-math> vs. cost index <d-math>P_2</d-math>. The shallow line (weight
-        cheap) is tangent to nodular cast iron; the steep line (weight expensive) is tangent to
-        beryllium.</figcaption>
-    </figure>
-
-    <p>At low <d-math>a_1</d-math>, <strong>nodular cast iron</strong> wins &mdash; cheap and conventional,
-      exactly right when cost outweighs weight. At high <d-math>a_1</d-math>, the ranking inverts and
-      <strong>beryllium</strong> takes over &mdash; mechanically remarkable and beside the point until weight
-      becomes expensive enough to pay for it. Sweeping <d-math>a_1</d-math> continuously, rather than checking
-      two hand-picked points, exposes every crossover:</p>
-
-    <figure class="l-page">
-      <img src="images/p1_value_sweep.png" style="width:100%;">
-      <figcaption>Rank-1 material as the exchange constant <d-math>a_1</d-math> sweeps continuously from
-        &pound;0.1/kg to &pound;1000/kg, for both the stiffness- and strength-constrained panel. The optimum
-        changes discretely, at a handful of crossover points &mdash; the direct numerical analogue of sliding
-        a value-function line across the chart.</figcaption>
-    </figure>
-
-    <p>Beyond two objectives the graphical tangent-line construction stops being practical; the paper's own
-      answer is to rank candidates directly by <d-math>V=\sum_i a_i P_i</d-math>, no picture required
-      <d-footnote>This is exactly the limit Part 2 below removes: a latent space needs no picture at any
-        number of objectives, because it never relied on one.</d-footnote>.</p>
-
-    <a class="marker" href="#section-1.5" id="section-1.5"><span>1.5</span></a>
-    <h3>Eco-costs and the eco-Ashby chart</h3>
-    <p>An <strong>eco-cost</strong> is the amount of money that would have to be spent today, with best
-      available technology, to prevent an environmental burden from exceeding what the Earth can carry in the
-      long run<d-cite key="ecocostsvalue2024"></d-cite>. It is a <strong>marginal prevention cost</strong>, not
-      a cost anyone has actually paid. Avoiding 1000&nbsp;kg of CO<sub>2</sub> emissions by building extra
-      offshore wind capacity to displace coal power costs on the order of &euro;150, giving an eco-cost for
-      climate change of roughly:</p>
-    <d-math block>
-      \text{eco-cost}_{\text{CO}_2} \approx 0.13\text{--}0.15\ \text{\euro{}/kg CO}_2\text{-eq}
-    </d-math>
-    <p>The same logic applies to every impact category &mdash; acidification, eutrophication, toxicity,
-      resource depletion, land use &mdash; each with its own prevention cost, summed into a single monetary
-      eco-cost per kilogram. Expressing environmental impact this way, rather than in physical units or
-      dimensionless &ldquo;points&rdquo;, buys comparability across categories, plain communication to
-      engineers who already think in cost, and transparency: every number traces back to an explicit,
-      auditable prevention technology, unlike the less transparent weighting schemes used in classical Life
-      Cycle Assessment<d-footnote>Because eco-costs cover the full environmental profile rather than only
-      carbon, they avoid &ldquo;carbon tunnel vision&rdquo;: a material with a small carbon footprint but
-      severe toxicity or depletion impacts does not automatically look attractive.</d-footnote>. Eco-costs
-      become a business tool through the Eco-efficient Value Ratio:</p>
-    <d-math block>
-      \text{EVR} = \frac{\text{eco-costs}}{\text{value (price paid by the customer)}}
-    </d-math>
-    <p>A lower EVR means the same customer value at a smaller environmental burden. The eco-costs framework
-      extends the Ashby method by replacing (or complementing) the price axis with the
-      <strong>eco-cost per unit volume</strong>, <d-math>\text{eco-cost}_V = \text{eco-cost per kg}\times\rho</d-math>,
-      so that a chart plots eco-cost against a mechanical property instead of against price. Three eco-material
-      indices follow the same derivation as any Ashby index<d-cite key="ecocostsashby2024"></d-cite>:</p>
-    <d-math block>
-      I_\sigma = \frac{\text{eco-cost}_V}{\sigma_y}, \qquad
-      I_{\sigma,\text{bend}} = \frac{\text{eco-cost}_V}{\sigma_y^{2/3}}, \qquad
-      I_{E} = \frac{\text{eco-cost}_V}{E^{1/2}}
-    </d-math>
-    <p>A lower index means a more eco-efficient choice for that structural function: the same mechanical
-      performance for a smaller environmental prevention cost.</p>
-
-    <table>
-      <caption>Illustrative material data and derived eco-material indices (order-of-magnitude values, for teaching only).</caption>
-      <thead>
-        <tr><th>Material</th><th>&rho; (kg/m&sup3;)</th><th>E (GPa)</th><th>&sigma;<sub>y</sub> (MPa)</th><th>eco-cost (&euro;/kg)</th><th>I<sub>E</sub></th><th>I<sub>&sigma;,bend</sub></th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Structural wood</td><td>500</td><td>10.0</td><td>40</td><td>0.05</td><td>7.9</td><td>2.1</td></tr>
-        <tr><td>Concrete</td><td>2400</td><td>30.0</td><td>30</td><td>0.02</td><td>8.8</td><td>5.0</td></tr>
-        <tr><td>Mild steel</td><td>7850</td><td>210.0</td><td>250</td><td>0.40</td><td>216.7</td><td>79.1</td></tr>
-        <tr><td>Aluminium alloy</td><td>2700</td><td>70.0</td><td>100</td><td>1.00</td><td>322.7</td><td>125.3</td></tr>
-        <tr><td>PET plastic</td><td>1350</td><td>2.8</td><td>55</td><td>0.60</td><td>484.1</td><td>56.0</td></tr>
-        <tr><td>GFRP composite</td><td>1800</td><td>20.0</td><td>200</td><td>1.50</td><td>603.7</td><td>78.9</td></tr>
-      </tbody>
-    </table>
-
-    <p>Two things stand out, typical of real eco-Ashby analyses: low-tech, low-processing materials such as
-      wood and concrete carry very low eco-costs per kilogram, often outweighing their modest mechanical
-      properties; metals and engineered composites, although mechanically excellent, carry a much higher
-      environmental prevention cost per unit of stiffness or strength delivered.</p>
-
-    <div class="l-body-outset" style="display:flex; gap:16px; flex-wrap:wrap; margin: 1.5rem 0;">
-      <figure class="l-body" style="flex:1; min-width:260px; margin:0;">
-        <img src="images/p1_ecoashby_stiffness.png" style="width:100%;">
-        <figcaption>Eco-Ashby chart: eco-cost per unit volume vs. Young's modulus. The guideline of slope
-          1/2 traces constant <d-math>I_E</d-math>.</figcaption>
-      </figure>
-      <figure class="l-body" style="flex:1; min-width:260px; margin:0;">
-        <img src="images/p1_ecoashby_strength.png" style="width:100%;">
-        <figcaption>Eco-Ashby chart: eco-cost per unit volume vs. yield strength, guideline of slope
-          2/3 for <d-math>I_{\sigma,\text{bend}}</d-math>.</figcaption>
-      </figure>
-    </div>
-
-    <figure class="l-body">
-      <img src="images/p1_ecoranking.png" style="width:100%;">
-      <figcaption>The same six materials, ranked directly by each eco-material index &mdash; the eco-Ashby
-        chart's tabular twin, exactly as Step&nbsp;4 above falls back to a ranked table once judgement by eye
-        stops scaling.</figcaption>
-    </figure>
-
-    <p>This is the added value of eco-Ashby charts: they let a designer ask not just &ldquo;which material is
-      technically best?&rdquo; but <strong>&ldquo;which material achieves this technical performance at the
-      lowest environmental prevention cost?&rdquo;</strong> &mdash; using the same intuitive, visual method
-      engineers already trust.</p>
-
-    <a class="marker" href="#section-2" id="section-2"><span>2</span></a>
-    <h2>Ashby-VAE &mdash; generative material selection</h2>
-    <p>Section&nbsp;1.4 already showed the chart's ceiling: the moment an index needs a third property &mdash;
-      a spring's <d-math>\sigma_y^2/E</d-math> combined with density for a minimum-mass spring, a thermal-shock
-      index needing <d-math>E,\sigma_y,\alpha,k</d-math> together &mdash; the chart runs out of dimensions, and
-      ranking directly by <d-math>V=\sum a_iP_i</d-math> is correct but no longer visual.</p>
+    <h2>From charts to a learned space</h2>
+    <p>Part&nbsp;1 closed on a genuine limit. The classical chart<d-cite key="ashby2016materials"></d-cite>
+      compresses a mechanics derivation into a slope on two log axes: unbeatable for one index, incapable of
+      more than two properties at a time. The value function removes that ceiling by folding any number of
+      objectives into a weighted sum &mdash; but past two dimensions, Ashby's own method falls back to a table
+      and a ranking, no picture involved<d-cite key="ashby2000multiobjective"></d-cite>. A spring that must be
+      light <em>and</em> strong, a heat exchanger balancing thermal shock against corrosion &mdash; every
+      genuinely multi-property design question runs straight into this wall.</p>
     <p>This part asks a different question: instead of exploring the database directly, can a model
       <em>learn</em> the material property manifold, and can selection then become continuous optimisation on
       that learned space rather than a database search? Concretely: train a variational autoencoder (VAE) to
@@ -327,41 +72,291 @@
       performance-maximising material by ordinary gradient ascent on <d-math>z</d-math> through the frozen
       decoder<d-cite key="kingma2014autoencoding"></d-cite>. The same trained network, unmodified, then answers
       <em>any</em> performance index over the properties it was given &mdash; only the objective function
-      changes.</p>
+      changes. This mirrors a broader line of work applying machine learning to eco-friendly material and
+      structural design<d-cite key="paperMorlier"></d-cite>, and connects to related generative approaches for
+      visualising engineering catalogs<d-cite key="sridhara2023vae"></d-cite>.</p>
+
+    <a class="marker" href="#section-2" id="section-2"><span>2</span></a>
+    <h2>Method</h2>
 
     <a class="marker" href="#section-2.1" id="section-2.1"><span>2.1</span></a>
-    <h3>Four steps, one trained network</h3>
-    <ol>
-      <li><strong>Data &amp; preprocessing.</strong> Extract the relevant properties for <d-math>N</d-math>
-        materials, <d-math>\log_{10}</d-math>-transform (properties span decades) and min&ndash;max normalise
-        to <d-math>[0,1]</d-math>.</li>
-      <li><strong>Train the VAE.</strong> A small encoder&ndash;decoder (inputDim&nbsp;&rarr;&nbsp;250&nbsp;&rarr;&nbsp;latentDim,
-        mirrored) learns to reconstruct the normalised table, minimising reconstruction error plus a
-        KL-divergence regulariser on the latent distribution.</li>
-      <li><strong>Optimise the index in latent space.</strong> Starting from a grid or fixed-seed random set of
-        latent points, run Adam gradient ascent on the decoded index <d-math>M(D_\theta(z))</d-math>, with a
-        prior term keeping <d-math>z</d-math> near the training distribution.</li>
-      <li><strong>Check against the exact Ashby chart.</strong> Evaluate the same index directly on the real
-        database (no VAE) and plot it classically, as ground truth for the latent optimum's nearest real
-        material.</li>
-    </ol>
-    <p>The training objective is the usual VAE evidence lower bound:</p>
-    <d-math block>
-      \mathcal{L} = \sum_i \|x_i-\hat x_i\|^2 \;+\; \beta\,\mathrm{KL}\!\left(q(z\mid x)\,\|\,\mathcal{N}(0,I)\right)
-    </d-math>
-    <p>and the latent-space search maximises the decoded index, penalised for wandering from the training
-      distribution:</p>
-    <d-math block>
-      z^\star = \arg\max_z\; \log M(D_\theta(z)) \;-\; \lambda\left\|(z-\bar z)/s_z\right\|^2
-    </d-math>
-    <p>where <d-math>D_\theta</d-math> is the trained decoder, <d-math>\bar z, s_z</d-math> the mean and spread
-      of the training latent codes, and <d-math>M(\cdot)</d-math> any of the indices this note has already met
-      &mdash; <d-math>M_{\text{tie}}=E/\rho</d-math>, <d-math>M_{\text{beam}}=\sqrt{E}/\rho</d-math>,
-      <d-math>M_{\text{spring}}=\sigma_y^2/E</d-math>, and so on.</p>
+    <h3>Dataset</h3>
+    <p>Twenty-two materials spanning seven families &mdash; composites, elastomers, foams, metals &amp; alloys,
+      polymers, natural materials, and technical ceramics &mdash; were drawn from the CES/Granta
+      database<d-cite key="granta"></d-cite>, the same 22-material set Part&nbsp;1 used throughout. Each entry
+      carries Young's modulus <d-math>E</d-math> (GPa) and density <d-math>\rho</d-math> (kg/m<sup>3</sup>);
+      both span several orders of magnitude and are <d-math>\log_{10}</d-math>-transformed and min&ndash;max
+      normalised to <d-math>[0,1]</d-math> before training.</p>
 
-    <p>The four steps illustrated below on one representative case &mdash; a strength-limited, minimum-mass tie
-      (<d-math>M=\sigma_y/\rho</d-math>) &mdash; on a 22-material selection spanning composites, metals,
-      ceramics, polymers, natural materials, foams and elastomers<d-cite key="ashbyvae2026"></d-cite>:</p>
+    <table>
+      <caption>The 22-material, 7-family dataset used to train the VAE (values from the CES/Granta database).</caption>
+      <thead>
+        <tr><th>Family</th><th>Material</th><th>&rho; (kg/m&sup3;)</th><th>E (GPa)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Elastomers</td><td>Natural rubber</td><td>950</td><td>0.00165</td></tr>
+        <tr><td>Elastomers</td><td>Polyurethane</td><td>1200</td><td>0.01625</td></tr>
+        <tr><td>Composites</td><td>Al/SiC composite</td><td>2780</td><td>90.5</td></tr>
+        <tr><td>Composites</td><td>CFRP epoxy</td><td>1565</td><td>54.9</td></tr>
+        <tr><td>Composites</td><td>GFRP epoxy</td><td>1860</td><td>21.4</td></tr>
+        <tr><td>Foams</td><td>Flexible polymer foam</td><td>54</td><td>0.002</td></tr>
+        <tr><td>Foams</td><td>Rigid polymer foam</td><td>320</td><td>0.34</td></tr>
+        <tr><td>Metals &amp; alloys</td><td>Al-alloys</td><td>2755</td><td>72</td></tr>
+        <tr><td>Metals &amp; alloys</td><td>Nickel</td><td>8890</td><td>205</td></tr>
+        <tr><td>Metals &amp; alloys</td><td>Stainless steel</td><td>7740</td><td>200</td></tr>
+        <tr><td>Metals &amp; alloys</td><td>Titanium alloys</td><td>4610</td><td>115</td></tr>
+        <tr><td>Polymers</td><td>Epoxies</td><td>1270</td><td>2.41</td></tr>
+        <tr><td>Polymers</td><td>Phenolics</td><td>1280</td><td>3.795</td></tr>
+        <tr><td>Polymers</td><td>Polyamides</td><td>1135</td><td>1.49</td></tr>
+        <tr><td>Polymers</td><td>Polycarbonate</td><td>1200</td><td>2.38</td></tr>
+        <tr><td>Natural materials</td><td>Hardwood oak</td><td>940</td><td>22.9</td></tr>
+        <tr><td>Natural materials</td><td>Plywood</td><td>750</td><td>6.5</td></tr>
+        <tr><td>Natural materials</td><td>Softwood pine</td><td>520</td><td>9.35</td></tr>
+        <tr><td>Technical ceramics</td><td>Alumina</td><td>3700</td><td>330</td></tr>
+        <tr><td>Technical ceramics</td><td>Silicon carbide</td><td>3100</td><td>400</td></tr>
+        <tr><td>Technical ceramics</td><td>Silicon nitride</td><td>3195</td><td>310</td></tr>
+        <tr><td>Technical ceramics</td><td>Zirconia</td><td>5400</td><td>200</td></tr>
+      </tbody>
+    </table>
+
+    <a class="marker" href="#section-2.2" id="section-2.2"><span>2.2</span></a>
+    <h3>A variational autoencoder for material properties</h3>
+    <p>The encoder maps the two-dimensional, log-normalised property vector
+      <d-math>\mathbf{x}=[\log_{10}E,\,\log_{10}\rho]^\top</d-math> to a Gaussian posterior over a
+      two-dimensional latent space; the decoder reconstructs <d-math>\mathbf{x}</d-math> from a sampled latent
+      code <d-math>\mathbf{z}</d-math>. Both sub-networks are a single fully-connected hidden layer of 250
+      neurons with ReLU activations &mdash; deliberately small, since the whole point is a smooth manifold, not
+      a high-capacity model.</p>
+
+    <figure class="l-body" style="background:#fff; border:1px solid rgba(0,0,0,0.1); border-radius:6px; padding:16px 8px;">
+      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img"
+        aria-label="VAE architecture: encoder maps log E, log rho to a Gaussian latent space; decoder reconstructs E, rho from a sampled latent code"
+        style="width:100%; height:auto; display:block;">
+        <defs>
+          <marker id="vaeArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#8992A6"></path>
+          </marker>
+        </defs>
+        <rect x="10" y="95" width="70" height="70" rx="6" fill="#EBE6F8" stroke="#5D46A8" stroke-opacity=".4"></rect>
+        <text x="45" y="123" text-anchor="middle" font-size="12" fill="#1A2233" font-family="monospace">log E</text>
+        <text x="45" y="141" text-anchor="middle" font-size="12" fill="#1A2233" font-family="monospace">log &#961;</text>
+
+        <line x1="80" y1="130" x2="118" y2="130" stroke="#8992A6" stroke-width="1.6" marker-end="url(#vaeArrow)"></line>
+
+        <rect x="120" y="70" width="120" height="130" rx="8" fill="#F4E7D3" stroke="#A9691E" stroke-opacity=".4"></rect>
+        <text x="180" y="100" text-anchor="middle" font-size="12.5" fill="#1A2233" font-weight="600">Encoder</text>
+        <text x="180" y="120" text-anchor="middle" font-size="11" fill="#4B5568">250 units</text>
+        <text x="180" y="136" text-anchor="middle" font-size="11" fill="#4B5568">ReLU</text>
+
+        <line x1="242" y1="130" x2="278" y2="130" stroke="#8992A6" stroke-width="1.6" marker-end="url(#vaeArrow)"></line>
+
+        <rect x="280" y="70" width="90" height="130" rx="8" fill="#DCF0EB" stroke="#1E7A6E" stroke-opacity=".4"></rect>
+        <text x="325" y="100" text-anchor="middle" font-size="12" fill="#1A2233" font-weight="600">&mu;, &sigma;</text>
+        <circle cx="325" cy="120" r="3" fill="#1E7A6E"></circle>
+        <circle cx="325" cy="140" r="3" fill="#1E7A6E"></circle>
+        <text x="325" y="165" text-anchor="middle" font-size="10.5" fill="#4B5568">2-D Gaussian</text>
+
+        <line x1="372" y1="130" x2="408" y2="130" stroke="#8992A6" stroke-width="1.6" marker-end="url(#vaeArrow)"></line>
+
+        <circle cx="425" cy="130" r="17" fill="none" stroke="#5D46A8" stroke-width="2"></circle>
+        <text x="425" y="135" text-anchor="middle" font-size="13" fill="#5D46A8" font-family="monospace">z</text>
+
+        <line x1="443" y1="130" x2="478" y2="130" stroke="#8992A6" stroke-width="1.6" marker-end="url(#vaeArrow)"></line>
+
+        <rect x="480" y="70" width="90" height="130" rx="8" fill="#F4E7D3" stroke="#A9691E" stroke-opacity=".4"></rect>
+        <text x="525" y="100" text-anchor="middle" font-size="12.5" fill="#1A2233" font-weight="600">Decoder</text>
+        <text x="525" y="120" text-anchor="middle" font-size="11" fill="#4B5568">250 units</text>
+        <text x="525" y="136" text-anchor="middle" font-size="11" fill="#4B5568">ReLU</text>
+
+        <line x1="572" y1="130" x2="602" y2="130" stroke="#8992A6" stroke-width="1.6" marker-end="url(#vaeArrow)"></line>
+        <text x="608" y="123" font-size="12" fill="#1A2233" font-family="monospace">E*</text>
+        <text x="608" y="141" font-size="12" fill="#1A2233" font-family="monospace">&#961;*</text>
+      </svg>
+      <figcaption>VAE architecture: a two-property input, one 250-unit hidden layer on each side, and a
+        two-dimensional Gaussian latent space in between.</figcaption>
+    </figure>
+
+    <p>Training minimises the usual evidence lower bound, a reconstruction term plus a KL-divergence
+      regulariser pulling the posterior toward a standard Gaussian prior:</p>
+    <d-math block>
+      \mathcal{L} = \mathbb{E}_{q(\mathbf{z}\mid\mathbf{x})}\!\left[\log p(\mathbf{x}\mid\mathbf{z})\right]
+      - \beta\,D_{\mathrm{KL}}\!\left(q(\mathbf{z}\mid\mathbf{x})\,\|\,p(\mathbf{z})\right)
+    </d-math>
+    <p>with <d-math>\beta=4.5\times10^{-5}</d-math> &mdash; selected by grid search over
+      <d-math>\{10^{-6},10^{-5},4.5\times10^{-5},10^{-4}\}</d-math>: larger values degraded reconstruction
+      without improving cluster separation, smaller values let the second latent dimension collapse. Training
+      runs 10,000 Adam iterations at learning rate <d-math>2\times10^{-3}</d-math>.</p>
+
+    <figure class="l-body">
+      <img src="images/vae_loss.png" style="width:100%; max-width:520px; display:block; margin:0 auto;">
+      <figcaption>Training convergence: total, reconstruction, and KL-divergence losses over 10,000 iterations.
+        Monotonic stabilisation of all three confirms the network has converged.</figcaption>
+    </figure>
+
+    <p>Reconstruction accuracy, measured by decoding every training material's own latent code and comparing to
+      its true properties, averages 5.5% relative error on <d-math>E</d-math> and 2.8% on <d-math>\rho</d-math>
+      across all 22 materials (worst case 17.4% and 8.4% respectively) &mdash; faithful enough recovery that
+      the learned space can stand in for the database itself in what follows.</p>
+
+    <table>
+      <caption>Reconstruction error summary, encode&ndash;decode round trip over all 22 materials.</caption>
+      <thead>
+        <tr><th>Property</th><th>Mean error</th><th>Max error</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Young's modulus <d-math>E</d-math></td><td>5.5%</td><td>17.4%</td></tr>
+        <tr><td>Density <d-math>\rho</d-math></td><td>2.8%</td><td>8.4%</td></tr>
+      </tbody>
+    </table>
+
+    <a class="marker" href="#section-2.3" id="section-2.3"><span>2.3</span></a>
+    <h3>A continuous, differentiable material space</h3>
+    <p>No class labels were used during training &mdash; the network sees only <d-math>[\log E,\log\rho]</d-math>
+      pairs, never a family name. Even so, the seven families separate into distinct, well-ordered clusters
+      purely from the mechanical property manifold:</p>
+
+    <figure class="l-body">
+      <img src="images/latent_families.png" style="width:100%; max-width:560px; display:block; margin:0 auto;">
+      <figcaption>The 22 training materials in latent space, coloured by family after the fact. Clustering
+        emerges entirely from <d-math>E</d-math> and <d-math>\rho</d-math> &mdash; the network was never told
+        which material belongs to which family.</figcaption>
+    </figure>
+
+    <p>What matters for optimisation is not just that materials cluster, but that the space <em>between</em>
+      them is meaningful. Decoding <d-math>E</d-math> and <d-math>\rho</d-math> continuously across the full
+      latent plane &mdash; not just at the 22 training points &mdash; shows exactly that: smooth, monotonic
+      fields with no discontinuities, confirming the decoder is a genuinely differentiable map from latent
+      coordinates to physical properties. This is the property that makes gradient ascent meaningful in the
+      first place, and it is worth looking at directly rather than taking on faith:</p>
+
+    <div class="l-page" style="display:flex; gap:16px; flex-wrap:wrap; margin: 1.5rem 0;">
+      <figure style="flex:1; min-width:280px; margin:0;">
+        <img src="images/latent_contour_E.png" style="width:100%;">
+        <figcaption>Young's modulus decoded continuously across the latent plane. The colour gradient runs
+          smoothly from the elastomer/foam corner (bottom-left) to the ceramics corner (top-right), with no
+          jumps between family clusters.</figcaption>
+      </figure>
+      <figure style="flex:1; min-width:280px; margin:0;">
+        <img src="images/latent_contour_rho.png" style="width:100%;">
+        <figcaption>Density decoded continuously across the same plane. The gradient direction differs from
+          the <d-math>E</d-math> field above &mdash; exactly what lets gradient ascent on a ratio like
+          <d-math>E/\rho</d-math> find a genuine interior optimum rather than a degenerate one.</figcaption>
+      </figure>
+    </div>
+    <p>This is the sense in which the VAE &ldquo;renews&rdquo; the chart rather than merely reproducing it: a
+      classical Ashby chart also encodes <d-math>E(\rho)</d-math> as a scattered cloud of 22 points, but only
+      the VAE's decoder defines a value <em>everywhere</em> in between, differentiable at every point &mdash;
+      the prerequisite for the gradient-based search in the next section.</p>
+
+    <a class="marker" href="#section-2.4" id="section-2.4"><span>2.4</span></a>
+    <h3>Optimising the index in latent space</h3>
+    <p>Material selection becomes minimisation of a regularised, differentiable objective:</p>
+    <d-math block>
+      \mathcal{L}(\mathbf{z}) = -\log M\!\left(D_\theta(\mathbf{z})\right)
+      + \lambda\sum_i\left(\frac{z_i-\mu_i}{\sigma_i}\right)^{\!2}
+    </d-math>
+    <p>where <d-math>M</d-math> is the Ashby performance index, <d-math>D_\theta</d-math> the trained (and now
+      frozen) decoder, and the quadratic term &mdash; weighted by <d-math>\lambda=10^{-3}</d-math>, using the
+      empirical mean <d-math>\mu_i</d-math> and spread <d-math>\sigma_i</d-math> of the training latent codes
+      &mdash; discourages solutions from drifting toward the edge of the data-supported region. After every
+      step, <d-math>\mathbf{z}</d-math> is additionally clamped to the observed range of each latent coordinate,
+      <d-math>z_i \leftarrow \min(\max(z_i,z_{\min,i}),z_{\max,i})</d-math>, so the search can never extrapolate
+      past what the training data actually supports.</p>
+    <p>The search itself is plain Adam<d-cite key="kingma2014adam"></d-cite>:</p>
+    <d-math block>
+      \mathbf{m}_t = \beta_1\mathbf{m}_{t-1}+(1-\beta_1)\nabla\mathcal{L}(\mathbf{z}_t), \qquad
+      \mathbf{v}_t = \beta_2\mathbf{v}_{t-1}+(1-\beta_2)\nabla\mathcal{L}(\mathbf{z}_t)^2
+    </d-math>
+    <d-math block>
+      \mathbf{z}_{t+1} = \mathbf{z}_t - \alpha\,\frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{v}}_t}+\epsilon}
+    </d-math>
+    <p>run at <d-math>\alpha=0.05</d-math> for up to 600 iterations, stopping early once
+      <d-math>\|\mathbf{z}_{k+1}-\mathbf{z}_k\|<10^{-6}</d-math>. To avoid depending on the starting point, a
+      multi-start strategy launches 35 independent runs from a regular Cartesian grid spanning
+      <d-math>z_1\in[-1,1]</d-math> and <d-math>z_2\in[-1.5,1.5]</d-math> in increments of 0.5; the reported
+      optimum is whichever run reaches the lowest final loss. Once optimisation converges, the closest
+      catalogued material is found by minimum Euclidean distance between the optimal latent code
+      <d-math>\mathbf{z}^\star</d-math> and every training material's own latent code.</p>
+
+    <a class="marker" href="#section-3" id="section-3"><span>3</span></a>
+    <h2>Two baseline cases, checked against the exact chart</h2>
+    <p>The framework is validated first on the two cases Part&nbsp;1, &sect;1.1, worked by hand from mechanics
+      &mdash; the same derivations, now approached by search instead of algebra.</p>
+
+    <a class="marker" href="#section-3.1" id="section-3.1"><span>3.1</span></a>
+    <h3>Bar, stiffness-limited</h3>
+    <p>For a minimum-mass bar under axial stiffness constraints, the classical index is
+      <d-math>M_{\text{bar}}=E/\rho</d-math>. Latent-space optimisation converges to
+      <d-math>\rho=2{,}704\ \text{kg/m}^3</d-math> and <d-math>E=313\ \text{GPa}</d-math>, with
+      <strong>Silicon Nitride</strong> identified as the nearest real material &mdash; landing squarely in the
+      technical-ceramics corner of the latent space, exactly where Part&nbsp;1's own tie/beam/panel guideline
+      table predicts a slope-1 line should end up.</p>
+
+    <div class="l-page" style="display:flex; gap:16px; flex-wrap:wrap; margin: 1.5rem 0;">
+      <figure style="flex:1; min-width:280px; margin:0;">
+        <img src="images/latent_trajectory_bar.png" style="width:100%;">
+        <figcaption>Multi-start optimisation in latent space. The red dashed path traces the best-converging
+          run from its start to the global optimum (star), in the Technical Ceramics region.</figcaption>
+      </figure>
+      <figure style="flex:1; min-width:280px; margin:0;">
+        <img src="images/ashby_bar.png" style="width:100%;">
+        <figcaption>The exact Ashby <d-math>E</d-math>&ndash;<d-math>\rho</d-math> chart, slope-1 guideline
+          lines for <d-math>M=E/\rho</d-math>. The first family the line touches is Technical Ceramics &mdash;
+          Silicon Carbide is nominally highest here, with Silicon Nitride, the VAE's nearest match, immediately
+          behind it in the same family.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="l-body">
+      <img src="images/latent_multistart_bar.png" style="width:100%; max-width:520px; display:block; margin:0 auto;">
+      <figcaption>All 35 multi-start runs for the bar case: every initialisation, regardless of where it began,
+        converges to the same ceramics corner &mdash; evidence the optimum is a genuine property of the
+        learned space, not an artefact of one lucky starting point.</figcaption>
+    </figure>
+
+    <a class="marker" href="#section-3.2" id="section-3.2"><span>3.2</span></a>
+    <h3>Beam, deflection-limited</h3>
+    <p>For a deflection-limited beam in bending, the index <d-math>M_{\text{beam}}=\sqrt{E}/\rho</d-math>
+      shifts the exponent on density relative to the bar case, and with it the optimum: the search converges to
+      <d-math>\rho=77\ \text{kg/m}^3</d-math> and <d-math>E=0.42\ \text{GPa}</d-math>, with <strong>Softwood
+      Pine</strong> identified as the nearest real material.</p>
+
+    <div class="l-page" style="display:flex; gap:16px; flex-wrap:wrap; margin: 1.5rem 0;">
+      <figure style="flex:1; min-width:280px; margin:0;">
+        <img src="images/latent_trajectory_beam.png" style="width:100%;">
+        <figcaption>Multi-start optimisation for the beam case. Trajectories converge to the Natural Materials
+          region &mdash; a visibly different corner of the same latent space than the bar case above.</figcaption>
+      </figure>
+      <figure style="flex:1; min-width:280px; margin:0;">
+        <img src="images/ashby_beam.png" style="width:100%;">
+        <figcaption>The exact Ashby chart with slope-2 guideline lines for <d-math>M=\sqrt{E}/\rho</d-math>.
+          The first family the line touches is Natural Materials, with Softwood Pine &mdash; the VAE's nearest
+          match &mdash; the standout point.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="l-body">
+      <img src="images/latent_multistart_beam.png" style="width:100%; max-width:520px; display:block; margin:0 auto;">
+      <figcaption>All 35 multi-start runs for the beam case, converging on the natural-materials corner
+        instead of the ceramics corner &mdash; the geometry-dependent shift in the index alone is enough to
+        move the optimum, with no change to the network or the search procedure.</figcaption>
+    </figure>
+
+    <p>The shift from ceramics (bar) to wood (beam) correctly reflects the geometry-dependent logic of Ashby's
+      theory, and it emerges from the gradient signal alone &mdash; the network was never told anything about
+      bars, beams, or bending. Both cases also agree with the classical chart on the level of individual
+      families, not just broad regions: the nearest-material lookup in latent space and the first family
+      touched by the classical guideline line point to the same corner of the database in both cases.</p>
+
+    <a class="marker" href="#section-4" id="section-4"><span>4</span></a>
+    <h2>Beyond two properties</h2>
+    <p>The bar and beam cases above use only <d-math>E</d-math> and <d-math>\rho</d-math> &mdash; exactly what
+      Part&nbsp;1's charts could already handle, kept deliberately simple for transparent benchmarking. The same
+      four-step procedure, unchanged, extends to indices over more properties, which is the entire point of
+      leaving the chart behind. Extending the property set to include yield strength <d-math>\sigma_y</d-math>
+      and cost <d-math>C_m</d-math><d-cite key="ashbyvae2026"></d-cite>, the same pipeline &mdash; encode, train,
+      search, check &mdash; runs unmodified on a third representative case, a strength-limited, minimum-mass tie
+      (<d-math>M=\sigma_y/\rho</d-math>):</p>
 
     <figure class="l-body">
       <img src="images/p2_convergence.png" style="width:100%;">
@@ -382,15 +377,12 @@
         true optimum &mdash; and it is also the material nearest the latent optimum above.</figcaption>
     </figure>
 
-    <a class="marker" href="#section-2.2" id="section-2.2"><span>2.2</span></a>
-    <h3>Results across thirteen structural and thermal cases</h3>
-    <p>The same code, unchanged, was run across thirteen extended cases drawn from the Ansys/Granta Performance
-      Indices Booklet<d-cite key="ansys2023performance"></d-cite> &mdash; ties, beams, panels, columns,
-      shafts, flywheels, pressure vessels, springs, and thermal problems &mdash; plus the two baseline cases
-      (tie, beam) the original notebooks covered:</p>
+    <p>The same code, unchanged, was then run across thirteen further cases drawn from the Ansys/Granta
+      Performance Indices Booklet<d-cite key="ansys2023performance"></d-cite> &mdash; ties, beams, panels,
+      columns, shafts, flywheels, pressure vessels, springs, and thermal problems:</p>
 
     <table>
-      <caption>VAE latent-optimum nearest material vs. the exact-Ashby answer, across all thirteen extended cases.</caption>
+      <caption>VAE latent-optimum nearest material vs. the exact-Ashby answer, across thirteen extended cases.</caption>
       <thead>
         <tr><th>Case</th><th>Index</th><th>Exact-Ashby winner</th><th>VAE match?</th></tr>
       </thead>
@@ -408,13 +400,13 @@
         <tr><td>Spring, min. volume</td><td><d-math>\sigma_y^2/E</d-math></td><td>Natural rubber (elastomers)</td><td>Yes</td></tr>
         <tr><td>Spring, min. mass</td><td><d-math>\sigma_y^2/(\rho E)</d-math></td><td>Natural rubber (elastomers)</td><td>Yes</td></tr>
         <tr><td>Thermal distortion</td><td><d-math>k/\alpha</d-math></td><td>Silicon carbide (ceramics)</td><td>Yes</td></tr>
-        <tr><td>Thermal shock</td><td><d-math>\sigma_y/(E\alpha)</d-math></td><td>Natural rubber (elastomers)</td><td>No<d-footnote>See &sect;2.3 &mdash; this is the one genuine failure in the table, discussed rather than hidden.</d-footnote></td></tr>
+        <tr><td>Thermal shock</td><td><d-math>\sigma_y/(E\alpha)</d-math></td><td>Natural rubber (elastomers)</td><td>No<d-footnote>See below &mdash; this is the one genuine failure in the table, discussed rather than hidden.</d-footnote></td></tr>
         <tr><td>Thermal shock (with conductivity)</td><td><d-math>\sigma_y k/(E\alpha)</d-math></td><td>Al/SiC composite (composites)</td><td>No</td></tr>
         <tr><td>Tie, strength-limited</td><td><d-math>\sigma_y/\rho</d-math></td><td>CFRP epoxy (composites)</td><td>Yes</td></tr>
       </tbody>
     </table>
 
-    <p>Eleven of thirteen extended cases &mdash; and both baseline tie/beam cases &mdash; land the latent
+    <p>Eleven of thirteen extended cases &mdash; and both baseline bar/beam cases above &mdash; land the latent
       optimum on the exact-Ashby family, with no case-specific tuning beyond the property subset and the index
       formula itself. One case is worth dwelling on because it recovers a genuinely surprising, textbook result
       rather than an obvious one: the <strong>spring</strong> index <d-math>\sigma_y^2/E</d-math> is maximised,
@@ -427,7 +419,7 @@
       This is exactly the discipline Ashby charts have always demanded of their user, restated for a network
       that has no notion of &ldquo;spring steel&rdquo; unless it is told to look only among metals.</p>
 
-    <a class="marker" href="#section-2.3" id="section-2.3"><span>2.3</span></a>
+    <a class="marker" href="#section-4.1" id="section-4.1"><span>4.1</span></a>
     <h3>Where the method needs care</h3>
     <p>The one genuine failure in the table is instructive rather than embarrassing. <strong>Thermal shock
       resistance</strong> mixes four properties (<d-math>E,\sigma_y,\alpha,k</d-math>) drawn from only 22
@@ -445,9 +437,9 @@
       the VAE result and the closed-form Ashby ranking side by side, rather than trusting the shortcut
       alone.</p>
 
-    <a class="marker" href="#section-3" id="section-3"><span>3</span></a>
-    <h2>Renewing Ashby's maps</h2>
-    <p>Line the three parts of this note up against the plain 1990s Ashby chart, and a single lineage appears,
+    <a class="marker" href="#section-5" id="section-5"><span>5</span></a>
+    <h2>Final conclusion</h2>
+    <p>Line the two parts of this note up against the plain 1990s Ashby chart, and a single lineage appears,
       each generation answering a limit of the one before it.</p>
 
     <figure class="l-page" style="background:#fff; border:1px solid rgba(0,0,0,0.1); border-radius:6px; padding:20px 8px; margin:2rem 0;">
@@ -547,12 +539,12 @@
       supply exchange constants and, for more than two objectives, gives up the chart's visual logic entirely;
       a latent space needs neither. Gradient ascent through a trained decoder handles two properties or six
       with the same code, the same architecture, the same four steps &mdash; the tangent-line construction of
-      &sect;1.4 and the multi-start search of &sect;2.1 are, underneath, the same act of sliding something
-      across a surface until it stops improving. And because eco-cost is, mechanically, just another decoded
-      property, the minimum-cost case in &sect;2.2 already shows the natural next experiment: fold Idemat
-      eco-cost data into the same latent space &sect;2 trains on price and mechanics, and the eco-Ashby chart
-      of &sect;1.5 becomes one more index an already-trained network answers by gradient ascent &mdash; no new
-      chart, no new axes, no ceiling at two.</p>
+      Part&nbsp;1 and the multi-start search of &sect;2.4 above are, underneath, the same act of sliding
+      something across a surface until it stops improving. And because eco-cost is, mechanically, just another
+      decoded property, the minimum-cost case in &sect;4 already shows the natural next experiment: fold Idemat
+      eco-cost data into the same latent space this article trains on price and mechanics, and the eco-Ashby
+      chart of Part&nbsp;1 becomes one more index an already-trained network answers by gradient ascent &mdash;
+      no new chart, no new axes, no ceiling at two.</p>
     <p style="font-size:1.3rem; font-style:italic; line-height:1.5; max-width:640px; margin:1.6rem auto;">
       Ashby's real contribution was never the two axes. It was insisting that &ldquo;best material&rdquo; is
       always the answer to a specific, statable question &mdash; this function, this constraint, this exchange
@@ -567,22 +559,32 @@
   <d-appendix>
 
     <h3>Contributions</h3>
-    <p>Joseph Morlier (ISAE-SUPAERO) posed the extension and supplied the source notebooks and LaTeX notes for
-      Part&nbsp;1. The Ashby-VAE case-study code, the eco-costs/eco-Ashby derivations, and the synthesis in
-      Part&nbsp;3 were drafted with Claude.</p>
+    <p>Joseph Morlier (ISAE-SUPAERO) posed the extension, supervised the study, and supplied the extended
+      13-case notebooks. Almudena Cobo-Urios and Álvaro Silva-Vilela-Caridade (ISAE-SUPAERO) developed the
+      variational-autoencoder methodology, dataset preparation, and latent-space optimisation validated here on
+      the bar and beam cases (&sect;3), including the reconstruction-accuracy analysis and the continuous
+      latent-field figures in &sect;2.3. The narrative synthesis in this article, and its connection back to
+      Part&nbsp;1, were drafted with Claude.</p>
 
     <h3>Data &amp; code</h3>
-    <p>Figures are reproduced from <code>eco_costs_and_ashby_charts.ipynb</code>,
-      <code>ashby_method_step_by_step.ipynb</code>, and the Ashby-VAE case-study notebooks
-      <d-cite key="ashbyvae2026"></d-cite>. Material-property and eco-cost figures used in Part&nbsp;1's worked
-      examples are illustrative, order-of-magnitude values for teaching, not authoritative Idemat/CES data.
+    <p>The bar/beam validation figures reproduce results from the authors' own VAE training and optimisation
+      runs on the CES/Granta dataset<d-cite key="granta"></d-cite>. The extended 13-case table and its
+      supporting figures are reproduced from the Ashby-VAE case-study notebooks<d-cite key="ashbyvae2026"></d-cite>.
       Related generative-design work on catalog selection: <d-cite key="catalogsvae2023"></d-cite>.</p>
 
     <h3>Limitations</h3>
-    <p>The thermal-shock case (&sect;2.3) is the one extended case where the VAE's nearest-material lookup does
+    <p>The thermal-shock case (&sect;4.1) is the one extended case where the VAE's nearest-material lookup does
       not reliably match the closed-form Ashby ranking, for the data-availability reasons discussed there. All
       thirteen extended cases and the two baseline cases print the VAE result and the exact Ashby ranking side
-      by side, rather than reporting the VAE result alone.</p>
+      by side, rather than reporting the VAE result alone. The bar/beam reconstruction errors (&sect;2.2,
+      5.5%/2.8% mean) are computed on the same 22 materials used for training, not on a held-out set; the
+      dataset's small size (22 materials) makes a genuine train/test split of limited statistical value, and
+      this is flagged rather than glossed over.</p>
+
+    <h3>About this series</h3>
+    <p>This is Part&nbsp;2 of a two-part note. <a href="../ashby-maps/index.html">Part&nbsp;1, &ldquo;Ashby's
+      Maps,&rdquo;</a> covers the classical method this article builds on: the log&ndash;log guideline, the
+      multi-objective value function, and the eco-cost extension.</p>
 
     <d-bibliography src="references.bib"></d-bibliography>
   </d-appendix>
