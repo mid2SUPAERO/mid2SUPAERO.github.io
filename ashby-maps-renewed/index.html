@@ -2,6 +2,8 @@
 
 <head>
   <script src="js/template.v2.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script defer src="js/ashby-explorer.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf8">
   <title>Ashby's Maps, Renewed</title>
@@ -72,6 +74,46 @@
       with the smallest <d-math>\rho/E^{1/3}</d-math>. On log&ndash;log axes, lines of constant index are
       straight, so sliding a guideline across the chart instantly reveals the winning family &mdash; one of the
       most quietly effective ideas in engineering design.</p>
+    <p>That last sentence is worth deriving properly, because it is the whole reason the Ashby chart works at
+      all. Any index of the form <d-math>M = E^a/\rho</d-math> &mdash; density always to the first power, the
+      stiffness exponent <d-math>a</d-math> set by the geometry of the loading case &mdash; traces a straight
+      line on log&ndash;log axes. Taking logs of <d-math>E^a=M\rho</d-math>:</p>
+    <d-math block>
+      E^a = M\rho \quad\Longrightarrow\quad a\log E = \log M + \log\rho
+      \quad\Longrightarrow\quad \log E = \underbrace{\frac{1}{a}}_{\text{slope}}\log\rho \;+\; \frac{1}{a}\log M
+    </d-math>
+    <p>So on a chart of <d-math>\log E</d-math> against <d-math>\log\rho</d-math>, every value of <d-math>M</d-math>
+      draws a line of the <em>same</em> slope <d-math>1/a</d-math>; changing <d-math>M</d-math> only slides that
+      line up or down, parallel to itself. Since the goal is to maximise <d-math>M</d-math>, the favourable
+      direction is always up and to the left &mdash; and the last material the line touches before leaving the
+      data cloud is the answer. Three cases recur often enough to have their own guideline slope on the classic
+      stiffness&ndash;density chart:</p>
+    <table>
+      <thead>
+        <tr><th>Loading case</th><th>Exponent <d-math>a</d-math></th><th>Index <d-math>M</d-math></th><th>Guideline slope <d-math>1/a</d-math></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tie, axial, stiffness-limited</td><td>1</td><td><d-math>E/\rho</d-math></td><td>1</td></tr>
+        <tr><td>Beam or shaft, bending/torsion, stiffness-limited</td><td>1/2</td><td><d-math>\sqrt{E}/\rho</d-math></td><td>2</td></tr>
+        <tr><td>Panel, bending, stiffness-limited</td><td>1/3</td><td><d-math>E^{1/3}/\rho</d-math></td><td>3</td></tr>
+      </tbody>
+    </table>
+    <p>These are exactly the three guideline families printed on Ashby's own stiffness&ndash;density chart, and
+      they are what the interactive figure below draws directly &mdash; the same construction used, non-interactively,
+      by teaching tools such as the Cambridge Engineering Department's material-selection
+      charts<d-cite key="cambridge2024charts"></d-cite>.</p>
+
+    <div class="callout">
+      <strong>Try it.</strong> Pick a loading case, or drag the dashed guideline yourself. The line always keeps
+      the slope shown by the active case; dragging it up or down changes only <d-math>\log M</d-math>, exactly as
+      the algebra above says it should. Materials below the line are eliminated at that value of <d-math>M</d-math>;
+      the one that survives longest, pushed as far up-left as the data allow, is the optimal material for that
+      index &mdash; marked with a star.
+    </div>
+    <figure class="l-page widget-frame">
+      <div class="widget" data-widget="ashby-explorer"></div>
+    </figure>
+
     <p>But real components rarely answer to one objective. A tie that must also be cheap, a spring that must
       also be light, a heat exchanger that must resist both thermal shock and corrosion &mdash; the moment a
       second performance metric <d-math>P_2</d-math> matters as much as the first, <d-math>P_1</d-math>, a
