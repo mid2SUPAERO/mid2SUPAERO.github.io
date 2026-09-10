@@ -32,7 +32,7 @@
 
   <d-title>
     <figure style="grid-column: page; margin: 1rem 0;">
-      <img src="images/p1-strength-density.png" style="width:100%; border: 1px solid rgba(0, 0, 0, 0.2);" />
+      <img src="images/p1-strength-density.png" style="width:40%; border: 1px solid rgba(0, 0, 0, 0.2);" />
     </figure>
     <p>Michael Ashby's material-selection charts turned an abstract optimisation &mdash; choosing the best
       material for a function &mdash; into something an engineer could <em>see</em>: two properties on
@@ -120,8 +120,7 @@
       <div class="widget" data-widget="ashby-explorer"></div>
     </figure>
 
-    <p>But real components rarely answer to one objective. A tie that must also be cheap, a spring that must
-      also be light, a heat exchanger that must resist both thermal shock and corrosion &mdash; the moment a
+    <p>But real components rarely answer to one objective. A tie that must also be cheap and light, a heat exchanger that must resist both thermal shock and corrosion &mdash; the moment a
       second performance metric <d-math>P_2</d-math> matters as much as the first, <d-math>P_1</d-math>, a
       single index and a single chart no longer say which material is best<d-cite key="ashby2000multiobjective"></d-cite>.</p>
 
@@ -137,10 +136,10 @@
       <img src="images/p1_pareto.png" style="width:100%;">
       <figcaption>Dominance, made visible: of ten illustrative candidates, only the six on the trade-off
         surface are ever worth choosing &mdash; every dominated point is beaten on <em>both</em> axes by some
-        other candidate.</figcaption>
+        other candidate (M7, M4, M1, M3).</figcaption>
     </figure>
 
-    <p>Applied to a genuine materials question &mdash; choosing a material that is both stiff
+    <p>Applied to a practical material selection problem &mdash; choosing a material that is both stiff
       (<d-math>P_1=\rho/E</d-math>, to minimise) and well damped (<d-math>P_2=1/\zeta</d-math>, to minimise)
       &mdash; the same dominance rule turns a table of alloys into a legible trade-off between aluminium at one
       end and lead at the other<d-cite key="ashby2000multiobjective"></d-cite>:</p>
@@ -171,7 +170,7 @@
     <d-math block>
       \frac{\Delta P}{\Delta C} \le -\frac{1}{a}.
     </d-math>
-    <p>Exchange constants come from technical/economic modelling, historical price data, or elicitation.
+    <p>Exchange constants come from technical/economic modelling, historical price data etc.
       Published values for weight-saving in transport span four orders of magnitude<d-cite key="ashby2000multiobjective"></d-cite>: about &pound;1/kg in a family car (fuel saving), &pound;100&ndash;500/kg in
       a civil aircraft (payload), and &pound;3,000&ndash;10,000/kg in a space vehicle. <strong>The exchange
       constant, not the material property alone, determines what &ldquo;the best material&rdquo; means for a
@@ -186,7 +185,7 @@
       P_1 = \frac{\rho}{E^{1/3}}, \qquad P_2 = C_m\frac{\rho}{E^{1/3}} = C_m\,P_1
     </d-math>
     <p>Since cost is one of the objectives, <d-math>a_2=1</d-math>, so <d-math>V=a_1P_1+P_2</d-math>.
-      Recomputing this directly from six real material datasheets, at the two exchange constants used in
+      Recomputing this directly from six real material datasheets, at the two exchange constants (Ashby is from UK) used in
       Ashby's paper &mdash; <d-math>a_1=</d-math>&pound;0.5/kg (family-car-like) and <d-math>a_1=</d-math>&pound;500/kg
       (aerospace-like) &mdash; reproduces the paper's own tables to within rounding:</p>
 
@@ -208,7 +207,7 @@
     <figure class="l-body">
       <img src="images/p1_value_scatter.png" style="width:100%;">
       <figcaption>Mass index <d-math>P_1</d-math> vs. cost index <d-math>P_2</d-math>. The shallow line (weight
-        cheap) is tangent to nodular cast iron; the steep line (weight expensive) is tangent to
+        cheap) is tangent to nodular (ductile) cast iron; the steep line (weight expensive) is tangent to
         beryllium.</figcaption>
     </figure>
 
@@ -251,7 +250,7 @@
       Cycle Assessment<d-footnote>Because eco-costs cover the full environmental profile rather than only
       carbon, they avoid &ldquo;carbon tunnel vision&rdquo;: a material with a small carbon footprint but
       severe toxicity or depletion impacts does not automatically look attractive.</d-footnote>. Eco-costs
-      become a business tool through the Eco-efficient Value Ratio:</p>
+      become a business tool through the Eco-efficient Value Ratio (EVR):</p>
     <d-math block>
       \text{EVR} = \frac{\text{eco-costs}}{\text{value (price paid by the customer)}}
     </d-math>
@@ -317,8 +316,8 @@
     <h2>Preliminary conclusion</h2>
     <p>Three generations of the same idea sit side by side in this note. <strong>The chart</strong> compresses
       a mechanics derivation into a slope on two log axes &mdash; unbeatable for one index, incapable of more
-      than two properties at a time. <strong>The value function</strong> removes that ceiling by folding any
-      number of objectives into one weighted sum, at the cost of the picture: past two dimensions, Ashby's own
+      than two properties at a time. <strong>The value function</strong> removes this limitations by aggregating any
+      number of objectives into one weighted sum, at the cost of losing visual representation: beyond two dimensions, Ashby's own
       method falls back to a table and a ranking, as &sect;1.4 showed directly. <strong>The eco-Ashby
       chart</strong> does not change the mathematics at all &mdash; it changes what one of the axes is
       <em>allowed to mean</em>, substituting a rigorously defined environmental prevention cost for price, and
