@@ -39,11 +39,11 @@ The Distill journal was founded as an adapter between traditional and online sci
 ---
 
 
-### [TASOPT (DRAFT UNCORRECTED)](/tasopt/)
+### [Weight, Drag, Thrust, Range (DRAFT UNCORRECTED)](/tasopt/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** August 2026
 
-**Summary:** Part 1, “Ashby's Maps,” followed Ashby's method through a single log–log guideline, a multi-objective value function, and an eco-cost axis — three generations that all still ask a human to pick the axes, and all still top out at two or three properties before the picture stops helping. This second part removes that ceiling by training a variational autoencoder on the same material database and replacing “read a slope off a chart” with “follow a gradient through a learned, continuous space.” The same trained network, unchanged, then answers any material index by gradient ascent — validated case by case against the classical answer, on the two baseline structural cases worked by hand in Part 1 and on thirteen further cases beyond them.
+**Summary:** In one sentence: TASOPT treats an airliner not as a set of weight fractions looked up from history, but as a coupled system of beam-theory structures, viscous-flow aerodynamics, and a real turbofan thermodynamic cycle, all closed by a range equation — solved together, iteratively, until the airframe, the engine, and the mission agree with each other. This page walks through each piece of that loop in the order Drela's technical description builds it, with small interactive calculators dropped in wherever a slider teaches more than a paragraph. A companion Jupyter notebook turns the same equations into running Python code and sizes a 737-800–class narrowbody from scratch.
 
 
 
