@@ -36,6 +36,15 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 **Summary:** Part 1, “Ashby's Maps,” followed Ashby's method through a single log–log guideline, a multi-objective value function, and an eco-cost axis — three generations that all still ask a human to pick the axes, and all still top out at two or three properties before the picture stops helping. This second part removes that ceiling by training a variational autoencoder on the same material database and replacing “read a slope off a chart” with “follow a gradient through a learned, continuous space.” The same trained network, unchanged, then answers any material index by gradient ascent — validated case by case against the classical answer, on the two baseline structural cases worked by hand in Part 1 and on thirteen further cases beyond them.
 
+---
+
+
+### [TASOPT (DRAFT UNCORRECTED)](/tasopt/)
+* **Authors:** Joseph Morlier and Claude
+* **Published:** August 2026
+
+**Summary:** Part 1, “Ashby's Maps,” followed Ashby's method through a single log–log guideline, a multi-objective value function, and an eco-cost axis — three generations that all still ask a human to pick the axes, and all still top out at two or three properties before the picture stops helping. This second part removes that ceiling by training a variational autoencoder on the same material database and replacing “read a slope off a chart” with “follow a gradient through a learned, continuous space.” The same trained network, unchanged, then answers any material index by gradient ascent — validated case by case against the classical answer, on the two baseline structural cases worked by hand in Part 1 and on thirteen further cases beyond them.
+
 
 
 ---

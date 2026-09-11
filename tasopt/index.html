@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weight, Drag, Thrust, Range — a TASOPT walkthrough</title>
+<meta name="description" content="A pedagogical walkthrough of Mark Drela's TASOPT aircraft-sizing model — structures, aerodynamics, propulsion, and mission analysis — with interactive calculators and a companion Python notebook.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;600;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  :root{
+    --paper:#FFFFFF; --paper-raised:#F5F6F4; --paper-deep:#EBEDE9;
+    --ink:#1B1B1B; --ink-soft:#585C5F; --ink-faint:#8B8F92;
+    --line:#DEE1DC; --line-soft:#EAEBE7;
+    --accent:#B1440E; --accent-soft:#C4703F;
+    --structure:#28587D; --structure-soft:#4C86AA; --structure-pale:#7FB0C8;
+    --highlight-bg:#F2EFE6;
+    --serif: "PT Serif", Georgia, "Times New Roman", serif;
+    --display: "Libre Franklin", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14171A; --paper-raised:#1C2024; --paper-deep:#0F1214;
+      --ink:#E9EBEC; --ink-soft:#A9AFB4; --ink-faint:#787E83;
+      --line:#2A2F34; --line-soft:#20242A;
+      --accent:#EE9A5C; --accent-soft:#D98444;
+      --structure:#7FC1E8; --structure-soft:#5FA0CC; --structure-pale:#3E7CA3;
+      --highlight-bg:#1E2226;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14171A; --paper-raised:#1C2024; --paper-deep:#0F1214;
+    --ink:#E9EBEC; --ink-soft:#A9AFB4; --ink-faint:#787E83;
+    --line:#2A2F34; --line-soft:#20242A;
+    --accent:#EE9A5C; --accent-soft:#D98444;
+    --structure:#7FC1E8; --structure-soft:#5FA0CC; --structure-pale:#3E7CA3;
+    --highlight-bg:#1E2226;
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html{background:var(--paper);}
+  body{
+    background:var(--paper); color:var(--ink); margin:0;
+    font-family:var(--serif); font-size:1.09rem; line-height:1.68;
+    padding-inline:1.1rem; padding-block:0;
+  }
+  ::selection{ background:var(--structure-pale); color:#0A1C2A; }
+
+  a{ color:var(--structure); text-decoration-thickness:1px; text-underline-offset:3px; }
+  a:hover{ color:var(--accent); }
+
+  .wrap{ max-width: 980px; margin:0 auto; }
+  p,li,blockquote,.with-note,.figure{ max-width:700px; }
+  h1,h2,h3{ font-family:var(--display); font-weight:700; text-wrap:balance; color:var(--ink); letter-spacing:-0.01em;}
+  h2,h3{ max-width:700px; }
+
+  /* ---------- header / title block ---------- */
+  header.titleblock{ padding-block: 3rem 1.8rem; max-width:760px; margin:0 auto; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:var(--mono); font-size:.72rem; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--accent); display:flex; align-items:center; gap:.6rem; margin-bottom:1.1rem;}
+  h1.title{ font-size:clamp(2.1rem,5.2vw,3.15rem); line-height:1.08; margin:0 0 1rem; }
+  p.subtitle{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:1.22rem; color:var(--ink-soft);
+    max-width:640px; margin:0 0 1.7rem; line-height:1.5;}
+  .byline{ font-family:var(--mono); font-size:.78rem; color:var(--ink-faint); padding-top:1rem;
+    display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; }
+  .byline b{ color:var(--ink-soft); font-weight:500;}
+  .authorline{ font-family:var(--display); font-size:.98rem; color:var(--ink); font-weight:600; margin:0 0 .3rem; }
+  .authorline span{ font-weight:400; color:var(--ink-faint); font-family:var(--mono); font-size:.78rem; margin-left:.6rem;}
+
+  .abstract{ max-width:700px; margin: 1.8rem auto 1.4rem; background:var(--paper-raised); border:1px solid var(--line-soft);
+    border-radius:4px; padding:1.4rem 1.6rem; font-size:.98rem; color:var(--ink-soft); border-left:3px solid var(--structure);}
+  .abstract b{ color:var(--ink); font-weight:700;}
+
+  nav.toc{ max-width:700px; margin:0 auto 3rem; }
+  nav.toc summary{ font-family:var(--display); font-size:.82rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink); cursor:pointer; padding:.5rem 0; font-weight:700;}
+  nav.toc ol{ list-style:none; margin:.6rem 0 0; padding:0; display:grid; gap:.4rem; font-family:var(--serif); font-size:.96rem;}
+  nav.toc a{ color:var(--ink-soft); text-decoration:none;}
+  nav.toc a:hover{ color:var(--accent);}
+  nav.toc .idx{ color:var(--ink-faint); margin-right:.6rem; font-family:var(--mono); font-size:.85em;}
+
+  main{ max-width:980px; margin:0 auto; }
+
+  section{ margin: 3.6rem 0; }
+  .sec-head{ display:flex; align-items:baseline; gap:.85rem; max-width:700px; margin-bottom:1.1rem; border-top:1px solid var(--line); padding-top:1.8rem;}
+  .sec-badge{ font-family:var(--display); font-size:1.1rem; color:var(--ink-faint);
+    flex:none; font-weight:700; font-variant-numeric:tabular-nums;}
+  h2.sec-title{ font-size:clamp(1.35rem,2.8vw,1.7rem); margin:0;}
+  .sec-kicker{ font-family:var(--mono); font-size:.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:.09em; margin:0 0 .25rem;}
+
+  p{ margin: 0 0 1.15rem; }
+  strong{ color:var(--ink); }
+  code{ font-family:var(--mono); font-size:.86em; background:var(--paper-raised); padding:.1em .35em; border-radius:3px;}
+
+  .with-note{ position:relative; }
+  aside.sidenote{ font-family:var(--mono); font-size:.78rem; line-height:1.55; color:var(--ink-soft);
+    background:var(--paper-raised); border-left:2px solid var(--structure); padding: .6rem .9rem; border-radius: 0 4px 4px 0;
+    margin: 1rem 0; }
+  @media (min-width:1150px){
+    aside.sidenote{ position:absolute; top:0; left:calc(100% + 2.2rem); width:225px;
+      background:none; border-left:1px solid var(--line); padding:0 0 0 .9rem; border-radius:0; margin:.15rem 0;}
+  }
+
+  blockquote.callout{ background:var(--highlight-bg); border-radius:4px; padding:1rem 1.3rem; font-size:.95rem;
+    color:var(--ink-soft); margin:1.4rem 0; border-left:3px solid var(--accent);}
+  blockquote.callout b{ color:var(--ink); }
+
+  figure.figure{ margin: 1.8rem 0; }
+  figure.figure svg{ width:100%; height:auto; display:block; background:var(--paper-raised); border-radius:4px; border:1px solid var(--line-soft);}
+  figcaption{ font-family:var(--mono); font-size:.78rem; color:var(--ink-faint); margin-top:.6rem; line-height:1.5;}
+  figcaption b{ color:var(--ink-soft); }
+
+  .eqn-wrap{ overflow-x:auto; margin: 1.5rem 0; padding: .5rem 0; text-align:center; }
+  .eqn-wrap .katex-display{ margin:0; }
+  .eqn-note{ max-width:700px;font-size:.92rem;color:var(--ink-soft);margin-top:-.6rem; }
+
+  /* ---------- widgets ---------- */
+  .widget{ max-width:700px; background:var(--paper-raised); border:1px solid var(--line-soft); border-radius:6px;
+    padding:1.5rem 1.6rem 1.7rem; margin: 1.8rem 0 2.2rem; }
+  .widget-head{ display:flex; justify-content:space-between; align-items:baseline; gap:1rem; margin-bottom:.2rem;}
+  .widget-title{ font-family:var(--display); font-weight:700; font-size:1.02rem; }
+  .widget-tag{ font-family:var(--mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--structure);}
+  .widget-body{ display:grid; grid-template-columns: 1fr; gap:1.4rem; margin-top:1rem;}
+  @media(min-width:640px){ .widget-body.two-col{ grid-template-columns: 1.05fr 1fr; align-items:center;} }
+  .controls{ display:grid; gap:1rem; }
+  .control label{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:.76rem; color:var(--ink-soft); margin-bottom:.3rem;}
+  .control label .val{ color:var(--structure); font-weight:600;}
+  input[type=range]{ width:100%; accent-color:var(--structure); }
+  .readout{ display:grid; grid-template-columns: repeat(2,1fr); gap:.7rem 1rem; margin-top:.3rem;}
+  .readout .cell{ background:var(--paper); border:1px solid var(--line-soft); border-radius:4px; padding:.6rem .8rem;}
+  .readout .cell .k{ font-family:var(--mono); font-size:.68rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.05em;}
+  .readout .cell .v{ font-family:var(--mono); font-size:1.15rem; color:var(--ink); font-variant-numeric:tabular-nums; margin-top:.15rem;}
+  .readout .cell .v small{ font-size:.65rem; color:var(--ink-faint); font-family:var(--mono); font-weight:400;}
+  .note-line{ font-family:var(--mono); font-size:.74rem; color:var(--ink-faint); margin-top:.9rem; line-height:1.55;}
+  .caveat{ font-size:.82rem; color:var(--ink-faint); margin-top:.8rem; line-height:1.5; font-family:var(--serif); font-style:italic;}
+
+  svg text{ font-family:var(--mono); fill:var(--ink-soft); }
+  .station-dot{ cursor:pointer; }
+  .station-dot circle{ fill:var(--paper); stroke:var(--structure); stroke-width:2; }
+  .station-dot.active circle{ fill:var(--accent); stroke:var(--accent); }
+  .station-dot text{ fill:var(--ink-soft); font-size:9px; }
+  .station-info{ background:var(--paper); border:1px solid var(--line-soft); border-radius:4px; padding:.9rem 1rem; min-height:118px;}
+  .station-info .lbl{ font-family:var(--mono); font-size:.68rem; color:var(--structure); text-transform:uppercase; letter-spacing:.05em;}
+  .station-info .desc{ font-size:.92rem; color:var(--ink); margin-top:.35rem; line-height:1.5;}
+  .station-info .nums{ font-family:var(--mono); font-size:.82rem; color:var(--ink-soft); margin-top:.5rem;}
+
+  /* ---------- drag breakdown chart ---------- */
+  .viz-root{
+    --series-1:#2a78d6; --series-2:#eb6834; --series-3:#1baf7a; --series-4:#eda100; --series-5:#e87ba4; --series-6:#008300;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .viz-root{ --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70; --series-4:#c98500; --series-5:#d55181; --series-6:#008300; }
+  }
+  :root[data-theme="dark"] .viz-root{ --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70; --series-4:#c98500; --series-5:#d55181; --series-6:#008300; }
+  .stackbar{ display:flex; width:100%; height:34px; border-radius:4px; overflow:hidden; gap:2px; background:var(--paper); }
+  .stackbar div{ height:100%; }
+  .legend{ display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:.5rem 1rem; margin-top:1rem; font-family:var(--mono); font-size:.78rem;}
+  .legend .row{ display:flex; align-items:center; gap:.5rem; color:var(--ink-soft);}
+  .legend .sw{ width:11px; height:11px; border-radius:2px; flex:none;}
+  .legend .row b{ color:var(--ink); font-variant-numeric:tabular-nums;}
+
+  table.spec{ width:100%; border-collapse:collapse; font-size:.86rem; margin:1.2rem 0;}
+  table.spec th, table.spec td{ text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--line-soft); }
+  table.spec th{ font-family:var(--display); font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint); font-weight:700;}
+  table.spec td.num, table.spec th.num{ font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right;}
+  table.spec tr:last-child td{ border-bottom:none;}
+
+  .divider{ border:none; border-top:1px solid var(--line); max-width:700px; margin:2.6rem 0;}
+
+  .cite-box{ max-width:700px; margin:1.6rem 0 2.2rem; background:var(--paper-raised); border:1px solid var(--line-soft);
+    border-radius:4px; padding:1.1rem 1.3rem; }
+  .cite-box .lbl{ font-family:var(--display); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-weight:700; margin-bottom:.6rem;}
+  .cite-box pre{ font-family:var(--mono); font-size:.8rem; color:var(--ink-soft); white-space:pre-wrap; margin:0; line-height:1.6;}
+
+  footer{ max-width:700px; margin: 1rem auto 5rem; font-size:.9rem; color:var(--ink-soft);}
+  footer h3{ font-size:1.05rem;}
+  footer ol{ padding-left:1.2rem; display:grid; gap:.5rem;}
+  footer .colophon{ margin-top:2.4rem; padding-top:1.4rem; border-top:1px solid var(--line); font-family:var(--mono); font-size:.76rem; color:var(--ink-faint);}
+  footer .colophon a{ color:var(--ink-faint); text-decoration-color:var(--line);}
+
+  @media (max-width: 480px){
+    .readout{ grid-template-columns:1fr 1fr; }
+    header.titleblock{ padding-block:2.2rem 1.2rem;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="titleblock">
+  <div class="eyebrow">A pedagogical walkthrough</div>
+  <h1 class="title">Weight, Drag, Thrust, Range</h1>
+  <p class="subtitle">How TASOPT sizes a transport aircraft from structural, aerodynamic, and thermodynamic first principles — instead of the historical-correlation curve-fits conceptual design used to lean on.</p>
+  <p class="authorline">Joseph Morlier <span>with Claude</span></p>
+  <div class="byline">
+    <span><b>Source:</b> Mark Drela, <i>TASOPT 2.00 Technical Description</i>, MIT, 2010</span>
+    <span><b>Code:</b> MIT-LAE/TASOPT.jl (Julia)</span>
+    <span><b>Companion:</b> <a href="notebook/tasopt_lite.ipynb">tasopt_lite.ipynb</a> — a Python notebook that replicates the sizing loop</span>
+  </div>
+</header>
+
+<div class="abstract">
+  <b>In one sentence:</b> TASOPT treats an airliner not as a set of weight fractions looked up from history, but as a coupled system of <b>beam-theory structures</b>, <b>viscous-flow aerodynamics</b>, and a <b>real turbofan thermodynamic cycle</b>, all closed by a <b>range equation</b> — solved together, iteratively, until the airframe, the engine, and the mission agree with each other. This page walks through each piece of that loop in the order Drela's technical description builds it, with small interactive calculators dropped in wherever a slider teaches more than a paragraph. A companion Jupyter notebook turns the same equations into running Python code and sizes a 737-800–class narrowbody from scratch.
+</div>
+
+<nav class="toc">
+  <details open>
+  <summary>Contents</summary>
+  <ol>
+    <li><a href="#sec-1"><span class="idx">1</span>Why not just use historical weight fractions?</a></li>
+    <li><a href="#sec-2"><span class="idx">2</span>The fuselage as a pressure vessel</a></li>
+    <li><a href="#sec-3"><span class="idx">3</span>Wings and tails as cantilever beams</a></li>
+    <li><a href="#sec-4"><span class="idx">4</span>Weight, balance, and how big the tail has to be</a></li>
+    <li><a href="#sec-5"><span class="idx">5</span>Drag, reframed as dissipation</a></li>
+    <li><a href="#sec-6"><span class="idx">6</span>The engine as a thermodynamic cycle</a></li>
+    <li><a href="#sec-7"><span class="idx">7</span>Flying the mission: Breguet from a power balance</a></li>
+    <li><a href="#sec-8"><span class="idx">8</span>Closing the loop</a></li>
+    <li><a href="#sec-9"><span class="idx">9</span>From equations to code</a></li>
+    <li><a href="#sec-refs"><span class="idx">—</span>Notes &amp; references</a></li>
+  </ol>
+  </details>
+</nav>
+
+<main>
+
+<!-- ================= SECTION 1 ================= -->
+<section id="sec-1">
+  <div class="sec-head"><div class="sec-badge">1</div><div><p class="sec-kicker">Motivation</p><h2 class="sec-title">Why not just use historical weight fractions?</h2></div></div>
+
+  <p>Classical conceptual-design methods — Roskam, Torenbeek, Raymer — size an airliner mostly by analogy: a wing weighs some fraction of MTOW because <em>previous</em> wings did, a fuselage's drag is read off a wetted-area correlation fit to <em>previous</em> fuselages. That works beautifully as long as the new airplane looks like the old ones. It breaks the moment you ask a genuinely new question — what happens at a bypass ratio of 15 instead of 5, or with a fuselage shape no one has certified yet — because you've walked off the edge of the data the correlation was fit to.</p>
+
+  <p class="with-note">TASOPT's answer, developed by Mark Drela at MIT starting around 2010, is to push as much of the model as possible down to <strong>fundamental structural, aerodynamic, and thermodynamic theory</strong>, and reserve historical correlation only for the parts that genuinely resist first-principles treatment — cabin furnishings, avionics, hydraulics. <aside class="sidenote">Roughly: primary structure (fuselage shell, wing and tail spar boxes) and propulsion are modeled from theory; only secondary structure and "furnish the airplane" equipment weight still uses fitted fractions.</aside> The fuselage is sized as an actual pressure vessel under actual bending loads. The wing is sized as an actual cantilever beam under its actual spanwise lift distribution. The engine is a real multi-spool turbofan cycle with variable-\(c_p(T)\) gas properties, not a fixed TSFC pulled from a spec sheet. Drag is computed from a transonic-airfoil CFD database and an axisymmetric viscous/inviscid fuselage solve, not a flat-plate-plus-fudge-factor.</p>
+
+  <p>The payoff is that the resulting sized aircraft is a defensible physical object even far outside historical experience — which is exactly the regime you need when exploring ultra-high-bypass geared turbofans, boundary-layer-ingesting propulsors, or unconventional fuselage cross-sections. The cost is that everything now depends on everything else: change the bypass ratio and the nacelle drag changes, which changes the thrust needed, which changes the fuel burned, which changes the takeoff weight, which changes the wing loading, which changes … TASOPT's real work is running that whole loop to convergence.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Weight breakdown tree from MTOW down to structural, propulsion and fuel groups">
+      <g font-family="IBM Plex Mono" font-size="11">
+        <rect x="10" y="20" width="140" height="40" rx="4" fill="none" stroke="var(--structure)" stroke-width="2"/>
+        <text x="80" y="44" text-anchor="middle" font-weight="600" fill="var(--ink)">MTOW</text>
+
+        <path d="M150 40 H190 V40" stroke="var(--line)" fill="none"/>
+        <path d="M150 40 H175 V20 H210" stroke="var(--line)" fill="none"/>
+        <path d="M150 40 H175 V150 H210" stroke="var(--line)" fill="none"/>
+        <path d="M150 40 H175 V250 H210" stroke="var(--line)" fill="none"/>
+
+        <rect x="210" y="6" width="150" height="30" rx="3" fill="var(--paper)" stroke="var(--structure-pale)"/>
+        <text x="285" y="26" text-anchor="middle" fill="var(--ink-soft)">Payload W_pay</text>
+
+        <rect x="210" y="42" width="150" height="30" rx="3" fill="var(--paper)" stroke="var(--structure-pale)"/>
+        <text x="285" y="62" text-anchor="middle" fill="var(--ink-soft)">Fuel W_fuel</text>
+
+        <rect x="210" y="135" width="150" height="30" rx="3" fill="var(--paper)" stroke="var(--structure)"/>
+        <text x="285" y="155" text-anchor="middle" fill="var(--ink)">Structure + systems</text>
+
+        <rect x="210" y="235" width="150" height="30" rx="3" fill="var(--paper)" stroke="var(--structure)"/>
+        <text x="285" y="255" text-anchor="middle" fill="var(--ink)">Engines W_eng</text>
+
+        <path d="M360 150 H385 V95 H420" stroke="var(--line)" fill="none"/>
+        <path d="M360 150 H385 V150 H420" stroke="var(--line)" fill="none"/>
+        <path d="M360 150 H385 V205 H420" stroke="var(--line)" fill="none"/>
+
+        <rect x="420" y="80" width="260" height="30" rx="3" fill="none" stroke="var(--accent)"/>
+        <text x="550" y="100" text-anchor="middle" fill="var(--ink)">Fuselage — §2 (pressure vessel + bending)</text>
+
+        <rect x="420" y="135" width="260" height="30" rx="3" fill="none" stroke="var(--accent)"/>
+        <text x="550" y="155" text-anchor="middle" fill="var(--ink)">Wing + tails — §3 (spar box beams)</text>
+
+        <rect x="420" y="190" width="260" height="30" rx="3" fill="none" stroke="var(--ink-faint)"/>
+        <text x="550" y="210" text-anchor="middle" fill="var(--ink-soft)">Systems, gear, furnishings (correlated)</text>
+      </g>
+    </svg>
+    <figcaption><b>Figure 1.</b> A simplified read of TASOPT's weight tree (compare to the original Figure A.1). The boxes with a solid accent border — fuselage shell and wing/tail spar boxes — are the ones actually sized from stress and beam theory. The grey box is where historical weight fractions still do the work.</figcaption>
+  </figure>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section id="sec-2">
+  <div class="sec-head"><div class="sec-badge">2</div><div><p class="sec-kicker">Structures I</p><h2 class="sec-title">The fuselage as a pressure vessel</h2></div></div>
+
+  <p>A cruising airliner's cabin needs to be pressurized to roughly a healthy&#8209;2,400&#8209;metre&#8209;altitude equivalent while the outside air at 11 km is a fifth of that pressure. That pressure difference, acting over the whole cylindrical shell, is what actually determines skin thickness — not some fraction of gross weight. TASOPT models the fuselage explicitly as a thin-walled pressure vessel: a "double-bubble" of two intersecting circles (to get a wider, flatter cabin floor than a single circle would give at the same structural weight), capped by an ellipsoidal nose and a hemispherical tail bulkhead.</p>
+
+  <p class="with-note">For a thin cylindrical shell, pressurization alone produces two stresses <aside class="sidenote">Eq. (A.14)–(A.15) in the source document. The stringers are assumed to carry axial load; the frames are assumed <em>not</em> to carry hoop load, since they're usually notched or offset to clear the stringers.</aside> — a hoop (circumferential) stress and an axial (longitudinal) stress, and the hoop stress is always exactly twice the axial one for the same shell:</p>
+
+  <div class="eqn-wrap">\[
+    \sigma_\theta = \Delta p\,\dfrac{R_\text{fuse}}{t_\text{skin}}
+    \qquad\qquad
+    \sigma_x = \dfrac{\Delta p}{2}\,\dfrac{R_\text{fuse}}{t_\text{skin}} = \tfrac12\,\sigma_\theta
+  \]</div>
+
+  <p>Since the hoop stress always wins, it&rsquo;s the one that sets the skin gauge: the skin is sized so that the hoop stress just reaches the material&rsquo;s allowable stress, giving the required thickness directly,</p>
+
+  <div class="eqn-wrap">\[
+    t_\text{skin} = \dfrac{\Delta p\;R_\text{fuse}}{\sigma_\text{skin}}
+  \]</div>
+
+  <p>and the shell&rsquo;s mass then follows immediately from that thickness, the fuselage radius, the skin density, and empirical fractions for stringers, frames, and local reinforcement (Eq. A.28&ndash;A.32). On top of this pressure sizing, TASOPT separately checks whether in-flight bending loads — from the fuselage&rsquo;s own weight, the tail&rsquo;s lift, and landing impact — ever demand <em>more</em> material than pressurization alone would; where they do, extra "bending material" area is added at the top, bottom, and sides of the shell (Figure A.2&ndash;A.3), and a separate torsion-sized tailcone carries the vertical tail&rsquo;s twisting load back into the airframe.</p>
+
+  <div class="widget">
+    <div class="widget-head"><div class="widget-title">Pressure-vessel calculator</div><div class="widget-tag">Eq. A.14&ndash;A.16</div></div>
+    <div class="widget-body two-col">
+      <div>
+        <div class="controls">
+          <div class="control">
+            <label>Fuselage radius <span class="val" id="rf-val">1.95 m</span></label>
+            <input type="range" id="rf" min="1.6" max="2.5" step="0.01" value="1.95">
+          </div>
+          <div class="control">
+            <label>Cabin&ndash;ambient pressure difference <span class="val" id="dp-val">55.0 kPa</span></label>
+            <input type="range" id="dp" min="35" max="70" step="0.5" value="55">
+          </div>
+        </div>
+        <div class="readout">
+          <div class="cell"><div class="k">Skin thickness</div><div class="v" id="out-t">&mdash;</div></div>
+          <div class="cell"><div class="k">Hoop / axial stress</div><div class="v" id="out-s">&mdash;</div></div>
+          <div class="cell"><div class="k">Shell mass, per metre</div><div class="v" id="out-m">&mdash;</div></div>
+          <div class="cell"><div class="k">Shell mass, 34 m cabin</div><div class="v" id="out-mtot">&mdash;</div></div>
+        </div>
+        <div class="note-line">Allowable skin stress fixed at 103&nbsp;MPa (a typical 2024&#8209;T3 aluminum design allowable). Mass includes stringer/frame/local&#8209;reinforcement fractions of 0.35 / 0.25 / 0.20 (Eq. A.32), aluminum density 2700&nbsp;kg/m&sup3;.</div>
+      </div>
+      <div>
+        <svg viewBox="0 0 260 260" id="fuse-svg" role="img" aria-label="Fuselage cross-section, radius and skin thickness drawn to a distorted scale for visibility">
+          <circle id="fuse-outer" cx="130" cy="130" r="90" fill="none" stroke="var(--structure)" stroke-width="6"/>
+          <line x1="130" y1="130" x2="130" y2="40" stroke="var(--ink-faint)" stroke-dasharray="3 3" stroke-width="1"/>
+          <text x="136" y="90" font-size="11">R</text>
+          <text x="130" y="250" text-anchor="middle" font-size="10" fill="var(--ink-faint)">ring thickness exaggerated ~40&times; for visibility</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <blockquote class="callout"><b>Why this matters:</b> the calculator shows the hoop stress always coming out at exactly the allowable and the axial stress at exactly half of it — not because the sliders are rigged, but because that <em>2:1 ratio is a geometric fact</em> about thin cylindrical pressure vessels. It's the same reason sausage skins split lengthwise, not around their circumference.</blockquote>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section id="sec-3">
+  <div class="sec-head"><div class="sec-badge">3</div><div><p class="sec-kicker">Structures II</p><h2 class="sec-title">Wings and tails as cantilever beams</h2></div></div>
+
+  <p class="with-note">The wing gets the same treatment. TASOPT parameterizes the planform as a two-segment piecewise-linear shape (root, break, tip chord, with independent inner/outer taper and a single sweep angle), assigns it a spanwise lift distribution close to elliptical, and integrates that distribution into a shear and bending-moment diagram along the span — exactly the free-body diagram a structures textbook draws for a cantilever beam under distributed load. <aside class="sidenote">Eq. A.174&ndash;A.207. The structural cross-section is a simple two-cap, two-web box (Figure A.10) sized to the section&rsquo;s local shear and bending moment; slats, flaps, and ribs are added afterward as weight-only, non-structural fractions.</aside> The sparcap area needed at any span station is whatever it takes to keep the bending stress at the allowable value:</p>
+
+  <div class="eqn-wrap">\[
+    \sigma_\text{cap} =
+    \dfrac{M_\perp}{c_\perp^{3}}\cdot
+    \dfrac{6\bar h}{\bar w}\cdot
+    \dfrac{1}{\bar h_\text{rms}^{3} - (\bar h_\text{rms}-2\bar t_\text{cap})^{3}}\cdot
+    \dfrac{1}{\cos^{4}\Lambda}
+  \]</div>
+
+  <p>which looks dense, but says something quite ordinary: bending stress scales with moment over chord cubed (a deeper, thicker section resists bending far more efficiently than a thin one — that \(c^3\) is the whole reason wing thickness matters structurally, not just aerodynamically), and gets worse with sweep because a swept spar sees a larger effective bending moment in its own cross-sectional plane. Holding the allowable stress fixed and solving for the required material area, then integrating that area along the span and multiplying by material density, gives the wing's structural weight directly — no "wing weight = 11% of MTOW" fraction anywhere in the derivation.</p>
+
+  <p>This is also where a purely historical method quietly hides one of the central trade-offs of airplane design. A higher aspect ratio wing (long and skinny) has less induced drag for the same lift, because it spreads the trailing vortex sheet over more span. But a longer span means a longer bending arm, so the same root bending moment problem needs proportionally more spar material — the wing gets heavier. A correlation-based method can't see this tension at all; a structures-and-aerodynamics model like TASOPT's has to resolve it every time it changes anything.</p>
+
+  <div class="widget">
+    <div class="widget-head"><div class="widget-title">Aspect-ratio trade-off explorer</div><div class="widget-tag">derived from Eq. A.198 &amp; A.207</div></div>
+    <div class="widget-body">
+      <div class="controls">
+        <div class="control">
+          <label>Aspect ratio <span class="val" id="ar-val">10.0</span></label>
+          <input type="range" id="ar" min="6" max="14" step="0.1" value="10">
+        </div>
+        <div class="control">
+          <label>Wing thickness ratio t/c <span class="val" id="tc-val">0.120</span></label>
+          <input type="range" id="tc" min="0.09" max="0.15" step="0.001" value="0.12">
+        </div>
+        <div class="control">
+          <label>How much the mission cares about structure vs. drag <span class="val" id="s-val">0.50</span></label>
+          <input type="range" id="ssens" min="0" max="1" step="0.02" value="0.5">
+        </div>
+      </div>
+      <svg viewBox="0 0 660 260" id="ar-svg" role="img" aria-label="Chart of relative wing structural weight and relative induced drag versus aspect ratio, with a combined minimum"></svg>
+      <div class="readout">
+        <div class="cell"><div class="k">Relative structural weight</div><div class="v" id="ar-w">&mdash;</div></div>
+        <div class="cell"><div class="k">Relative induced drag</div><div class="v" id="ar-d">&mdash;</div></div>
+        <div class="cell"><div class="k">Combined merit (lower = better)</div><div class="v" id="ar-t">&mdash;</div></div>
+        <div class="cell"><div class="k">Merit-minimizing aspect ratio</div><div class="v" id="ar-opt">&mdash;</div></div>
+      </div>
+      <div class="caveat">This is a simplified surrogate — a scaling of \(W_\text{struct}\propto AR^2/(t/c)\) and \(C_{D_i}\propto 1/AR\) derived from the sparcap and induced-drag relations above, holding span loading fixed. It omits wave drag, taper, strut-bracing, and the airfoil-family effects the real model includes, which is why real TASOPT-class optimum aspect ratios usually land a bit higher (&asymp;10&ndash;12) once the drag benefit of a thinner supercritical section is priced in.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 4 ================= -->
+<section id="sec-4">
+  <div class="sec-head"><div class="sec-badge">4</div><div><p class="sec-kicker">Balance</p><h2 class="sec-title">Weight, balance, and how big the tail has to be</h2></div></div>
+
+  <p class="with-note">Every component above also has a weight <em>moment</em> — its weight times its distance from the nose — and TASOPT tracks these the whole way through so it can find the aircraft's center of gravity for any payload and fuel loading (Eq. A.278&ndash;A.284). <aside class="sidenote">Passengers loaded front-to-back, back-to-front, or centered (&xi;<sub>pay</sub> = 0, 1, or 0.5) shift the CG enough to matter for trim, so both extremes are checked (Eq. A.279&ndash;A.282).</aside> From the same bookkeeping it gets the aircraft's aerodynamic center and <strong>neutral point</strong> — the CG location at which the airplane would have zero static pitch stability — and requires the real CG to sit some specified static-margin fraction of the mean chord ahead of it.</p>
+
+  <p>The horizontal tail is then sized, not by a rule of thumb like "tail volume coefficient &asymp; 1.0," but by solving <strong>two nonlinear equations simultaneously</strong> for two unknowns: the wing-box position and the horizontal tail area, chosen so that the airplane is in pitch trim at its worst-case forward CG <em>and</em> meets its static-margin requirement at its worst-case aft CG, at the same time (Eq. A.300&ndash;A.303). It's a genuine 2&times;2 Newton system — move the wing aft to help trim, and you've usually hurt stability, so the two knobs have to be turned together. This is a small but telling example of the whole document's philosophy: replace an empirical coefficient with the actual physical requirement it was standing in for.</p>
+</section>
+
+<!-- ================= SECTION 5 ================= -->
+<section id="sec-5">
+  <div class="sec-head"><div class="sec-badge">5</div><div><p class="sec-kicker">Aerodynamics</p><h2 class="sec-title">Drag, reframed as dissipation</h2></div></div>
+
+  <p class="with-note">TASOPT's aerodynamic model rests on a reframing that is arguably its most quietly important idea, borrowed from a companion paper by Drela on power balance in aerodynamic flows. Instead of tracking drag as a force, it tracks <strong>where kinetic energy is being destroyed</strong> — viscous dissipation in boundary layers and wakes, plus the kinetic energy left behind in trailing vortices. <aside class="sidenote">Eq. A.307&ndash;A.312. When there's no boundary-layer ingestion, this reduces exactly to ordinary thrust and drag — the primes on \(F'\), \(D'\), \(C_D'\) can simply be dropped.</aside> The propulsive power balance is written</p>
+
+  <div class="eqn-wrap">\[
+    F' V_\infty = D' V_\infty + W\dot h
+  \]</div>
+
+  <p>where \(F'\) and \(D'\) are <em>effective</em> thrust and drag defined through power and dissipation rates rather than forces. The payoff is that this formulation stays perfectly well-posed even when the engine ingests part of the airframe's own boundary layer — a fuselage-mounted "aft-fan" propulsor, say — a case where ordinary thrust-minus-drag bookkeeping gets ambiguous about where the airframe stops and the propulsor starts. With ordinary (non-ingesting) propulsion the two views agree exactly, so nothing is lost for a conventional podded-engine airplane; the reframing simply keeps the door open to boundary-layer ingestion without a separate model.</p>
+
+  <p>Each drag contributor gets its own physics rather than a shared fudge factor:</p>
+
+  <ul>
+    <li><b>Wing profile drag</b> comes from a 2D transonic-airfoil CFD database (a parametric family swept across thickness and lift coefficient, Figure A.14), applied through infinite-swept-wing theory with a correction that "unsweeps" the shock locally near the fuselage, where the wing's potential flow is forced parallel to the freestream.</li>
+    <li><b>Fuselage drag</b> comes from an actual axisymmetric viscous/inviscid solve — a compressible line-source potential flow coupled to an integral boundary-layer method in the style of XFOIL — not a flat-plate-skin-friction correlation (Appendix E).</li>
+    <li><b>Induced drag</b> comes from a discrete-vortex Trefftz-plane analysis of the actual spanwise loading, including how the wake contracts behind a finite-thickness fuselage.</li>
+    <li><b>Nacelle and strut drag</b> use wetted-area skin friction, corrected for the local flow acceleration the nacelle sees sitting in the wing's or fuselage's induced velocity field.</li>
+  </ul>
+
+  <p>Summing every contributor gives the aircraft's overall dissipation coefficient (Eq. A.390):</p>
+
+  <div class="eqn-wrap">\[
+    C_D' = C_{D_i} + C'_{D_\text{fuse}} + C'_{D_\text{wing}} + C_{D_\text{htail}} + C_{D_\text{vtail}} + C_{D_\text{strut}} + C_{D_\text{nace}}
+  \]</div>
+
+  <div class="widget viz-root">
+    <div class="widget-head"><div class="widget-title">A typical cruise drag breakdown</div><div class="widget-tag">illustrative &middot; Eq. A.390</div></div>
+    <div class="stackbar" role="img" aria-label="Stacked bar showing drag breakdown by contributor">
+      <div style="width:34%;background:var(--series-1)"></div>
+      <div style="width:22%;background:var(--series-2)"></div>
+      <div style="width:21%;background:var(--series-3)"></div>
+      <div style="width:9%;background:var(--series-4)"></div>
+      <div style="width:8%;background:var(--series-5)"></div>
+      <div style="width:6%;background:var(--series-6)"></div>
+    </div>
+    <div class="legend">
+      <div class="row"><span class="sw" style="background:var(--series-1)"></span>Induced <b>34%</b></div>
+      <div class="row"><span class="sw" style="background:var(--series-2)"></span>Wing profile <b>22%</b></div>
+      <div class="row"><span class="sw" style="background:var(--series-3)"></span>Fuselage <b>21%</b></div>
+      <div class="row"><span class="sw" style="background:var(--series-4)"></span>Nacelles <b>9%</b></div>
+      <div class="row"><span class="sw" style="background:var(--series-5)"></span>Tails <b>8%</b></div>
+      <div class="row"><span class="sw" style="background:var(--series-6)"></span>Strut / misc. <b>6%</b></div>
+    </div>
+    <div class="note-line">Representative shares for a cruise-optimized clean-sheet narrowbody — not a specific TASOPT output. The point is qualitative: roughly a third of cruise drag is induced, and each of the other five slices comes from its own dedicated physics model above, not one shared correlation.</div>
+  </div>
+</section>
+
+<!-- ================= SECTION 6 ================= -->
+<section id="sec-6">
+  <div class="sec-head"><div class="sec-badge">6</div><div><p class="sec-kicker">Propulsion</p><h2 class="sec-title">The engine as a thermodynamic cycle</h2></div></div>
+
+  <p class="with-note">TASOPT doesn't look up a thrust-specific fuel consumption number for "a modern high-bypass turbofan." It runs an actual station-by-station gas-dynamic cycle model — inlet, fan, booster, high-pressure compressor, combustor, high- and low-pressure turbines, core and fan nozzles — with each station's total pressure and temperature computed from a <strong>thermally-perfect gas</strong> whose specific heat \(c_p\) genuinely varies with temperature and composition. <aside class="sidenote">Appendix B &amp; D. At combustor-exit temperatures near 1,700&nbsp;K, treating \(c_p\) as constant introduces errors a real engine designer can't ignore — hence the entropy-complement function \(\sigma(T)\) that replaces the schoolbook isentropic relation \(T/T_o = \pi^{(\gamma-1)/\gamma}\).</aside> The isentropic relation you'd write for a constant-\(c_p\) gas,</p>
+
+  <div class="eqn-wrap">\[
+    \pi = \left(\dfrac{T}{T_o}\right)^{\eta_\text{pol}^{\pm 1}\, c_p/R}
+  \]</div>
+
+  <p>gets replaced everywhere with an integral form built from an entropy-complement function &sigma;(T), solved by Newton iteration at every single component:</p>
+
+  <div class="eqn-wrap">\[
+    \pi = \exp\!\left(\eta_\text{pol}^{\pm 1}\,\dfrac{\sigma(T)-\sigma(T_o)}{R}\right)
+  \]</div>
+  <p class="eqn-note">where \(\sigma(T) \equiv \displaystyle\int c_p(T)\,\dfrac{dT}{T}\) is the entropy-complement function.</p>
+
+  <p>The model runs in two distinct modes. In <b>design-sizing mode</b>, you specify the thrust needed and the combustor exit temperature, and the model solves for how big every flow area has to be. In <b>off-design mode</b> — needed for every point of climb, cruise, and descent that isn't the design point — the flow areas are now fixed hardware, so instead the model solves an 8&times;8 nonlinear Newton system for the operating pressure ratios and mass flows that satisfy fan/compressor speed matching, choked-turbine mass flow, and nozzle mass-flow constraints simultaneously, using calibrated compressor and fan maps (Eq. B.270, Figure B.3&ndash;B.6).</p>
+
+  <div class="widget">
+    <div class="widget-head"><div class="widget-title">Engine station explorer</div><div class="widget-tag">Figure B.1</div></div>
+    <div class="widget-body two-col">
+      <svg viewBox="0 0 620 180" id="eng-svg" role="img" aria-label="Turbofan station diagram, click a station to see representative temperature and pressure">
+        <!-- nacelle / fan duct outline -->
+        <path d="M40 40 L140 20 L560 34 L600 46 L600 70 L560 82 L140 96 L40 78 Z" fill="none" stroke="var(--ink-faint)" stroke-width="1.4"/>
+        <!-- core outline -->
+        <path d="M120 50 L220 45 L440 52 L470 58 L470 70 L440 76 L220 82 L120 78 Z" fill="none" stroke="var(--structure)" stroke-width="1.6"/>
+        <!-- fan disk -->
+        <line x1="150" y1="18" x2="150" y2="98" stroke="var(--structure)" stroke-width="3"/>
+        <!-- compressor block -->
+        <rect x="220" y="46" width="55" height="34" fill="none" stroke="var(--structure-soft)"/>
+        <!-- combustor -->
+        <rect x="300" y="44" width="45" height="38" fill="none" stroke="var(--accent)"/>
+        <!-- turbine block -->
+        <rect x="365" y="46" width="55" height="34" fill="none" stroke="var(--structure-soft)"/>
+        <g id="eng-stations" font-family="IBM Plex Mono" font-size="9"></g>
+      </svg>
+      <div class="station-info" id="station-info">
+        <div class="lbl">click a station</div>
+        <div class="desc">Representative cruise-point values for a modern high-bypass turbofan (BPR&nbsp;9, OPR&nbsp;36, M0&nbsp;0.78 at 35,000&nbsp;ft) — illustrative, computed with constant-cp shortcuts for teaching purposes. The full model tracks c<sub>p</sub>(T) exactly and solves every station simultaneously.</div>
+        <div class="nums">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+
+  <blockquote class="callout"><b>Two supporting appendices worth knowing exist:</b> a <b>film-cooling loss model</b> (Appendix C) that trades turbine-blade cooling flow against metal temperature and cycle efficiency, and a <b>power-accounting framework for boundary-layer ingestion</b> (Appendix F) that extends the drag-as-dissipation idea of §5 all the way into the engine, crediting a BLI propulsor for the wake energy it recovers while penalizing it for the reduced inlet pressure recovery that comes with swallowing a slower, thicker boundary layer.</blockquote>
+</section>
+
+<!-- ================= SECTION 7 ================= -->
+<section id="sec-7">
+  <div class="sec-head"><div class="sec-badge">7</div><div><p class="sec-kicker">Mission</p><h2 class="sec-title">Flying the mission: Breguet from a power balance</h2></div></div>
+
+  <p class="with-note">All of the above — weight, drag, thrust — ultimately exists to answer one question: how much fuel does this airplane burn to fly its mission? Starting from the same power-balance relation introduced in §5 and the definition of thrust-specific fuel consumption, \(dW/dt = -\dot m_\text{fuel}\,g = -F'\cdot\text{TSFC}'\), TASOPT derives the familiar weight-versus-range differential equation <aside class="sidenote">Eq. A.403&ndash;A.409 combine the axial and normal force balance into a single expression for climb angle, then substitute the fuel-burn relation to get dW/dR directly.</aside></p>
+
+  <div class="eqn-wrap">\[
+    \dfrac{dW}{dR} = -W\,\dfrac{\text{TSFC}'}{V\cos\gamma}\left(\dfrac{C_D'}{C_L}\right)
+  \]</div>
+
+  <p>For the cruise-climb segment, where Mach number and lift coefficient are held fixed while the airplane slowly climbs as it burns off fuel, this integrates in closed form into the classic Breguet relation — except now every term on the right traces back to a physical submodel rather than a spec sheet:</p>
+
+  <div class="eqn-wrap">\[
+    R = \dfrac{V}{\text{TSFC}}\left(\dfrac{L}{D}\right)\ln\!\left(\dfrac{W_i}{W_f}\right)
+  \]</div>
+
+  <p>The full design mission (Figure A.19) chains together a climb segment, this cruise-climb, and a descent, each integrated over its own altitude/weight profile, with the final landing weight closing the loop back to the mission fuel weight: \(W_\text{burn}=W_b-W_e\), grossed up by a reserve fraction to get the fuel actually loaded (Eq. A.427&ndash;A.429).</p>
+
+  <div class="widget">
+    <div class="widget-head"><div class="widget-title">Breguet range calculator</div><div class="widget-tag">Eq. A.423 / F.39</div></div>
+    <div class="widget-body">
+      <div class="controls">
+        <div class="control">
+          <label>Lift-to-drag ratio, L/D <span class="val" id="ld-val">17.0</span></label>
+          <input type="range" id="ld" min="12" max="22" step="0.1" value="17">
+        </div>
+        <div class="control">
+          <label>TSFC <span class="val" id="tsfc-val">0.560 /hr</span></label>
+          <input type="range" id="tsfc" min="0.42" max="0.75" step="0.005" value="0.56">
+        </div>
+        <div class="control">
+          <label>Cruise Mach (35,000 ft ISA) <span class="val" id="mach-val">0.780</span></label>
+          <input type="range" id="mach" min="0.70" max="0.86" step="0.005" value="0.78">
+        </div>
+        <div class="control">
+          <label>Start / end weight ratio, W<sub>i</sub>/W<sub>f</sub> <span class="val" id="wr-val">1.25</span></label>
+          <input type="range" id="wr" min="1.05" max="1.45" step="0.01" value="1.25">
+        </div>
+      </div>
+      <div class="readout">
+        <div class="cell"><div class="k">Cruise TAS</div><div class="v" id="out-v">&mdash;</div></div>
+        <div class="cell"><div class="k">Cruise-segment range</div><div class="v" id="out-r">&mdash;</div></div>
+      </div>
+      <div class="caveat">This computes only the closed-form cruise-climb segment — the full mission also integrates climb and descent, then subtracts reserves, so total still-air range comes out somewhat different from this number alone.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 8 ================= -->
+<section id="sec-8">
+  <div class="sec-head"><div class="sec-badge">8</div><div><p class="sec-kicker">Synthesis</p><h2 class="sec-title">Closing the loop</h2></div></div>
+
+  <p>None of §2 through §7 runs once and stops. A guessed maximum-takeoff weight sets the loads that size the fuselage and wing; those structures fix the operating-empty weight; the sized wing and fuselage shape fixes the drag polar; the required cruise thrust from that drag sizes the engine; the engine's actual TSFC and the sized drag together determine how much fuel the mission burns; and the fuel burned changes the takeoff weight you started with. TASOPT resolves this as a fixed-point iteration (or, in several places, as an explicit Newton system — the tail sizing in §4 and the engine off-design solve in §6 are both literal Newton solves nested inside the outer loop).</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Feedback diagram: weight sizes structure, structure sets drag, drag sets thrust, thrust and drag set fuel burn, fuel burn updates weight">
+      <g font-family="IBM Plex Mono" font-size="11.5" fill="var(--ink)">
+        <rect x="20" y="90" width="130" height="46" rx="6" fill="none" stroke="var(--structure)" stroke-width="2"/>
+        <text x="85" y="118" text-anchor="middle">MTOW guess</text>
+
+        <rect x="200" y="20" width="140" height="46" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <text x="270" y="48" text-anchor="middle">Structure &sect;2&ndash;4</text>
+
+        <rect x="380" y="20" width="140" height="46" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <text x="450" y="48" text-anchor="middle">Drag &sect;5</text>
+
+        <rect x="560" y="90" width="120" height="46" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <text x="620" y="118" text-anchor="middle">Engine &sect;6</text>
+
+        <rect x="380" y="164" width="140" height="46" rx="6" fill="none" stroke="var(--structure)" stroke-width="2"/>
+        <text x="450" y="192" text-anchor="middle">Mission &sect;7</text>
+
+        <g stroke="var(--ink-faint)" stroke-width="1.4" fill="none" marker-end="url(#arrow)">
+          <path d="M150 105 C175 70, 175 55, 198 48"/>
+          <path d="M340 43 H378"/>
+          <path d="M520 45 C545 60, 555 75, 562 92"/>
+          <path d="M600 136 C560 175, 540 187, 522 187"/>
+          <path d="M380 190 C300 190, 220 175, 155 135"/>
+        </g>
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink-faint)"/></marker></defs>
+      </g>
+    </svg>
+    <figcaption><b>Figure 2.</b> The outer sizing loop. Every arrow is a real dependency computed by one of the sections above — there's no step where the model falls back to "assume 12% of MTOW."</figcaption>
+  </figure>
+
+  <p>When TASOPT is used not just to analyze one design but to search for a <em>better</em> one, this entire converged loop becomes the inner evaluation of an outer optimizer — varying things like aspect ratio, bypass ratio, cruise altitude, and wing sweep to minimize fuel burn or direct operating cost, subject to constraints like balanced-field length and approach speed.</p>
+</section>
+
+<!-- ================= SECTION 9 ================= -->
+<section id="sec-9">
+  <div class="sec-head"><div class="sec-badge">9</div><div><p class="sec-kicker">Implementation</p><h2 class="sec-title">From equations to code</h2></div></div>
+
+  <p>The companion notebook delivered alongside this page, <code>notebook/tasopt_lite.ipynb</code>, is a from-scratch Python implementation of the sizing loop in §8, built directly from the equations above rather than from TASOPT.jl's source. It sizes a 737-800&#8209;class narrowbody end to end — fuselage and wing structural weight, a dissipation-style drag build-up, a simplified turbofan cycle, and a Breguet mission analysis — iterating MTOW to convergence, and checks the result against the real airplane's public specifications.</p>
+
+  <p>It is deliberately a <em>reduced-order</em> port, not a reimplementation of the full Fortran/Julia codebase, so it's worth being explicit about what was simplified and why:</p>
+
+  <table class="spec">
+    <thead><tr><th>Model piece</th><th>Full TASOPT</th><th>This notebook</th></tr></thead>
+    <tbody>
+      <tr><td>Gas thermodynamics</td><td>Thermally-perfect, \(c_p(T)\) integrated from real species data (Appendix D)</td><td>Calorically-perfect ideal gas, constant \(c_p\) per hot/cold path</td></tr>
+      <tr><td>Engine operation</td><td>8&times;8 Newton solve against calibrated compressor/fan maps at every off-design point (Appendix B)</td><td>Single design-point Brayton cycle; TSFC held fixed off-design</td></tr>
+      <tr><td>Wing/fuselage profile drag</td><td>Transonic-airfoil CFD database + axisymmetric viscous/inviscid fuselage solve (Appendix E)</td><td>Korn-equation wave drag + flat-plate skin friction with a form factor</td></tr>
+      <tr><td>Structural sizing</td><td>Full spanwise shear/bending integration, double-bubble fuselage, strut option (Appendix A)</td><td>Root-bending-moment sparcap sizing; single-bubble pressure shell</td></tr>
+      <tr><td>Mission integration</td><td>Numerically integrated climb/cruise/descent with iterative predictor&ndash;corrector</td><td>Closed-form Breguet cruise + fixed climb/descent weight-fraction allowances</td></tr>
+    </tbody>
+  </table>
+
+  <p>Despite the simplifications, keeping the same <em>structure</em> of the calculation — stress-driven weights, a real (if simplified) thermodynamic cycle, and a physically derived range equation, all iterated to a fixed point — is enough to land within roughly 10&ndash;15% of the public MTOW and wingspan figures for a 737-800&#8209;class aircraft (component-level numbers like OEW and engine thrust individually disagree with the real airplane by more, even as the top-level result lands close — see the notebook's closing section for why), which is about what you'd expect a conceptual-design-level tool to achieve on a type it was never tuned to.</p>
+
+  <p>Everything needed to reproduce this page's numbers lives in this repository:</p>
+  <ul>
+    <li><a href="notebook/tasopt_lite.ipynb"><code>notebook/tasopt_lite.ipynb</code></a> — the notebook itself, pre-executed with real outputs and a comparison chart against the 737-800.</li>
+    <li><a href="notebook/tasopt_lite.py"><code>notebook/tasopt_lite.py</code></a> — the same model as a plain runnable script, for anyone without Jupyter installed.</li>
+  </ul>
+</section>
+
+<div class="cite-box">
+  <div class="lbl">Cite this page as</div>
+  <pre>Morlier, J., "Weight, Drag, Thrust, Range: a pedagogical walkthrough of TASOPT",
+2026. Adapted from M. Drela, TASOPT 2.00 Technical Description, MIT, 2010.
+Available at: https://github.com/&lt;your-username&gt;/&lt;your-repo&gt;</pre>
+</div>
+
+<!-- ================= REFERENCES ================= -->
+<section id="sec-refs">
+  <div class="sec-head"><div class="sec-badge">&nbsp;</div><div><p class="sec-kicker">Further reading</p><h2 class="sec-title">Notes &amp; references</h2></div></div>
+  <footer style="margin:0;max-width:700px;">
+    <ol>
+      <li>M. Drela, <i>TASOPT 2.00 &mdash; Transport Aircraft System OPTimization: Technical Description</i>, MIT, 2010. The primary source for this entire page.</li>
+      <li>M. Drela, "Power Balance in Aerodynamic Flows," <i>AIAA Journal</i> 47(7), 2009 &mdash; the dissipation/power-balance reframing used throughout §5, §6, and §7.</li>
+      <li>MIT-LAE, <code>TASOPT.jl</code> &mdash; the actively maintained Julia reimplementation of this model, github.com/MIT-LAE/TASOPT.jl.</li>
+      <li>J.L. Kerrebrock, <i>Aircraft Engines and Gas Turbines</i>, 2nd ed., MIT Press, 1996 &mdash; the turbofan component formulation §6 is based on.</li>
+      <li>M. Drela, "XFOIL: An Analysis and Design System for Low Reynolds Number Airfoils," 1989 &mdash; the viscous/inviscid method underlying the fuselage drag calculation in Appendix E.</li>
+    </ol>
+    <div class="colophon">Figures and interactive calculators on this page are original recreations built from the cited equations, not reproductions of the source document's figures. Set in Libre Franklin, PT Serif, and IBM Plex Mono. Math set with <a href="https://katex.org">KaTeX</a>. Page and companion notebook drafted with assistance from <a href="https://claude.com">Claude</a>.</div>
+  </footer>
+</section>
+
+</main>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.renderMathInElement) {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "\\[", right: "\\]", display: true},
+        {left: "\\(", right: "\\)", display: false}
+      ],
+      throwOnError: false
+    });
+  }
+
+  /* ---------------- Widget 1: fuselage pressure vessel ---------------- */
+  (function(){
+    const rf = document.getElementById('rf'), dp = document.getElementById('dp');
+    const rfVal = document.getElementById('rf-val'), dpVal = document.getElementById('dp-val');
+    const outT = document.getElementById('out-t'), outS = document.getElementById('out-s');
+    const outM = document.getElementById('out-m'), outMtot = document.getElementById('out-mtot');
+    const outerCircle = document.getElementById('fuse-outer');
+    const sigma = 103e6, rho = 2700, fstring=0.35, fframe=0.25, fadd=0.20;
+
+    function update(){
+      const R = parseFloat(rf.value), dpk = parseFloat(dp.value);
+      rfVal.textContent = R.toFixed(2) + ' m';
+      dpVal.textContent = dpk.toFixed(1) + ' kPa';
+      const dpPa = dpk*1000;
+      const t = dpPa*R/sigma;           // m
+      const t_mm = t*1000;
+      const sigmaAxial = sigma/2;
+      const Askin = 2*Math.PI*R*t;      // m^2
+      const massPerLen = rho*Askin*(1+fstring+fframe+fadd);
+      outT.innerHTML = t_mm.toFixed(2) + ' <small>mm</small>';
+      outS.innerHTML = (sigma/1e6).toFixed(0) + ' / ' + (sigmaAxial/1e6).toFixed(0) + ' <small>MPa</small>';
+      outM.innerHTML = massPerLen.toFixed(1) + ' <small>kg/m</small>';
+      outMtot.innerHTML = (massPerLen*34).toFixed(0) + ' <small>kg</small>';
+
+      const rPix = 40 + (R-1.6)/(2.5-1.6)*75;
+      const tPix = 2 + (t_mm/1.6)*40;
+      outerCircle.setAttribute('r', rPix.toFixed(1));
+      outerCircle.setAttribute('stroke-width', tPix.toFixed(1));
+    }
+    rf.addEventListener('input', update); dp.addEventListener('input', update);
+    update();
+  })();
+
+  /* ---------------- Widget 2: aspect ratio trade ---------------- */
+  (function(){
+    const ar = document.getElementById('ar'), tc = document.getElementById('tc'), ssens = document.getElementById('ssens');
+    const arVal = document.getElementById('ar-val'), tcVal = document.getElementById('tc-val'), sVal = document.getElementById('s-val');
+    const arW = document.getElementById('ar-w'), arD = document.getElementById('ar-d'), arT = document.getElementById('ar-t'), arOpt = document.getElementById('ar-opt');
+    const svg = document.getElementById('ar-svg');
+
+    function structRel(AR, tcv){ return Math.pow(AR/10,2)*(0.12/tcv); }
+    function dragRel(AR){ return 10/AR; }
+
+    function render(){
+      const A = parseFloat(ar.value), TC = parseFloat(tc.value), S = parseFloat(ssens.value);
+      arVal.textContent = A.toFixed(1);
+      tcVal.textContent = TC.toFixed(3);
+      sVal.textContent = S.toFixed(2);
+
+      const w = structRel(A,TC), d = dragRel(A), tot = S*w + (1-S)*d;
+      arW.textContent = w.toFixed(2) + '×';
+      arD.textContent = d.toFixed(2) + '×';
+      arT.textContent = tot.toFixed(2);
+
+      // analytic optimum of S*(AR/10)^2*(0.12/TC) + (1-S)*10/AR
+      let optTxt = '—';
+      if (S > 0.001 && S < 0.999){
+        const k = 2*S*(0.12/TC)/100;
+        const AR3 = (1-S)*10/k;
+        let optAR = Math.cbrt(AR3);
+        if (optAR < 6 || optAR > 14){ optTxt = optAR.toFixed(1) + ' (off chart)'; }
+        else { optTxt = optAR.toFixed(1); }
+      } else if (S <= 0.001){ optTxt = '> 14 (drag-only)'; }
+      else { optTxt = '< 6 (weight-only)'; }
+      arOpt.textContent = optTxt;
+
+      // draw chart
+      const W = 660, H = 260, ML=46, MR=16, MT=16, MB=34;
+      const plotW = W-ML-MR, plotH = H-MT-MB;
+      const arMin=6, arMax=14;
+      const yMax = 3.2;
+      function x(v){ return ML + (v-arMin)/(arMax-arMin)*plotW; }
+      function y(v){ return MT + plotH - Math.min(v,yMax)/yMax*plotH; }
+
+      let structPts='', dragPts='', totPts='';
+      for(let a=arMin; a<=arMax+1e-9; a+=0.2){
+        structPts += x(a)+','+y(structRel(a,TC))+' ';
+        dragPts += x(a)+','+y(dragRel(a))+' ';
+        totPts += x(a)+','+y(S*structRel(a,TC)+(1-S)*dragRel(a))+' ';
+      }
+
+      let svgContent = '';
+      svgContent += '<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="var(--paper)"/>';
+      // axes
+      svgContent += '<line x1="'+ML+'" y1="'+(MT+plotH)+'" x2="'+(ML+plotW)+'" y2="'+(MT+plotH)+'" stroke="var(--line)"/>';
+      svgContent += '<line x1="'+ML+'" y1="'+MT+'" x2="'+ML+'" y2="'+(MT+plotH)+'" stroke="var(--line)"/>';
+      [6,8,10,12,14].forEach(function(v){
+        svgContent += '<text x="'+x(v)+'" y="'+(MT+plotH+16)+'" font-size="10" text-anchor="middle">'+v+'</text>';
+      });
+      svgContent += '<text x="'+(ML+plotW/2)+'" y="'+(H-4)+'" font-size="10" text-anchor="middle" fill="var(--ink-faint)">aspect ratio</text>';
+      svgContent += '<text x="12" y="'+MT+'" font-size="10" fill="var(--ink-faint)">rel.</text>';
+
+      svgContent += '<polyline points="'+structPts+'" fill="none" stroke="var(--structure)" stroke-width="2"/>';
+      svgContent += '<polyline points="'+dragPts+'" fill="none" stroke="var(--accent)" stroke-width="2"/>';
+      svgContent += '<polyline points="'+totPts+'" fill="none" stroke="var(--ink-faint)" stroke-width="1.6" stroke-dasharray="5 4"/>';
+
+      // current AR marker
+      svgContent += '<line x1="'+x(A)+'" y1="'+MT+'" x2="'+x(A)+'" y2="'+(MT+plotH)+'" stroke="var(--ink-faint)" stroke-dasharray="2 3"/>';
+      svgContent += '<circle cx="'+x(A)+'" cy="'+y(w)+'" r="4" fill="var(--structure)"/>';
+      svgContent += '<circle cx="'+x(A)+'" cy="'+y(d)+'" r="4" fill="var(--accent)"/>';
+
+      // legend
+      const lx = ML+plotW-215, ly = MT+8;
+      svgContent += '<rect x="'+lx+'" y="'+ly+'" width="14" height="3" fill="var(--structure)"/><text x="'+(lx+20)+'" y="'+(ly+5)+'" font-size="10">structural weight</text>';
+      svgContent += '<rect x="'+lx+'" y="'+(ly+16)+'" width="14" height="3" fill="var(--accent)"/><text x="'+(lx+20)+'" y="'+(ly+21)+'" font-size="10">induced drag</text>';
+      svgContent += '<rect x="'+lx+'" y="'+(ly+32)+'" width="14" height="3" fill="var(--ink-faint)"/><text x="'+(lx+20)+'" y="'+(ly+37)+'" font-size="10">combined merit</text>';
+
+      svg.innerHTML = svgContent;
+    }
+    ar.addEventListener('input', render); tc.addEventListener('input', render); ssens.addEventListener('input', render);
+    render();
+  })();
+
+  /* ---------------- Widget 3: Breguet range ---------------- */
+  (function(){
+    const ld = document.getElementById('ld'), tsfc = document.getElementById('tsfc'), mach = document.getElementById('mach'), wr = document.getElementById('wr');
+    const ldVal = document.getElementById('ld-val'), tsfcVal = document.getElementById('tsfc-val'), machVal = document.getElementById('mach-val'), wrVal = document.getElementById('wr-val');
+    const outV = document.getElementById('out-v'), outR = document.getElementById('out-r');
+    const a35k = 295.07; // m/s, speed of sound at 35,000 ft ISA
+
+    function update(){
+      const LD = parseFloat(ld.value), T = parseFloat(tsfc.value), M = parseFloat(mach.value), WR = parseFloat(wr.value);
+      ldVal.textContent = LD.toFixed(1);
+      tsfcVal.textContent = T.toFixed(3) + ' /hr';
+      machVal.textContent = M.toFixed(3);
+      wrVal.textContent = WR.toFixed(2);
+
+      const V = M*a35k; // m/s
+      outV.innerHTML = (V*3.6).toFixed(0) + ' <small>km/h</small> &middot; ' + (V*1.9438).toFixed(0) + ' <small>kt</small>';
+
+      const TSFCperSec = T/3600;
+      const R_m = (V/TSFCperSec)*LD*Math.log(WR);
+      const R_km = R_m/1000, R_nmi = R_km/1.852;
+      outR.innerHTML = R_km.toFixed(0) + ' <small>km</small> &middot; ' + R_nmi.toFixed(0) + ' <small>nmi</small>';
+    }
+    ld.addEventListener('input', update); tsfc.addEventListener('input', update); mach.addEventListener('input', update); wr.addEventListener('input', update);
+    update();
+  })();
+
+  /* ---------------- Widget 4: engine station explorer ---------------- */
+  (function(){
+    const stations = [
+      {id:'0',  x:70,  y:59, Tt:'244 K', pr:'1.53', desc:'Freestream stagnation conditions: M0 = 0.78 at 35,000 ft ISA.'},
+      {id:'2',  x:158, y:59, Tt:'244 K', pr:'1.50', desc:'Fan / LPC face, just past a near-lossless inlet.'},
+      {id:'2.1',x:200, y:30, Tt:'278 K', pr:'2.25', desc:'Fan exit, after &pi;<sub>f</sub> = 1.5 &mdash; feeds the bypass duct.'},
+      {id:'2.5',x:225, y:63, Tt:'285 K', pr:'2.40', desc:'HPC face, after the LPC/booster (&pi;<sub>lc</sub> = 1.6).'},
+      {id:'3',  x:272, y:63, Tt:'673 K', pr:'36.0', desc:'HPC exit &mdash; this sets the engine’s overall pressure ratio, OPR = 36.'},
+      {id:'4',  x:320, y:63, Tt:'1450 K', pr:'34.6', desc:'Combustor exit / turbine inlet temperature &mdash; the single number that drives cycle efficiency and turbine cooling demand.'},
+      {id:'4.5',x:390, y:63, Tt:'1110 K', pr:'10.3', desc:'After the HPT, whose entire job is to drive the HPC.'},
+      {id:'4.9',x:420, y:63, Tt:'812 K', pr:'2.50', desc:'After the LPT, whose entire job is to drive the fan and LPC.'},
+      {id:'6',  x:460, y:59, Tt:'≈812 K', pr:'≈2.45†', desc:'Core exhaust. &dagger;Pressure ratio here exceeds the choking ratio, so the core nozzle runs choked (M6 = 1).'},
+      {id:'7',  x:400, y:24, Tt:'278 K', pr:'≈2.2†', desc:'Fan nozzle exit. &dagger;Also choked at this cruise point &mdash; typical for a high-bypass fan.'}
+    ];
+    const g = document.getElementById('eng-stations');
+    const info = document.getElementById('station-info');
+    let dots = {};
+    stations.forEach(function(s){
+      const grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+      grp.setAttribute('class','station-dot');
+      grp.innerHTML = '<circle cx="'+s.x+'" cy="'+s.y+'" r="6"></circle><text x="'+s.x+'" y="'+(s.y-9)+'" text-anchor="middle">'+s.id+'</text>';
+      grp.addEventListener('click', function(){ select(s.id); });
+      g.appendChild(grp);
+      dots[s.id]=grp;
+    });
+    function select(id){
+      const s = stations.find(function(x){return x.id===id;});
+      Object.values(dots).forEach(function(d){ d.classList.remove('active'); });
+      dots[id].classList.add('active');
+      info.innerHTML = '<div class="lbl">station '+s.id+'</div><div class="desc">'+s.desc+'</div><div class="nums">T<sub>t</sub> = '+s.Tt+' &nbsp;&middot;&nbsp; p<sub>t</sub>/p<sub>0</sub> = '+s.pr+'</div>';
+    }
+    select('4');
+  })();
+});
+</script>
+</body>
+</html>
