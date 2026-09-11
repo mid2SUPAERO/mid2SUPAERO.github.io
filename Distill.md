@@ -22,7 +22,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [Everything on Ashby's maps (DRAFT UNCORRECTED)](/ashby_maps)
+### [Everything on Ashby's maps (DRAFT UNCORRECTED)](/ashby-maps/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** September 2026
 
