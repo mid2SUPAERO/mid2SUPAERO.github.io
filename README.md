@@ -18,9 +18,9 @@ team.md              PhD students, postdocs, visiting researchers, alumni link
 teaching.md          courses / teaching material
 publications.md      publication links (wire up jekyll-scholar for a real list)
 blog.md              full post listing
+LearnwithAI.md       Some Claude ap in Mechanics and Optimization
 CodingwithAI.md      Rewrite old code, start coding using papers and Claude
 _posts/              posts (one .md file per post)
 _notebooks/          Associated with CodingwithAI (one .md file per post)
 assets/css/style.scss theme override (built on the built-in "minima" theme)
 ```
-
