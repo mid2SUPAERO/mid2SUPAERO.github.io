@@ -5,8 +5,6 @@ permalink: /CodingwithAI.html
 ---
 
 
-
-
 💻 “Vibe Coding”
 As AI assistants are transforming the way we write software, I want to explore a simple question:
 Can we faithfully recreate scientific software directly from published papers?
@@ -57,14 +55,6 @@ parameters and loads has been developed.
 
 * **Link:** [Play with the vibecode, it works on colab](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/REMAL_CasADi.ipynb)
 
-
----
-
-### Claude.ai in mechanics and optimization
-* **Authors:** Several different authors
-* **Links:** [Deformation gradient explorer](https://claude.ai/artifact/VZdZJsmaQTK13KTiFdVCQC)
-* **Link:** [Cauchy stress explorer](https://claude.ai/artifact/HM8QH4gAooM1RmCQ6Jv28M)
-* **Link:** [Beat the gradient optimizer to the minimum](https://claude.ai/artifact/Mu5jhuFeicPSJP9CycP6Tw)
 
 ---
 
