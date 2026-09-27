@@ -60,7 +60,14 @@ parameters and loads has been developed.
 
 ---
 
+### Claude.ai in mechanics and optimization
+* **Authors:** Several different authors
+* **Links:** [Deformation gradient explorer](https://claude.ai/artifact/VZdZJsmaQTK13KTiFdVCQC)
+* **Link:** [Cauchy stress explorer](https://claude.ai/artifact/HM8QH4gAooM1RmCQ6Jv28M)
+* **Link:** [Beat the gradient optimizer to the minimum](https://claude.ai/artifact/Mu5jhuFeicPSJP9CycP6Tw)
+
 ---
+
 
 ### Recreation with my friend NotebookLM (Gemini)
 * **Authors:** J.Morlier and students
