@@ -38,6 +38,15 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
+### [Mapping the Ecolyser (DRAFT UNCORRECTED)](/ecolizer-vae/)
+* **Authors:** Joseph Morlier and Claude
+* **Published:** november 2026
+
+**Summary:** This article continues Ashby's Maps and Ashby's Maps, Renewed. There, the price axis of a classical materials chart was replaced by an environmental one, and a variational autoencoder (VAE) replaced the two-axis chart by a continuous map. Here we apply both ideas to real environmental data: the Ecolizer 2.0
+[1] , a booklet published by the Flemish waste agency OVAM for designers who want to estimate the environmental impact of a product. Every figure on this page is interactive and runs in your browser; the models were trained in a companion notebook.
+
+---
+
 
 ### [Weight, Drag, Thrust, Range (DRAFT UNCORRECTED)](/tasopt/)
 * **Authors:** Joseph Morlier and Claude
