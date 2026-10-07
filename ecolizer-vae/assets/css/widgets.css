@@ -1,0 +1,105 @@
+/* Widgets for "Mapping the Ecolizer" (Distill article) */
+:root {
+  --eco-ink: #1d2330; --eco-muted: #6b7280; --eco-line: #d9dce2; --eco-soft: #f5f6f8; --eco-acc: #9A3A2F; --eco-teal: #2FA3AD; --eco-blue: #2A6FB0;
+}
+.eco-fig { margin: 2.2rem 0; font-size: 14px; color: var(--eco-ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.eco-fig .cap { font-size: 13px; color: #444; line-height: 1.45; margin-top: 10px; }
+.eco-fig .cap b { color: var(--eco-ink); }
+.eco-fig .dim, .eco-tip .dim { color: var(--eco-muted); }
+.eco-controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-bottom: 10px; }
+.eco-controls select, .eco-controls input[type=search], .eco-controls input[type=number] {
+  font: inherit; padding: 6px 9px; border: 1px solid var(--eco-line); border-radius: 6px; background: #fff; color: var(--eco-ink); max-width: 100%;
+}
+.eco-controls select.wide { min-width: 230px; }
+.eco-controls input[type=number] { width: 90px; }
+.eco-controls .inl, .eco-controls .chk { display: inline-flex; align-items: center; gap: 6px; color: #333; }
+.eco-controls .inl b { min-width: 3.2em; font-variant-numeric: tabular-nums; }
+.eco-controls .unit { color: var(--eco-muted); }
+.eco-seg { display: inline-flex; align-items: center; border: 1px solid var(--eco-line); border-radius: 6px; overflow: hidden; background: #fff; }
+.eco-seg .lab { padding: 6px 9px; color: var(--eco-muted); background: var(--eco-soft); border-right: 1px solid var(--eco-line); }
+.eco-seg button { font: inherit; border: 0; background: #fff; padding: 6px 11px; cursor: pointer; color: #333; border-right: 1px solid var(--eco-line); }
+.eco-seg button:last-child { border-right: 0; }
+.eco-seg button:hover { background: var(--eco-soft); }
+.eco-seg button.on { background: var(--eco-ink); color: #fff; }
+button.act { font: inherit; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--eco-acc); background: var(--eco-acc); color: #fff; cursor: pointer; }
+button.act.sec { background: #fff; color: var(--eco-acc); }
+button.act:hover { filter: brightness(1.08); }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--eco-blue); outline-offset: 1px; }
+.eco-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.eco-chips .chip { font: inherit; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--eco-line); background: #fff; color: var(--eco-muted); cursor: pointer; }
+.eco-chips .chip i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; opacity: .35; }
+.eco-chips .chip.on { color: var(--eco-ink); border-color: #b9bdc6; background: var(--eco-soft); }
+.eco-chips .chip.on i { opacity: 1; }
+.eco-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.eco-svg text { font-family: inherit; }
+.eco-svg .lab { font-size: 12px; fill: #333; }
+.eco-svg .val { font-size: 12px; fill: var(--eco-ink); font-variant-numeric: tabular-nums; font-weight: 600; }
+.eco-svg .axl { font-size: 12px; fill: var(--eco-muted); }
+.eco-svg .mini-l { font-size: 10px; fill: var(--eco-muted); }
+.eco-svg .axis path, .eco-svg .axis line { stroke: #c5c9d1; }
+.eco-svg .axis text { fill: var(--eco-muted); font-size: 11px; }
+.eco-note { font-size: 12.5px; color: var(--eco-muted); margin-top: 8px; line-height: 1.45; }
+.eco-rank { max-height: 640px; overflow-y: auto; border-top: 1px solid var(--eco-line); }
+.eco-two { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.eco-side h5 { margin: 0 0 6px; font-size: 13px; }
+.eco-side ol { margin: 0; padding: 0; list-style: none; }
+.eco-side li { display: flex; align-items: center; gap: 7px; padding: 4px 0; border-bottom: 1px solid #eceef2; font-size: 13px; }
+.eco-side li i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.eco-side li span { margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 600; }
+.eco-side p { font-size: 12px; margin-top: 8px; }
+.eco-equiv { margin-top: 10px; padding: 10px 12px; background: var(--eco-soft); border-radius: 6px; font-size: 13px; line-height: 1.5; }
+
+/* latent map */
+.lm-wrap { position: relative; width: 100%; max-width: 640px; aspect-ratio: 1 / 1; margin: 0 auto; border: 1px solid var(--eco-line); border-radius: 4px; overflow: hidden; background: #fff; }
+.lm-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: auto; }
+.lm-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+.lm-hit { cursor: crosshair; }
+.lm-tick { font-size: 11px; fill: rgba(255,255,255,.95); paint-order: stroke; stroke: rgba(0,0,0,.45); stroke-width: 2.5px; }
+.lm-axl { font-size: 13px; fill: #fff; font-weight: 700; paint-order: stroke; stroke: rgba(0,0,0,.5); stroke-width: 3px; }
+.lm-legend { max-width: 640px; margin: 10px auto 14px; }
+.lm-title { font-size: 13px; margin-bottom: 4px; }
+.lm-bar { height: 10px; border-radius: 3px; }
+.lm-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--eco-muted); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.map-info { max-width: 640px; margin: 12px auto 0; padding: 10px 12px; background: var(--eco-soft); border-radius: 6px; line-height: 1.5; font-size: 13px; }
+.dec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px 12px; margin: 6px 0; }
+.dec-grid div { display: flex; flex-direction: column; font-size: 12.5px; }
+.dec-grid span { color: var(--eco-muted); font-size: 11.5px; }
+.dec-grid b { font-size: 15px; font-variant-numeric: tabular-nums; }
+.dec-idx { margin: 4px 0; font-size: 13px; }
+.dec-nn { margin-top: 6px; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; margin-right: 4px; }
+.badge.ok { background: #dff0e3; color: #1f6b3a; }
+.badge.warn { background: #fbe3d3; color: #98441a; }
+.ro-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; font-size: 14px; }
+.ro-row .arrow { color: var(--eco-muted); }
+.ro-row span:not(.arrow):not(.dim) { color: var(--eco-muted); font-size: 12px; }
+.ro-row b { font-size: 17px; font-variant-numeric: tabular-nums; }
+
+/* VAE demo */
+.demo-two { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+.eco-svg.demo .lab { font-size: 13px; }
+.eco-svg.demo .val { font-size: 13px; }
+.demo-left .slider { display: grid; grid-template-columns: 74px 1fr; align-items: center; gap: 8px; margin-bottom: 6px; }
+.demo-left .slider label b { margin-left: 4px; font-variant-numeric: tabular-nums; }
+.demo-left input[type=range] { width: 100%; accent-color: var(--eco-acc); }
+.demo-mini { max-width: 340px; margin-top: 8px; }
+.demo-mini svg { touch-action: none; }
+.demo-readout { margin-top: 8px; padding: 10px 12px; background: var(--eco-soft); border-radius: 6px; line-height: 1.5; font-size: 13px; }
+.controls input[type=range] { accent-color: var(--eco-acc); }
+.eco-controls input[type=range] { accent-color: var(--eco-acc); }
+
+.eco-tip { position: absolute; display: none; z-index: 1000; pointer-events: none; background: rgba(20,24,31,.95); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 12px; line-height: 1.45; max-width: 280px; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+.eco-tip .dim { color: #b4bac6; }
+
+/* article extras */
+.eco-callout { border-left: 3px solid var(--eco-acc); background: #fbf5f4; padding: 10px 14px; margin: 1.4rem 0; font-size: 15.5px; line-height: 1.55; }
+.eco-callout b { color: var(--eco-acc); }
+table.eco-t { border-collapse: collapse; font-size: 14px; margin: 1rem 0; }
+table.eco-t th, table.eco-t td { padding: 5px 10px; border-bottom: 1px solid #e5e7eb; text-align: right; font-variant-numeric: tabular-nums; }
+table.eco-t th:first-child, table.eco-t td:first-child { text-align: left; }
+table.eco-t th { font-weight: 600; border-bottom: 2px solid #c5c9d1; }
+
+@media (max-width: 760px) {
+  .eco-two { grid-template-columns: 1fr; }
+  .eco-controls select.wide { min-width: 0; width: 100%; }
+}

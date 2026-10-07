@@ -1,0 +1,295 @@
+sheet,page,code,process,unit_per,mPt,generic
+Iron,24,01.01,Zinc coating (coils),m²,735.0,1
+Iron,24,01.01,"Drilling, CNC*",kg,311.0,0
+Iron,24,01.01,"Drilling, conventional",kg,293.0,0
+Iron,24,01.01,"Turning, CNC*",kg,357.0,0
+Iron,24,01.01,"Turning, conventional",kg,300.0,0
+Iron,24,01.01,Enamelling,m²,841.0,1
+Iron,24,01.01,Milling,kg,310.0,0
+Iron,24,01.01,"Zinc coating, pieces",m²,671.0,1
+Iron,24,01.01,"Casting, mechanical",kg,168.0,0
+Iron,24,01.01,"Casting (sand, mechanical)",kg,77.0,0
+Stainless,25,01.02,"Drilling, CNC*",kg,708.0,0
+Stainless,25,01.02,"Drilling, conventional",kg,672.0,0
+Stainless,25,01.02,Bending,cm,2.0,0
+Stainless,25,01.02,"Deep drawing, automode operation",kg,26.0,1
+Stainless,25,01.02,"Deep drawing, 650 kN press, single stroke operation",kg,28.0,1
+Stainless,25,01.02,"Deep drawing, 3500 kN press, single stroke operation",kg,30.0,1
+Stainless,25,01.02,"Deep drawing, 10000 kN press, single stroke operation",kg,36.0,1
+Stainless,25,01.02,"Deep drawing, 38000 kN press, single stroke operation",kg,38.0,1
+Stainless,25,01.02,"Turning, CNC*",kg,789.0,0
+Stainless,25,01.02,"Turning, conventional",kg,682.0,0
+Stainless,25,01.02,Enamelling,m²,841.0,1
+Stainless,25,01.02,Milling,kg,704.0,0
+Stainless,25,01.02,Stamping,kg,40.0,1
+Stainless,25,01.02,Spot welding,pt,1.0,1
+Stainless,25,01.02,"Black chrome coating, plate/m² (only Cr3 tolerated)",,58.0,0
+Stainless,25,01.02,Sheet rolling,kg,59.0,0
+Ferrochromium,27,01.04,"Zinc coating, coils",m²,735.0,1
+Ferrochromium,27,01.04,"Drilling, CNC*",kg,311.0,1
+Ferrochromium,27,01.04,"Drilling, conventional",kg,293.0,1
+Ferrochromium,27,01.04,"Turning, CNC*",kg,357.0,1
+Ferrochromium,27,01.04,"Turning, conventional",kg,300.0,1
+Ferrochromium,27,01.04,Enamelling,m²,841.0,1
+Ferrochromium,27,01.04,Milling,kg,310.0,1
+Ferrochromium,27,01.04,"Industrial Casting/kg (casting, sand, mechanized)",,77.0,1
+Ferrochromium,27,01.04,"Zinc coating, pieces",m²,671.0,1
+Ferrochromium,27,01.04,"Casting (sand), mechanical",kg,168.0,1
+Ferronickel,28,01.05,Zinc coating (coils),m²,735.0,1
+Ferronickel,28,01.05,"Drilling, CNC*",kg,311.0,1
+Ferronickel,28,01.05,"Drilling, conventional",kg,293.0,1
+Ferronickel,28,01.05,"Turning, CNC",kg,357.0,1
+Ferronickel,28,01.05,"Turning, conventional",kg,300.0,1
+Ferronickel,28,01.05,Enamelling,m²,841.0,1
+Ferronickel,28,01.05,Milling,kg,310.0,1
+Ferronickel,28,01.05,"Industrial Casting/kg (casting, sand, mechanized)",,77.0,1
+Ferronickel,28,01.05,"Zinc coating, pieces",m²,671.0,1
+Ferronickel,28,01.05,Casting (sand),kg,168.0,1
+Aluminium,30,02.01,Anodising,m²,338.0,0
+Aluminium,30,02.01,Welding,m,18.0,0
+Aluminium,30,02.01,"Drilling, CNC*",kg,868.0,0
+Aluminium,30,02.01,"Drilling, conventional",kg,848.0,0
+Aluminium,30,02.01,Bending,cm,0.8,0
+Aluminium,30,02.01,"Deep drawing, automode operation",kg,26.0,1
+Aluminium,30,02.01,"Turning, CNC*",kg,942.0,0
+Aluminium,30,02.01,"Turning, conventional",kg,861.0,0
+Aluminium,30,02.01,Sheet rolling,kg,11.0,1
+Aluminium,30,02.01,Enamelling,m²,841.0,1
+Aluminium,30,02.01,Milling,kg,874.0,0
+Aluminium,30,02.01,"Casting, continuous casting",kg,382.0,0
+Aluminium,30,02.01,"Casting, sand, low pressure",kg,27.0,0
+Aluminium,30,02.01,Stamping,kg,40.0,1
+Aluminium,30,02.01,Powder coating,m²,337.0,0
+Aluminium,30,02.01,Section bar extrusion,kg,92.0,0
+Aluminium,30,02.01,Spot welding,pt,4.7,0
+Aluminium,30,02.01,"Cold impact extrusion, 1 stroke",kg,75.0,0
+Aluminium,30,02.01,"Cold impact extrusion, every extra stroke",kg,27.0,0
+Aluminium,30,02.01,Selective coating of plate – nickle-‐ aluminium oxide,m²,550.0,0
+Aluminium,30,02.01,Punching/cutting,cm²,0.0064,0
+Aluminium,30,02.01,Sheet rolling,kg,53.0,0
+Aluminium,30,02.01,Ultrasonic welding,m,0.17,1
+Bronze,31,02.02,"Drilling, CNC*",kg,787.0,1
+Bronze,31,02.02,"Drilling, conventional",kg,772.0,1
+Bronze,31,02.02,"Turning, CNC*",kg,830.0,1
+Bronze,31,02.02,"Turning, conventional",kg,780.0,1
+Bronze,31,02.02,Sheet rolling,kg,11.0,1
+Bronze,31,02.02,Enamelling,m²,841.0,1
+Bronze,31,02.02,Stamping,kg,40.0,1
+Bronze,31,02.02,Ultrasonic welding,m,0.17,1
+Copper,32,02.03,"Drilling, CNC*",kg,787.0,1
+Copper,32,02.03,"Drilling, conventional",kg,772.0,1
+Copper,32,02.03,Selective coating of plate- titanium nitride oxide,m²,69.0,0
+Copper,32,02.03,Wire drawing,kg,209.0,0
+Copper,32,02.03,"Turning, CNC*",kg,830.0,1
+Copper,32,02.03,"Turning, conventional",kg,780.0,1
+Copper,32,02.03,Sheet rolling,kg,11.0,1
+Copper,32,02.03,Enamelling,m²,841.0,1
+Copper,32,02.03,Stamping,kg,40.0,1
+Copper,32,02.03,Ultrasonic welding,m,0.17,1
+Copper,32,02.03,"Black chrome coating, plate",m²,237.0,0
+Copper,32,02.03,Sheet rolling,kg,127.0,0
+Brass,33,02.04,"Drilling, CNC*",kg,787.0,0
+Brass,33,02.04,"Drilling, conventional",kg,772.0,0
+Brass,33,02.04,"Turning, CNC*",kg,830.0,0
+Brass,33,02.04,"Turning, conventional",kg,780.0,0
+Brass,33,02.04,Sheet rolling,kg,11.0,1
+Brass,33,02.04,Enamelling,m²,841.0,1
+Brass,33,02.04,Stamping,kg,40.0,1
+Brass,33,02.04,Ultrasonic welding,m,0.17,1
+Tin,34,02.05,"Drilling, CNC*",kg,787.0,1
+Tin,34,02.05,"Drilling, conventional",kg,772.0,1
+Tin,34,02.05,"Turning, CNC*",kg,830.0,1
+Tin,34,02.05,"Turning, conventional",kg,780.0,1
+Tin,34,02.05,Sheet rolling,kg,11.0,1
+Tin,34,02.05,Enamelling,m²,841.0,1
+Tin,34,02.05,Stamping,kg,40.0,1
+Tin,34,02.05,Ultrasonic welding,m,0.17,1
+ABS,37,03.01,"Revolving, milling, drilling",cm³,0.01,1
+ABS,37,03.01,Hot element welding (30sec),welding,2.0,1
+ABS,37,03.01,Hot element welding (45min),welding,155.0,1
+ABS,37,03.01,"Extrusion, plastic film",kg,49.0,1
+ABS,37,03.01,"Extrusion, plastic pipes",kg,36.0,1
+ABS,37,03.01,Stretch blow moulding,kg,131.0,1
+ABS,37,03.01,Blow moulding,kg,123.0,1
+ABS,37,03.01,Laser welding,m,0.46,1
+ABS,37,03.01,Foaming,kg,60.0,1
+ABS,37,03.01,Rotation Forming,kg,106.0,1
+ABS,37,03.01,Injection moulding,kg,126.0,1
+ABS,37,03.01,Ultrasonic welding (15kHz),welding,0.04,1
+ABS,37,03.01,Ultrasonic welding (20kHz),welding,0.02,1
+ABS,37,03.01,Ultrasonic welding (40kHz),welding,0.01,1
+EVA,38,03.02,"Revolving, milling, drilling",cm³,0.01,1
+EVA,38,03.02,"Extrusion, plastic film",kg,49.0,1
+EVA,38,03.02,"Extrusion, plastic pipes",kg,36.0,1
+EVA,38,03.02,Stretch blow moulding,kg,131.0,1
+EVA,38,03.02,Blow moulding,kg,123.0,1
+EVA,38,03.02,Hot element welding (30sec),,2.0,1
+EVA,38,03.02,Hot element welding (45min),,155.0,1
+EVA,38,03.02,Laser welding,m,0.46,1
+EVA,38,03.02,Foaming,kg,60.0,1
+EVA,38,03.02,"Reaction injection moulding (RIM)/kg, large scale",kg,21.0,1
+EVA,38,03.02,Rotation Forming,kg,106.0,1
+EVA,38,03.02,Injection moulding,kg,126.0,1
+EVA,38,03.02,Ultrasonic welding (15kHz),welding,0.04,1
+EVA,38,03.02,Ultrasonic welding (20kHz),welding,0.02,1
+EVA,38,03.02,Ultrasonic welding (40kHz),welding,0.01,1
+PA,39,03.03,"Revolving, milling, drilling",cm³,0.01,1
+PA,39,03.03,"Extrusion, plastic film",kg,49.0,1
+PA,39,03.03,"Extrusion, plastic pipes",kg,36.0,1
+PA,39,03.03,Hot element welding (30sec),welding,2.0,1
+PA,39,03.03,Hot element welding (45min),welding,155.0,1
+PA,39,03.03,Laser welding,m,0.46,1
+PA,39,03.03,Foaming,kg,60.0,1
+PA,39,03.03,"Reaction injection moulding (RIM), large scale",kg,21.0,1
+PA,39,03.03,Rotation Forming,kg,106.0,1
+PA,39,03.03,Injection moulding,kg,126.0,1
+PA,39,03.03,Ultrasonic welding (15kHz),welding,0.04,1
+PA,39,03.03,Ultrasonic welding (20kHz),welding,0.02,1
+PA,39,03.03,Ultrasonic welding (40kHz),welding,0.01,1
+PA,39,03.03,Vacuum forming,kg,16.0,1
+PC,40,03.04,"Revolving, milling, drilling",cm³,0.01,1
+PC,40,03.04,"Extrusion, plastic pipes",kg,36.0,1
+PC,40,03.04,Hot element welding (30sec),welding,2.0,1
+PC,40,03.04,Hot element welding (45min),welding,155.0,1
+PC,40,03.04,Laser welding,m,0.46,1
+PC,40,03.04,Foaming,kg,60.0,1
+PC,40,03.04,"Reaction injection moulding (RIM), large scale",kg,21.0,1
+PC,40,03.04,Rotation Forming,kg,106.0,1
+PC,40,03.04,Injection moulding,kg,126.0,1
+PC,40,03.04,Ultrasonic welding (15kHz),welding,0.04,1
+PC,40,03.04,Ultrasonic welding (20kHz),welding,0.02,1
+PC,40,03.04,Ultrasonic welding (40kHz),welding,0.01,1
+PE,41,03.05,"Revolving, milling, drilling",cm³,0.01,1
+PE,41,03.05,"Extrusion, plastic film",kg,49.0,0
+PE,41,03.05,"Extrusion, plastic pipes",kg,36.0,1
+PE,41,03.05,Stretch blow moulding,kg,131.0,1
+PE,41,03.05,Hot element welding (30sec),welding,2.0,1
+PE,41,03.05,Hot element welding (45min),welding,155.0,1
+PE,41,03.05,Blow moulding,kg,123.0,1
+PE,41,03.05,Laser welding,m,0.46,1
+PE,41,03.05,Foaming,kg,60.0,1
+PE,41,03.05,"Reaction injection moulding (RIM)/kg, large scale",kg,21.0,1
+PE,41,03.05,Rotation Forming,kg,106.0,1
+PE,41,03.05,Injection moulding,kg,126.0,1
+PE,41,03.05,Ultrasonic welding (15kHz),welding,0.04,1
+PE,41,03.05,Ultrasonic welding (20kHz),welding,0.02,1
+PE,41,03.05,Ultrasonic welding (40kHz),welding,0.01,1
+PET,42,03.06,"Revolving, milling, drilling",cm³,0.01,1
+PET,42,03.06,"Extrusion, plastic film",kg,49.0,1
+PET,42,03.06,"Extrusion, plastic pipes",kg,36.0,1
+PET,42,03.06,Hot element welding (30sec),welding,2.0,1
+PET,42,03.06,Hot element welding (45min),welding,155.0,1
+PET,42,03.06,Blow moulding,,123.0,1
+PET,42,03.06,Laser welding,m,0.46,1
+PET,42,03.06,"Reaction injection moulding (RIM)/kg, large scale",kg,21.0,1
+PET,42,03.06,Rotation Forming,kg,106.0,1
+PET,42,03.06,Injection moulding,kg,126.0,1
+PET,42,03.06,Ultrasonic welding (15kHz),welding,0.04,1
+PET,42,03.06,Ultrasonic welding (20kHz),welding,0.02,1
+PET,42,03.06,Ultrasonic welding (40kHz),welding,0.01,1
+PMMA,43,03.07,"Revolving, milling, drilling",cm³,0.01,1
+PMMA,43,03.07,"Extrusion, plastic film",kg,49.0,1
+PMMA,43,03.07,"Extrusion, plastic pipes",kg,36.0,1
+PMMA,43,03.07,Hot element welding (30sec),welding,2.0,1
+PMMA,43,03.07,Hot element welding (45min),welding,155.0,1
+PMMA,43,03.07,Laser welding,m,0.46,1
+PMMA,43,03.07,Foaming,kg,60.0,1
+PMMA,43,03.07,"Reaction injection moulding (RIM)/kg, large scale",kg,21.0,1
+PMMA,43,03.07,Rotation Forming,kg,106.0,1
+PMMA,43,03.07,Injection moulding,kg,126.0,1
+PMMA,43,03.07,Ultrasonic welding (15kHz),welding,0.04,1
+PMMA,43,03.07,Ultrasonic welding (20kHz),welding,0.02,1
+PMMA,43,03.07,Ultrasonic welding (40kHz),welding,0.01,1
+PP,44,03.08,"Revolving, milling, drilling",cm³,0.01,1
+PP,44,03.08,"Extrusion, plastic film",kg,49.0,1
+PP,44,03.08,"Extrusion, plastic pipes",kg,36.0,1
+PP,44,03.08,Stretch blow moulding,kg,131.0,1
+PP,44,03.08,Hot element welding (30sec),welding,2.0,1
+PP,44,03.08,Hot element welding (45min),welding,155.0,1
+PP,44,03.08,Blow moulding,kg,123.0,1
+PP,44,03.08,Laser welding,m,0.46,1
+PP,44,03.08,"Reaction injection moulding (RIM)/kg, large scale",kg,21.0,1
+PP,44,03.08,Rotation Forming,kg,106.0,1
+PP,44,03.08,Injection moulding,kg,126.0,1
+PP,44,03.08,Ultrasonic welding (15kHz),welding,0.04,1
+PP,44,03.08,Ultrasonic welding (20kHz),welding,0.02,1
+PP,44,03.08,Ultrasonic welding (40kHz),welding,0.01,1
+PP,44,03.08,Vacuum forming,kg,16.0,1
+PS,45,03.09,"Revolving, milling, drilling",cm³,0.01,1
+PS,45,03.09,"Extrusion, plastic pipes",kg,36.0,1
+PS,45,03.09,Hot element welding (30sec),welding,2.0,1
+PS,45,03.09,Hot element welding (45min),welding,155.0,1
+PS,45,03.09,Blow moulding,kg,123.0,1
+PS,45,03.09,Laser welding,m,0.46,1
+PS,45,03.09,"Reaction injection moulding (RIM)/kg, large scale",kg,21.0,1
+PS,45,03.09,Rotation Forming,kg,106.0,1
+PS,45,03.09,Injection moulding,kg,126.0,1
+PS,45,03.09,Ultrasonic welding (15kHz),welding,0.04,1
+PS,45,03.09,Ultrasonic welding (20kHz),welding,0.02,1
+PS,45,03.09,Ultrasonic welding (40kHz),welding,0.01,1
+PS,45,03.09,Vacuum forming,kg,16.0,1
+PUR,46,03.10,"Revolving, milling, drilling",cm³,0.01,1
+PUR,46,03.10,Reaction injection moulding (RIM),kg,21.0,0
+PUR,46,03.10,Injection moulding,kg,126.0,1
+PUR,46,03.10,Ultrasonic welding (15kHz),welding,0.04,1
+PUR,46,03.10,Ultrasonic welding (20kHz),welding,0.02,1
+PUR,46,03.10,Ultrasonic welding (40kHz),welding,0.01,1
+PVC,47,03.11,"Extrusion blow molding, pipes",kg,36.0,1
+PVC,47,03.11,Stretch blow moulding,kg,131.0,1
+PVC,47,03.11,Hot element welding (30sec),welding,2.0,1
+PVC,47,03.11,Hot element (45min),welding,155.0,1
+PVC,47,03.11,Blow moulding,kg,123.0,1
+PVC,47,03.11,Laser welding,m,0.46,1
+PVC,47,03.11,"Reaction injection moulding (RIM)/kg, large scale",kg,21.0,1
+PVC,47,03.11,Rotation Forming,kg,106.0,1
+PVC,47,03.11,Injection moulding,kg,126.0,1
+PVC,47,03.11,Ultrasonic welding (15kHz),welding,0.04,1
+PVC,47,03.11,Ultrasonic welding (20kHz),welding,0.02,1
+PVC,47,03.11,Ultrasonic welding (40kHz),welding,0.01,1
+PVC,47,03.11,Vacuum forming,kg,16.0,1
+PVC,47,03.11,"Calendering, rigid sheets/kg- only for weak PVC",,37.0,1
+SAN,48,03.12,"Revolving, milling, drilling",cm³,0.01,1
+SAN,48,03.12,"Extrusion, pipes",kg,36.0,1
+SAN,48,03.12,Hot element welding (30sec),welding,2.0,1
+SAN,48,03.12,Hot element welding (45min),welding,155.0,1
+SAN,48,03.12,Laser welding,m,0.46,1
+SAN,48,03.12,"Reaction injection moulding (RIM), large scale",kg,21.0,1
+SAN,48,03.12,Rotation Forming,kg,106.0,1
+SAN,48,03.12,Injection moulding,kg,126.0,1
+SAN,48,03.12,Ultrasonic welding (15kHz),welding,0.04,1
+SAN,48,03.12,Ultrasonic welding (20kHz),welding,0.02,1
+SAN,48,03.12,Ultrasonic welding (40kHz),welding,0.01,1
+SAN,48,03.12,Vacuum forming,kg,16.0,1
+Bioplastics,51,03.14,"Revolving, milling, drilling",cm³,0.01,1
+Bioplastics,51,03.14,"Extrusion, plastic film",kg,49.0,0
+Bioplastics,51,03.14,"Extrusion, plastic pipes",kg,36.0,1
+Bioplastics,51,03.14,Hot element welding (30sec),welding,2.0,1
+Bioplastics,51,03.14,Hot element welding (45min),welding,155.0,1
+Bioplastics,51,03.14,Blow moulding,kg,123.0,1
+Bioplastics,51,03.14,Laser welding,m,0.46,1
+Bioplastics,51,03.14,Foaming,kg,60.0,1
+Bioplastics,51,03.14,"Reaction injection moulding (RIM), large scale",kg,21.0,1
+Bioplastics,51,03.14,Rotation Forming,kg,106.0,1
+Bioplastics,51,03.14,Injection moulding,kg,126.0,1
+Bioplastics,51,03.14,Ultrasonic welding (15kHz),welding,0.04,1
+Bioplastics,51,03.14,Ultrasonic welding (20kHz),welding,0.02,1
+Bioplastics,51,03.14,Ultrasonic welding (40kHz),welding,0.01,1
+Composites,52,03.15,"Revolving, milling, drilling",cm³,0.01,1
+Composites,52,03.15,Hand-layup,kg,69.0,1
+Composites,52,03.15,Cold press,kg,43.0,1
+Composites,52,03.15,Laser cutting,m,17.0,1
+Composites,52,03.15,Preformed matched die,kg,37.0,1
+Composites,52,03.15,Pultrusion (extrusion together with fibres),kg,11.0,1
+Composites,52,03.15,Resin Transfer Moulding (RTM),kg,46.0,1
+Composites,52,03.15,Sheet Moulding Compound (SMC),kg,13.0,1
+Composites,52,03.15,Injecting,kg,54.0,1
+Composites,52,03.15,Vacuum forming,kg,16.0,1
+Composites,52,03.15,Vacuum assited resin infusion (VARI)/(kg),,37.0,1
+Composites,52,03.15,Winding (of glass or fibres),kg,9.0,1
+Teflon,54,03.17,Teflon coating (30min),m²,157.0,0
+Teflon,54,03.17,Teflon coating (3min),m²,16.0,0
+Wood,56,04.01,Impregnating wood (beam),m³,630.0,0
+Wood,56,04.01,Impregnating wood (pole),m³,362.0,0
+Cardboard*,62,05.03,"Carton board boxes, gravure printing",kg,39.0,0
+Cardboard*,62,05.03,"Carton board boxes, offset printing",kg,68.0,0
+Cardboard*,62,05.03,"Folding boxboard, Folding Box Board",kg,260.0,0

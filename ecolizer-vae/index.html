@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapping the Ecolizer</title>
+<script src="https://distill.pub/template.v2.js"></script>
+<link rel="stylesheet" href="assets/css/widgets.css">
+<style>
+  d-article h2 { margin-top: 3rem; }
+  d-title h1 { font-size: 3rem; }
+  .arch { max-width: 100%; height: auto; }
+  .arch text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 12px; fill: #1d2330; }
+  .arch .sm { font-size: 10.5px; fill: #6b7280; }
+</style>
+</head>
+<body>
+
+<d-front-matter>
+  <script type="text/json">{
+    "title": "Mapping the Ecolizer",
+    "description": "A variational autoencoder, trained on the OVAM Ecolizer 2.0 eco-indicators, turns 193 materials into a continuous 2-D map that you can colour, contour and walk through.",
+    "published": "Oct 7, 2026",
+    "authors": [{ "author": "Joseph Morlier", "authorURL": "https://www.isae-supaero.fr", "affiliations": [{ "name": "ISAE-SUPAERO, Ecodesign course", "url": "https://www.isae-supaero.fr" }] }],
+    "katex": { "delimiters": [{ "left": "$$", "right": "$$", "display": false }] }
+  }</script>
+</d-front-matter>
+
+<d-title>
+  <h1>Mapping the Ecolizer</h1>
+  <p>Eco-indicators are numbers in a booklet. A small variational autoencoder turns them into a map you can colour, contour and walk across, and shows exactly where such a map stops being trustworthy.</p>
+</d-title>
+
+<d-byline></d-byline>
+
+<d-article>
+
+<p>
+  This article continues <a href="../ashby-maps/">Ashby's Maps</a> and <a href="../ashby-maps-renewed/">Ashby's Maps, Renewed</a>. There, the price axis of a classical
+  materials chart was replaced by an environmental one, and a variational autoencoder (VAE) replaced the two-axis chart by a continuous map. Here we apply both ideas to real
+  environmental data: the <b>Ecolizer 2.0</b> <d-cite key="ovam2009ecolizer"></d-cite>, a booklet published by the Flemish waste agency OVAM for designers who want to
+  estimate the environmental impact of a product. Every figure on this page is interactive and runs in your browser; the models were trained in
+  <a href="notebook/ecolizer_vae.ipynb">a companion notebook</a>.
+</p>
+
+<div class="eco-callout"><b>Reading guide.</b> Sections 1 to 3 need no machine learning: they are a tour of the data and of the eco-Ashby indices. Sections 4 to 6 introduce the VAE and let you
+  play with it. Section 7 is the one to read twice: it says what the map <em>cannot</em> do.</div>
+
+<h2>1 · What is an eco-indicator?</h2>
+
+<p>
+  The Ecolizer reduces the life-cycle assessment of each material, process and energy carrier to one number, the <b>eco-indicator</b>, in millipoints (mPt).
+  One point (Pt) is one thousandth of the yearly environmental burden of an average European, so 1 mPt is a millionth of it.
+  The number is computed with the <b>ReCiPe</b> method <d-cite key="goedkoop2009recipe"></d-cite>, which follows 19 mid-point impact categories (acidification, ozone depletion, toxicity, land use,
+  resource depletion...) up to three damage categories, and weights them <em>human health 400 : ecosystems 400 : raw materials 200</em>.
+  The booklet insists on two caveats that we will carry through this whole article: <em>only relative comparisons matter</em>, and
+  <em>"these numbers have a relatively high uncertainty; small differences between scores must be treated with particular care"</em>.
+</p>
+
+<p>
+  For a material, the booklet gives four kinds of numbers, all per kilogram unless stated otherwise: the <b>production</b> indicator (extraction to factory gate), the
+  <b>recycling</b> block (process impact, the credit for the primary material that is not produced, and their sum), the <b>waste-treatment</b> indicator for an average
+  European scenario (80 % landfill, 20 % incineration), and a list of <b>processing</b> indicators (injection moulding, turning, anodising...). Energy and transport carry their own units
+  (per kWh, per MJ, per tonne-kilometre).
+</p>
+
+<p>We digitised the 64 material, process and energy sheets. The table below summarises what we ended up with for the materials.</p>
+
+<table class="eco-t"><thead><tr><th>Family</th><th>entries</th><th>median production (mPt/kg)</th><th>range</th><th>with ρ, E</th></tr></thead><tbody><tr><td>Ferrous metals</td><td>9</td><td>231</td><td>61 – 1 105</td><td>7</td></tr><tr><td>Non-ferrous metals</td><td>15</td><td>646</td><td>45 – 3 768</td><td>12</td></tr><tr><td>Precious &amp; critical metals</td><td>7</td><td>1.2 M</td><td>63 042 – 9.6 M</td><td>6</td></tr><tr><td>Thermoplastics</td><td>24</td><td>396</td><td>220 – 16 929</td><td>19</td></tr><tr><td>Composites &amp; thermosets</td><td>14</td><td>552</td><td>264 – 1 249</td><td>13</td></tr><tr><td>Elastomers</td><td>6</td><td>400</td><td>230 – 599</td><td>6</td></tr><tr><td>Bio-based plastics</td><td>2</td><td>294</td><td>275 – 312</td><td>2</td></tr><tr><td>Recycled plastics</td><td>6</td><td>78</td><td>62 – 95</td><td>0</td></tr><tr><td>Wood &amp; panels</td><td>17</td><td>224</td><td>59 – 558</td><td>17</td></tr><tr><td>Paper &amp; board</td><td>14</td><td>232</td><td>76 – 347</td><td>9</td></tr><tr><td>Glass &amp; ceramics</td><td>9</td><td>82</td><td>17 – 124</td><td>9</td></tr><tr><td>Minerals &amp; cement</td><td>26</td><td>9.2</td><td>0.3 – 195</td><td>12</td></tr><tr><td>Insulation</td><td>6</td><td>253</td><td>50 – 530</td><td>6</td></tr><tr><td>Chemicals &amp; glues</td><td>38</td><td>194</td><td>0.001 – 5 306</td><td>0</td></tr></tbody></table>
+
+<p class="figcap" style="font-size:13px;color:#555">
+  <b>Provenance.</b> Impact numbers come from the Ecolizer PDF (the steel sheet is a raster image and was typed by hand; wood panels and concrete, given per m³, were converted with an assumed density).
+  <b>Density ρ and Young's modulus E are not in the Ecolizer.</b> For 118 materials we added rounded typical handbook values, marked "typical" wherever they appear. Everything built on them is only as good as these approximations.
+</p>
+
+<figure class="l-page eco-fig">
+  <div id="fig-ranking"></div>
+  <figcaption class="cap"><b>Figure 1. Rank the Ecolizer.</b> Choose an indicator, filter the families, search for a material. Dots are placed on a log axis, so every gridline is a factor of ten.
+  Production spans ten orders of magnitude, from tap water (0.03 mPt/kg) to rhodium (9.6 million); waste treatment stays within roughly 9 to 50 mPt/kg; recycling recovers more than 80 % of the
+  production impact for most metals and thermoplastics, but much less for cast iron, low-alloyed steel and flat glass.</figcaption>
+</figure>
+
+<p>
+  Three things are worth noticing before any modelling. First, the scale: platinum-group metals and mercury sit two to five orders of magnitude above typical engineering materials, which is why the choice of
+  a catalyst or a contact material can dominate a product's whole footprint. Second, for most solid materials <b>production dominates waste treatment</b>; end of life matters mainly for
+  materials that are cheap to produce, like wood and minerals. Third, the same kilogram can differ by a factor of twenty depending on the <em>route</em>: primary aluminium is 1 045 mPt/kg, secondary aluminium from new scrap only 45.
+</p>
+
+<h2>2 · From impact per kilogram to impact per function</h2>
+
+<p>
+  A designer does not buy kilograms; they buy <em>stiffness</em>, <em>strength</em> or <em>insulation</em>. In the Ashby method the material that delivers a given function with least mass is the one
+  that minimises a <em>material index</em> built from the properties. Multiply the mass by the production indicator and you get an <b>eco-index</b>, the environmental analogue of the price-based index
+  <d-cite key="ashby2016materials"></d-cite>. For a part that must reach a given stiffness, with the free geometry variable eliminated,
+</p>
+
+<d-math block>
+  I_a \;=\; \frac{\text{prod}\cdot\rho}{E^{a}}, \qquad a = 1\ (\text{tie}),\quad a=\tfrac12\ (\text{beam}),\quad a=\tfrac13\ (\text{panel}),
+</d-math>
+
+<p>
+  and on a log–log chart of eco-cost per volume ($$\text{prod}\cdot\rho$$) against $$E$$ the contour $$I_a=\text{const}$$ is a straight line of slope $$a$$. Minimising $$I_a$$ means sliding that line down and to the right
+  until it touches the best material.
+</p>
+
+<figure class="l-page eco-fig">
+  <div id="fig-ashby"></div>
+  <figcaption class="cap"><b>Figure 2. The eco-Ashby chart.</b> Switch the loading case and watch the guideline rotate. Platinum-group metals are hidden by default because they would flatten the chart; switch them on to see why.
+  With these typical properties limestone and concrete win for all three loading cases, followed by brick; at comparable stiffness, metals sit about two orders of magnitude higher in eco-cost per volume.
+  Remember: this index ignores mass-critical applications (where the weight itself costs fuel), durability and service life.</figcaption>
+</figure>
+
+<p>
+  Production is only one life-cycle phase. In the booklet's own worked examples the <em>use</em> phase dwarfs everything: a coffee machine kept warm twice a day for five years costs 11 625 mPt of electricity
+  (375 kWh at 31 mPt/kWh) against 793 mPt for all the materials. The Ecolizer therefore also lists the electricity mix of each country, heat sources and transport modes, which is the second dataset of this article.
+</p>
+
+<figure class="l-page eco-fig">
+  <div id="fig-energy"></div>
+  <figcaption class="cap"><b>Figure 3. Energy and transport.</b> The electricity mix matters more than most material choices: low-voltage electricity ranges from 3 mPt/kWh (Switzerland) to 113 (Greece), a factor of 38.
+  Type a quantity to see how many kilograms of ABS or of primary aluminium the same impact would buy.</figcaption>
+</figure>
+
+<h2>3 · Why a map?</h2>
+
+<p>
+  Figures 1 and 2 show one or two quantities at a time. A real material carries at least five numbers for us: production, waste, recycling gain, density and stiffness. The ranking changes with every
+  question you ask (cheapest to produce? lightest per function? best to recycle?) and some entries do not have all the numbers: the booklet marks them <code>dna</code> (data not available), and only 25 of our 193 materials
+  have a full recycling block. A classical chart simply drops the points that are missing a coordinate.
+</p>
+
+<p>
+  A <b>variational autoencoder</b> <d-cite key="kingma2014auto"></d-cite> offers a different deal. It learns to compress each material into a code of two numbers
+  $$z=(z_1,z_2)$$ from which a decoder can rebuild the five properties. Because the code is drawn from a smooth, continuous distribution, the decoder is a smooth function over the whole plane:
+  every property becomes a <em>continuous field</em>, the neighbourhood of a material is meaningful, and we can differentiate through the decoder, which is what makes the gradient search of Section 6 possible.
+  This is the same idea as in <a href="../ashby-maps-renewed/">Ashby's Maps, Renewed</a>; the data are different, and so are the limits.
+</p>
+
+<h2>4 · The model</h2>
+
+<p>
+  <b>Inputs.</b> For the 118 materials with a density and a modulus we use five numbers:
+  $$\log_{10}\text{prod}$$, $$\log_{10}\text{waste}$$, the recycling gain $$g=-\text{total}/\text{prod}$$ (the fraction of the production impact recovered by closed-loop recycling),
+  $$\log_{10}\rho$$ and $$\log_{10}E$$, each standardised. Waste treatment is missing for 34 of them and recycling gain for 100, so the model handles <b>missing values</b>
+  <d-cite key="nazabal2020handling"></d-cite>: the encoder receives the values with the missing entries set to zero <em>plus</em> a 0/1 mask, and the reconstruction error counts only the observed entries.
+  During training we also hide features at random, which teaches the encoder to produce a sensible code from whatever subset a new material comes with. The 75 other entries (chemicals, glues,
+  raw sands, materials for which stiffness is meaningless) are <em>not</em> used for training but can still be placed on the map by the encoder.
+</p>
+
+<figure class="l-body">
+  <svg class="arch" viewBox="0 0 760 210" role="img" aria-label="Architecture of the variational autoencoder">
+    <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b7280"/></marker></defs>
+    <g stroke="#6b7280" stroke-width="1.2" fill="none" marker-end="url(#ar)">
+      <line x1="118" y1="105" x2="152" y2="105"/><line x1="236" y1="105" x2="266" y2="105"/><line x1="352" y1="105" x2="384" y2="105"/>
+      <line x1="446" y1="105" x2="474" y2="105"/><line x1="540" y1="105" x2="566" y2="105"/><line x1="650" y1="105" x2="676" y2="105"/>
+    </g>
+    <rect x="14" y="45" width="104" height="120" rx="8" fill="#f5f6f8" stroke="#d9dce2"/><text x="66" y="78" text-anchor="middle">5 features</text><text x="66" y="96" text-anchor="middle">+ 5-bit mask</text><text x="66" y="130" text-anchor="middle" class="sm">missing = 0</text><text x="66" y="146" text-anchor="middle" class="sm">+ mask</text>
+    <rect x="154" y="60" width="82" height="90" rx="8" fill="#fff" stroke="#2A6FB0" stroke-width="1.5"/><text x="195" y="100" text-anchor="middle">Dense 32</text><text x="195" y="116" text-anchor="middle" class="sm">tanh</text>
+    <rect x="268" y="72" width="84" height="66" rx="8" fill="#fff" stroke="#2A6FB0" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle">Dense 16</text><text x="310" y="118" text-anchor="middle" class="sm">tanh</text>
+    <rect x="386" y="62" width="60" height="30" rx="15" fill="#fff" stroke="#E2924A" stroke-width="1.5"/><text x="416" y="82" text-anchor="middle">μ (2)</text>
+    <rect x="386" y="118" width="60" height="30" rx="15" fill="#fff" stroke="#E2924A" stroke-width="1.5"/><text x="416" y="138" text-anchor="middle">σ (2)</text>
+    <rect x="476" y="88" width="64" height="34" rx="17" fill="#9A3A2F"/><text x="508" y="110" text-anchor="middle" style="fill:#fff">z = μ + σ·ε</text>
+    <rect x="568" y="72" width="82" height="66" rx="8" fill="#fff" stroke="#2FA3AD" stroke-width="1.5"/><text x="609" y="102" text-anchor="middle">Dense 16, 32</text><text x="609" y="118" text-anchor="middle" class="sm">tanh</text>
+    <rect x="678" y="45" width="70" height="120" rx="8" fill="#f5f6f8" stroke="#d9dce2"/><text x="713" y="98" text-anchor="middle">5 features</text><text x="713" y="116" text-anchor="middle">rebuilt</text>
+    <text x="195" y="38" text-anchor="middle" class="sm">encoder</text><text x="609" y="38" text-anchor="middle" class="sm">decoder (runs in your browser)</text>
+    <line x1="150" y1="30" x2="446" y2="30" stroke="#2A6FB0" stroke-width="2"/><line x1="568" y1="30" x2="650" y2="30" stroke="#2FA3AD" stroke-width="2"/>
+  </svg>
+</figure>
+
+<p>
+  <b>Objective.</b> We use the β-VAE loss <d-cite key="higgins2017beta"></d-cite>: a masked squared reconstruction error plus β times the Kullback–Leibler divergence between the encoder's distribution and the standard normal prior,
+</p>
+
+<d-math block>
+  \mathcal L \;=\; \sum_{j} m_j\,(x_j-\hat x_j)^2 \;+\; \beta\;\tfrac12\sum_{k=1}^{2}\big(\mu_k^2+\sigma_k^2-\log\sigma_k^2-1\big),
+</d-math>
+
+<p>
+  with $$m_j=1$$ for observed entries and 0 for missing ones. The KL weight is ramped up from zero over the first 30 % of training to avoid an early collapse of the code
+  <d-cite key="bowman2016generating"></d-cite>. The parameter β sets the compromise: with a small β the VAE reconstructs the training data nearly perfectly but the plane between the points is a patchwork;
+  with a large β the map is smooth and blurred; at β = 4 it collapses completely to the prior and learns nothing. We keep five models, β from 0.05 to 2, and use β = 0.5 by default.
+</p>
+
+<figure class="l-page eco-fig">
+  <div id="fig-demo"></div>
+  <figcaption class="cap"><b>Figure 4. A decoder in your hands.</b> The two sliders are the entire latent code. The bars are what the trained decoder makes of it (the bar range is the observed range of the 118 training materials);
+  the readout lists the three nearest real entries on the map. Load a material's own code and move away from it: production, density and stiffness drift together along directions that the model has learned from the data.
+  Compare β = 0.05 (sharp, memorising) with β = 2 (smooth, vague).</figcaption>
+</figure>
+
+<h2>5 · The latent map</h2>
+
+<p>
+  Place every material at the position its encoder assigns it, and colour the background by what the decoder says at each point. The map was never told the families, but neighbours are usually from the same
+  family: a leave-one-out 3-nearest-neighbour classifier on the two latent coordinates identifies the family of a material correctly <b>76 %</b> of the time, against 16 % for always guessing the largest family. The platinum-group metals, the elastomers,
+  the insulation foams and the thermoplastics each form a recognisable island, and the minerals and ceramics sit together in the lower left.
+</p>
+
+<figure class="l-page eco-fig">
+  <div id="fig-map"></div>
+  <figcaption class="cap"><b>Figure 5. The map as a continuous field.</b> Choose any decoded property, or one of the three eco-indices, and the background becomes a continuous gradient with contours.
+  Hover a dot to read the material, click anywhere on the map to decode that point. Hollow dots are entries without density and modulus: they were <em>not used for training</em>, the encoder placed them from
+  their production (and waste) indicator alone. Switch β to see how the geometry changes: the clusters persist, but the sharp models bend the field around individual points.</figcaption>
+</figure>
+
+<p>
+  With the index maps selected, the green region of low eco-impact per unit of function occupies the lower left (minerals, concrete, brick) and stretches towards wood; the red region on the right belongs to the
+  platinum-group metals. This is the Ashby chart redrawn as a map in which <em>all five</em> properties contribute at once, and in which the gaps between materials are filled by the decoder.
+</p>
+
+<h2>6 · Walking downhill</h2>
+
+<p>
+  Because the decoder is differentiable, we can compute how an index changes when we nudge the code, and follow the gradient. Starting from a material, we update
+</p>
+
+<d-math block>
+  z_{t+1} \;=\; z_t \;-\; \eta\,\nabla_z\Big[\log_{10} I_a\big(\mathrm{dec}(z)\big) \;+\; \lambda\,\lVert z\rVert^2\Big],
+</d-math>
+
+<p>
+  where the penalty $$\lambda\lVert z\rVert^2$$ keeps the walk inside the region the VAE has seen, since the prior says that codes far from the origin are rare. Latent-space optimisation of this kind is
+  a standard way to propose new candidates in molecular and materials design <d-cite key="gomez2018automatic"></d-cite>. Our implementation uses the Adam optimiser and numerical gradients.
+</p>
+
+<figure class="l-page eco-fig">
+  <div id="fig-search"></div>
+  <figcaption class="cap"><b>Figure 6. Gradient search in latent space.</b> Pick an objective and a starting material (or click the map), then run. The readout compares the decoded end point with the nearest <em>real</em> entry and warns
+  when the walk leaves the data. "Launch from 6 materials" starts from cast iron, aluminium, ABS, CFRP, softwood and PET at once. Set λ to zero and the walk escapes to a part of the map where no material exists; the decoder will still
+  happily describe a "material" there.</figcaption>
+</figure>
+
+<p>
+  For the beam index every start converges to the same point, a <b>production impact of about 6 mPt/kg, a density near 2 300 kg/m³ and a modulus around 25 GPa</b>: the signature of concrete and natural stone, with limestone
+  as the nearest real entry, although the readout of Figure 6 flags the end point as slightly <em>outside</em> the cloud of real materials. The decoded numbers are sensible and the conclusion matches the eco-Ashby chart. They are also a warning about what an index <em>is</em>: a beam in an aircraft would never be made of limestone, because the weight
+  has its own environmental cost that this index leaves out. The optimiser answers the question we asked, not the one we meant.
+</p>
+
+<h2>7 · What the map cannot do</h2>
+
+<p>
+  A VAE trained on 118 materials, five features and two latent dimensions is a visualisation device, not an oracle. We tested the most tempting use, <b>imputing</b> missing mechanical properties from the eco-profile alone: hide the density and modulus of a random 25 % of the materials,
+  train on the rest, and ask the decoder to fill them in. Errors are RMSE in decades (log₁₀ units), averaged over four random splits:
+</p>
+
+<table class="eco-t">
+  <thead><tr><th>method</th><th>density ρ</th><th>modulus E</th></tr></thead>
+  <tbody>
+    <tr><td>guess the global mean</td><td>0.61</td><td>1.39</td></tr>
+    <tr><td>VAE, β = 0.5 (eco-profile only)</td><td>0.50</td><td>1.10</td></tr>
+    <tr><td>VAE, β = 0.2</td><td>0.46</td><td>1.03</td></tr>
+    <tr><td>guess the mean of the <em>same family</em> (a rule the VAE was not given)</td><td>0.27</td><td>0.68</td></tr>
+  </tbody>
+</table>
+
+<p>
+  The VAE beats the global mean by 15–25 %, and loses clearly to a rule that knows the family. A one-decade error on a modulus is a useless prediction. The reason is physical: how much environmental
+  burden a kilogram carries says little about how stiff it is. Three consequences for the course:
+</p>
+
+<ul>
+  <li><b>Low training error is memorisation.</b> At β = 0.05 the model reconstructs the 118 training points almost exactly, which means nothing for a new material.</li>
+  <li><b>The map visualises and interpolates; it does not predict.</b> The families cluster and the index fields are smooth, but a "material" synthesised by gradient search is an eco-profile to be checked against real data, never a recipe.</li>
+  <li><b>Inputs inherit the uncertainty of the booklet,</b> which warns that small differences are not significant, and of our approximate ρ and E. A serious application would carry uncertainties through the model and use the booklet's "less trustworthy" grey flags.</li>
+</ul>
+
+<h2>8 · For the ecodesign course</h2>
+
+<p>The notebook <code>notebook/ecolizer_vae.ipynb</code> reproduces every number and figure. Some questions to take away:</p>
+<ol>
+  <li>Why does changing the ReCiPe weights (400/400/200) change the ranking of lead, aluminium and wood but hardly the ranking of platinum?</li>
+  <li>A product contains 2 kg of primary aluminium (Figure 1) and uses 200 kWh of electricity during its life (Figure 3). In which countries does the use phase outweigh the production of the aluminium? Does the answer change if the aluminium is secondary, from new scrap?</li>
+  <li>Which materials in Figure 1 have the lowest recycling gain, and what does it tell you about where design for recycling pays off?</li>
+  <li>In Figure 6, set λ = 0 and describe where the paths end. How far is that point from any real material? What would you say to a student who proposes it as a "target material"?</li>
+  <li>Add σ<sub>y</sub> for the metals and polymers and reproduce the strength eco-indices of Part 1 on the map.</li>
+</ol>
+
+</d-article>
+
+<d-appendix>
+  <h3>Data and code</h3>
+  <p>
+    <code>data/ecolizer_materials.csv</code> (193 materials), <code>ecolizer_processes.csv</code> (294 processing indicators), <code>ecolizer_energy_transport.csv</code> (61 entries) and the scripts that parse the PDF are in this repository.
+    Checks against the booklet's own worked examples (coffee machine 375 kWh × 31 mPt/kWh = 11 625 mPt; chair seating 2 kg × 276 mPt/kg = 552 mPt) pass.
+    Density and modulus values are approximate typical values chosen by us and are <em>not</em> part of the Ecolizer. The Ecolizer 2.0 is © OVAM; this article reproduces numbers for teaching, and the
+    booklet states that it is meant for internal ecodesign use and not for marketing claims or comparisons with other data sets.
+  </p>
+  <d-footnote-list></d-footnote-list>
+  <d-citation-list></d-citation-list>
+</d-appendix>
+
+<d-bibliography>
+<script type="text/bibtex">
+@techreport{ovam2009ecolizer,
+  title={Ecolizer 2.0: Ecodesign tool},
+  author={{OVAM (Openbare Vlaamse Afvalstoffenmaatschappij)}},
+  institution={OVAM, Mechelen, Belgium},
+  year={2009},
+  url={https://www.ovam.be/ecolizer}
+}
+@techreport{goedkoop2009recipe,
+  title={ReCiPe 2008: A life cycle impact assessment method which comprises harmonised category indicators at the midpoint and the endpoint level},
+  author={Goedkoop, Mark and Heijungs, Reinout and Huijbregts, Mark and De Schryver, An and Struijs, Jaap and van Zelm, Rosalie},
+  institution={Ministry of Housing, Spatial Planning and the Environment (VROM)},
+  year={2009}
+}
+@book{ashby2016materials,
+  title={Materials Selection in Mechanical Design},
+  author={Ashby, Michael F.},
+  edition={5},
+  publisher={Butterworth-Heinemann},
+  year={2016}
+}
+@inproceedings{kingma2014auto,
+  title={Auto-Encoding Variational Bayes},
+  author={Kingma, Diederik P. and Welling, Max},
+  booktitle={International Conference on Learning Representations},
+  year={2014},
+  url={https://arxiv.org/abs/1312.6114}
+}
+@inproceedings{higgins2017beta,
+  title={beta-VAE: Learning Basic Visual Concepts with a Constrained Variational Framework},
+  author={Higgins, Irina and Matthey, Loic and Pal, Arka and Burgess, Christopher and Glorot, Xavier and Botvinick, Matthew and Mohamed, Shakir and Lerchner, Alexander},
+  booktitle={International Conference on Learning Representations},
+  year={2017}
+}
+@inproceedings{bowman2016generating,
+  title={Generating Sentences from a Continuous Space},
+  author={Bowman, Samuel R. and Vilnis, Luke and Vinyals, Oriol and Dai, Andrew M. and Jozefowicz, Rafal and Bengio, Samy},
+  booktitle={Proceedings of the 20th SIGNLL Conference on Computational Natural Language Learning},
+  year={2016},
+  url={https://arxiv.org/abs/1511.06349}
+}
+@article{nazabal2020handling,
+  title={Handling incomplete heterogeneous data using VAEs},
+  author={Nazabal, Alfredo and Olmos, Pablo M. and Ghahramani, Zoubin and Valera, Isabel},
+  journal={Pattern Recognition},
+  volume={107},
+  pages={107501},
+  year={2020}
+}
+@article{gomez2018automatic,
+  title={Automatic Chemical Design Using a Data-Driven Continuous Representation of Molecules},
+  author={G{\'o}mez-Bombarelli, Rafael and Wei, Jennifer N. and Duvenaud, David and Hern{\'a}ndez-Lobato, Jos{\'e} Miguel and S{\'a}nchez-Lengeling, Benjam{\'\i}n and Sheberla, Dennis and Aguilera-Iparraguirre, Jorge and Hirzel, Timothy D. and Adams, Ryan P. and Aspuru-Guzik, Al{\'a}n},
+  journal={ACS Central Science},
+  volume={4},
+  number={2},
+  pages={268--276},
+  year={2018}
+}
+</script>
+</d-bibliography>
+
+<script src="assets/js/d3.min.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/widgets.js"></script>
+</body>
+</html>

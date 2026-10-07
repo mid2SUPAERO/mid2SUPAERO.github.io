@@ -1,0 +1,62 @@
+category,item,mPt,per,page
+"Electricity, low voltage, by country",Europe (UCTE),51,kWh,66
+"Electricity, low voltage, by country",Belgium,31,kWh,66
+"Electricity, low voltage, by country","CENTREL (SK, HU, PL, CZ)",88,kWh,66
+"Electricity, low voltage, by country",Germany,59,kWh,66
+"Electricity, low voltage, by country",France,10,kWh,66
+"Electricity, low voltage, by country",Greece,113,kWh,66
+"Electricity, low voltage, by country",United Kingdom,60,kWh,66
+"Electricity, low voltage, by country",Ireland,78,kWh,66
+"Electricity, low voltage, by country",Italy,63,kWh,66
+"Electricity, low voltage, by country",Luxembourg,53,kWh,66
+"Electricity, low voltage, by country",Netherlands,64,kWh,66
+"Electricity, low voltage, by country","NORDEL (NO, DK, SE, FI)",18,kWh,66
+"Electricity, low voltage, by country",Austria,31,kWh,66
+"Electricity, low voltage, by country",Portugal,66,kWh,66
+"Electricity, low voltage, by country",Spain,56,kWh,66
+"Electricity, low voltage, by country",Switzerland,3,kWh,66
+"Electricity, by voltage level","High voltage, Europe (UCTE)",44,kWh,66
+"Electricity, by voltage level","High voltage, Belgium",28,kWh,66
+"Electricity, by voltage level","Medium voltage, Europe (UCTE)",45,kWh,66
+"Electricity, by voltage level","Medium voltage, Belgium",29,kWh,66
+"Electricity, by voltage level","Low voltage, Europe (UCTE)",51,kWh,66
+"Electricity, by voltage level","Low voltage, Belgium",31,kWh,66
+"Electricity, by source",Nuclear,1.2,kWh,67
+"Electricity, by source",Hard coal,89,kWh,67
+"Electricity, by source",Oil,85,kWh,67
+"Electricity, by source",Bagasse (sugarcane),1.66,kWh,67
+"Electricity, by source",Bagasse (sweet sorghum),3.77,kWh,67
+"Electricity, by source",Hydropower,0.35,kWh,67
+"Electricity, by source",Wind,1.2,kWh,67
+"Electricity, by source","Solar PV, facade single-Si",9.6,kWh,67
+"Electricity, by source","Solar PV, facade multi-Si",8.7,kWh,67
+"Electricity, by source","Solar PV, flat roof single-Si",7,kWh,67
+"Electricity, by source","Solar PV, flat roof multi-Si",6.5,kWh,67
+"Electricity, by source","Solar PV, slanted roof a-Si panel",6.4,kWh,67
+"Electricity, by source","Solar PV, slanted roof a-Si laminated",5.3,kWh,67
+Heat,"Anthracite, stove",11,MJ,68
+Heat,"Lignite briquette, stove",16,MJ,68
+Heat,"Diesel, boiler 10 kW",7.7,MJ,68
+Heat,"Diesel, industrial 1 MW",8,MJ,68
+Heat,"Natural gas, atmospheric low-NOx boiler",6.7,MJ,68
+Heat,"Natural gas, fan burner low-NOx boiler",7.6,MJ,68
+Heat,"Natural gas, industrial furnace",7.1,MJ,68
+Heat,Wood,3.9,MJ,68
+Heat,"Hard coal, stove",15,MJ,68
+Heat,"Hard coal, industrial furnace",11,MJ,68
+Heat,Heat pump 30 kW,3.5,MJ,68
+Heat,"Heavy fuel oil, industrial 1 MW",9.2,MJ,68
+Heat,Solar flat-plate collector (combined system),0.84,MJ,68
+Heat,"Solar + gas, one-family house hot water",1.1,MJ,68
+Heat,"Solar + electric, flat plate, multi-dwelling",2.8,MJ,68
+Heat,"Solar + gas, one-family house",5.2,MJ,68
+Transport,Van <3.5 t,186,tkm,70
+Transport,Lorry >16 t (Euro 4),15,tkm,70
+Transport,Lorry >32 t (Euro 4),12,tkm,70
+Transport,Train (freight),3.9,tkm,70
+Transport,Barge tanker (inland),4.4,tkm,70
+Transport,Barge (inland),4.7,tkm,70
+Transport,Transoceanic tanker,0.6,tkm,70
+Transport,Transoceanic freight ship,1.3,tkm,70
+Transport,"Aircraft freight, Europe",181,tkm,70
+Transport,"Aircraft freight, intercontinental",99,tkm,70
