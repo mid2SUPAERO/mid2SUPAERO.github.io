@@ -47,6 +47,16 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
+### [TOSM (DRAFT UNCORRECTED)](/tosm/)
+* **Authors:** Joseph Morlier and students + Claude
+* **Published:** november 2026
+
+**Summary:**
+Which bracket, in which metal, for the least carbon?
+We re-ran 379 crowd-designed jet-engine brackets in four aerospace alloys and attached a production and lifetime footprint to every one. Here are the 1,516 results, the trade-offs between strength and CO₂, and the designs that sit on the Pareto front.
+
+---
+
 
 ### [Weight, Drag, Thrust, Range (DRAFT UNCORRECTED)](/tasopt/)
 * **Authors:** Joseph Morlier and Claude
