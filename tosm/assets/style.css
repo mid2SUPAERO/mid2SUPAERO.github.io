@@ -22,7 +22,7 @@
   --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root:not([data-theme="light"]) {
     --bg: #151719; --surface: #1d2023; --ink: #eceef0; --ink-2: #b8bdc4; --ink-3: #868c94;
     --rule: #33373c; --grid: #2a2d31; --accent: #ef7a96; --accent-soft: #3a2129;
