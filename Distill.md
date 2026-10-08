@@ -47,7 +47,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [TOSM (DRAFT UNCORRECTED)](/tosm/)
+### [TOSM: TOPOLOGY OPTIMISATION & SUSTAINABLE METALS (DRAFT UNCORRECTED)](/tosm/)
 * **Authors:** Joseph Morlier and students + Claude
 * **Published:** november 2026
 
