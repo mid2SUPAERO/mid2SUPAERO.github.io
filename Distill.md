@@ -13,7 +13,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [A numerical tour of GP and BO (DRAFT UNCORRECTED)](/gp-bo/)
+### [A numerical tour of GP and BO (DRAFT)](/gp-bo/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** August 2026
 
@@ -22,7 +22,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [Everything on Ashby's maps (DRAFT UNCORRECTED)](/ashby-maps/)
+### [Everything on Ashby's maps (DRAFT)](/ashby-maps/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** September 2026
 
@@ -30,7 +30,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [Ashby's maps renewed (DRAFT UNCORRECTED)](/ashby-maps-renewed/)
+### [Ashby's maps renewed (DRAFT)](/ashby-maps-renewed/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** August 2026
 
@@ -38,7 +38,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [Mapping the Ecolyser (DRAFT UNCORRECTED)](/ecolizer-vae/)
+### [Mapping the Ecolyser (DRAFT)](/ecolizer-vae/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** november 2026
 
@@ -47,7 +47,7 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 ---
 
-### [TOSM: TOPOLOGY OPTIMISATION & SUSTAINABLE METALS (DRAFT UNCORRECTED)](/tosm/)
+### [TOSM: TOPOLOGY OPTIMISATION & SUSTAINABLE METALS (DRAFT)](/tosm/)
 * **Authors:** Joseph Morlier and students + Claude
 * **Published:** november 2026
 
@@ -58,7 +58,7 @@ We re-ran 379 crowd-designed jet-engine brackets in four aerospace alloys and at
 ---
 
 
-### [Weight, Drag, Thrust, Range (DRAFT UNCORRECTED)](/tasopt/)
+### [Weight, Drag, Thrust, Range (DRAFT)](/tasopt/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** August 2026
 
