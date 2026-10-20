@@ -27,3 +27,4 @@ Contact me if you need help
 * **5:** [Push it. Pull it. Watch it deflect](https://awatif.co/examples/interactive/)
 * **6:** [Kinematic links](https://schema-cinematique.com)
 * **7:** [Nonlinear Mechanics](https://claude.ai/artifact/NGz2yjPRARc8F7ANkZzeyS)
+* **8:** [Sliding bar](https://www.zhujuner.com/teaching/dynamics-1-sliding-bar-and-beyond)
