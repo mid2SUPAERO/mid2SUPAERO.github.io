@@ -28,3 +28,5 @@ Contact me if you need help
 * **6:** [Kinematic links](https://schema-cinematique.com)
 * **7:** [Nonlinear Mechanics](https://claude.ai/artifact/NGz2yjPRARc8F7ANkZzeyS)
 * **8:** [Sliding bar](https://www.zhujuner.com/teaching/dynamics-1-sliding-bar-and-beyond)
+* **9:** [Composites lab](https://composites.uw.edu/analysis/)
+* **10:** [Composites lab](https://composites.uw.edu/analysis/)
