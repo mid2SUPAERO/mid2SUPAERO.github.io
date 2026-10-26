@@ -23,6 +23,9 @@ permalink: /team.html
 |---|---|---|
 | Kemas Zakaria | ITB | Indonesian funding, With Prof. Palar and Prof. Zuhal|
 | Gustavo Asai | TU Delft | Nederland funding, With Prof. Masania and Prof. Lachaud |
+| Vadym Pasko | KAI | Ukrainian funding + France Campus|
+| Teuku Arriessa Sukhairi| ITB | Indonesian funding, With Prof. Palar|
+
 
 ## Visiting Researchers
 - Prof. Joaquim Martins [EU project 658570 - NextGen Airliners](https://websites.isae-supaero.fr/nextgen-airliners/marie-sklodowska-curie-european/marie-sklodowska-curie-european)
