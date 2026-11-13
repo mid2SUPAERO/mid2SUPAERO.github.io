@@ -33,4 +33,5 @@ Contact me if you need help
 
 ### Claude.ai in mechanics and optimization
 * **1:** [Beat the gradient optimizer to the minimum](https://claude.ai/artifact/Mu5jhuFeicPSJP9CycP6Tw)
-* **2:** [Draw an equation](https://v.edisonscientific.com/draw-an-equation-html-hto1)
+* **2:** [Draw an equation using pySR](https://v.edisonscientific.com/draw-an-equation-html-hto1)
+* **3:** [Surrogate models and DLL](http://surrogatemodels.com/topics)
