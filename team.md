@@ -100,8 +100,10 @@ A full list of the students who have contributed to the group's work over the ye
 | Gustavo Asai | Research Assistant | ISAE-SUPAERO | — | — |
 | Enrico Stragiotti | PhD | ONERA | ED MEGEP, with ONERA Department of Materials and Structures / MC² $ | — |
 | Michele Colombo | PhD | AIRBUS | ED AA, with ISAE-SUPAERO DAEP $ | Engineering at AIRBUS |
-| Yoann Le Lamer | PhD | University of Harvard | ED MEGEP, with ISAE-SUPAERO DCAS $ | — |
+| Kemas Zakaria | PhD | ITB | Indonesian funding, with Prof. Palar and Prof. Zuhal | — |
 | Daniel Muradas | PhD | AIRBUS $ | ED MEGEP | Engineering at AIRBUS DS |
+| Yoann Le Lamer | PhD | University of Harvard | ED MEGEP, with ISAE-SUPAERO DCAS $ | — |
+| Giovani Catalani | PhD | AIRBUS | ED MEGEP, with Prof. Bauerheim | — |
 
 </details>
 
