@@ -1,0 +1,209 @@
+/* Styles for the interactive figures of "On surrogate modeling". Distill's
+   template supplies the page grid and typography; this file styles the
+   widgets, callouts and tables. The four series colours are the same
+   colour-blind-safe set used by the other articles on this site. */
+
+:root {
+  --sm-blue: #2a78d6;
+  --sm-orange: #eb6834;
+  --sm-aqua: #1baf7a;
+  --sm-yellow: #eda100;
+  --sm-ink: #0b0b0b;
+  --sm-secondary: #52514e;
+  --sm-muted: #898781;
+  --sm-grid: #e1e0d9;
+  --sm-baseline: #c3c2b7;
+  --sm-surface: #fcfcfb;
+}
+
+.sm-widget {
+  border: 1px solid var(--sm-baseline);
+  border-radius: 8px;
+  padding: 16px 18px 12px;
+  background: var(--sm-surface);
+  margin: 1.6em 0;
+  min-width: 0;
+}
+.sm-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sm-muted);
+  margin: 0 0 10px;
+}
+.sm-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--sm-secondary);
+  margin-bottom: 8px;
+}
+.sm-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.sm-controls input[type="range"] { width: 104px; }
+.sm-controls select { font-size: 0.82rem; padding: 2px 4px; }
+.sm-controls output {
+  display: inline-block;
+  min-width: 2.4em;
+  color: var(--sm-ink);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.sm-controls button {
+  font-size: 0.8rem;
+  padding: 5px 11px;
+  border: 1px solid var(--sm-baseline);
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--sm-ink);
+}
+.sm-controls button:hover { background: #f0efec; }
+.sm-controls button:disabled { opacity: 0.45; cursor: default; }
+.sm-controls .sm-radio { gap: 3px; }
+
+.sm-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  align-items: flex-start;
+}
+.sm-row > .sm-grow { flex: 1 1 320px; min-width: 0; }
+.sm-row > .sm-side { flex: 0 1 230px; min-width: 190px; }
+
+.sm-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  touch-action: none;
+  overflow: visible;
+}
+.sm-axis path, .sm-axis line { stroke: var(--sm-baseline); }
+.sm-axis text { fill: var(--sm-muted); font-size: 10px; }
+.sm-axislabel { fill: var(--sm-secondary); font-size: 11px; }
+.sm-gridline { stroke: var(--sm-grid); stroke-width: 1; }
+.sm-plot-title { fill: var(--sm-secondary); font-size: 11px; font-weight: 600; }
+.sm-note { fill: var(--sm-muted); font-size: 10px; }
+
+.sm-truth { stroke: var(--sm-muted); stroke-width: 1.5px; stroke-dasharray: 4 3; fill: none; }
+.sm-line { fill: none; stroke-width: 2.2px; stroke-linejoin: round; }
+.sm-line.blue { stroke: var(--sm-blue); }
+.sm-line.orange { stroke: var(--sm-orange); }
+.sm-line.aqua { stroke: var(--sm-aqua); }
+.sm-line.yellow { stroke: var(--sm-yellow); }
+.sm-line.thin { stroke-width: 1.2px; }
+.sm-line.dashed { stroke-dasharray: 5 3; }
+.sm-band { fill: rgba(42, 120, 214, 0.16); stroke: none; }
+.sm-band.orange { fill: rgba(235, 104, 52, 0.14); }
+.sm-nodata { fill: rgba(235, 104, 52, 0.07); }
+.sm-pt { fill: var(--sm-ink); stroke: var(--sm-surface); stroke-width: 1.5px; }
+.sm-pt.drag { cursor: grab; }
+.sm-pt.hollow { fill: var(--sm-surface); stroke: var(--sm-ink); stroke-width: 1.4px; }
+.sm-pt.cheap { fill: var(--sm-surface); stroke: var(--sm-yellow); stroke-width: 1.8px; }
+.sm-pt.added { fill: var(--sm-orange); stroke: #fff; }
+.sm-query { stroke: var(--sm-orange); stroke-width: 1.6px; stroke-dasharray: 4 3; }
+.sm-handle { fill: var(--sm-orange); stroke: var(--sm-surface); stroke-width: 1.5px; cursor: ew-resize; }
+.sm-snap { fill: none; stroke: var(--sm-baseline); stroke-width: 1px; }
+.sm-hole { fill: rgba(235, 104, 52, 0.12); stroke: var(--sm-orange); stroke-width: 1.4px; stroke-dasharray: 4 3; }
+.sm-rug { stroke: var(--sm-blue); stroke-width: 1.4px; }
+.sm-bar { fill: var(--sm-blue); }
+.sm-bar.ink { fill: var(--sm-ink); }
+.sm-bar.off { fill: var(--sm-baseline); }
+
+.sm-stats {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 2px 0 6px;
+}
+.sm-stats td, .sm-stats th {
+  padding: 4px 8px 4px 0;
+  border-bottom: 1px solid var(--sm-grid);
+  color: var(--sm-secondary);
+  text-align: left;
+  vertical-align: baseline;
+}
+.sm-stats th {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--sm-muted);
+}
+.sm-stats td.num, .sm-stats th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--sm-ink);
+  font-weight: 600;
+  padding-right: 0;
+  padding-left: 10px;
+  white-space: nowrap;
+}
+.sm-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 0.78rem;
+  color: var(--sm-secondary);
+  margin: 4px 0 2px;
+}
+.sm-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.sm-key { display: inline-block; width: 16px; height: 0; border-top: 3px solid var(--sm-ink); }
+.sm-key.blue { border-color: var(--sm-blue); }
+.sm-key.orange { border-color: var(--sm-orange); }
+.sm-key.aqua { border-color: var(--sm-aqua); }
+.sm-key.yellow { border-color: var(--sm-yellow); }
+.sm-key.muted { border-color: var(--sm-muted); border-top-style: dashed; border-top-width: 2px; }
+.sm-key.dot { width: 9px; height: 9px; border: 0; border-radius: 50%; background: var(--sm-ink); }
+.sm-key.dot.hollow { background: var(--sm-surface); border: 1.5px solid var(--sm-ink); width: 7px; height: 7px; }
+.sm-key.dot.orange { background: var(--sm-orange); }
+.sm-key.dot.cheap { background: var(--sm-surface); border: 2px solid var(--sm-yellow); width: 6px; height: 6px; }
+.sm-caption { font-size: 0.78rem; color: var(--sm-muted); margin: 6px 0 2px; line-height: 1.45; }
+.sm-flag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 9px;
+  background: rgba(27, 175, 122, 0.14);
+  color: #0d7a53;
+}
+.sm-flag.bad { background: rgba(235, 104, 52, 0.15); color: #b8431a; }
+
+/* Article furniture */
+.callout {
+  background: hsla(206, 90%, 20%, 0.035);
+  border-left: 3px solid var(--sm-blue);
+  padding: 0.9em 1.4em;
+  margin: 1.4em 0;
+  font-size: 0.95em;
+}
+.callout.warn { border-left-color: var(--sm-orange); background: hsla(20, 90%, 45%, 0.04); }
+d-article table.sm-table { width: 100%; font-size: 0.86em; margin: 1.2em 0 1.6em; }
+d-article table.sm-table th, d-article table.sm-table td { padding: 5px 12px 5px 0; vertical-align: baseline; }
+d-article table.sm-table td.num, d-article table.sm-table th.num { text-align: right; font-variant-numeric: tabular-nums; padding-right: 0; padding-left: 12px; }
+d-article .sm-table-wrap { overflow-x: auto; }
+d-article figure img { border-radius: 4px; }
+.sm-companion {
+  font-size: 0.86em;
+  color: var(--sm-secondary);
+  border: 1px solid var(--sm-grid);
+  border-radius: 6px;
+  padding: 0.7em 1.1em;
+  margin: 0 0 1.6em;
+}
+
+/* additions for the "On surrogate modeling" widgets */
+.sm-note-inline { color: var(--sm-muted); font-size: 0.72rem; }
+.sm-widget .sm-svg text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+@media (max-width: 640px) {
+  .sm-controls input[type="range"] { width: 84px; }
+  .sm-row > .sm-side { flex: 1 1 100%; }
+}

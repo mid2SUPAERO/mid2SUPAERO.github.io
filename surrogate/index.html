@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>On surrogate modeling</title>
+  <meta name="description" content="A pedagogical, interactive introduction to surrogate models for engineering simulation: sampling, response surfaces, honest validation, Gaussian processes, POD for fields, neural networks, uncertainty and design loops.">
+  <script defer src="js/template.v2.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script defer src="js/d3.v7.min.js"></script>
+  <script defer src="js/sm-core.js"></script>
+  <script defer src="js/sm-ui.js"></script>
+  <script defer src="js/w-doe.js"></script>
+  <script defer src="js/w-overfit.js"></script>
+  <script defer src="js/w-pod.js"></script>
+  <script defer src="js/w-nn.js"></script>
+</head>
+
+<body>
+
+  <d-front-matter>
+    <script id="distill-front-matter" type="text/json">
+      {
+        "title": "On surrogate modeling",
+        "description": "A pedagogical, interactive introduction to surrogate models for engineering simulation.",
+        "published": "November 16, 2026",
+        "authors": [
+          {
+            "author": "Joseph Morlier",
+            "authorURL": "https://mid2supaero.github.io/",
+            "affiliations": [
+              { "name": "ISAE-SUPAERO", "url": "https://www.isae-supaero.fr" }
+            ]
+          }
+        ],
+        "katex": {
+          "delimiters": [
+            { "left": "$$", "right": "$$", "display": false }
+          ]
+        }
+      }
+    </script>
+  </d-front-matter>
+
+  <d-title>
+    <p>A simulation that takes hours answers one question at a time. A surrogate answers thousands per second —
+      if it was trained on the right runs, tested honestly, and used where it knows what it is talking about.
+      This is a hands-on tour of how to build one, from the first design of experiments to uncertainty you can check.</p>
+  </d-title>
+
+  <d-byline></d-byline>
+
+  <d-article>
+
+    <div class="sm-companion">
+      <strong>Companion material.</strong> Every number and static figure on this page is produced by the notebook
+      <a href="notebook/on_surrogate_modeling.ipynb"><code>on_surrogate_modeling.ipynb</code></a> (NumPy, SciPy,
+      scikit-learn — no deep-learning framework); the derivations are written out in full in the
+      <a href="notes/on-surrogate-modeling.pdf">lecture notes (PDF)</a>. Gaussian processes and Bayesian optimization
+      get their own interactive article: <a href="https://mid2supaero.github.io/gp-bo/">A numerical tour of GP and BO</a>
+      <d-cite key="morlier2026gpbo"></d-cite>.
+    </div>
+
+    <p>
+      Engineering design runs on simulations: computational fluid dynamics for a wing, finite elements for a
+      bracket, a thermal model for a battery pack. They are accurate and slow. One run can take hours on a
+      cluster, and a design study wants hundreds of them — an optimizer probing the design space, an
+      uncertainty study sampling manufacturing scatter, an engineer dragging a slider in a design review and
+      expecting an answer before the meeting ends.
+    </p>
+    <p>
+      A <strong>surrogate model</strong> (also called a metamodel, response surface, emulator or reduced-order model)
+      is the standard way out <d-cite key="forrester2008engineering,queipo2005surrogate"></d-cite>: run the expensive
+      simulation a limited number of times, then train a cheap model <d-math>\hat y(x)</d-math> on those input–output
+      pairs and query it instead. The idea is simple; doing it well is not. This article walks through the
+      decisions that matter, in the order you meet them, with an interactive figure wherever playing with
+      the idea beats reading about it. The topic sequence follows the open course at
+      <a href="https://surrogatemodels.com/learn">surrogatemodels.com</a> <d-cite key="surrogatemodels2026"></d-cite>.
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="idea">1. What a surrogate is, and when it pays</h2>
+
+    <p>
+      Think of the simulation as a function <d-math>y = f(x)</d-math>. The input <d-math>x</d-math> collects the
+      design and operating parameters (a few angles and thicknesses, a Mach number); the output <d-math>y</d-math>
+      is either a handful of scalars (lift, mass, peak stress) or a whole field (the pressure on every surface
+      node). Evaluating <d-math>f</d-math> is the expensive part. A surrogate is any model
+      <d-math>\hat y \approx f</d-math> fitted to a finite set of evaluations
+      <d-math>\{(x_i, y_i)\}_{i=1}^{D}</d-math> — a polynomial, a Gaussian process, a reduced basis, a neural network.
+    </p>
+    <p>
+      Building it is an investment. With <d-math>c_{\mathrm{sim}}</d-math> the cost of one simulation,
+      <d-math>C_{\mathrm{train}}</d-math> the cost of training, and <d-math>c_{\mathrm{inf}}</d-math> the (tiny) cost
+      of one prediction, answering <d-math>N</d-math> questions costs
+    </p>
+    <d-math block>
+      C_{\mathrm{solver}}(N) = N\,c_{\mathrm{sim}}
+      \qquad\text{versus}\qquad
+      C_{\mathrm{surr}}(N) = D\,c_{\mathrm{sim}} + C_{\mathrm{train}} + N\,c_{\mathrm{inf}},
+    </d-math>
+    <p>
+      so the surrogate pays for itself after <d-math>N^* = (D\,c_{\mathrm{sim}} + C_{\mathrm{train}})/(c_{\mathrm{sim}} - c_{\mathrm{inf}})</d-math>
+      queries — roughly the size of its own training set. With 40 training runs and a training cost worth
+      five more, the break-even is at 45 queries.
+    </p>
+
+    <figure class="l-body">
+      <img src="images/fig-breakeven.png" alt="Total cost against number of queries for running the solver every time and for building then querying a surrogate; the lines cross near 45 queries">
+      <figcaption>Cost in units of one simulation, for <d-math>D = 40</d-math>, <d-math>C_{\mathrm{train}} = 5</d-math>,
+        <d-math>c_{\mathrm{inf}} = 10^{-4}</d-math>. Below the break-even point, just run the solver.</figcaption>
+    </figure>
+
+    <p>
+      Two consequences shape everything that follows. First, the training runs are precious: every one
+      should teach the model something new (Part 2). Second, a surrogate is only worth its speed if you know
+      how wrong it is (Parts 3 and 7). A fast wrong answer is worse than a slow right one, because people act on it.
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="sampling">2. Sampling the design space</h2>
+
+    <p>
+      Which <d-math>D</d-math> input points should we simulate? This is the <em>design of experiments</em> (DOE).
+      Physical experiments are noisy, so classical DOE repeats points and blocks factors. Computer experiments
+      are usually deterministic — rerunning the same input gives the same output — so repeats are wasted and the
+      goal becomes to <em>fill</em> the space <d-cite key="sacks1989design"></d-cite>.
+    </p>
+    <p>
+      The obvious choice, a grid, scales badly. With <d-math>L</d-math> levels per input and <d-math>d</d-math>
+      inputs, a full factorial costs <d-math>L^d</d-math> runs: three levels of ten parameters is 59 049
+      simulations. Worse, if one input turns out not to matter, a 16-point grid in two inputs collapses onto
+      only 4 distinct values of the other one.
+    </p>
+    <p>
+      A <strong>Latin hypercube</strong> (LHS) <d-cite key="mckay1979comparison"></d-cite> fixes the second problem
+      and sidesteps the first: split each input's range into <d-math>D</d-math> equal strata and place exactly one
+      point in each stratum of each input, pairing the strata at random. Every input then sees
+      <d-math>D</d-math> different values, whatever <d-math>D</d-math> is. The random pairing can still put points
+      next to each other, so in practice one keeps the best of many Latin hypercubes under a space-filling
+      criterion, typically <em>maximin</em>: maximize the smallest distance between any two points
+      <d-cite key="morris1995exploratory"></d-cite>.
+    </p>
+
+    <div class="callout">
+      <strong>Play with it.</strong> Switch designs and resample. Watch the three scores: the closest pair
+      (higher is better), the radius of the largest empty disc (lower is better — that is where the surrogate
+      will be guessing), and how many distinct values each input receives (the ticks on the edges).
+    </div>
+
+    <div class="l-page" data-widget="doe-sampler"></div>
+
+    <p>
+      In the notebook's 16-point example a plain Latin hypercube had a closest pair only 0.062 apart —
+      closer than plain random sampling (0.092) — while the maximin version reached 0.157 and kept
+      16 levels per input; the grid has a perfect spacing of 0.25 but only 4 levels.
+      Stratification and spread are different properties; maximin LHS gets both.
+    </p>
+    <p>
+      <strong>Check the data before fitting.</strong> A surrogate faithfully learns whatever it is given,
+      including a run that stopped before convergence, a mesh that was too coarse in one corner of the design
+      space, or a failed case that wrote zeros. Plot every output against every input, check residual
+      histories, and remove or rerun outliers <em>before</em> they become features of the model.
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="fitting">3. Fitting a response surface, and testing it honestly</h2>
+
+    <p>
+      The oldest surrogate is a polynomial response surface,
+      <d-math>\hat y(x) = \sum_{k=0}^{p} \beta_k\,\phi_k(x)</d-math>, with basis functions
+      <d-math>\phi_k</d-math> (here Legendre polynomials, which are far better conditioned than raw powers
+      <d-math>x^k</d-math>). Stacking the basis at the training points into a matrix
+      <d-math>\Phi_{ik} = \phi_k(x_i)</d-math>, least squares minimizes
+      <d-math>\lVert \Phi\beta - y \rVert^2</d-math>, whose minimizer solves the normal equations
+    </p>
+    <d-math block>
+      \Phi^{\top}\Phi\,\hat\beta = \Phi^{\top} y .
+    </d-math>
+    <p>
+      Our running example is the Forrester function <d-math>f(x) = (6x-2)^2\sin(12x-4)</d-math> on
+      <d-math>[0,1]</d-math> <d-cite key="forrester2008engineering"></d-cite>, observed at 15 points with
+      Gaussian noise of standard deviation 1 (standing in for discretization error, or a solver tolerance).
+      Which degree <d-math>p</d-math> should we use?
+    </p>
+    <p>
+      The training error cannot tell us: it always goes down as <d-math>p</d-math> goes up, and reaches zero once there
+      are as many coefficients as points. What we care about is the error on <em>new</em> inputs. For squared
+      error it splits into three parts <d-cite key="hastie2009elements"></d-cite>,
+    </p>
+    <d-math block>
+      \mathbb{E}\big[(y - \hat y(x))^2\big] =
+      \underbrace{\big(f(x) - \mathbb{E}\,\hat y(x)\big)^2}_{\text{bias}^2}
+      + \underbrace{\operatorname{Var}\,\hat y(x)}_{\text{variance}}
+      + \underbrace{\sigma_\varepsilon^2}_{\text{noise}} ,
+    </d-math>
+    <p>
+      where the expectation is over the random training sets: a low degree is too rigid (bias), a high degree
+      chases the noise of the particular sample it saw (variance).
+    </p>
+    <p>
+      So we must hold data back. The cleanest protocol uses three disjoint sets: <em>training</em> data to fit,
+      <em>validation</em> data to make choices (degree, kernel, network size, when to stop), and a <em>test</em> set
+      touched once, at the end, to report the error. When runs are too few to spare, <strong>k-fold
+      cross-validation</strong> reuses them: split into <d-math>k</d-math> folds, fit on <d-math>k-1</d-math>,
+      predict the fold left out, rotate, and pool the errors.
+    </p>
+
+    <div class="callout">
+      <strong>Play with it.</strong> Move the degree slider and watch the black training error fall
+      monotonically while the orange test error (computed on 1 000 points the fit never sees) turns back up.
+      The blue curve is 5-fold cross-validation — computed from the training points alone — and its minimum
+      (circled) is the degree you would actually pick. Drag a point to create an outlier, add noise, or
+      reduce the number of points, and see how fragile high degrees are. Click the right panel to jump to a degree.
+    </div>
+
+    <div class="l-page" data-widget="overfit-cv"></div>
+
+    <p>
+      On the notebook's sample, degree 12 reaches a training RMSE of 0.22 but a test RMSE of 44 — the polynomial
+      swings wildly between and beyond the points. Cross-validation picks degree 4 (test RMSE 1.40); the best
+      degree in hindsight would have been 7. That gap is normal: with 15 points, cross-validation is itself a
+      noisy estimate. It is a tool for avoiding disasters, not an oracle.
+    </p>
+    <p>
+      <strong>Measure more than one error.</strong> RMSE is in the units of <d-math>y</d-math>; the relative
+      error <d-math>\lVert y-\hat y\rVert_2 / \lVert y\rVert_2</d-math> is scale-free;
+      <d-math>R^2 = 1 - \sum(y_i-\hat y_i)^2/\sum(y_i-\bar y)^2</d-math> compares with always predicting the mean;
+      and the maximum error finds the one bad region an average hides. For the degree-4 fit these are 1.40,
+      31 %, 0.90 and 8.3: a respectable <d-math>R^2</d-math> hiding a large local error near <d-math>x = 1</d-math>.
+    </p>
+    <p>
+      <strong>Split by run, not by point.</strong> When each simulation produces a field, its thousands of nodal
+      values are strongly correlated. Putting some nodes of a run in training and others in test lets the model
+      interpolate between neighbours it has already seen, and the test error looks excellent for the wrong
+      reason. Whole runs go to one side or the other.
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="gp">4. Gaussian processes</h2>
+
+    <p>
+      A polynomial imposes a global shape. A <strong>Gaussian process</strong> (GP) — known as kriging in
+      geostatistics and in the design-of-computer-experiments literature <d-cite key="sacks1989design"></d-cite> — instead
+      assumes that nearby inputs give similar outputs, through a covariance (kernel) function such as
+    </p>
+    <d-math block>
+      k(x, x') = \sigma_f^2 \exp\!\left(-\frac{\lVert x - x'\rVert^2}{2\ell^2}\right),
+    </d-math>
+    <p>
+      with a length-scale <d-math>\ell</d-math> per input and, for noisy data, a noise variance
+      <d-math>\sigma_n^2</d-math>. Conditioning this prior on the training data gives a closed-form predictive mean
+      <em>and</em> variance at any new input <d-math>x_*</d-math> <d-cite key="rasmussen2006gpml"></d-cite>:
+    </p>
+    <d-math block>
+      \bar y_* = k_*^{\top}(K + \sigma_n^2 I)^{-1} y, \qquad
+      \operatorname{var}(y_*) = k(x_*, x_*) - k_*^{\top}(K + \sigma_n^2 I)^{-1} k_*,
+    </d-math>
+    <p>
+      where <d-math>K_{ij} = k(x_i, x_j)</d-math> and <d-math>(k_*)_i = k(x_*, x_i)</d-math>. The hyperparameters are
+      fitted by maximizing the marginal likelihood of the data. The cost is <d-math>O(D^3)</d-math> time and
+      <d-math>O(D^2)</d-math> memory, comfortable up to a few thousand runs.
+    </p>
+
+    <figure class="l-body">
+      <img src="images/fig-gp.png" alt="GP mean and two-standard-deviation band compared with the best polynomial on the same 15 noisy points">
+      <figcaption>Same 15 noisy points as above. The GP's test RMSE is 0.62 against 1.40 for the
+        cross-validated polynomial, and its ±2σ band contains the true function everywhere on <d-math>[0, 1]</d-math>.</figcaption>
+    </figure>
+
+    <p>
+      That built-in error bar is why GPs are the default surrogate for small, smooth, low-to-moderate-dimensional
+      problems, and the engine of Bayesian optimization (Part 7). The derivation of the predictive equations,
+      kernel choice, and interactive versions live in the companion
+      article <d-cite key="morlier2026gpbo"></d-cite> and in the lecture notes.
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="pod">5. Compressing fields: proper orthogonal decomposition</h2>
+
+    <p>
+      Many simulations return a field — pressure on a wing surface, temperature in a part — sampled at
+      <d-math>M</d-math> points, with <d-math>M</d-math> in the thousands or millions. Training one regression per
+      point would be wasteful: neighbouring values move together. The classical answer is to find a small
+      basis that the fields actually live in.
+    </p>
+    <p>
+      Collect <d-math>N</d-math> training fields (<em>snapshots</em>), subtract their mean <d-math>\bar u</d-math>,
+      and stack them as the columns of <d-math>Y \in \mathbb{R}^{M\times N}</d-math>. Its singular value
+      decomposition <d-math>Y = U\Sigma V^{\top}</d-math> gives orthonormal <em>POD modes</em>
+      <d-math>\phi_k</d-math> (the columns of <d-math>U</d-math>), ranked by singular values
+      <d-math>\sigma_1 \ge \sigma_2 \ge \dots</d-math> <d-cite key="sirovich1987turbulence,berkooz1993proper"></d-cite>.
+      Any field is then approximated by
+    </p>
+    <d-math block>
+      u(x;\mu) \approx \bar u(x) + \sum_{k=1}^{K} a_k(\mu)\,\phi_k(x),
+      \qquad a_k = \phi_k^{\top}\big(u - \bar u\big).
+    </d-math>
+    <p>
+      By the Eckart–Young theorem, no other <d-math>K</d-math>-dimensional basis reproduces the snapshots with
+      a smaller squared error, and that error is exactly the discarded "energy"
+      <d-math>\sum_{k>K}\sigma_k^2</d-math>. The surrogate problem shrinks from <d-math>M</d-math> outputs to
+      <d-math>K</d-math>: learn the coefficients <d-math>a_k(\mu)</d-math> as functions of the parameters — here with
+      one GP each — and rebuild the field <d-cite key="benner2015survey"></d-cite>.
+    </p>
+    <p>
+      How small can <d-math>K</d-math> be? It depends entirely on the physics. We compare two one-parameter families:
+      a square pulse spreading by <em>diffusion</em> (parameter: time) and a narrow bump <em>transported</em>
+      along the domain (parameter: position).
+    </p>
+
+    <div class="callout">
+      <strong>Play with it.</strong> For diffusion, two or three modes already reproduce an unseen field almost
+      perfectly. Switch to transport and push <d-math>K</d-math> up: the singular values barely decay, and even
+      ten modes leave visible wiggles. Move the "unseen" slider between training positions to see where
+      the linear basis struggles most, and reduce the number of snapshots to see how coverage matters.
+    </div>
+
+    <div class="l-page" data-widget="pod-explorer"></div>
+
+    <p>
+      In the notebook, 99 % of the energy takes 2 modes for diffusion and 14 for transport. With POD plus one GP
+      per coefficient, unseen diffusion fields are predicted to 0.01 % relative error (the mean field alone is
+      off by 24 %). For transport, ten modes plus GPs give 22 % — exactly the error of projecting the true field
+      onto the ten modes. The regression is not the bottleneck; the linear basis is.
+    </p>
+
+    <figure class="l-body">
+      <img src="images/fig-pod-gp.png" alt="POD plus GP prediction of an unseen field for the diffusion and transport families">
+      <figcaption>POD + GP on unseen parameters. Left: diffusion, 6 modes. Right: transport, 10 modes —
+        the prediction shows the ringing typical of a moving feature represented in a fixed linear basis.</figcaption>
+    </figure>
+
+    <p>
+      Smooth, diffusive physics compresses well. Moving shocks, fronts and wakes do not: each position needs its own
+      modes (the family has a large <em>Kolmogorov <d-math>n</d-math>-width</em>). That limitation motivates
+      nonlinear reductions — shifted or registered POD, autoencoders, and the field networks of Part 8.
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="nn">6. Neural-network surrogates</h2>
+
+    <p>
+      A multilayer perceptron (MLP) composes simple layers,
+      <d-math>h^{(l)} = \tanh\!\big(W^{(l)} h^{(l-1)} + b^{(l)}\big)</d-math>, with a linear output layer. Training
+      minimizes the mean squared error <d-math>L(w) = \tfrac1n\sum_i (\hat y_i - y_i)^2</d-math> by gradient
+      steps <d-math>w \leftarrow w - \eta\,\nabla_w L</d-math>, where <d-math>\eta</d-math> is the learning rate.
+      The gradient comes from <strong>backpropagation</strong> <d-cite key="rumelhart1986learning"></d-cite>, the chain
+      rule applied layer by layer from the output back to the input: with
+      <d-math>\delta^{(l)} = \partial L/\partial z^{(l)}</d-math> the sensitivity of the loss to the pre-activations
+      <d-math>z^{(l)}</d-math> of layer <d-math>l</d-math>,
+    </p>
+    <d-math block>
+      \frac{\partial L}{\partial W^{(l)}} = \delta^{(l)}\, h^{(l-1)\top}, \qquad
+      \delta^{(l-1)} = \big(W^{(l)\top}\delta^{(l)}\big) \odot \big(1 - (h^{(l-1)})^2\big).
+    </d-math>
+    <p>
+      The notebook writes this out in NumPy and checks it against finite differences (agreement to
+      <d-math>3\times10^{-9}</d-math> relative error) before training anything — a habit worth keeping whenever you write
+      a gradient by hand. Adam <d-cite key="kingma2015adam"></d-cite>, the usual optimizer, rescales each
+      parameter's step by a running estimate of its gradient magnitude.
+    </p>
+    <p>
+      <strong>Normalize inputs and outputs</strong>, using training-set statistics only. Engineering inputs come in
+      physical units; the notebook feeds a position as a percentage of span, <d-math>x \in [0, 100]</d-math>. With plain
+      gradient descent the result is a network stuck at a constant (median test RMSE 4.5 over 8 seeds, against 0.82
+      after standardizing): the first-layer gradients are a hundred times larger than the others and the tanh units
+      saturate. With Adam the gap disappears on this example (median 0.97 raw versus 1.23 standardized), because it
+      rescales every step — one reason it is the default — but standardizing remains the safe habit: it also
+      matters for initialization, weight decay and losses that mix several outputs.
+    </p>
+
+    <div class="callout">
+      <strong>Play with it.</strong> Press Train and watch both learning curves: training error keeps falling, the
+      validation error (on the hollow points, never used for fitting) flattens or turns up; the dashed line marks
+      where early stopping would keep the weights. Try plain gradient descent with and without standardization,
+      push the learning rate until training diverges, widen the network on 8 points to watch it memorize the
+      noise, and try the smoothed step: networks fit smooth trends first and sharp features last.
+    </div>
+
+    <div class="l-page" data-widget="nn-trainer"></div>
+
+    <p>
+      That last behaviour — learning low frequencies first, sometimes called spectral bias — is why field
+      surrogates often feed coordinates through Fourier features before the first layer
+      <d-cite key="tancik2020fourier"></d-cite>. And notice the counts in the widget: a two-layer network of width 16
+      has 321 weights for a dozen training points. With 11 points and 1 153 weights the notebook's network can
+      interpolate the noise, so validation-based early stopping (or weight decay) is not optional.
+    </p>
+
+    <figure class="l-body">
+      <img src="images/fig-nn.png" alt="Training curves and fits of the same network on raw and standardized data, compared with the GP">
+      <figcaption>Left: learning curves with plain gradient descent, raw units (orange) versus standardized (blue);
+        dotted line: early-stopping epoch. Right: the early-stopped network against the GP of Part 4.</figcaption>
+    </figure>
+
+    <p>
+      On small, smooth problems like this one, a GP remains the stronger and cheaper baseline (test RMSE 0.62 against
+      0.75 for the network). Networks earn their place when there are many runs, many inputs, or whole fields on
+      irregular meshes — the territory of Part 8.
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="trust">7. Trust, uncertainty and design loops</h2>
+
+    <p>
+      Every surrogate has a domain of validity: the region its training data covered. Inside, it interpolates;
+      outside, it extrapolates, and nothing in the fitting guarantees anything there. The first check before using
+      a prediction is therefore whether the query lies inside the training data — in each input's range, but also
+      in the joint distribution (a combination of extreme values may never have been simulated).
+    </p>
+
+    <h3>Disagreement as a warning sign</h3>
+    <p>
+      Train several networks from different random initializations — a <em>deep ensemble</em>
+      <d-cite key="lakshminarayanan2017simple"></d-cite> — and their spread is a cheap uncertainty signal. In the
+      notebook, the five members' standard deviation averages 0.38 inside the training interval and 1.10 just
+      outside it. Useful — but the figure also shows the limit: just beyond <d-math>x = 1</d-math> the true
+      function turns down while every member and the GP band keep going up. Models that agree can be wrong together.
+    </p>
+
+    <figure class="l-body">
+      <img src="images/fig-ensemble.png" alt="Five neural networks and a GP band, agreeing inside the training interval and diverging outside">
+      <figcaption>Five networks trained from different seeds (blue) and the GP ±2σ band (green). Shaded: outside the training data.</figcaption>
+    </figure>
+
+    <h3>Intervals with a guarantee: split conformal prediction</h3>
+    <p>
+      Model-based error bars are only as good as the model's assumptions. <strong>Split conformal prediction</strong>
+      <d-cite key="angelopoulos2023conformal"></d-cite> needs none. Keep a calibration set of <d-math>n</d-math> runs
+      the model was not trained on, compute their absolute residuals <d-math>r_i = |y_i - \hat y(x_i)|</d-math>, and let
+      <d-math>\hat q</d-math> be the <d-math>\lceil (n+1)(1-\alpha)\rceil</d-math>-th smallest. Then for a new point
+      drawn from the same distribution,
+    </p>
+    <d-math block>
+      \mathbb{P}\Big(y \in \big[\hat y(x) - \hat q,\; \hat y(x) + \hat q\big]\Big) \ \ge\ 1 - \alpha ,
+    </d-math>
+    <p>
+      whatever the model. In the notebook, a GP trained on 30 noisy points and calibrated on 200 gives 90 % intervals
+      that cover 89.6 % of 5 000 test points (89.9 % on average over 300 recalibrations); the GP's own Gaussian
+      90 % intervals cover only 82.6 %. Dividing the residuals by the model's predicted
+      <d-math>\sigma(x)</d-math> gives intervals that widen where the model is unsure, with the same guarantee.
+      The guarantee is marginal (on average over inputs) and assumes calibration and use come from the same
+      distribution — it says nothing about extrapolation.
+    </p>
+
+    <figure class="l-body">
+      <img src="images/fig-conformal.png" alt="Conformal prediction bands around a GP and a histogram of empirical coverage centred on 90 percent">
+      <figcaption>Left: 90 % split-conformal bands, constant width (blue) and normalized by the GP's σ (orange).
+        Right: test coverage over 300 independent calibration sets, centred on the 90 % target.</figcaption>
+    </figure>
+
+    <h3>Choosing the next simulation</h3>
+    <p>
+      A surrogate that knows where it is unsure can decide where to simulate next. <em>Uncertainty sampling</em>
+      runs the solver where the GP's <d-math>\sigma(x)</d-math> is largest, improving the model everywhere.
+      <em>Expected improvement</em> <d-cite key="jones1998efficient"></d-cite>,
+    </p>
+    <d-math block>
+      EI(x) = \big(y_{\min} - \mu(x)\big)\,\Phi(z) + \sigma(x)\,\phi(z), \qquad z = \frac{y_{\min} - \mu(x)}{\sigma(x)},
+    </d-math>
+    <p>
+      balances a low predicted value against high uncertainty and hunts for the minimum. Starting from 3 runs and
+      adding 8, over 20 random starts, uncertainty sampling reaches a global RMSE of 0.10 (EI: 0.38, random: 0.46),
+      while EI locates the true minimum in the median run and uncertainty sampling's median run is still 0.36 above it. Each wins at its own
+      goal — decide which question you are asking before choosing where to sample. Bayesian optimization builds on
+      exactly this loop <d-cite key="garnett2023bayesian"></d-cite>.
+    </p>
+
+    <figure class="l-body">
+      <img src="images/fig-active.png" alt="Global error and distance to the true minimum against the number of simulations for uncertainty sampling, expected improvement and random sampling">
+      <figcaption>Median over 20 initial designs. Left: accuracy everywhere. Right: best value found minus the true
+        minimum (EI reaches it after 9 runs; plotted at <d-math>10^{-6}</d-math>).</figcaption>
+    </figure>
+
+    <p>
+      Two more tools complete the design loop. <strong>Sensitivity analysis</strong> propagates input scatter through
+      the cheap surrogate by Monte Carlo and ranks inputs by the share of output variance they explain (Sobol
+      indices <d-cite key="sobol2001global"></d-cite>). <strong>Multi-fidelity</strong> models combine many cheap runs
+      (coarse mesh, simpler physics) with a few expensive ones by learning the difference between them
+      <d-cite key="kennedy2000predicting,peherstorfer2018survey"></d-cite>. And whatever the surrogate proposes as an
+      optimum, re-run the real solver there before believing it.
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="frontier">8. Where this goes next</h2>
+
+    <p>
+      Everything above works with a handful of parameters and a scalar or a modest field. Industrial problems bring
+      millions of mesh nodes, varying geometries and thousands of runs, and that is where deep-learning
+      architectures come in. A short map:
+    </p>
+    <p>
+      <strong>Networks for fields.</strong> On regular grids, convolutional U-Nets <d-cite key="ronneberger2015unet"></d-cite>
+      map an input image (geometry mask, boundary conditions) to an output field. On unstructured meshes, graph
+      networks pass messages between neighbouring nodes, as in MeshGraphNets <d-cite key="pfaff2021learning"></d-cite>.
+    </p>
+    <p>
+      <strong>Neural operators</strong> learn maps between functions rather than vectors. DeepONet
+      <d-cite key="lu2021learning"></d-cite> writes the output at <d-math>y</d-math> as
+      <d-math>\mathcal G(u)(y) \approx \sum_{k=1}^{p} b_k(u)\,t_k(y)</d-math>, a "branch" net reading the input function at
+      sensor points and a "trunk" net reading the query location — a learned, nonlinear cousin of POD's
+      coefficients-times-modes. The Fourier neural operator <d-cite key="li2021fourier"></d-cite> alternates pointwise
+      layers with a learned filter on the lowest Fourier modes,
+      <d-math>v_{l+1} = \sigma\big(W v_l + \mathcal F^{-1}(R\cdot\mathcal F v_l)\big)</d-math>.
+    </p>
+    <p>
+      <strong>Transformers</strong> <d-cite key="vaswani2017attention"></d-cite> treat mesh points as tokens. Plain
+      self-attention costs grow with the square of the number of points, so architectures such as Transolver
+      <d-cite key="wu2024transolver"></d-cite> first group points into a small number of learned "slices" and attend
+      between those. Public benchmarks such as AirfRANS <d-cite key="bonnet2022airfrans"></d-cite> make comparisons
+      reproducible.
+    </p>
+    <p>
+      <strong>Physics in the loop.</strong> Physics-informed training adds the residual of the governing equations
+      to the loss <d-cite key="raissi2019physics"></d-cite>; other approaches build conservation or symmetry into the
+      architecture. Pretrained "foundation" models for physics, fine-tuned on a few runs of a new problem, are the
+      current frontier.
+    </p>
+    <p>
+      When reading a paper in this area, ask the questions of Parts 3 and 7. Was the test split by run (or by
+      geometry), and does it include extrapolation? Which metric, and in which units? Was there a strong classical
+      baseline — a GP, POD plus regression — tuned with the same care? What did training cost, in simulations and in
+      GPU hours, against the break-even of Part 1? And were the predictions checked against physics: conservation,
+      integrated loads, a re-simulation of the proposed design?
+    </p>
+
+    <!-- ===================================================================== -->
+    <h2 id="summary">Summary</h2>
+
+    <p>
+      A surrogate replaces an expensive simulation by a cheap model trained on a few of its runs, and pays off once
+      it answers more questions than it cost to build. Spend the runs on a space-filling design. Choose model
+      complexity on data the fit has not seen, split by run, and report several error measures. Gaussian processes
+      are the strong default for small, smooth problems and come with error bars; POD compresses fields when the
+      physics is diffusive and struggles with moving features; neural networks need normalized data, early
+      stopping, and more runs than most design studies start with. Finally, treat every prediction as a claim to be
+      checked: know the domain of validity, calibrate the error bars, and verify the design you choose with the real solver.
+    </p>
+
+  </d-article>
+
+  <d-appendix>
+    <h3>Companion files</h3>
+    <ul>
+      <li><a href="notebook/on_surrogate_modeling.ipynb"><code>on_surrogate_modeling.ipynb</code></a> — reproduces every number and static figure (NumPy, SciPy, Matplotlib, scikit-learn).</li>
+      <li><a href="notes/on-surrogate-modeling.pdf">Lecture notes (PDF)</a>, with the derivations: normal equations, bias–variance decomposition, cross-validation, GP conditioning, POD optimality (Eckart–Young), backpropagation, and the conformal coverage guarantee.</li>
+      <li>Interactive figures: <code>js/w-doe.js</code>, <code>js/w-overfit.js</code>, <code>js/w-pod.js</code>, <code>js/w-nn.js</code>, on a shared numerical core <code>js/sm-core.js</code> (Latin hypercubes, QR least squares, Jacobi eigen-solver, a small MLP with hand-written backpropagation).</li>
+    </ul>
+    <h3>Curriculum and acknowledgments</h3>
+    <p>
+      The sequence of topics follows the open course <em>Surrogate Models — Learn</em> at
+      <a href="https://surrogatemodels.com/learn">surrogatemodels.com</a>; the text, examples, code and figures here
+      are original. Thanks to the SMT <d-cite key="bouhlel2019smt"></d-cite> and EGObox developers, and to the Distill
+      template authors for an open format built for this kind of explanation.
+    </p>
+  </d-appendix>
+
+  <d-bibliography src="references.bib"></d-bibliography>
+
+</body>
+
+</html>
