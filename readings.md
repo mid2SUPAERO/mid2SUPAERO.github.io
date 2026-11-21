@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Blog
-permalink: /blog.html
+title: Readings
+permalink: /readings.html
 ---
 
-# Blog  & Reading List
+# Reading List
 
 📖 “The Things I Would Really Have Loved to Have Published”
 Not every interesting idea ends up as a journal paper. Sometimes the timing isn’t right, sometimes the project takes another direction, and sometimes the story simply remains in a notebook.
