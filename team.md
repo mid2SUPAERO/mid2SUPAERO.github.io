@@ -4,8 +4,6 @@ title: Team
 permalink: /team.html
 ---
 
-# Team
-
 ## PhD Students
 
 | Name | Funding / Partner | Doctoral School / Co-supervision |

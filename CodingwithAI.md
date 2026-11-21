@@ -4,7 +4,6 @@ title: Vibe coding
 permalink: /CodingwithAI.html
 ---
 
-
 💻 “Vibe Coding”
 As AI assistants are transforming the way we write software, I want to explore a simple question:
 Can we faithfully recreate scientific software directly from published papers?

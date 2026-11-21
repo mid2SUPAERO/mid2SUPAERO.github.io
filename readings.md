@@ -4,7 +4,6 @@ title: Readings
 permalink: /readings.html
 ---
 
-# Reading List
 
 📖 “The Things I Would Really Have Loved to Have Published”
 Not every interesting idea ends up as a journal paper. Sometimes the timing isn’t right, sometimes the project takes another direction, and sometimes the story simply remains in a notebook.
