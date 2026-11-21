@@ -19,10 +19,9 @@ plugins:
 
 header_pages:
   - about.md
-  - research.md
   - team.md
+  - research.md
   - teaching.md
-  - publications.md
   - readings.md
   - CodingwithAI.md
   - LearnwithAI.md
