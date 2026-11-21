@@ -6,8 +6,6 @@ permalink: /teaching.html
 
 # Book
 
-<img src="materialsandtheenvironment.png" width="100"/>
-
 [Materials and the environment](https://materialsandtheenvironment.github.io)
 
 
