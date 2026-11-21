@@ -45,44 +45,44 @@ A full list of the students who have contributed to the group's work over the ye
 
 | Name | Position / Role | Funding / Partner | Doctoral School / Collaboration | Current Position |
 |---|---|---|---|---|
-| Boris Chermain | Alumnus | ENS2M, Besançon | — | — |
-| Hanno Niemann | Alumnus | TUM, Munich | — | — |
-| Ronny Chung | Alumnus | ITA, Brazil | — | — |
-| Mauricio Bergh | Alumnus | ITA, Brazil | — | — |
-| David Ramos | Alumnus | Engineering, Bilbao | — | — |
-| Erick Lima | Alumnus | ITA, Brazil | — | — |
-| Francisco Habib Issa Mattos | Alumnus | ITA, Brazil | — | — |
-| Guilherme Nakakogue Barufaldi | Alumnus | ITA, Brazil | — | — |
-| Luiz Ricardo Martins de Sousa | Alumnus | ITA, Brazil | — | — |
-| Remi Vautrin | Alumnus | ENSME, Saint-Étienne | — | — |
-| Pierre Selva | PhD | — | — | — |
-| Amir Shahdin | PhD | Pakistani Scholarship | ED MEGEP | Naval industry |
-| Dimitri Bettebghor | PhD | AIRBUS $ | ED AA, with ONERA | Researcher at ONERA |
+| Boris Chermain | Alumnus | ENS2M, Besançon | — | Industry|
+| Hanno Niemann | Alumnus | TUM, Munich | — | Airbus |
+| Ronny Chung | Alumnus | ITA, Brazil | — | Industry |
+| Mauricio Bergh | Alumnus | ITA, Brazil | — | Industry |
+| David Ramos | Alumnus | Engineering, Bilbao | — | Industry|
+| Erick Lima | Alumnus | ITA, Brazil | — | Industry|
+| Francisco Habib Issa Mattos | Alumnus | ITA, Brazil | — | Industry |
+| Guilherme Nakakogue Barufaldi | Alumnus | ITA, Brazil | — | Industry |
+| Luiz Ricardo Martins de Sousa | Alumnus | ITA, Brazil | — | Industry|
+| Remi Vautrin | Alumnus | ENSME, Saint-Étienne | — | Industry|
+| Pierre Selva | PhD | MESR ED MEGEP, with Prof. Gourinat | Industry |
+| Amir Shahdin | PhD | Pakistani Scholarship | ED MEGEP, with Prof. Gourinat | Naval industry |
+| Dimitri Bettebghor | PhD | AIRBUS $ | ED AA, with N. Bartoli ONERA | Researcher at ONERA |
 | Nicolas Roussouly | Postdoctoral Researcher | RTRA SAE $ | — | Researcher at IRT |
-| Marion Gonzalez | PhD | AIRBUS | ED MEGEP, with MS2M/ISM £ | Software industry |
-| Ahmed Jhinaoui | PhD | INRIA I4S * | ED Rennes | Data Scientist in industry |
-| Fazila Zawawi | PhD | Malaysian Scholarship | ED AA, with ISAE-SUPAERO DAEP/MAV Research Center £ | Professor at UTM, Malaysia |
-| Elisa Bosco | PhD | AIRBUS | ED AA, with ISAE-SUPAERO DAEP £ | AIRBUS |
-| Ankit Chiplunkar | PhD | AIRBUS | ED AA, with ISAE-SUPAERO DISC £ | Data Scientist in industry |
+| Marion Gonzalez | PhD | AIRBUS | ED MEGEP, with Prof. Gogu, Prof. Espinosa | Software industry |
+| Ahmed Jhinaoui | PhD | INRIA I4S with L. Mevel| Data Scientist in industry |
+| Fazila Zawawi | PhD | Malaysian Scholarship | ED AA, with Prof. Benard | Professor at UTM, Malaysia |
+| Elisa Bosco | PhD | AIRBUS | ED AA, with Prof. Gourdain | AIRBUS |
+| Ankit Chiplunkar | PhD | AIRBUS | ED AA, with Prof. Rachelson | Data Scientist in industry |
 | Ghislain Raze | Research Assistant | SUPAERO $ | — | Research Associate at the University of Liège |
-| Claudia Bruni | Postdoctoral Researcher | CEDAR Chair for Eco-Design of Aircraft | With ISAE-SUPAERO DCAS $ | Manufacturing industry |
-| Guillaume Lelias | PhD | SOGETI HT * | ED MEGEP | Engineering industry |
-| Mohamed Bouhlel | PhD | SNECMA | ED AA, with ONERA $ | Data Scientist in industry |
+| Claudia Bruni | Postdoctoral Researcher | CEDAR Chair for Eco-Design of Aircraft | With Prof. Benard | Manufacturing industry |
+| Guillaume Lelias | PhD | SOGETI HT * | ED MEGEP with Prof. Lachaud| Engineering industry |
+| Mohamed Bouhlel | PhD | SNECMA | ED AA, with with N. Bartoli ONERA | Data Scientist in industry |
 | Akshay Gupta | Research Assistant | SUPAERO $ | ED AA | Engineering at OneWeb |
-| Joan Mas Colomer | PhD | SUPAERO-ONERA $ | ED AA | Engineering at AIRBUS |
-| Thibaut Hirschler | PhD | LAMCOS/IMT $ | ED Lyon | Associate Professor at Université de Technologie de Belfort-Montbéliard |
-| Simone Coniglio | PhD | AIRBUS $ | ED MEGEP | Engineering at AIRBUS and IRT Researcher |
+| Joan Mas Colomer | PhD | with N. Bartoli and T. Lefebvre, ONERA | ED AA | Engineering at AIRBUS |
+| Thibaut Hirschler | PhD | with Prof. Elgedj LAMCOS and Prof. Bouclier IMT $ | ED Lyon | Associate Professor at Université de Technologie de Belfort-Montbéliard |
+| Simone Coniglio | PhD | AIRBUS $ | ED MEGEP with Prof. Gogu| Engineering at AIRBUS and IRT Researcher |
 | Mafhoud Herraz | Research Assistant | ISAE-SUPAERO | — | Engineering industry |
 | Mostafa Meliani | Research Assistant | ISAE-SUPAERO & University of Michigan | — | PhD |
-| Alessandro Squeglia | PhD | CEDAR Chair for Eco-Design of Aircraft | ED AA, with ISAE-SUPAERO DCAS/ONERA $ | Engineering at ATR |
-| Joan Mas Colomer | Postdoctoral Researcher | CEDAR Chair for Eco-Design of Aircraft | With ISAE-SUPAERO DCAS $ | Engineering at AIRBUS |
-| Pierre-Jean Barjhoux | PhD | IRT Saint Exupéry/AIRBUS | ED AA, with ONERA DADS/ISAE $ | Engineering at AIRBUS |
+| Alessandro Squeglia | PhD | CEDAR Chair for Eco-Design of Aircraft | ED AA, with Prof. Benard, and with N. Bartoli and P. Schmollgruber, ONERA | Engineering at ATR |
+| Joan Mas Colomer | Postdoctoral Researcher | CEDAR Chair for Eco-Design of Aircraft | with Prof. Benard| Engineering at AIRBUS |
+| Pierre-Jean Barjhoux | PhD | IRT Saint Exupéry/AIRBUS | ED AA, with Prof. Diouane  | Engineering at AIRBUS |
 | Gabriele Capasso | Research Assistant | ISAE-SUPAERO | — | Engineering at AIRBUS |
 | Vilas Bhat | Research Assistant | ISAE-SUPAERO Foundation | — | PhD |
 | Eleanor Colbeck | Research Assistant | EUR TSAE | With RMIT and ISAE-SUPAERO DCAS | Industry |
-| Laurent Beauregard | PhD | SACLAB Chair | ED AA, with ISAE-SUPAERO DCAS $ | Space industry |
+| Laurent Beauregard | PhD | SACLAB Chair | ED AA, with Prof. Lizy Destrez $ | Space industry |
 | Thibault Formosa | Research Assistant | ISAE-SUPAERO | — | Space industry |
-| Emmeline Faisse | PhD | AIRBUS | ED AA, with ISAE-SUPAERO DCAS $ | Engineering at AIRBUS DS |
+| Emmeline Faisse | PhD | AIRBUS | ED AA, with Prof. Alazard | Engineering at AIRBUS DS |
 | Alberto Fossa | Research Assistant | ISAE-SUPAERO | — | PhD at CNES |
 | Giuliana Elena Miceli | Research Assistant | ISAE-SUPAERO | — | PhD at the University of Colorado Boulder |
 | Edouard Duriez | Research Assistant | ISAE-SUPAERO Foundation | — | Engineering at Arkema |
@@ -91,18 +91,18 @@ A full list of the students who have contributed to the group's work over the ye
 | Giovanni Quaglia | Research Assistant | ISAE-SUPAERO | — | Automotive industry |
 | Lorenzo Quadri | Research Assistant | ISAE-SUPAERO | — | Aerospace industry |
 | Alexandre Coehlo Castro | Research Assistant | ISAE-SUPAERO | — | Aerospace industry |
-| Edouard Duriez | PhD | AMX | ED AA, with LGC $ | Engineering at Arkema |
+| Edouard Duriez | PhD | AMX | ED AA, with Prof. Charlotte and with Prof. Azzaro-Pantel LGC $ | Engineering at Arkema |
 | Simon Dupourqué | Research Assistant | SUPAERO $ | — | PhD at OMP |
-| Oriol Chandre Villa | PhD | AIRBUS | ED AA, with ISAE-SUPAERO DAEP $ | Engineering at AIRBUS Helicopters |
+| Oriol Chandre Villa | PhD | AIRBUS | ED AA, with Prof. Gourdain | Engineering at AIRBUS Helicopters |
 | Paul Saves | PhD | ONERA | ED AA, with ONERA Department of Information Processing and Systems / M2CI $; supervised by Prof. Y. Diouane, N. Bartoli and T. Lefebvre | Postdoctoral Researcher at Capitole |
-| Remy Charayron | PhD | DGA Concorde | ED AA, with ONERA Department of Information Processing and Systems / M2CI $ | Engineering in space imaging |
-| Thomas Bellier | Research Assistant | EUR TSAE | ED AA, with RMIT and ISAE-SUPAERO DCAS $ | Engineering at SNCF |
+| Remy Charayron | PhD | DGA Concorde | ED AA, with N. Bartoli and T. Lefebvre, ONERA Department of Information Processing and Systems / M2CI $ | Engineering in space imaging |
+| Thomas Bellier | Research Assistant | EUR TSAE | ED AA, with RMIT and prof. Urbano | Engineering at SNCF |
 | Gustavo Asai | Research Assistant | ISAE-SUPAERO | — | — |
 | Enrico Stragiotti | PhD | ONERA | ED MEGEP, with ONERA Department of Materials and Structures / MC² $ | — |
-| Michele Colombo | PhD | AIRBUS | ED AA, with ISAE-SUPAERO DAEP $ | Engineering at AIRBUS |
+| Michele Colombo | PhD | AIRBUS | ED AA with Prof. Bauerheim | Engineering at AIRBUS |
 | Kemas Zakaria | PhD | ITB | Indonesian funding, with Prof. Palar and Prof. Zuhal | — |
-| Daniel Muradas | PhD | AIRBUS $ | ED MEGEP | Engineering at AIRBUS DS |
-| Yoann Le Lamer | PhD | University of Harvard | ED MEGEP, with ISAE-SUPAERO DCAS $ | — |
+| Daniel Muradas | PhD | AIRBUS $ | ED MEGEP, with Prof. Gogu | Engineering at AIRBUS DS |
+| Yoann Le Lamer | PhD | U-Harward | ED MEGEP, with Prof. Benard | — |
 | Giovani Catalani | PhD | AIRBUS | ED MEGEP, with Prof. Bauerheim | — |
 
 </details>
