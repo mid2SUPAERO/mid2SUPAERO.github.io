@@ -4,21 +4,7 @@ title: Research
 permalink: /research.html
 ---
 
-# Research Topics
-
 <img src="JFAM.png" width="1600"/>
-
-### Multidisciplinary Design Optimization (MDO)
-
-### Artificial Intelligence for Physics
-
-### Structural Optimization
-
-### Ecodesign
-
-
-### Structural Health Monitoring and vibration (my old life)
-Modal identification, signal processing, neural networks for pattern recognition, composites structures
 
 ---
 
@@ -45,3 +31,6 @@ MDO Phd Day 2019 and 2023 (ISAE+ONERA)
 The MID2 group keeps Prof. Morlier latest slides, posters, and code releases in a dedicated GitHub repository:
 
 - [github.com/mid2SUPAERO/Outputs](https://github.com/mid2SUPAERO/Outputs)
+
+### Structural Health Monitoring and vibration (my old life)
+Modal identification, signal processing, neural networks for pattern recognition, composites structures
