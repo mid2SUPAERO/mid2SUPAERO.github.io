@@ -64,7 +64,7 @@ Then, in 2006, another unexpected chapter began.
 
 I became **Manuel Samuelides' colleague**, and a few years later we started collaborating on structural optimization (with Airbus/Onera on Mixture of Experts (already GP aka Kriging). It's funny how books that shape your education sometimes lead you to work alongside their authors. Oh Finally,  Manuel also introduced me to Nathalie Bartoli at ONERA. She will become on of my strongest partner in research (on the SMT project started with Prof. Martins).
 
-## Why I Still Teach with MATLAB
+## Why I use to Teach with MATLAB
 
 People often ask me why I still teach with MATLAB, even though I also use and teach **Python** and **Julia**.
 
