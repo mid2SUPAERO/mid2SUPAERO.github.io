@@ -7,7 +7,7 @@ permalink: /LearnwithAI.html
 # Visual mathematics
 
 📖 Distill is back ;)
-
+---
 The Distill journal was founded as an adapter between traditional and online scientific publishing. We believed that many valuable scientific contributions — such as explanations, interactive articles, and visualizations — were held back by not being seen as “real scientific publications.” Our theory was that if a journal were to publish such artifacts, it would allow authors to benefit from the traditional academic incentive system and enable more of this kind of work.
 ---
 
