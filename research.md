@@ -6,19 +6,16 @@ permalink: /research.html
 
 # Research Topics
 
-### Multidisciplinary Design Optimization (MDO)
-Computational aeroelasticity, accelerated design of aircraft, UAV and launchers.
+<img src="JFAM.png" width="1600"/>
 
-### Artificial Intelligence for Sciences
-Surrogate modeling, Gaussian Processes, multifidelity approaches, mixed-variable
-optimization.
+### Multidisciplinary Design Optimization (MDO)
+
+### Artificial Intelligence for Physics
 
 ### Structural Optimization
-Topology and shape optimization, multiscale methods, geometric projection,
-architectured materials.
 
 ### Ecodesign
-Digital materials, Computational Life Cycle Assessment, eco-informed material selection.
+
 
 ### Structural Health Monitoring and vibration (my old life)
 Modal identification, signal processing, neural networks for pattern recognition, composites structures
