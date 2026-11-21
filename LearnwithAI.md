@@ -36,6 +36,8 @@ Contact me if you need help
 * **2:** [Draw an equation using pySR](https://v.edisonscientific.com/draw-an-equation-html-hto1)
 * **3:** [Surrogate models and DLL](http://surrogatemodels.com/topics)
 
+---
+
 # Visual mathematics
 
 📖 Distill is back ;)
