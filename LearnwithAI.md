@@ -1,6 +1,6 @@
 ---
 layout: page
-title: LearnwithAI
+title: Learn with AI
 permalink: /LearnwithAI.html
 ---
 
