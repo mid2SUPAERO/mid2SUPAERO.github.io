@@ -18,13 +18,14 @@ The most up to date and complete list is on Google Scholar.
 - [Webofsciences](https://www.webofscience.com/wos/author/rid/Y-1209-2019)
 
 ## Selected topics
-
-- Topology and shape optimization for aerospace structures
-- Multiscale and geometric-projection methods for architectured materials
-- Aeroelasticity and flexible wing / AC
-- Surrogate-assisted / Gaussian-process-based multidisciplinary design optimization
-- Eco-design and life-cycle assessment of aerospace materials
-- Structural health monitoring via modal identification and neural networks
+- AI4Physics/ Gaussian-process
+- Multidisciplinary design optimization
+- Aeroelasticity and flexible wing Design
+- Digital materials and digital fabrication
+- Eco-design and life-cycle assessment
+- Topology and shape optimization
+- Multiscale and geometric-projection
+- Vibration and Structural health monitoring
 
 
 ## conferences organisation
