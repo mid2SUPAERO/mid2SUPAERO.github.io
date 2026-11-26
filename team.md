@@ -11,7 +11,7 @@ permalink: /team.html
 | Ousmane Sy | EU HERA | ED MEGEP, with Prof. Benard |
 | Shubham Deshmukh | AIRBUS | ED MEGEP, with F. Gallard and Prof. Brugnoli |
 | Shantanu Sapre | AIRBUS | ED MEGEP,  With Prof. Gogu |
-| Gaston Plat | FONISEN | ED MITT - ONERA - UT Capitole,  With Prof. Bartoli and T. Lefevbre, and P. Saves |
+| Gaston Plat | FONISEN | ED MITT - ONERA - IRD,  With Prof. Bartoli and T. Lefevbre, and P. Saves |
 | Rémi Ducottet | AIRBUS | ED MEGEP, with Prof. Bauerheim |
 
 ## Associated PhD abroad
@@ -19,6 +19,7 @@ permalink: /team.html
 | Name | Funding / Partner | Doctoral School / Co-supervision |
 |---|---|---|
 | Gustavo Asai | TU Delft | Nederland funding, With Prof. Masania and Prof. Lachaud |
+| Carlos Sosa Henrique | KTU | Erasmus|
 | Vadym Pasko | KAI | Ukrainian funding + France Campus|
 | Teuku Arriessa Sukhairi| ITB | Indonesian funding, With Prof. Palar|
 
