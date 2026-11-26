@@ -25,6 +25,8 @@ The Distill journal was founded as an adapter between traditional and online sci
 * **9:** [Composites lab](https://composites.uw.edu/analysis/)
 * **10:** [Composites & AFP](https://www.addcomposites.com/learn/course)
 * **11:** [Nodal](https://hse95.github.io/nodal/)
+* **12:** [Vibrations tutorials](https://dchelidze.github.io/vibrations-tutorials/)
+
 
 
 
