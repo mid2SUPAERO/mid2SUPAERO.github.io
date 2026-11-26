@@ -15,6 +15,7 @@ index.md            homepage (welcome, topics, publications, links, latest posts
 about.md            bio / affiliation
 books.md            New books and lecture notes
 research.md          research topics + vulgarisation links
+software.md         Open-Source software
 team.md              PhD students, postdocs, visiting researchers, alumni link
 teaching.md          courses / teaching material
 publications.md      publication links (wire up jekyll-scholar for a real list)
