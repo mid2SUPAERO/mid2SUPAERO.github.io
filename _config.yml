@@ -19,11 +19,11 @@ plugins:
 
 header_pages:
   - about.md
+  - books.md
   - team.md
   - research.md
   - teaching.md
   - readings.md
-  - CodingwithAI.md
   - LearnwithAI.md
 
 # --- Author / social -----------------------------------------------------

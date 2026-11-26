@@ -4,10 +4,6 @@ title: Teaching
 permalink: /teaching.html
 ---
 
-# Book
-
-[Materials and the environment](https://materialsandtheenvironment.github.io)
-
 
 # Teaching
 
