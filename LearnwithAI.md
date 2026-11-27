@@ -4,12 +4,7 @@ title: Learn with AI
 permalink: /LearnwithAI.html
 ---
 
-# Visual mathematics
 
-📖 Distill is back ;)
----
-The Distill journal was founded as an adapter between traditional and online scientific publishing. We believed that many valuable scientific contributions — such as explanations, interactive articles, and visualizations — were held back by not being seen as “real scientific publications.” Our theory was that if a journal were to publish such artifacts, it would allow authors to benefit from the traditional academic incentive system and enable more of this kind of work.
----
 
 # Mechanics
 
@@ -28,8 +23,6 @@ The Distill journal was founded as an adapter between traditional and online sci
 * **12:** [Vibrations tutorials](https://dchelidze.github.io/vibrations-tutorials/)
 
 
-
-
 ---
 
 # Optimization and AI
@@ -37,6 +30,14 @@ The Distill journal was founded as an adapter between traditional and online sci
 * **1:** [Beat the gradient optimizer to the minimum](https://claude.ai/artifact/Mu5jhuFeicPSJP9CycP6Tw)
 * **2:** [Draw an equation using pySR](https://v.edisonscientific.com/draw-an-equation-html-hto1)
 * **3:** [Surrogate models and DLL](http://surrogatemodels.com/topics)
+
+
+# Visual mathematics
+
+📖 Distill is back ;)
+---
+The Distill journal was founded as an adapter between traditional and online scientific publishing. We believed that many valuable scientific contributions — such as explanations, interactive articles, and visualizations — were held back by not being seen as “real scientific publications.” Our theory was that if a journal were to publish such artifacts, it would allow authors to benefit from the traditional academic incentive system and enable more of this kind of work.
+---
 
 ### [What is a surrogate model? (DRAFT)](/surrogate/)
 * **Authors:** Joseph Morlier and Claude
