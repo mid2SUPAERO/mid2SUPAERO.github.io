@@ -16,9 +16,21 @@ The following open-source tools are associated with my research activities and c
 
 A Python toolbox providing surrogate modeling methods (including Gaussian processes and radial basis functions), sampling techniques, and benchmark problems. It is designed for engineering and scientific applications, with particular attention to derivatives, mixed and hierarchical variables, and multifidelity modeling.
 
+And derived tools such as:
+
 [SMT-optim](https://github.com/SMTorg/smt-optim)
 
 A Python toolbox for constrained and multifidelity Bayesian optimization of expensive black-box functions. It integrates with SMT surrogate models and supports continuous, integer, and categorical design variables.
+
+[EGObox](https://github.com/relf/egobox)
+
+Rust toolbox for Efficient Global Optimization method (arguably the most well-known bayesian optimization algorithm) which adresses the gradient-free optimization of expensive objective functions.
+
+
+[SBArchOpt](https://github.com/jbussemaker/SBArchOpt)
+
+SBArchOpt (es-bee-ARK-opt) provides a set of classes and interfaces for applying Surrogate-Based Optimization (SBO) for system architecture optimization problems:
+
 
 
 ## Neural fields and PDE surrogates
@@ -45,7 +57,6 @@ A framework for feature-based structural topology optimization, unifying geometr
 [EMTO — Efficient Multiscale Topology Optimization](https://github.com/mid2SUPAERO/EMTO)
 
 MATLAB code to reproduce the results of the Efficient Multiscale Topology Optimization strategy, combining macro-scale optimization with optimized microstructures.
-
 
 
 ## Aerostructural analysis

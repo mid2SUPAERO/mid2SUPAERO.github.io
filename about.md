@@ -4,7 +4,7 @@ title: About
 permalink: /about.html
 ---
 
-I am a full professor in Aerospace Engineering (AE) at **ISAE-SUPAERO**, attached to the Aerospace Design group at **TSAAElab** (before I was researcher at ICA CNRS).
+I am a full professor in Aerospace Engineering (AE) at **ISAE-SUPAERO**, attached to the Aerospace Design group at **TSAAELab**.
 
 I lead the **MID2** group — *Multidisciplinary optimization for aerospace Innovation:
 eco Design and Data* — which develops methods for design optimization and data-driven/AI-assisted decision-making, with applications in aerospace engineering.
@@ -116,10 +116,11 @@ Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
 
 ## Affiliations
 
-Université de Toulouse, ISAE-SUPAERO Toulouse, 10 avenue Marc Pellegrin, 31400, Toulouse , France/
+Université de Toulouse, ISAE-SUPAERO, 10 avenue Marc Pellegrin, 31400, Toulouse , France. For Education
 
+Université de Toulouse,TSAAELab, 10 avenue Marc Pellegrin, 31400, Toulouse , France. For Research
 
-Fédération ENAC ISAE-SUPAERO ONERA, Université de Toulouse, Toulouse, 31400, France.
+Fédération ENAC ISAE-SUPAERO ONERA, Université de Toulouse, Toulouse, 31400, France. For Research
 
 # Contact
 
