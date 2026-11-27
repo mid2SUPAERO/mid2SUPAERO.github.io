@@ -50,35 +50,15 @@ title: Home
 </div>
 
 <h2 class="section-title">Research</h2>
-<div class="cards cards--4">
-  <a class="card" href="/research.html">
-    <div class="card__img card__img--cover"><img src="/assets/images/card-topology.jpg" alt="3D-printed topology-optimized truss" loading="lazy"></div>
-    <div class="card__body">
-      <h3>Structural optimization</h3>
-      <p>Topology &amp; shape optimization, multiscale methods, geometric projection, architectured materials.</p>
-    </div>
-  </a>
-  <a class="card" href="/books.html">
-    <div class="card__img"><img src="/assets/images/card-eco.jpg" alt="Eco-design loop: design, assembly, launch, recycling" loading="lazy"></div>
-    <div class="card__body">
-      <h3>Eco-design</h3>
-      <p>Digital materials, life-cycle assessment, eco-informed material selection.</p>
-    </div>
-  </a>
-  <a class="card" href="/software.html">
-    <div class="card__img"><img src="/assets/images/card-surrogate.jpg" alt="Surrogate model response surface" loading="lazy"></div>
-    <div class="card__body">
-      <h3>AI for engineers</h3>
-      <p>Surrogate modeling, Gaussian processes, multifidelity approaches, mixed variables.</p>
-    </div>
-  </a>
-  <a class="card" href="/research.html">
-    <div class="card__img"><img src="/assets/images/card-mdo.jpg" alt="XDSM diagram of an aeroelastic wing MDO problem" loading="lazy"></div>
-    <div class="card__body">
-      <h3>Multidisciplinary design optimization</h3>
-      <p>Computational aeroelasticity, accelerated design of aircraft, UAVs and launchers.</p>
-    </div>
-  </a>
+<div class="topics">
+  <a class="topic" href="/gp-bo/"><img src="/assets/icons/gaussian-process.svg" alt="" width="56" height="56"><span><strong>AI4Physics &amp; Gaussian processes</strong><em>Surrogates, kriging, multifidelity and mixed-variable models.</em></span></a>
+  <a class="topic" href="/software.html"><img src="/assets/icons/mdo.svg" alt="" width="56" height="56"><span><strong>Multidisciplinary design optimization</strong><em>Coupled disciplines, aircraft, UAV and launcher design.</em></span></a>
+  <a class="topic" href="/research.html"><img src="/assets/icons/aeroelasticity.svg" alt="" width="56" height="56"><span><strong>Aeroelasticity &amp; flexible wings</strong><em>Fluid–structure coupling for highly flexible wing design.</em></span></a>
+  <a class="topic" href="/research.html"><img src="/assets/icons/digital-materials.svg" alt="" width="56" height="56"><span><strong>Digital materials &amp; fabrication</strong><em>Voxel-based materials and additive manufacturing.</em></span></a>
+  <a class="topic" href="/ashby-maps-renewed/"><img src="/assets/icons/ecodesign-lca.svg" alt="" width="56" height="56"><span><strong>Eco-design &amp; life-cycle assessment</strong><em>Material selection and design under environmental impact.</em></span></a>
+  <a class="topic" href="/software.html"><img src="/assets/icons/topology.svg" alt="" width="56" height="56"><span><strong>Topology &amp; shape optimization</strong><em>Optimal layouts of structures, from trusses to 3D parts.</em></span></a>
+  <a class="topic" href="/research.html"><img src="/assets/icons/multiscale.svg" alt="" width="56" height="56"><span><strong>Multiscale &amp; geometric projection</strong><em>Architectured materials and projection of primitives.</em></span></a>
+  <a class="topic" href="/teaching.html"><img src="/assets/icons/vibration-shm.svg" alt="" width="56" height="56"><span><strong>Vibration &amp; health monitoring</strong><em>Modal identification, signals and damage detection.</em></span></a>
 </div>
 
 <h2 class="section-title">Explore</h2>

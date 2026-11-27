@@ -18,14 +18,14 @@ The most up to date and complete list is on Google Scholar.
 - [Webofsciences](https://www.webofscience.com/wos/author/rid/Y-1209-2019)
 
 ## Selected topics
-- AI4Physics/ Gaussian-process
-- Multidisciplinary design optimization
-- Aeroelasticity and flexible wing Design
-- Digital materials and digital fabrication
-- Eco-design and life-cycle assessment
-- Topology and shape optimization
-- Multiscale and geometric-projection
-- Vibration and Structural health monitoring
+- <img class="topic-icon" src="/assets/icons/gaussian-process.svg" alt="" width="28" height="28"> AI4Physics/ Gaussian-process
+- <img class="topic-icon" src="/assets/icons/mdo.svg" alt="" width="28" height="28"> Multidisciplinary design optimization
+- <img class="topic-icon" src="/assets/icons/aeroelasticity.svg" alt="" width="28" height="28"> Aeroelasticity and flexible wing Design
+- <img class="topic-icon" src="/assets/icons/digital-materials.svg" alt="" width="28" height="28"> Digital materials and digital fabrication
+- <img class="topic-icon" src="/assets/icons/ecodesign-lca.svg" alt="" width="28" height="28"> Eco-design and life-cycle assessment
+- <img class="topic-icon" src="/assets/icons/topology.svg" alt="" width="28" height="28"> Topology and shape optimization
+- <img class="topic-icon" src="/assets/icons/multiscale.svg" alt="" width="28" height="28"> Multiscale and geometric-projection
+- <img class="topic-icon" src="/assets/icons/vibration-shm.svg" alt="" width="28" height="28"> Vibration and Structural health monitoring
 
 
 ## conferences organisation
