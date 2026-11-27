@@ -38,6 +38,17 @@ title: Home
   </div>
 </section>
 
+<div class="strip" aria-label="Figures from talks and courses">
+  <a href="/gallery.html"><img src="/assets/gallery/topo-bending.jpg" alt="Optimized truss in bending" loading="lazy"></a>
+  <a href="/gallery.html"><img src="/assets/gallery/ashby-modulus-density.jpg" alt="Ashby chart" loading="lazy"></a>
+  <a href="/gallery.html"><img src="/assets/gallery/gp-matrix-view.jpg" alt="Gaussian process matrix view" loading="lazy"></a>
+  <a href="/gallery.html"><img src="/assets/gallery/flight-footprint.jpg" alt="Flight footprint map" loading="lazy"></a>
+  <a href="/gallery.html"><img src="/assets/gallery/pylon-print.jpg" alt="Pylon and printed part" loading="lazy"></a>
+  <a href="/gallery.html"><img src="/assets/gallery/modeshapes.jpg" alt="Mode shapes" loading="lazy"></a>
+  <a href="/gallery.html"><img src="/assets/gallery/complex-step.jpg" alt="Complex-step error plot" loading="lazy"></a>
+  <a class="strip__more" href="/gallery.html">All figures →</a>
+</div>
+
 <h2 class="section-title">Research</h2>
 <div class="cards cards--4">
   <a class="card" href="/research.html">
