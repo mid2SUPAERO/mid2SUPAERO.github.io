@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<div class="page-banner">
+  <p class="page-banner__meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} · {{ page.author }}{% endif %}</p>
+  <h1>{{ page.title | escape }}</h1>
+</div>
+<article class="page-body post-content">
+  {{ content }}
+</article>

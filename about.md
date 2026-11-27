@@ -9,7 +9,7 @@ I am a full professor in Aerospace Engineering (AE) at **ISAE-SUPAERO**, attache
 I lead the **MID2** group — *Multidisciplinary optimization for aerospace Innovation:
 eco Design and Data* — which develops methods for design optimization and data-driven/AI-assisted decision-making, with applications in aerospace engineering.
 
-<img src="MID2.png" width="100"/>
+<img src="/assets/images/mid2.png" alt="MID2 logo" width="100"/>
 
 
 <details markdown="1">

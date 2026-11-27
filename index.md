@@ -35,15 +35,28 @@ title: Home
   @media (max-width: 960px) { .home .topics { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .home .topics { grid-template-columns: 1fr; } }
 
-  /* Big boxes */
-  .home .bigboxes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2.6rem; }
-  .home .bigbox { display: flex; flex-direction: column; justify-content: space-between; min-height: 190px; padding: 1.6rem 1.8rem; border: 1px solid var(--line); border-left: 6px solid var(--amber); border-radius: 14px; background: var(--paper); color: var(--ink); transition: box-shadow .15s, transform .15s; }
-  .home .bigbox:hover { box-shadow: 0 12px 28px rgba(13,43,62,.15); transform: translateY(-3px); background: #fff; }
-  .home .bigbox .kicker { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
-  .home .bigbox h3 { margin: .35rem 0 .5rem; font-size: 1.45rem; line-height: 1.2; color: var(--navy); }
-  .home .bigbox p { margin: 0; color: var(--muted); font-size: .98rem; }
-  .home .bigbox .go { margin-top: 1rem; font-weight: 600; color: var(--navy2); }
-  @media (max-width: 700px) { .home .bigboxes { grid-template-columns: 1fr; } }
+  /* Big boxes with illustration */
+  .home .bigboxes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; margin-top: 2.6rem; }
+  .home .bigbox { position: relative; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; transition: box-shadow .15s, transform .15s; }
+  .home .bigbox:hover { box-shadow: 0 14px 30px rgba(13,43,62,.16); transform: translateY(-3px); }
+  .home .bigbox__img { height: 230px; background: var(--paper); border-bottom: 1px solid var(--line); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .home .bigbox__img img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .home .bigbox__img--contain img { object-fit: contain; background: #fff; }
+  .home .bigbox__img--logo { background: #fff; }
+  .home .bigbox__img--logo img { width: auto; max-width: 70%; max-height: 80%; object-fit: contain; }
+  .home .bigbox__img--book { background: #e8eeee; }
+  .home .bigbox__img--book img { width: auto; height: 92%; object-fit: contain; box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+  .home .bigbox__img--top img { object-position: top; }
+  .home .bigbox__body { padding: 1.2rem 1.5rem 1.4rem; border-top: 4px solid var(--amber); margin-top: -1px; }
+  .home .bigbox .kicker { font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+  .home .bigbox h3 { margin: .3rem 0 .45rem; font-size: 1.3rem; line-height: 1.2; }
+  .home .bigbox h3 a.stretch { color: var(--navy); }
+  .home .bigbox h3 a.stretch::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .home .bigbox p { margin: 0; color: var(--muted); font-size: .96rem; }
+  .home .bigbox a.alt { position: relative; z-index: 2; display: inline-block; margin-top: .9rem; font-weight: 600; color: var(--navy2); border-bottom: 1px solid rgba(20,64,90,.3); }
+  .home .bigbox a.alt:hover { border-bottom-color: var(--amber); }
+  .home .chips.more { margin-top: 1.4rem; align-items: center; }
+  @media (max-width: 700px) { .home .bigboxes { grid-template-columns: 1fr; } .home .bigbox__img { height: 200px; } }
   @media (prefers-reduced-motion: reduce) { .home .bigbox { transition: none; } }
 
   /* Posts and links */
@@ -81,28 +94,92 @@ title: Home
 
 <h2 class="section">Research</h2>
 <div class="topics">
-  <a class="topic" href="/gp-bo/"><img src="/assets/icons/gaussian-process.svg" alt=""><span><strong>AI4Physics &amp; Gaussian processes</strong><em>Surrogates, kriging, multifidelity and mixed-variable models.</em></span></a>
-  <a class="topic" href="/software.html"><img src="/assets/icons/mdo.svg" alt=""><span><strong>Multidisciplinary design optimization</strong><em>Coupled disciplines, aircraft, UAV and launcher design.</em></span></a>
-  <a class="topic" href="/research.html"><img src="/assets/icons/aeroelasticity.svg" alt=""><span><strong>Aeroelasticity &amp; flexible wings</strong><em>Fluid–structure coupling for highly flexible wing design.</em></span></a>
-  <a class="topic" href="/ashby-maps-renewed/"><img src="/assets/icons/ecodesign-lca.svg" alt=""><span><strong>Eco-design &amp; life-cycle assessment</strong><em>Material selection and design under environmental impact.</em></span></a>
-  <a class="topic" href="/research.html"><img src="/assets/icons/digital-materials.svg" alt=""><span><strong>Digital materials &amp; fabrication</strong><em>Voxel-based materials and additive manufacturing.</em></span></a>
-  <a class="topic" href="/software.html"><img src="/assets/icons/topology.svg" alt=""><span><strong>Topology &amp; shape optimization</strong><em>Optimal layouts of structures, from trusses to 3D parts.</em></span></a>
-  <a class="topic" href="/research.html"><img src="/assets/icons/multiscale.svg" alt=""><span><strong>Multiscale &amp; geometric projection</strong><em>Architectured materials and projection of primitives.</em></span></a>
-  <a class="topic" href="/teaching.html"><img src="/assets/icons/vibration-shm.svg" alt=""><span><strong>Vibration &amp; health monitoring</strong><em>Modal identification, signals and damage detection.</em></span></a>
+  <a class="topic" href="/research.html#ai4physics"><img src="/assets/icons/gaussian-process.svg" alt=""><span><strong>AI4Physics &amp; Gaussian processes</strong><em>Surrogates, kriging, multifidelity and mixed-variable models.</em></span></a>
+  <a class="topic" href="/research.html#mdo"><img src="/assets/icons/mdo.svg" alt=""><span><strong>Multidisciplinary design optimization</strong><em>Coupled disciplines, aircraft, UAV and launcher design.</em></span></a>
+  <a class="topic" href="/research.html#aeroelasticity"><img src="/assets/icons/aeroelasticity.svg" alt=""><span><strong>Aeroelasticity &amp; flexible wings</strong><em>Fluid–structure coupling for highly flexible wing design.</em></span></a>
+  <a class="topic" href="/research.html#ecodesign"><img src="/assets/icons/ecodesign-lca.svg" alt=""><span><strong>Eco-design &amp; life-cycle assessment</strong><em>Material selection and design under environmental impact.</em></span></a>
+  <a class="topic" href="/research.html#digital-materials"><img src="/assets/icons/digital-materials.svg" alt=""><span><strong>Digital materials &amp; fabrication</strong><em>Voxel-based materials and additive manufacturing.</em></span></a>
+  <a class="topic" href="/research.html#topology"><img src="/assets/icons/topology.svg" alt=""><span><strong>Topology &amp; shape optimization</strong><em>Optimal layouts of structures, from trusses to 3D parts.</em></span></a>
+  <a class="topic" href="/research.html#multiscale"><img src="/assets/icons/multiscale.svg" alt=""><span><strong>Multiscale &amp; geometric projection</strong><em>Architectured materials and projection of primitives.</em></span></a>
+  <a class="topic" href="/research.html#vibration"><img src="/assets/icons/vibration-shm.svg" alt=""><span><strong>Vibration &amp; health monitoring</strong><em>Modal identification, signals and damage detection.</em></span></a>
 </div>
 
 <div class="bigboxes">
-  <a class="bigbox" href="/ashby-maps-renewed/"><div><div class="kicker">Interactive explainer</div><h3>Ashby maps, renewed</h3><p>Material selection charts revisited with latent spaces.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="/surrogate/"><div><div class="kicker">Interactive explainer</div><h3>Surrogate modeling</h3><p>From design of experiments to POD, ensembles and conformal prediction.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="/gp-bo/"><div><div class="kicker">Interactive explainer</div><h3>Gaussian processes &amp; Bayesian optimization</h3><p>Kernels, posteriors and acquisition, step by step.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="https://materialsandtheenvironment.github.io"><div><div class="kicker">Interactive book</div><h3>Materials &amp; the environment</h3><p>Open science for sustainable structural design.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="https://jomorlier.github.io/VFEA/"><div><div class="kicker">Interactive book</div><h3>Vibration &amp; finite element analysis</h3><p>VFEA part 1: vibration.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="/LearnwithAI.html"><div><div class="kicker">Learn with AI</div><h3>Interactive explorers for optimization and mechanics</h3><p>Deformation gradient, Cauchy stress, elasticity tensor and more.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="/software.html"><div><div class="kicker">Open-source software</div><h3>SMT, SMT-optim,…</h3><p>Surrogate modeling, Bayesian optimization, topology and aerostructural tools.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="/teaching.html"><div><div class="kicker">Teaching</div><h3>MDO, FEA, AI for structural mechanics</h3><p>Course material and GitHub repositories from ISAE-SUPAERO.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="/readings.html"><div><div class="kicker">Readings</div><h3>Articles I wish I had written</h3><p>Tutorials, perspectives and notes worth reading.</p></div><div class="go">Open →</div></a>
-  <a class="bigbox" href="/team.html"><div><div class="kicker">Team</div><h3>PhD students, visitors, alumni</h3><p>Who is working on what in the MID2 group.</p></div><div class="go">Open →</div></a>
+  <article class="bigbox">
+    <div class="bigbox__img bigbox__img--contain"><img src="/assets/images/ashby-maps-renewed.png" alt="" loading="lazy"></div>
+    <div class="bigbox__body">
+      <div class="kicker">Interactive explainer</div>
+      <h3><a class="stretch" href="/research.html#ecodesign">Ashby's maps, renewed</a></h3>
+      <p>Material selection charts revisited with latent spaces.</p>
+      <a class="alt" href="/ashby-maps-renewed/">Open the explainer →</a>
+    </div>
+  </article>
+  <article class="bigbox">
+    <div class="bigbox__img bigbox__img--contain"><img src="/assets/images/surrogate.png" alt="" loading="lazy"></div>
+    <div class="bigbox__body">
+      <div class="kicker">Interactive explainer</div>
+      <h3><a class="stretch" href="/research.html#ai4physics">Surrogate modeling</a></h3>
+      <p>From design of experiments to POD, ensembles and conformal prediction.</p>
+      <a class="alt" href="/surrogate/">Open the explainer →</a>
+    </div>
+  </article>
+  <article class="bigbox">
+    <div class="bigbox__img bigbox__img--contain"><img src="/assets/images/gp-bo.png" alt="" loading="lazy"></div>
+    <div class="bigbox__body">
+      <div class="kicker">Interactive explainer</div>
+      <h3><a class="stretch" href="/research.html#ai4physics">Gaussian processes &amp; Bayesian optimization</a></h3>
+      <p>Kernels, posteriors and acquisition, step by step.</p>
+      <a class="alt" href="/gp-bo/">Open the explainer →</a>
+    </div>
+  </article>
+  <article class="bigbox">
+    <div class="bigbox__img bigbox__img--logo"><img src="/assets/images/smt-logo.webp" alt="" loading="lazy"></div>
+    <div class="bigbox__body">
+      <div class="kicker">Open-source software</div>
+      <h3><a class="stretch" href="/research.html#ai4physics">SMT — Surrogate Modeling Toolbox</a></h3>
+      <p>Gaussian processes, mixed and hierarchical variables, multifidelity modeling.</p>
+      <a class="alt" href="/software.html">See all software →</a>
+    </div>
+  </article>
+  <article class="bigbox">
+    <div class="bigbox__img bigbox__img--book"><img src="/assets/images/matenv.png" alt="" loading="lazy"></div>
+    <div class="bigbox__body">
+      <div class="kicker">Interactive book</div>
+      <h3><a class="stretch" href="/research.html#ecodesign">Materials &amp; the environment</a></h3>
+      <p>An open, interactive book on eco-informed materials selection.</p>
+      <a class="alt" href="https://materialsandtheenvironment.github.io">Read the book →</a>
+    </div>
+  </article>
+  <article class="bigbox">
+    <div class="bigbox__img bigbox__img--top"><img src="/assets/images/vfea1.png" alt="" loading="lazy"></div>
+    <div class="bigbox__body">
+      <div class="kicker">Interactive book</div>
+      <h3><a class="stretch" href="/research.html#vibration">VFEA Part 1 — Vibration</a></h3>
+      <p>How to use this book: vibration lessons in Python and Jupyter.</p>
+      <a class="alt" href="https://jomorlier.github.io/VFEA/">Read the book →</a>
+    </div>
+  </article>
+  <article class="bigbox">
+    <div class="bigbox__img bigbox__img--contain"><img src="/assets/images/mid2.png" alt="" loading="lazy"></div>
+    <div class="bigbox__body">
+      <div class="kicker">Research</div>
+      <h3><a class="stretch" href="/research.html#aeroelasticity">Aeroelastic aircraft design</a></h3>
+      <p>Load alleviation and highly flexible wings, with differentiable tools.</p>
+      <a class="alt" href="/software.html">See the tools →</a>
+    </div>
+  </article>
+  <article class="bigbox">
+    <div class="bigbox__img bigbox__img--contain"><img src="/assets/images/jfam.png" alt="" loading="lazy"></div>
+    <div class="bigbox__body">
+      <div class="kicker">Overview</div>
+      <h3><a class="stretch" href="/research.html">Research at a glance</a></h3>
+      <p>MDO, eco-design, topology optimization, digital fabrication and AI4E.</p>
+      <a class="alt" href="/team.html">Meet the team →</a>
+    </div>
+  </article>
 </div>
+
+<p class="chips more"><span class="muted">Also:</span> <a href="/LearnwithAI.html">Learn with AI</a> <a href="/teaching.html">Teaching</a> <a href="/readings.html">Readings</a> <a href="/software.html">Software</a> <a href="/team.html">Team</a> <a href="/books.html">Books</a> <a href="/about.html">About</a></p>
 
 <h2 class="section">Latest posts</h2>
 <div class="posts">

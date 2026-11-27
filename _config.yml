@@ -5,9 +5,7 @@ email: joseph.morlier@isae-supaero.fr
 
 
 # --- Theme -------------------------------------------------------------
-# Uses the GitHub-Pages-supported "minima" theme as a base, then overrides
-# it with assets/css/style.scss for a layout in the spirit of
-# https://kerfriden.github.io (simple, emoji-anchored sections, blog feed).
+# "minima" base theme, restyled by assets/css/style.scss and _layouts/.
 theme: minima
 minima:
   skin: classic

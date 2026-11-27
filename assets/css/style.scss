@@ -164,3 +164,36 @@ img { max-width: 100%; height: auto; }
 }
 .topic-icon { vertical-align: middle; margin-right: 0.35rem; }
 @media (prefers-reduced-motion: reduce) { .topic { transition: none; } }
+
+
+// --- Inner pages: banner + readable body -------------------------------
+.page-banner {
+  background: radial-gradient(circle at 85% 20%, $navy-2, $navy 65%); color: #fff;
+  padding: 2.2rem 2rem; border-radius: 16px; margin: 1.5rem 0 2rem;
+  h1 { color: #fff; margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.3rem); }
+  .page-banner__meta { margin: 0 0 .4rem; color: $amber; text-transform: uppercase; letter-spacing: .1em; font-size: .8rem; font-weight: 600; }
+}
+.page-body { max-width: 860px; }
+.page-body h1, .page-body h2 { font-size: 1.45rem; color: $navy; margin: 2.4rem 0 .8rem; padding-left: .8rem; border-left: 5px solid $amber; border-bottom: 0; }
+.page-body h3 { color: $navy; margin-top: 1.8rem; }
+.page-body ul { margin-bottom: 1.2rem; }
+.page-body a { text-decoration: none; border-bottom: 1px solid rgba(20,64,90,.3); }
+.page-body a:hover { border-bottom-color: $amber; }
+.page-body img { border-radius: 8px; }
+.page-body hr { border: 0; border-top: 1px solid $line; margin: 2.4rem 0; }
+.page-body details { border: 1px solid $line; border-radius: 10px; padding: .6rem 1rem; background: $paper; margin: 1rem 0; }
+.page-body summary { cursor: pointer; font-weight: 600; color: $navy; }
+
+// --- Research chapters -------------------------------------------------
+.page-body:has(.chapter) { max-width: 960px; }
+.research-map { width: 100%; height: auto; border: 1px solid $line; border-radius: 12px; }
+.chapter-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; margin: 1.4rem 0 .5rem; }
+.chapter-nav a {
+  display: flex; align-items: center; gap: .5rem; padding: .45rem .7rem; border: 1px solid $line; border-radius: 10px;
+  font-size: .85rem; font-weight: 600; color: $navy; border-bottom: 1px solid $line; background: #fff;
+  &:hover { background: $paper; border-color: $navy-2; }
+  img { width: 28px; height: 28px; border-radius: 6px; flex: none; }
+}
+@media (max-width: 760px) { .chapter-nav { grid-template-columns: repeat(2, 1fr); } }
+.page-body h2.chapter { display: flex; align-items: center; gap: .8rem; border-left: 0; padding-left: 0; scroll-margin-top: 1rem; margin-top: 2.8rem; padding-top: 1.4rem; border-top: 1px solid $line; }
+.page-body h2.chapter img { width: 40px; height: 40px; border-radius: 10px; flex: none; }
