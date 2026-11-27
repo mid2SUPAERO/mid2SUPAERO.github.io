@@ -37,11 +37,11 @@ a { color: $navy-2; }
   background: radial-gradient(circle at 80% 30%, $navy-2 0%, $navy 60%);
   color: #fff; padding: 3.5rem 2.5rem; margin: 0 -30px 2.5rem; border-radius: 0 0 18px 18px;
 }
-.page-content .hero h1, .hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.1; margin: 0.4rem 0 1rem; color: #fff !important; }
+.page-content .hero h1, .hero h1 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); line-height: 1.1; margin: 0.4rem 0 1rem; color: #fff !important; }
 .hero .eyebrow { color: $amber; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0; font-weight: 600; }
 .hero__lead { color: #c7d6e0; font-size: 1.08rem; max-width: 34em; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.6rem; }
-.hero__art img { width: 100%; height: auto; display: block; opacity: 0.95; }
+.hero__art img { width: 100%; height: auto; display: block; background: #fff; border-radius: 12px; padding: 0.5rem; box-shadow: 0 12px 32px rgba(0,0,0,.28); }
 .btn {
   display: inline-block; padding: 0.65rem 1.2rem; border-radius: 6px; font-weight: 600;
   border: 2px solid #fff; color: #fff; text-decoration: none;

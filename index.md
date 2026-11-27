@@ -6,7 +6,7 @@ title: Home
 <section class="hero">
   <div class="hero__text">
     <p class="eyebrow">MID2 research group · ISAE-SUPAERO, Toulouse</p>
-    <h1>Design aircraft that<br>weigh less, last longer<br>and cost the planet less.</h1>
+    <h1>Design ultra efficient aerospace vehicles / aerostructures that<br>weigh less, last longer<br>and cost the planet less.</h1>
     <p class="hero__lead">
       We develop structural optimization, surrogate modeling and eco-design methods for
       aerospace systems — from topology-optimized parts to full aeroelastic wings.
@@ -17,8 +17,8 @@ title: Home
       <a class="btn btn--ghost" href="https://github.com/SMTorg/SMT">SMT toolbox ↗</a>
     </p>
   </div>
-  <div class="hero__art" aria-hidden="true">
-    <img src="/assets/images/hero-truss.svg" alt="">
+  <div class="hero__art">
+    <img src="/assets/images/hero-multimaterial.jpg" alt="Eco-efficient multimaterial structure: carbon-fibre PLA and bamboo-fibre PLA composites combined to balance emission and stiffness">
   </div>
 </section>
 
@@ -37,17 +37,6 @@ title: Home
     </p>
   </div>
 </section>
-
-<div class="strip" aria-label="Figures from talks and courses">
-  <a href="/gallery.html"><img src="/assets/gallery/topo-bending.jpg" alt="Optimized truss in bending" loading="lazy"></a>
-  <a href="/gallery.html"><img src="/assets/gallery/ashby-modulus-density.jpg" alt="Ashby chart" loading="lazy"></a>
-  <a href="/gallery.html"><img src="/assets/gallery/gp-matrix-view.jpg" alt="Gaussian process matrix view" loading="lazy"></a>
-  <a href="/gallery.html"><img src="/assets/gallery/flight-footprint.jpg" alt="Flight footprint map" loading="lazy"></a>
-  <a href="/gallery.html"><img src="/assets/gallery/pylon-print.jpg" alt="Pylon and printed part" loading="lazy"></a>
-  <a href="/gallery.html"><img src="/assets/gallery/modeshapes.jpg" alt="Mode shapes" loading="lazy"></a>
-  <a href="/gallery.html"><img src="/assets/gallery/complex-step.jpg" alt="Complex-step error plot" loading="lazy"></a>
-  <a class="strip__more" href="/gallery.html">All figures →</a>
-</div>
 
 <h2 class="section-title">Research</h2>
 <div class="topics">
@@ -72,19 +61,12 @@ title: Home
 </div>
 
 <h2 class="section-title">Interactive explainers</h2>
-<div class="cards cards--3">
-  <a class="card" href="/ashby-maps-renewed/">
-    <div class="card__img"><img src="/assets/images/card-ashby.jpg" alt="Ashby chart comparison" loading="lazy"></div>
-    <div class="card__body"><h3>Ashby maps, renewed</h3><p>Material selection charts revisited with latent spaces.</p></div>
-  </a>
-  <a class="card" href="/surrogate/">
-    <div class="card__img"><img src="/assets/images/card-pod.jpg" alt="POD modes figure" loading="lazy"></div>
-    <div class="card__body"><h3>Surrogate modeling</h3><p>From design of experiments to POD, ensembles and conformal prediction.</p></div>
-  </a>
-  <a class="card" href="/gp-bo/">
-    <div class="card__img"><img src="/assets/images/card-gp.jpg" alt="Gaussian process kernel comparison" loading="lazy"></div>
-    <div class="card__body"><h3>Gaussian processes &amp; Bayesian optimization</h3><p>Kernels, posteriors and acquisition, step by step.</p></div>
-  </a>
+<div class="links">
+  <a href="/ashby-maps-renewed/">Ashby maps, renewed</a>
+  <a href="/ashby-maps/">Ashby maps</a>
+  <a href="/surrogate/">Surrogate modeling</a>
+  <a href="/gp-bo/">Gaussian processes &amp; Bayesian optimization</a>
+  <a href="/gallery.html">Figure gallery</a>
 </div>
 
 <h2 class="section-title">Latest posts</h2>
