@@ -2,56 +2,134 @@
 ---
 
 @import "minima";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap");
 
-// --- Palette: aerospace-adjacent, quiet and readable -----------------------
-$accent: #1d4e5f;      // deep aerospace teal
-$accent-soft: #e8f0ee;
-$ink: #1b1f22;
+$navy: #0d2b3e;
+$navy-2: #14405a;
+$amber: #f2a33a;
+$ink: #17222b;
+$muted: #5b6b77;
+$paper: #f5f7f8;
+$line: #dde4e8;
 
-body {
-  color: $ink;
+body { font-family: "Inter", system-ui, sans-serif; color: $ink; background: #fff; }
+h1, h2, h3, .site-title { font-family: "Space Grotesk", "Inter", sans-serif; letter-spacing: -0.015em; }
+a { color: $navy-2; }
+
+// --- Header ------------------------------------------------------------
+.site-header { background: $navy; border: 0; border-bottom: 3px solid $amber; }
+.site-header .wrapper { max-width: 1120px; }
+.site-title, .site-title:visited { color: #fff !important; font-weight: 700; }
+.site-nav .page-link { color: #d6e2ea; font-weight: 500; }
+.site-nav .page-link:hover { color: $amber; text-decoration: none; }
+.site-nav .menu-icon > svg path { fill: #fff; }
+@media (max-width: 600px) {
+  .site-nav { background: $navy; border-color: $navy-2; }
 }
 
-.site-title,
-.site-title:visited {
-  font-weight: 700;
-  color: $accent !important;
+// Wider canvas on the home page (minima caps at 800px)
+.page-content > .wrapper { max-width: 1120px; }
+.page-content { padding-top: 0; }
+
+// --- Hero --------------------------------------------------------------
+.hero {
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; align-items: center;
+  background: radial-gradient(circle at 80% 30%, $navy-2 0%, $navy 60%);
+  color: #fff; padding: 3.5rem 2.5rem; margin: 0 -30px 2.5rem; border-radius: 0 0 18px 18px;
+}
+.page-content .hero h1, .hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.1; margin: 0.4rem 0 1rem; color: #fff !important; }
+.hero .eyebrow { color: $amber; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0; font-weight: 600; }
+.hero__lead { color: #c7d6e0; font-size: 1.08rem; max-width: 34em; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.6rem; }
+.hero__art img { width: 100%; height: auto; display: block; opacity: 0.95; }
+.btn {
+  display: inline-block; padding: 0.65rem 1.2rem; border-radius: 6px; font-weight: 600;
+  border: 2px solid #fff; color: #fff; text-decoration: none;
+  &:hover { background: #fff; color: $navy; text-decoration: none; }
+}
+.btn--primary { background: $amber; border-color: $amber; color: $navy; &:hover { background: #ffb958; border-color: #ffb958; } }
+.btn--ghost { border-color: rgba(255,255,255,.35); }
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; padding: 2.2rem 1.5rem; margin: 0 -20px 2rem; }
+  .hero__art { order: -1; max-width: 320px; }
 }
 
-.site-nav .page-link {
-  color: $ink;
+// --- Intro -------------------------------------------------------------
+.intro { display: flex; gap: 1.5rem; align-items: center; background: $paper; border: 1px solid $line; border-radius: 12px; padding: 1.4rem 1.6rem; }
+.intro h2 { margin: 0 0 0.2rem; border: 0; padding: 0; font-size: 1.5rem; }
+.intro p { margin: 0.4rem 0; }
+.intro__logo { width: 110px; height: auto; flex: none; }
+@media (max-width: 600px) { .intro { flex-direction: column; text-align: left; align-items: flex-start; } }
+.muted { color: $muted; }
+.small { font-size: 0.88rem; }
+
+// --- Sections ----------------------------------------------------------
+.section-title {
+  font-size: 1.5rem; margin: 3rem 0 1.1rem; padding-left: 0.8rem; border-left: 5px solid $amber; border-bottom: 0;
 }
 
-h1, h2, h3 {
-  letter-spacing: -0.01em;
+// --- Cards -------------------------------------------------------------
+.cards { display: grid; gap: 1.2rem; }
+.cards--4 { grid-template-columns: repeat(4, 1fr); }
+.cards--3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 960px) { .cards--4 { grid-template-columns: repeat(2, 1fr); } .cards--3 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .cards--4, .cards--3 { grid-template-columns: 1fr; } }
+
+.card {
+  display: flex; flex-direction: column; border: 1px solid $line; border-radius: 12px; overflow: hidden;
+  background: #fff; color: $ink; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease;
+  &:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(13,43,62,.14); text-decoration: none; }
+}
+.card__img { aspect-ratio: 16 / 10; background: #fff; overflow: hidden; border-bottom: 1px solid $line; }
+.card__img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.card__img--cover img { object-fit: cover; }
+.card__body { padding: 0.9rem 1rem 1.1rem; }
+.card__body h3 { margin: 0 0 0.35rem; font-size: 1.05rem; color: $navy; }
+.card__body p { margin: 0; font-size: 0.92rem; color: $muted; }
+
+// --- Tiles -------------------------------------------------------------
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 800px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .tiles { grid-template-columns: 1fr; } }
+.tile {
+  display: grid; grid-template-columns: auto 1fr; column-gap: 0.9rem; align-items: center;
+  background: $navy; color: #fff; border-radius: 12px; padding: 1.1rem 1.2rem; text-decoration: none;
+  border-bottom: 4px solid $amber; transition: background .15s;
+  &:hover { background: $navy-2; text-decoration: none; }
+  .tile__icon { grid-row: span 2; font-size: 1.8rem; }
+  strong { font-family: "Space Grotesk", sans-serif; font-size: 1.05rem; }
+  span:not(.tile__icon) { color: #b9cad6; font-size: 0.88rem; }
 }
 
-// Nav-style link row at top of the homepage, e.g. "📄 About  📄 Research ..."
-.page-content h2 {
-  border-bottom: 2px solid $accent-soft;
-  padding-bottom: 0.3rem;
-  margin-top: 2.2rem;
+// --- Posts -------------------------------------------------------------
+.posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+@media (max-width: 960px) { .posts { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .posts { grid-template-columns: 1fr; } }
+.post {
+  border-top: 4px solid $amber; background: $paper; border-radius: 0 0 10px 10px; padding: 1rem 1.1rem;
+  color: $ink; text-decoration: none;
+  &:hover { background: #eaf0f3; text-decoration: none; }
+  time { font-size: 0.8rem; color: $muted; text-transform: uppercase; letter-spacing: 0.06em; }
+  h3 { margin: 0.3rem 0 0.4rem; font-size: 1.05rem; color: $navy; }
+  p { margin: 0; font-size: 0.9rem; color: $muted; }
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
+// --- Link chips --------------------------------------------------------
+.links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.links a {
+  border: 1px solid $line; border-radius: 999px; padding: 0.4rem 0.95rem; font-size: 0.92rem; font-weight: 500;
+  text-decoration: none; background: #fff;
+  &:hover { border-color: $navy-2; background: $paper; }
 }
 
-table th {
-  background: $accent-soft;
-  text-align: left;
-  padding: 0.5rem 0.75rem;
-}
+// --- Inner pages (tables, headings) ------------------------------------
+.post-content h1, .page-content h1 { color: $navy; }
+.page-content h2 { color: $navy; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; display: block; overflow-x: auto; }
+table th { background: $navy; color: #fff; text-align: left; padding: 0.55rem 0.8rem; }
+table td { padding: 0.55rem 0.8rem; border-top: 1px solid $line; vertical-align: top; }
+img { max-width: 100%; height: auto; }
 
-table td {
-  padding: 0.5rem 0.75rem;
-  border-top: 1px solid #ddd;
-  vertical-align: top;
-}
-
-footer.site-footer {
-  border-top: 1px solid #eee;
-  color: #777;
-}
+.site-footer { border-top: 3px solid $amber; background: $paper; }
+:focus-visible { outline: 3px solid $amber; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
