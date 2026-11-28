@@ -9,52 +9,67 @@ permalink: /LearnwithAI.html
 # Mechanics
 
 * **Authors:** Several different authors
-* **1:** [Deformation gradient explorer](https://claude.ai/artifact/VZdZJsmaQTK13KTiFdVCQC)
-* **2:** [Cauchy stress explorer](https://claude.ai/artifact/HM8QH4gAooM1RmCQ6Jv28M)
-* **3:** [How does a potato vibrate?](https://claude.ai/artifact/DdQKDEf3KDdwFcQYHiHX3M)
-* **4:** [Elasticity tensor lab](https://atababazadehnaseri.github.io/SolidMechTools/)
-* **5:** [Push it. Pull it. Watch it deflect](https://awatif.co/examples/interactive/)
-* **6:** [Kinematic links](https://schema-cinematique.com)
-* **7:** [Nonlinear Mechanics](https://claude.ai/artifact/NGz2yjPRARc8F7ANkZzeyS)
-* **8:** [Sliding bar](https://www.zhujuner.com/teaching/dynamics-1-sliding-bar-and-beyond)
-* **9:** [Composites lab](https://composites.uw.edu/analysis/)
-* **10:** [Composites & AFP](https://www.addcomposites.com/learn/course)
-* **11:** [Nodal](https://hse95.github.io/nodal/)
-* **12:** [Vibrations tutorials](https://dchelidze.github.io/vibrations-tutorials/)
-* **13:** [dynamics](https://www.structuralengineeringsimplified.com/dynamics/toc)
 
+<div class="linkgrid">
+  <a class="linktile" href="https://claude.ai/artifact/VZdZJsmaQTK13KTiFdVCQC"><span class="n">1</span><strong>Deformation gradient explorer</strong><em>Claude artifact</em></a>
+  <a class="linktile" href="https://claude.ai/artifact/HM8QH4gAooM1RmCQ6Jv28M"><span class="n">2</span><strong>Cauchy stress explorer</strong><em>Claude artifact</em></a>
+  <a class="linktile" href="https://claude.ai/artifact/DdQKDEf3KDdwFcQYHiHX3M"><span class="n">3</span><strong>How does a potato vibrate?</strong><em>Claude artifact</em></a>
+  <a class="linktile" href="https://atababazadehnaseri.github.io/SolidMechTools/"><span class="n">4</span><strong>Elasticity tensor lab</strong><em>atababazadehnaseri.github.io</em></a>
+  <a class="linktile" href="https://awatif.co/examples/interactive/"><span class="n">5</span><strong>Push it. Pull it. Watch it deflect</strong><em>awatif.co</em></a>
+  <a class="linktile" href="https://schema-cinematique.com"><span class="n">6</span><strong>Kinematic links</strong><em>schema-cinematique.com</em></a>
+  <a class="linktile" href="https://claude.ai/artifact/NGz2yjPRARc8F7ANkZzeyS"><span class="n">7</span><strong>Nonlinear Mechanics</strong><em>Claude artifact</em></a>
+  <a class="linktile" href="https://www.zhujuner.com/teaching/dynamics-1-sliding-bar-and-beyond"><span class="n">8</span><strong>Sliding bar</strong><em>zhujuner.com</em></a>
+  <a class="linktile" href="https://composites.uw.edu/analysis/"><span class="n">9</span><strong>Composites lab</strong><em>composites.uw.edu</em></a>
+  <a class="linktile" href="https://www.addcomposites.com/learn/course"><span class="n">10</span><strong>Composites &amp; AFP</strong><em>addcomposites.com</em></a>
+  <a class="linktile" href="https://hse95.github.io/nodal/"><span class="n">11</span><strong>Nodal</strong><em>hse95.github.io</em></a>
+  <a class="linktile" href="https://dchelidze.github.io/vibrations-tutorials/"><span class="n">12</span><strong>Vibrations tutorials</strong><em>dchelidze.github.io</em></a>
+  <a class="linktile" href="https://www.structuralengineeringsimplified.com/dynamics/toc"><span class="n">13</span><strong>dynamics</strong><em>structuralengineeringsimplified.com</em></a>
+</div>
 
-
----
 
 # Optimization and AI
 
-* **1:** [Beat the gradient optimizer to the minimum](https://claude.ai/artifact/Mu5jhuFeicPSJP9CycP6Tw)
-* **2:** [Draw an equation using pySR](https://v.edisonscientific.com/draw-an-equation-html-hto1)
-* **3:** [Surrogate models and DLL](http://surrogatemodels.com/topics)
 
+<div class="linkgrid">
+  <a class="linktile" href="https://claude.ai/artifact/Mu5jhuFeicPSJP9CycP6Tw"><span class="n">1</span><strong>Beat the gradient optimizer to the minimum</strong><em>Claude artifact</em></a>
+  <a class="linktile" href="https://v.edisonscientific.com/draw-an-equation-html-hto1"><span class="n">2</span><strong>Draw an equation using pySR</strong><em>v.edisonscientific.com</em></a>
+  <a class="linktile" href="http://surrogatemodels.com/topics"><span class="n">3</span><strong>Surrogate models and DLL</strong><em>surrogatemodels.com</em></a>
+</div>
 
 # Visual mathematics
 
 📖 Distill is back ;)
----
 The Distill journal was founded as an adapter between traditional and online scientific publishing. We believed that many valuable scientific contributions — such as explanations, interactive articles, and visualizations — were held back by not being seen as “real scientific publications.” Our theory was that if a journal were to publish such artifacts, it would allow authors to benefit from the traditional academic incentive system and enable more of this kind of work.
----
+
+
+<div class="box box--wide" markdown="1">
 
 ### [What is a surrogate model? (DRAFT)](/surrogate/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** November 2026
+
 **Summary:** A simulation that takes hours answers one question at a time. A surrogate answers thousands per second — if it was trained on the right runs, tested honestly, and used where it knows what it is talking about. This is a hands-on tour of how to build one, from the first design of experiments to uncertainty you can check.
 
+
+</div>
+
+
+<div class="box box--wide" markdown="1">
 
 ### [A numerical tour of GP and BO (DRAFT)](/gp-bo/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** August 2026
+
 **Summary:** This article builds that idea from scratch and ends where a lot of real design optimization currently lives: Bayesian Optimization — using a Gaussian Process not just to predict, but to decide where to sample next under a tight budget. Every figure below is generated by the same code as the source notebooks (linked throughout), and the two boxed panels are fully interactive — drag points, change kernels, click to sample a "black box," and watch the algorithm choose its next move.
 
----
+
+</div>
+
 
 # Materials and AI
+
+
+<div class="box box--wide" markdown="1">
 
 ### [Everything on Ashby's maps (DRAFT)](/ashby-maps/)
 * **Authors:** Joseph Morlier and Claude
@@ -63,11 +78,22 @@ The Distill journal was founded as an adapter between traditional and online sci
 **Summary:** Michael Ashby's material-selection charts turned an abstract optimisation — choosing the best material for a function — into something an engineer could see: two properties on log–log axes, a guideline of the right slope, and the winning family lights up. This is Part 1 of a two-part note. It follows that idea through two more generations — a multi-objective value function for when one chart is not enough, and an eco-cost axis that turns the same method toward sustainability — and stops exactly where the two-dimensional chart itself starts to run out of room. Part 2, “Ashby's Maps, Renewed,” picks up from there with a generative, learned alternative.
 
 
+</div>
+
+
+<div class="box box--wide" markdown="1">
+
 ### [Ashby's maps renewed (DRAFT)](/ashby-maps-renewed/)
 * **Authors:** Joseph Morlier and Claude
 * **Published:** August 2026
 
 **Summary:** Part 1, “Ashby's Maps,” followed Ashby's method through a single log–log guideline, a multi-objective value function, and an eco-cost axis — three generations that all still ask a human to pick the axes, and all still top out at two or three properties before the picture stops helping. This second part removes that ceiling by training a variational autoencoder on the same material database and replacing “read a slope off a chart” with “follow a gradient through a learned, continuous space.” The same trained network, unchanged, then answers any material index by gradient ascent — validated case by case against the classical answer, on the two baseline structural cases worked by hand in Part 1 and on thirteen further cases beyond them.
+
+
+</div>
+
+
+<div class="box box--wide" markdown="1">
 
 ### [Mapping the Ecolyser (DRAFT)](/ecolizer-vae/)
 * **Authors:** Joseph Morlier and Claude
@@ -75,6 +101,12 @@ The Distill journal was founded as an adapter between traditional and online sci
 
 **Summary:** This article continues Ashby's Maps and Ashby's Maps, Renewed. There, the price axis of a classical materials chart was replaced by an environmental one, and a variational autoencoder (VAE) replaced the two-axis chart by a continuous map. Here we apply both ideas to real environmental data: the Ecolizer 2.0
 [1] , a booklet published by the Flemish waste agency OVAM for designers who want to estimate the environmental impact of a product. Every figure on this page is interactive and runs in your browser; the models were trained in a companion notebook.
+
+
+</div>
+
+
+<div class="box box--wide" markdown="1">
 
 ### [TOPOLOGY OPTIMISATION & SUSTAINABLE METALS (DRAFT)](/tosm/)
 * **Authors:** Joseph Morlier and students + Claude
@@ -84,9 +116,14 @@ The Distill journal was founded as an adapter between traditional and online sci
 Which bracket, in which metal, for the least carbon?
 We re-ran 379 crowd-designed jet-engine brackets in four aerospace alloys and attached a production and lifetime footprint to every one. Here are the 1,516 results, the trade-offs between strength and CO₂, and the designs that sit on the Pareto front.
 
----
+
+</div>
+
 
 # Aerospace
+
+
+<div class="box box--wide" markdown="1">
 
 ### [Weight, Drag, Thrust, Range (DRAFT)](/tasopt/)
 * **Authors:** Joseph Morlier and Claude
@@ -94,7 +131,9 @@ We re-ran 379 crowd-designed jet-engine brackets in four aerospace alloys and at
 
 **Summary:** In one sentence: TASOPT treats an airliner not as a set of weight fractions looked up from history, but as a coupled system of beam-theory structures, viscous-flow aerodynamics, and a real turbofan thermodynamic cycle, all closed by a range equation — solved together, iteratively, until the airframe, the engine, and the mission agree with each other. This page walks through each piece of that loop in the order Drela's technical description builds it, with small interactive calculators dropped in wherever a slider teaches more than a paragraph. A companion Jupyter notebook turns the same equations into running Python code and sizes a 737-800–class narrowbody from scratch.
 
----
+
+</div>
+
 
 💻 “Hello Prof”
 
@@ -105,8 +144,6 @@ Contact me if you need help
 [coffee](https://buymeacoffee.com/helloprof)
 * **Author:** J.Morlier
 
-
----
 
 💻 “Vibe Coding”
 As AI assistants are transforming the way we write software, I want to explore a simple question:
@@ -121,7 +158,7 @@ Vibe coding is a software development approach where you build applications enti
 [Vibe coding](https://en.wikipedia.org/wiki/Vibe_coding)
 
 
----
+<div class="box box--wide" markdown="1">
 
 ### HelloProf on buy me a coffee
 
@@ -129,7 +166,11 @@ Contact me if you need help
 [coffee](https://buymeacoffee.com/helloprof)
 * **Author:** J.Morlier
 Here are two examples available for free
----
+
+</div>
+
+
+<div class="box box--wide" markdown="1">
 
 ### [REMAL](https://arxiv.org/html/2606.13245v1)
 * **Authors:** Kail Yuan, Ashwin Renganathan
@@ -140,8 +181,11 @@ Here are two examples available for free
 
 * **Link:** [Play with the testcase vibecoded, it works on colab](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/REMAL_CasADi.ipynb)
 
----
----
+
+</div>
+
+
+<div class="box box--wide" markdown="1">
 
 ### [ClarkeLib](https://github.com/nomad-vagabond/ClarkeLib/tree/master)
 * **Author:** Vadym Pasko.
@@ -159,8 +203,10 @@ parameters and loads has been developed.
 * **Link:** [Play with the vibecode, it works on colab](https://github.com/mid2SUPAERO/mid2SUPAERO.github.io/blob/main/_notebooks/REMAL_CasADi.ipynb)
 
 
----
+</div>
 
+
+<div class="box box--wide" markdown="1">
 
 ### Recreation with my friend NotebookLM (Gemini)
 * **Authors:** J.Morlier and students
@@ -176,4 +222,5 @@ more mathematical details in this post [QuadraticForm](https://mid2supaero.githu
 
 </details>
 
----
+
+</div>

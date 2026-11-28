@@ -4,13 +4,14 @@ title: About
 permalink: /about.html
 ---
 
-I am a full professor in Aerospace Engineering (AE) at **ISAE-SUPAERO**, attached to the Aerospace Design group at **TSAAELab**.
 
-I lead the **MID2** group — *Multidisciplinary optimization for aerospace Innovation:
-eco Design and Data* — which develops methods for design optimization and data-driven/AI-assisted decision-making, with applications in aerospace engineering.
-
-<img src="/assets/images/mid2.png" alt="MID2 logo" width="100"/>
-
+<div class="box box--intro">
+  <img src="/assets/images/mid2.png" alt="MID2 logo">
+  <div>
+    <p>I am a full professor in Aerospace Engineering (AE) at <strong>ISAE-SUPAERO</strong>, attached to the Aerospace Design group at <strong>TSAAELab</strong>.</p>
+    <p>I lead the <strong>MID2</strong> group — <em>Multidisciplinary optimization for aerospace Innovation: eco Design and Data</em> — which develops methods for design optimization and data-driven/AI-assisted decision-making, with applications in aerospace engineering.</p>
+  </div>
+</div>
 
 <details markdown="1">
 
@@ -107,12 +108,13 @@ PS: SMT has been efficiently refactored by Claude and Remi Lafage (ONERA).
 </details>
 
 
-Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project:
-
-[SMT Github](https://github.com/SMTorg/SMT)
-
-[SMT Documentation](https://smt.readthedocs.io/en/latest/)
-
+<div class="box box--wide">
+  <p>Since 2017, I'm part of SMT The Surrogate Modeling Toolbox opensource project.</p>
+  <div class="chips-list"><ul>
+    <li><a href="https://github.com/SMTorg/SMT">SMT Github</a></li>
+    <li><a href="https://smt.readthedocs.io/en/latest/">SMT Documentation</a></li>
+  </ul></div>
+</div>
 
 ## Affiliations
 
@@ -129,11 +131,17 @@ Tel: +33 (0)5 61 33 81 31
 
 
 
+<div class="chips-list" markdown="1">
+
 - [ISAE-SUPAERO personnel page](https://personnel.isae-supaero.fr/joseph-morlier/?lang=fr)
 - [LinkedIn](https://www.linkedin.com/in/joseph-morlier-890176168/)
 - [Google Maps](https://www.google.com/maps/place/ISAE-SUPAERO/@43.5664595,1.4729086,17z)
 
+</div>
+
 ## Elsewhere
+
+<div class="chips-list" markdown="1">
 
 - [ISAE-SUPAERO personnel page](https://personnel.isae-supaero.fr/joseph-morlier/?lang=fr)
 - [LinkedIn](https://www.linkedin.com/in/joseph-morlier-890176168/)
@@ -141,6 +149,8 @@ Tel: +33 (0)5 61 33 81 31
 - [Webofsciences](https://www.webofscience.com/wos/author/rid/Y-1209-2019)
 - [Openalex](https://openalex.org/authors/A5005187572)
 - [ORCID](https://orcid.org/0000-0002-1511-2086)
+
+</div>
 
 # HelloProf on buy me a coffee
 

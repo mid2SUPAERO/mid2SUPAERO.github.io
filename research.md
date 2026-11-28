@@ -19,58 +19,128 @@ permalink: /research.html
 
 <h2 id="ai4physics" class="chapter"><img src="/assets/icons/gaussian-process.svg" alt="" width="40" height="40">AI4Physics and Gaussian Process</h2>
 
-**Active projects**
-
-- **SMT** — common research with ONERA, IRD, Polytechnique Montréal, University of Michigan, UCSD, ITB, etc.<br>
-  Links: [Preprint](https://arxiv.org/abs/2305.13998) · [Paper](https://doi.org/10.1016/j.advengsoft.2024.103571) · [Code](https://github.com/SMTorg/smt) · [Documentation](https://smt.readthedocs.io/en/latest/)
-- **MARIO** — common research with TSAAELab / Airbus.<br>
-  Links: Preprint · Paper · [Code](https://github.com/giovannicatalani/MARIO) · Documentation
-- [**Splinecloud**](https://splinecloud.com/) (in progress)
-- **Frugal GP** (in progress)
+<div class="boxes">
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>SMT</h3>
+    <p>Common research with ONERA, IRD, Polytechnique Montréal, University of Michigan, UCSD, ITB, etc.</p>
+    <div class="pills"><a href="https://arxiv.org/abs/2305.13998">Preprint</a><a href="https://doi.org/10.1016/j.advengsoft.2024.103571">Paper</a><a href="https://github.com/SMTorg/smt">Code</a><a href="https://smt.readthedocs.io/en/latest/">Documentation</a></div>
+  </article>
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>MARIO</h3>
+    <p>Common research with TSAAELab / Airbus.</p>
+    <div class="pills"><span class="off" title="link to come">Preprint</span><span class="off" title="link to come">Paper</span><a href="https://github.com/giovannicatalani/MARIO">Code</a><span class="off" title="link to come">Documentation</span></div>
+  </article>
+  <article class="box">
+    <div class="kicker">In progress</div>
+    <h3>Splinecloud</h3>
+    <div class="pills"><a href="https://splinecloud.com/">Website</a></div>
+  </article>
+  <article class="box">
+    <div class="kicker">In progress</div>
+    <h3>Frugal GP</h3>
+  </article>
+</div>
 
 <h2 id="mdo" class="chapter"><img src="/assets/icons/mdo.svg" alt="" width="40" height="40">Multidisciplinary Design Optimization</h2>
 
-**Active projects**
-
-- **CasADi Sellar** — code and paper (in progress)
-- **EcoHale** — paper · code
+<div class="boxes">
+  <article class="box">
+    <div class="kicker">In progress</div>
+    <h3>CasADi Sellar</h3>
+    <p>Code and paper.</p>
+    <div class="pills"><span class="off" title="link to come">Paper</span><span class="off" title="link to come">Code</span></div>
+  </article>
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>EcoHale</h3>
+    <div class="pills"><span class="off" title="link to come">Paper</span><span class="off" title="link to come">Code</span></div>
+  </article>
+</div>
 
 <h2 id="aeroelasticity" class="chapter"><img src="/assets/icons/aeroelasticity.svg" alt="" width="40" height="40">Aeroelasticity and flexible wing</h2>
 
-**Active projects**
-
-- **Aircraft Maneuver Load Alleviation (MLA)**<br>
-  [Preprint](https://hal.science/hal-05670373v1) · [Paper](https://arc.aiaa.org/doi/abs/10.2514/1.C038643) · [Code](https://github.com/mid2SUPAERO/Analytical-LAF)
-- **GEBTaero-jax** — [Code](https://github.com/mid2SUPAERO/gebtaero-jax)
+<div class="boxes">
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>Aircraft Maneuver Load Alleviation (MLA)</h3>
+    <div class="pills"><a href="https://hal.science/hal-05670373v1">Preprint</a><a href="https://arc.aiaa.org/doi/abs/10.2514/1.C038643">Paper</a><a href="https://github.com/mid2SUPAERO/Analytical-LAF">Code</a></div>
+  </article>
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>GEBTaero-jax</h3>
+    <div class="pills"><a href="https://github.com/mid2SUPAERO/gebtaero-jax">Code</a></div>
+  </article>
+</div>
 
 <h2 id="ecodesign" class="chapter"><img src="/assets/icons/ecodesign-lca.svg" alt="" width="40" height="40">Ecodesign and LCA</h2>
 
-**Active projects**
-
-- **Materials and the environment** (book) — [Read online](https://materialsandtheenvironment.github.io)
-- **Material-based Aircraft Design** — paper · code (in progress)
-- **Material-based Launcher Design** — paper · code (in progress)
+<div class="boxes">
+  <article class="box">
+    <div class="kicker">Book</div>
+    <h3>Materials and the environment</h3>
+    <div class="pills"><a href="https://materialsandtheenvironment.github.io">Read online</a></div>
+  </article>
+  <article class="box">
+    <div class="kicker">In progress</div>
+    <h3>Material-based Aircraft Design</h3>
+    <div class="pills"><span class="off" title="link to come">Paper</span><span class="off" title="link to come">Code</span></div>
+  </article>
+  <article class="box">
+    <div class="kicker">In progress</div>
+    <h3>Material-based Launcher Design</h3>
+    <div class="pills"><span class="off" title="link to come">Paper</span><span class="off" title="link to come">Code</span></div>
+  </article>
+</div>
 
 <h2 id="digital-materials" class="chapter"><img src="/assets/icons/digital-materials.svg" alt="" width="40" height="40">Digital materials and fabrication</h2>
 
-**Active projects**
-
-- [SOMP_Ansys](https://github.com/mid2SUPAERO/SOMP_Ansys) — code
-- [MMEcoTopOpt](https://github.com/gj-asai/MMEcoTopOpt) — code
+<div class="boxes">
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>SOMP_Ansys</h3>
+    <div class="pills"><a href="https://github.com/mid2SUPAERO/SOMP_Ansys">Code</a></div>
+  </article>
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>MMEcoTopOpt</h3>
+    <div class="pills"><a href="https://github.com/gj-asai/MMEcoTopOpt">Code</a></div>
+  </article>
+</div>
 
 <h2 id="topology" class="chapter"><img src="/assets/icons/topology.svg" alt="" width="40" height="40">Topology and shape optimization</h2>
 
-**Active projects**
-
-- **IGA sensitivities** — code and paper (in progress)
-- [TTO](https://github.com/mid2SUPAERO/TTO) — code
+<div class="boxes">
+  <article class="box">
+    <div class="kicker">In progress</div>
+    <h3>IGA sensitivities</h3>
+    <p>Code and paper.</p>
+    <div class="pills"><span class="off" title="link to come">Paper</span><span class="off" title="link to come">Code</span></div>
+  </article>
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>TTO</h3>
+    <div class="pills"><a href="https://github.com/mid2SUPAERO/TTO">Code</a></div>
+  </article>
+</div>
 
 <h2 id="multiscale" class="chapter"><img src="/assets/icons/multiscale.svg" alt="" width="40" height="40">Multiscale and geometric projection</h2>
 
-**Active projects**
-
-- [EMTO](https://github.com/mid2SUPAERO/EMTO) — Efficient Multiscale Topology Optimization (code)
-- [TOPGGP](https://topggp.github.io/blog/) — Topology Optimization using Generalized Geometric Projection
+<div class="boxes">
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>EMTO</h3>
+    <p>Efficient Multiscale Topology Optimization.</p>
+    <div class="pills"><a href="https://github.com/mid2SUPAERO/EMTO">Code</a></div>
+  </article>
+  <article class="box">
+    <div class="kicker">Active project</div>
+    <h3>TOPGGP</h3>
+    <p>Topology Optimization using Generalized Geometric Projection.</p>
+    <div class="pills"><a href="https://topggp.github.io/blog/">Blog</a></div>
+  </article>
+</div>
 
 <h2 id="vibration" class="chapter"><img src="/assets/icons/vibration-shm.svg" alt="" width="40" height="40">Vibration and health monitoring</h2>
 
