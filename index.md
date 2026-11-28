@@ -77,7 +77,7 @@ title: Home
   <div>
     <p class="eyebrow">MID2 research group · ISAE-SUPAERO, Toulouse</p>
     <h1>Design ultra efficient aerospace vehicles / aerostructures that<br>weigh less, last longer<br>and cost the planet less.</h1>
-    <p class="lead">MDO, surrogate modeling and eco-design for aerospace systems — from topology-optimized parts to full aeroelastic wings — Reducing AI complexity and footprint to AI4Physics.</p>
+    <p class="lead">MDO, surrogate modeling and eco-design for aerospace science — From topology-optimized parts to full aeroelastic wings — From Reducing AI complexity and footprint to AI4Physics.</p>
     <p class="btns">
       <a class="btn primary" href="/research.html">Our research</a>
       <a class="btn" href="/team.html">Meet the team</a>
