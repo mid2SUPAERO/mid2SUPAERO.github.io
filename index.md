@@ -123,6 +123,13 @@ title: Home
       <a class="alt" href="/surrogate/">Open the explainer →</a>
     </div>
   </article>
+  <style>
+.bigbox .bigbox__img--logo img {
+    width: 120px !important;
+    height: auto !important;
+    object-fit: contain;
+}
+</style>
   <article class="bigbox">
     <div class="bigbox__img bigbox__img--contain"><img src="/assets/images/gp-bo.png" alt="" loading="lazy"></div>
     <div class="bigbox__body">
